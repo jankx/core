@@ -41,6 +41,7 @@ class Foxy_Setup {
 		$this->define_constants();
 		$this->autoload();
 		$this->init_hooks();
+		$this->prepare();
 
 		Foxy::instance();
 	}
@@ -163,5 +164,9 @@ class Foxy_Setup {
 			 */
 			register_sidebar( $sidebar_args );
 		}
+	}
+
+	public function prepare() {
+		
 	}
 }

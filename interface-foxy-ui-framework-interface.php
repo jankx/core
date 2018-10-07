@@ -1,5 +1,5 @@
 <?php
 
-interface Foxy_GUI_Framework_Interface {
+interface Foxy_UI_Framework_Interface {
 
 }

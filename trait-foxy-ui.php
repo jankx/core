@@ -1,5 +1,7 @@
 <?php
 trait Foxy_UI {
+	protected $ui_framework;
+
 	public static function logo( $echo = true ) {
 		$wrap_tag = 2;
 		if ( is_home() ) {
