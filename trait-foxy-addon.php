@@ -59,7 +59,7 @@ trait Foxy_Addon {
 	 * @return string
 	 */
 	public static function get_addons_directory() {
-		return apply_filter( 'foxy_addon_directory', FOXY_ACTIVE_THEME_DIR . 'addons' );
+		return apply_filters( 'foxy_addon_directory', FOXY_ACTIVE_THEME_DIR . 'addons' );
 	}
 
 	/**
