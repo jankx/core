@@ -41,9 +41,13 @@ class Foxy_Setup {
 		$this->define_constants();
 		$this->autoload();
 		$this->init_hooks();
-		$this->prepare();
+		$this->load_addons();
 
-		Foxy::instance();
+		if ( Foxy::is_admin() ) {
+			Foxy_Admin::instance();
+		} else {
+			Foxy::instance();
+		}
 	}
 
 	/**
@@ -66,6 +70,7 @@ class Foxy_Setup {
 	 */
 	public function define_constants() {
 		$this->define( 'FOXY_FRAMEWORK_CORE', dirname( FOXY_FRAMEWORK_FILE ) . '/' );
+		$this->define( 'FOXY_ACTIVE_THEME_DIR', get_stylesheet_directory() . '/' );
 	}
 
 	/**
@@ -85,19 +90,21 @@ class Foxy_Setup {
 	 */
 	public function autoload() {
 		$search_prefixs = array( 'class', 'trait', 'interface' );
-		spl_autoload_register( function( $class_name ) use ( $search_prefixs ) {
-			foreach ( $search_prefixs as $prefix ) {
-				$real_file = sprintf(
-					'%1$s%2$s-%3$s.php',
-					FOXY_FRAMEWORK_CORE,
-					$prefix,
-					$this->convert_class_to_file( $class_name )
-				);
-				if ( file_exists( $real_file ) ) {
-					require_once $real_file;
+		spl_autoload_register(
+			function( $class_name ) use ( $search_prefixs ) {
+				foreach ( $search_prefixs as $prefix ) {
+					$real_file = sprintf(
+						'%1$s%2$s-%3$s.php',
+						FOXY_FRAMEWORK_CORE,
+						$prefix,
+						$this->convert_class_to_file( $class_name )
+					);
+					if ( file_exists( $real_file ) ) {
+						require_once $real_file;
+					}
 				}
 			}
-		} );
+		);
 	}
 
 	/**
@@ -140,7 +147,7 @@ class Foxy_Setup {
 	 * Register footer widgets
 	 */
 	private function register_footer_widgets() {
-		$footer_num = Foxy::get_footer_num();
+		$footer_num   = Foxy::get_footer_num();
 		$sidebar_args = apply_filters(
 			'foxy_sidebar_defaults_args', array(
 				'before_widget' => '<div>',
@@ -151,8 +158,8 @@ class Foxy_Setup {
 		);
 
 		for ( $index = 1; $index <= $footer_num; $index++ ) {
-			$sidebar_args['id']   = sprintf( 'footer-%d', $index );
-			$sidebar_args['name'] = sprintf( __( 'Footer %d', 'foxy' ), $index );
+			$sidebar_args['id']          = sprintf( 'footer-%d', $index );
+			$sidebar_args['name']        = sprintf( __( 'Footer %d', 'foxy' ), $index );
 			$sidebar_args['description'] = sprintf( __( 'Footer %d', 'foxy' ), $index );
 			/**
 			 * Create filter hooks for footer widget
@@ -166,7 +173,10 @@ class Foxy_Setup {
 		}
 	}
 
-	public function prepare() {
-		
+	public function load_addons() {
+		$addons = Foxy::get_active_addons();
+		foreach ( $addons as $addon ) {
+			require_once $addon;
+		}
 	}
 }

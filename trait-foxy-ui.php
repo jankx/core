@@ -1,8 +1,21 @@
 <?php
 trait Foxy_UI {
+	/**
+	 * UI Framework use in Foxy framework
+	 * Current supportes:
+	 *  - Bootstrap
+	 *  - Gris
+	 *
+	 * @var UI_Framework
+	 */
 	protected $ui_framework;
 
-	public static function logo( $echo = true ) {
+	/**
+	 * Foxy logo render HTML
+	 *
+	 * @return void
+	 */
+	public static function logo() {
 		$wrap_tag = 2;
 		if ( is_home() ) {
 			$wrap_tag = 1;
@@ -11,15 +24,9 @@ trait Foxy_UI {
 			<a href="%3$s" title="%4$s">%4$s</a>
 		</h%1$d>';
 		$logo_classes = apply_filters( 'foxy_logo_class_name', 'site-logo' );
-		$output = sprintf(
-			$template,
-			$wrap_tag,
-			$logo_classes,
-			home_url(),
-			get_bloginfo( 'name' )
-		);
+
 		// phpcs:ignore
-		echo $output;
+		printf( $template, $wrap_tag, $logo_classes, home_url(), get_bloginfo( 'name' ) );
 	}
 
 	public static function menu( $location, $args = array() ) {
@@ -52,4 +59,10 @@ trait Foxy_UI {
 		}
 		do_action( 'foxy_after_footer_widget_loop' );
 	}
+
+	public static function paginate() {
+
+	}
+
+	public static function breadcrumb() {}
 }

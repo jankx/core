@@ -11,7 +11,7 @@
  * Foxy class
  */
 class Foxy {
-	use Foxy_Option, Foxy_Plugin, Foxy_Meta, Foxy_Request, Foxy_Layout, Foxy_Template, Foxy_UI;
+	use Foxy_Option, Foxy_Plugin, Foxy_Addon, Foxy_Meta, Foxy_Request, Foxy_Layout, Foxy_Template, Foxy_UI;
 
 	protected static $instance;
 
@@ -23,5 +23,4 @@ class Foxy {
 		}
 		return self::$instance;
 	}
-
 }
