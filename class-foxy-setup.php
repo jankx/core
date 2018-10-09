@@ -115,6 +115,7 @@ class Foxy_Setup {
 	public function init_hooks() {
 		add_action( 'init', array( $this, 'menus' ), 33 );
 		add_action( 'init', array( $this, 'sidebars' ), 33 );
+		add_action( 'init', array( $this, 'datas' ), 33 );
 	}
 
 	/**
@@ -171,6 +172,20 @@ class Foxy_Setup {
 			 */
 			register_sidebar( $sidebar_args );
 		}
+	}
+
+	/**
+	 * Wordpress data integration
+	 *
+	 * This function will initialize WordPress data such as: post, page, category, post meta,etc
+	 *
+	 * @return void
+	 */
+	public function datas() {
+		/**
+		 * Get instance of Foxy_Data to register data
+		 */
+		Foxy_Data::instance();
 	}
 
 	public function load_addons() {
