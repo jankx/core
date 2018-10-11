@@ -45,7 +45,7 @@ class Foxy_Data {
 	}
 
 	public function add_post_metas() {
-		$meta_boxes = apply_filters( 'foxy_meta_boxes', array() );
+		$meta_boxes = apply_filters( 'foxy_post_metas', array() );
 		if ( ! empty( $meta_boxes ) && is_array( $meta_boxes ) ) {
 
 		}
