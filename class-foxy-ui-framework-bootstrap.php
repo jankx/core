@@ -13,6 +13,56 @@
  * Default Version: Bootstrap 4
  */
 class Foxy_UI_Framework_Bootstrap extends Foxy_UI_Framework_Base {
+	protected $version = '4.1.3';
+	protected $major_version = '4';
+	protected $assets_dir;
+
+	public function __construct() {
+		$this->version = $this->bootstrap_version();
+
+		$this->major_version = substr(
+			$this->version,
+			0,
+			strpos( $this->version, '.')
+		);
+
+		$this->assets_dir = apply_filters(
+			'foxy_ui_bootstrap_framework_assets',
+			sprintf(
+				'%s/public/lib/bootstrap-%s/',
+				get_template_directory_uri(),
+				$this->version
+			)
+		);
+
+		parent::__construct();
+	}
+
+	protected function bootstrap_version() {
+		return apply_filters( 'foxy_ui_bootstrap_framework_version', $this->version );
+	}
+
+	public function register_scripts() {
+		wp_register_style(
+			$this->get_name(),
+			$this->assets_dir . 'css/bootstrap.min.css',
+			array(),
+			$this->version
+		);
+
+		wp_register_script(
+			$this->get_name(),
+			$this->assets_dir . 'js/bootstrap.min.js',
+			array( 'jquery' ),
+			$this->version,
+			true
+		);
+	}
+
+	public function get_name() {
+		return 'bootstrap';
+	}
+
 	/**
 	 * Create container block
 	 *
