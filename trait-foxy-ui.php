@@ -10,6 +10,16 @@ trait Foxy_UI {
 	 */
 	protected $ui_framework;
 
+	public function set_ui_framework( $framework ) {
+		if ( ! ( $framework instanceof Foxy_UI_Framework_Base ) ) {
+			throw new \Exception(
+				sprintf( 'UI Framework must be instance of %s class', 'Foxy_UI_Framework_Base' ),
+				333
+			);
+		}
+		$this->ui_framework = $framework;
+	}
+
 	/**
 	 * Foxy logo render HTML
 	 *

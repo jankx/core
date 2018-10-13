@@ -19,6 +19,7 @@ class Foxy_Setup {
 	 * @var Foxy_Setup
 	 */
 	protected static $instance;
+	protected $foxy;
 
 	/**
 	 * Foxy initialize
@@ -38,30 +39,21 @@ class Foxy_Setup {
 	 * Define constants, register autoload and init hooks
 	 */
 	public function __construct() {
-		$this->define_constants();
 		$this->autoload();
+		$this->define_constants();
 		$this->init_hooks();
 		$this->load_addons();
 
+		$this->foxy = Foxy::instance();
 		if ( Foxy::is_admin() ) {
 			Foxy_Admin::instance();
-		} else {
-			Foxy::instance();
 		}
+
+		// Set foxy instance to global for other integrate.
+		$GLOBALS['foxy'] = $this->foxy;
 	}
 
-	/**
-	 * Method check and define constant if not defined before
-	 *
-	 * @param string          $name   Constant name.
-	 * @param string|bool|int $val    Constant value.
-	 * @return void
-	 */
-	private function define( $name, $val ) {
-		if ( ! defined( $name ) ) {
-			define( $name, $val );
-		}
-	}
+
 
 	/**
 	 * Define all constant will be used in Foxy Core
@@ -69,8 +61,8 @@ class Foxy_Setup {
 	 * @return void
 	 */
 	public function define_constants() {
-		$this->define( 'FOXY_FRAMEWORK_CORE', dirname( FOXY_FRAMEWORK_FILE ) . '/' );
-		$this->define( 'FOXY_ACTIVE_THEME_DIR', get_stylesheet_directory() . '/' );
+		Foxy::define( 'FOXY_FRAMEWORK_CORE', dirname( FOXY_FRAMEWORK_FILE ) . '/' );
+		Foxy::define( 'FOXY_ACTIVE_THEME_DIR', get_stylesheet_directory() . '/' );
 	}
 
 	/**
@@ -94,8 +86,8 @@ class Foxy_Setup {
 			function( $class_name ) use ( $search_prefixs ) {
 				foreach ( $search_prefixs as $prefix ) {
 					$real_file = sprintf(
-						'%1$s%2$s-%3$s.php',
-						FOXY_FRAMEWORK_CORE,
+						'%1$s/%2$s-%3$s.php',
+						dirname( FOXY_FRAMEWORK_FILE ),
 						$prefix,
 						$this->convert_class_to_file( $class_name )
 					);
@@ -113,9 +105,22 @@ class Foxy_Setup {
 	 * @return void
 	 */
 	public function init_hooks() {
+		add_action( 'after_setup_theme', array( $this, 'core_init' ) );
 		add_action( 'init', array( $this, 'menus' ), 33 );
 		add_action( 'init', array( $this, 'sidebars' ), 33 );
 		add_action( 'init', array( $this, 'datas' ), 33 );
+	}
+
+	public function core_init() {
+		$ui_framework_name  = apply_filters( 'foxy_default_ui_framework', 'gris' );
+		$ui_framework_class = apply_filters(
+			'foxy_ui_framework_class_name',
+			sprintf( 'Foxy_UI_Framework_%s', ucfirst( $ui_framework_name ) ),
+			$ui_framework_name
+		);
+		$this->foxy->set_ui_framework(
+			new $ui_framework_class()
+		);
 	}
 
 	/**
