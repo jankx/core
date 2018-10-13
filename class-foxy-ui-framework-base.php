@@ -21,14 +21,6 @@ abstract class Foxy_UI_Framework_Base implements Foxy_UI_Framework_Interface {
 	}
 
 	/**
-	 * Abstract function register_scripts must be defined in extended class
-	 * This method use to register all scripts and styles use for theme
-	 *
-	 * @return void
-	 */
-	abstract public function register_scripts();
-
-	/**
 	 * This method will register assets automatic by UI framework name
 	 * Other plugin or theme function can integrate with foxy ui framework via filter & action hook.
 	 *
