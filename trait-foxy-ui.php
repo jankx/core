@@ -1,4 +1,16 @@
 <?php
+/**
+ * Foxy UI
+ *
+ * @package Foxy/Core
+ * @subpackage UI
+ * @author Puleeno Nguyen <puleeno@gmail.com>
+ * @link https://wpclouds.com
+ */
+
+/**
+ * Foxy_UI trait
+ */
 trait Foxy_UI {
 	/**
 	 * UI Framework use in Foxy framework
@@ -10,6 +22,13 @@ trait Foxy_UI {
 	 */
 	protected $ui_framework;
 
+	/**
+	 * Set UI Framework for Foxy Framework
+	 *
+	 * @param Foxy_UI_Framework_Base $framework Foxy UI framework.
+	 * @throws \Exception Throw exception if $framework is not be instance of Foxy_UI_Framework_Base.
+	 * @return void
+	 */
 	public function set_ui_framework( $framework ) {
 		if ( ! ( $framework instanceof Foxy_UI_Framework_Base ) ) {
 			throw new \Exception(
@@ -39,27 +58,39 @@ trait Foxy_UI {
 		printf( $template, $wrap_tag, $logo_classes, home_url(), get_bloginfo( 'name' ) );
 	}
 
+	/**
+	 * Foxy UI show menu
+	 *
+	 * @param string $location Menu location need to render.
+	 * @param array  $args Menu args use to render menu.
+	 * @return void
+	 */
 	public static function menu( $location, $args = array() ) {
-		$args['theme_location'] = $location;
-		wp_nav_menu( $args );
+		$args = apply_filters( 'foxy_default_ui_menu_args', array(
+			'theme_location' => $location,
+		) );
+		wp_nav_menu(
+			apply_filters( "foxy_ui_menu_{$location}_args", $args )
+		);
 	}
 
 	/**
-	 * Check menu has
+	 * Check menu has been registered
 	 *
-	 * @param [type] $location
-	 * @return void
+	 * @param string $location Menu theme location need to check has registered.
+	 * @return boolean
 	 */
 	public static function has_menu( $location ) {
 		return has_nav_menu( $location );
 	}
 
 	public static function has_footer_widget() {
-		return self::$use_footer_widget && self::$footer_widget_num > 0;
+		self::$footer_widget_num > 0;
 	}
 
 	public static function footer_widgets() {
 		$footer_widget_num = self::get_footer_num();
+		var_dump($footer_widget_num);die;
 		do_action( 'foxy_before_footer_widget_loop' );
 		for ( $index = 1; $index <= $footer_widget_num; $index++ ) {
 			$sidebar_id = 'footer-' . $index;

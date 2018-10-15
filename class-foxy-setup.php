@@ -19,6 +19,12 @@ class Foxy_Setup {
 	 * @var Foxy_Setup
 	 */
 	protected static $instance;
+
+	/**
+	 * Foxy instance
+	 *
+	 * @var Foxy
+	 */
 	protected $foxy;
 
 	/**
@@ -105,21 +111,26 @@ class Foxy_Setup {
 	 * @return void
 	 */
 	public function init_hooks() {
-		add_action( 'after_setup_theme', array( $this, 'core_init' ) );
+		add_action( 'after_setup_theme', array( $this, 'core_init' ), 33 );
 		add_action( 'init', array( $this, 'menus' ), 33 );
 		add_action( 'init', array( $this, 'sidebars' ), 33 );
 		add_action( 'init', array( $this, 'datas' ), 33 );
 	}
 
+	/**
+	 * Foxy core initilize
+	 *
+	 * @return void
+	 */
 	public function core_init() {
-		$ui_framework_name  = apply_filters( 'foxy_default_ui_framework', 'gris' );
-		$ui_framework_class = apply_filters(
+		$ui_framework_name       = apply_filters( 'foxy_default_ui_framework', 'gris' );
+		$ui_framework_class_name = apply_filters(
 			'foxy_ui_framework_class_name',
 			sprintf( 'Foxy_UI_Framework_%s', ucfirst( $ui_framework_name ) ),
 			$ui_framework_name
 		);
 		$this->foxy->set_ui_framework(
-			new $ui_framework_class()
+			new $ui_framework_class_name()
 		);
 	}
 
@@ -146,27 +157,67 @@ class Foxy_Setup {
 	 * @return void
 	 */
 	public function sidebars() {
-		$this->register_footer_widgets();
-	}
-
-	/**
-	 * Register footer widgets
-	 */
-	private function register_footer_widgets() {
-		$footer_num   = Foxy::get_footer_num();
+		/**
+		 * Default sidebar args
+		 */
 		$sidebar_args = apply_filters(
-			'foxy_sidebar_defaults_args', array(
-				'before_widget' => '<div>',
+			'foxy_footer_widgets_defaults_args', array(
+				'before_widget' => '<div id="%1$s" class="widget %2$s">',
 				'after_widget'  => '</div>',
-				'before_title'  => '<h3>',
+				'before_title'  => '<h3 class="widget-title">',
 				'after_title'   => '</h3>',
 			)
 		);
 
+		/**
+		 * Primary sidebar args
+		 */
+		$primary_sidebar_args = apply_filters(
+			'foxy_primary_sidebar_args',
+			wp_parse_args(
+				array(
+					'id'          => 'primary',
+					'name'        => __( 'Primary Sidebar', 'foxy' ),
+					'description' => __( 'Primary sidebar wiget area', 'foxy' ),
+				),
+				$sidebar_args
+			)
+		);
+		register_sidebar( $primary_sidebar_args );
+
+		if ( Foxy::get_second_sidebar() ) {
+			/**
+			 * Second sidebar args
+			 */
+			$primary_sidebar_args = apply_filters(
+				'foxy_second_sidebar_args',
+				wp_parse_args(
+					array(
+						'id'          => 'second',
+						'name'        => __( 'Second Sidebar', 'foxy' ),
+						'description' => __( 'Second sidebar wiget area', 'foxy' ),
+					),
+					$sidebar_args
+				)
+			);
+			register_sidebar( $primary_sidebar_args );
+		}
+
+		do_action( 'foxy_register_additional_sidebars' );
+
+		$this->register_footer_widgets( $sidebar_args );
+	}
+
+	private function register_footer_widgets( $sidebar_args = array() ) {
+		$footer_num = Foxy::get_footer_num();
 		for ( $index = 1; $index <= $footer_num; $index++ ) {
-			$sidebar_args['id']          = sprintf( 'footer-%d', $index );
-			$sidebar_args['name']        = sprintf( __( 'Footer %d', 'foxy' ), $index );
-			$sidebar_args['description'] = sprintf( __( 'Footer %d', 'foxy' ), $index );
+			$sidebar_args['id'] = sprintf( 'footer-%d', $index );
+
+			/* translators: %s: Footer widget index */
+			$sidebar_args['name'] = sprintf( __( 'Footer %d', 'foxy' ), $index );
+
+			/* translators: %s: Footer widget area */
+			$sidebar_args['description'] = sprintf( __( 'Footer %d widget area', 'foxy' ), $index );
 			/**
 			 * Create filter hooks for footer widget
 			 */
@@ -180,7 +231,7 @@ class Foxy_Setup {
 	}
 
 	/**
-	 * Wordpress data integration
+	 * WordPress data integration
 	 *
 	 * This function will initialize WordPress data such as: post, page, category, post meta,etc
 	 *
@@ -193,6 +244,11 @@ class Foxy_Setup {
 		Foxy_Data::instance();
 	}
 
+	/**
+	 * Load foxy addons
+	 *
+	 * @return void
+	 */
 	public function load_addons() {
 		$addons = Foxy::get_active_addons();
 		foreach ( $addons as $addon ) {

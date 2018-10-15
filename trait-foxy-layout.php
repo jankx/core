@@ -1,7 +1,6 @@
 <?php
 trait Foxy_Layout {
 	protected static $footer_widget_num = 3;
-	protected static $use_footer_widget = true;
 	protected static $use_second_sidebar = true;
 
 	public static function set_footer_num( $num ) {
@@ -12,12 +11,12 @@ trait Foxy_Layout {
 		return (int) self::$footer_widget_num;
 	}
 
-	public static function disable_footer_widget() {
-		self::$use_footer_widget = false;
+	public static function use_second_sidebar( $use = true ) {
+		self::$use_second_sidebar = (bool) $use;
 	}
 
-	public static function disable_second_sidebar() {
-		self::$use_second_sidebar = false;
+	public static function get_second_sidebar() {
+		return self::$use_second_sidebar;
 	}
 
 	public function set_layout() {

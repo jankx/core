@@ -13,7 +13,7 @@
  * Default Version: Bootstrap 4
  */
 class Foxy_UI_Framework_Bootstrap extends Foxy_UI_Framework_Base {
-	protected $version = '4.1.3';
+	protected $version       = '4.1.3';
 	protected $major_version = '4';
 	protected $assets_dir;
 
@@ -23,7 +23,7 @@ class Foxy_UI_Framework_Bootstrap extends Foxy_UI_Framework_Base {
 		$this->major_version = substr(
 			$this->version,
 			0,
-			strpos( $this->version, '.')
+			strpos( $this->version, '.' )
 		);
 
 		$this->assets_dir = apply_filters(
@@ -35,13 +35,35 @@ class Foxy_UI_Framework_Bootstrap extends Foxy_UI_Framework_Base {
 			)
 		);
 
+		add_filter( 'foxy_default_ui_menu_args', array( $this, 'menu_args' ) );
+
 		parent::__construct();
 	}
 
+	/**
+	 * Bootstrap UI Framework name
+	 *
+	 * @return string
+	 */
+	public function get_name() {
+		return 'bootstrap';
+	}
+
+	/**
+	 * Get bootstrap version
+	 * Other plugin can change version via hook `foxy_ui_bootstrap_framework_version`
+	 *
+	 * @return string
+	 */
 	protected function bootstrap_version() {
 		return apply_filters( 'foxy_ui_bootstrap_framework_version', $this->version );
 	}
 
+	/**
+	 * Register bootstrap assets for framework
+	 *
+	 * @return void
+	 */
 	public function register_scripts() {
 		wp_register_style(
 			$this->get_name(),
@@ -59,9 +81,22 @@ class Foxy_UI_Framework_Bootstrap extends Foxy_UI_Framework_Base {
 		);
 	}
 
-	public function get_name() {
-		return 'bootstrap';
+	public function menu_args( $args ) {
+		$walker_class = sprintf( 'Foxy_Walker_Bootstrap%d_Menu', $this->major_version );
+		return wp_parse_args(
+			array(
+				'depth'           => 2, // 1 = no dropdowns, 2 = with dropdowns.
+				'container'       => 'div',
+				'container_class' => 'collapse navbar-collapse',
+				'container_id'    => 'bs-example-navbar-collapse-1',
+				'menu_class'      => 'navbar-nav',
+				'fallback_cb'     => $walker_class . '::fallback',
+				'walker'          => new $walker_class(),
+			), $args
+		);
 	}
+
+
 
 	/**
 	 * Create container block
@@ -70,16 +105,6 @@ class Foxy_UI_Framework_Bootstrap extends Foxy_UI_Framework_Base {
 	 * @return string
 	 */
 	public function container( $close_tag = false ) {
-		// code not be implement.
-	}
-
-	/**
-	 * Open or close HTML tag with many option
-	 *
-	 * @param array $args Setting for tag.
-	 * @return string
-	 */
-	public function tag( $args = array() ) {
 		// code not be implement.
 	}
 
