@@ -69,6 +69,7 @@ class Foxy_Setup {
 	public function define_constants() {
 		Foxy::define( 'FOXY_FRAMEWORK_CORE', dirname( FOXY_FRAMEWORK_FILE ) . '/' );
 		Foxy::define( 'FOXY_ACTIVE_THEME_DIR', get_stylesheet_directory() . '/' );
+		Foxy::define( 'FOXY_TEMPLATE_DIR', get_template_directory() . '/' );
 	}
 
 	/**
@@ -208,6 +209,12 @@ class Foxy_Setup {
 		$this->register_footer_widgets( $sidebar_args );
 	}
 
+	/**
+	 * Register footer widgets
+	 *
+	 * @param array $sidebar_args Default sidebar args.
+	 * @return void
+	 */
 	private function register_footer_widgets( $sidebar_args = array() ) {
 		$footer_num = Foxy::get_footer_num();
 		for ( $index = 1; $index <= $footer_num; $index++ ) {

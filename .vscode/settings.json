@@ -1,4 +1,5 @@
 {
     "phpcs.enable": true,
-    "phpcs.standard": "WordPress"
+    "phpcs.standard": "WordPress",
+    "editor.insertSpaces": false
 }
