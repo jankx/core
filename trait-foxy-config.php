@@ -19,7 +19,7 @@ trait Foxy_Config {
 	 * @param mixed  $default_value Default value if config file does not exists.
 	 * @return mixed
 	 */
-	public static function get_config( $config_file, $default_value = false ) {
+	public static function load_config( $config_file, $default_value = false ) {
 		$config_diretories = apply_filters( 'foxy_config_directories', array(
 			FOXY_ACTIVE_THEME_DIR . 'configs/',
 			FOXY_TEMPLATE_DIR . 'configs/',
