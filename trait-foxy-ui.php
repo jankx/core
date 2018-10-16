@@ -102,21 +102,39 @@ trait Foxy_UI {
 		return has_nav_menu( $location );
 	}
 
+	/**
+	 * Render footer widgets
+	 *
+	 * @return void
+	 */
 	public static function footer_widgets() {
-		$footer_widget_num = self::get_num_footer_widgets();
+		$num_footer_widgets = self::get_num_footer_widgets();
 		do_action( 'foxy_before_footer_widget_loop' );
-		for ( $index = 1; $index <= $footer_widget_num; $index++ ) {
+		for ( $index = 1; $index <= $num_footer_widgets; $index++ ) {
 			$sidebar_id = 'footer-' . $index;
 			do_action( 'foxy_before_footer_widget' );
-			dynamic_sidebar( $sidebar_id );
+			do_action( "foxy_before_footer_widget_{$sidebar_id}" );
+				dynamic_sidebar( $sidebar_id );
+			do_action( "foxy_after_footer_widget_{$sidebar_id}" );
 			do_action( 'foxy_after_footer_widget' );
 		}
 		do_action( 'foxy_after_footer_widget_loop' );
 	}
 
+	/**
+	 * Show WordPress pagination integrate with UI CSS Framework
+	 *
+	 * @return void
+	 */
 	public static function paginate() {
 
 	}
 
+	/**
+	 * Show site breadcrumb integrate with UI CSS Framework
+	 * Support SEO optimizaion, SEO plugins.
+	 *
+	 * @return void
+	 */
 	public static function breadcrumb() {}
 }

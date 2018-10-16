@@ -10,20 +10,20 @@
  */
 
 /**
- * Foxy_Layout_Renderer class
+ * Foxy_UI_Layout_Renderer class
  */
-class Foxy_Layout_Renderer {
+class Foxy_UI_Layout_Renderer {
 	/**
 	 * Main render instance
 	 *
-	 * @var Foxy_Layout_Renderer
+	 * @var Foxy_UI_Layout_Renderer
 	 */
 	public static $instance;
 
 	/**
 	 * Render main instance
 	 *
-	 * @return Foxy_Layout_Renderer
+	 * @return Foxy_UI_Layout_Renderer
 	 */
 	public static function instance() {
 		if ( is_null( self::$instance ) ) {

@@ -1,5 +1,13 @@
 <?php
-abstract class Foxy_Common {
+/**
+ * Foxy Common Services
+ *
+ * @package Foxy/Core
+ * @subpackage Initilize
+ * @author Puleeno Nguyen <puleeno@gmail.com>
+ * @link https://wpclouds.com
+ */
+class Foxy_Common {
 	const LAYOUT_CONTENT_SIDEBAR         = 'cs';
 	const LAYOUT_SIDEBAR_CONTENT         = 'sc';
 	const LAYOUT_FULL_WIDTH              = 'fw';

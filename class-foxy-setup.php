@@ -295,6 +295,6 @@ class Foxy_Setup {
 	 * @return void
 	 */
 	public function layout_setup() {
-		Foxy_Layout_Renderer::render();
+		Foxy_UI_Layout_Renderer::render();
 	}
 }
