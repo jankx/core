@@ -116,6 +116,7 @@ class Foxy_Setup {
 		add_action( 'init', array( $this, 'menus' ), 33 );
 		add_action( 'init', array( $this, 'sidebars' ), 33 );
 		add_action( 'init', array( $this, 'datas' ), 33 );
+		add_action( 'template_redirect', array( $this, 'layout_setup' ) );
 	}
 
 	/**
@@ -149,9 +150,13 @@ class Foxy_Setup {
 	 * @return void
 	 */
 	public function menus() {
-		$nav_menus = apply_filters(
-			'foxy_nav_menus', array(
-				'primary' => __( 'Primary Navigation', 'foxy' ),
+		$nav_menus = Foxy::load_config(
+			'menu.php',
+			apply_filters(
+				'foxy_nav_menus',
+				array(
+					'primary' => __( 'Primary Navigation', 'foxy' ),
+				)
 			)
 		);
 		/**
@@ -228,8 +233,17 @@ class Foxy_Setup {
 	 * @return void
 	 */
 	private function register_footer_widgets( $sidebar_args = array() ) {
-		$footer_num = Foxy::get_footer_num();
-		for ( $index = 1; $index <= $footer_num; $index++ ) {
+		/**
+		 * Get number of footer widgets
+		 */
+		$num_footer_widgets = Foxy::get_num_footer_widgets();
+
+		/**
+		 * Footer sidebar default args
+		 */
+		$sidebar_args = apply_filters( 'foxy_sidebar_default_footer_args', $sidebar_args );
+
+		for ( $index = 1; $index <= $num_footer_widgets; $index++ ) {
 			$sidebar_args['id'] = sprintf( 'footer-%d', $index );
 
 			/* translators: %s: Footer widget index */
@@ -273,5 +287,14 @@ class Foxy_Setup {
 		foreach ( $addons as $addon ) {
 			require_once $addon;
 		}
+	}
+
+	/**
+	 * Render layout for framework
+	 *
+	 * @return void
+	 */
+	public function layout_setup() {
+		Foxy_Layout_Renderer::render();
 	}
 }

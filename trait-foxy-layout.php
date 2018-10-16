@@ -3,12 +3,16 @@ trait Foxy_Layout {
 	protected static $footer_widget_num = 3;
 	protected static $use_second_sidebar = true;
 
-	public static function set_footer_num( $num ) {
+	public static function set_num_footer_widgets( $num ) {
 		self::$footer_widget_num = (int) $num;
 	}
 
-	public static function get_footer_num() {
+	public static function get_num_footer_widgets() {
 		return (int) self::$footer_widget_num;
+	}
+
+	public static function has_footer_widget() {
+		return self::$footer_widget_num > 0;
 	}
 
 	public static function use_second_sidebar( $use = true ) {

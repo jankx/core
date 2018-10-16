@@ -13,14 +13,31 @@
  * Default Version: Bootstrap 4
  */
 class Foxy_UI_Framework_Bootstrap extends Foxy_UI_Framework_Base {
-	protected $version       = '4.1.3';
-	protected $major_version = '4';
+	/**
+	 * Boostrap version use for Foxy UI Bootstrap
+	 *
+	 * @var string
+	 */
+	protected $version = '4.1.3';
+
+	/**
+	 * Bootstrap major version
+	 *
+	 * @var int
+	 */
+	protected $major_version = 4;
+
+	/**
+	 * Bootstrap asset directory location
+	 *
+	 * @var string
+	 */
 	protected $assets_dir;
 
 	public function __construct() {
 		$this->version = $this->bootstrap_version();
 
-		$this->major_version = substr(
+		$this->major_version = (int) substr(
 			$this->version,
 			0,
 			strpos( $this->version, '.' )
@@ -36,6 +53,10 @@ class Foxy_UI_Framework_Bootstrap extends Foxy_UI_Framework_Base {
 		);
 
 		add_filter( 'foxy_default_ui_menu_args', array( $this, 'menu_args' ) );
+		add_action( 'foxy_before_render_menu', array( $this, 'bootstrap_open_navigation_tag' ), 5, 2 );
+		add_action( 'foxy_after_render_menu', array( $this, 'bootstrap_close_navigation_tag' ), 15 );
+		add_filter( 'foxy_logo_class_name', array( $this, 'bootstrap_navbrand_class' ) );
+		add_filter( 'foxy_sidebar_default_footer_args', array( $this, 'add_class_to_footer_widgets' ) );
 
 		parent::__construct();
 	}
@@ -96,6 +117,37 @@ class Foxy_UI_Framework_Bootstrap extends Foxy_UI_Framework_Base {
 		);
 	}
 
+	public function bootstrap_open_navigation_tag( $args, $location ) {
+		?>
+		<nav class="navbar navbar-expand-md navbar-light bg-light" role="navigation">
+		<div class="container">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-controls="bs-example-navbar-collapse-1" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+		<?php
+		if ( $location === Foxy::get_main_menu() || (bool) $args['show_logo'] ) {
+			Foxy::logo( $args['alternative_logo'] );
+		}
+	}
+
+	public function bootstrap_close_navigation_tag() {
+		?>
+				</div>
+			</div>
+		</nav>
+		<?php
+	}
+
+	public function bootstrap_navbrand_class( $class_name ) {
+		return $class_name . ' navbar-brand';
+	}
+
+	public function add_class_to_footer_widgets( $default_args ) {
+		$footer_widget = Foxy::get_num_footer_widgets();
+		$default_args['before_widget'] = '<div id="%1$s" class="widget col-sm-6 col-lg-' . (12/$footer_widget) . ' %2$s">';
+		return $default_args;
+	}
 
 
 	/**

@@ -42,9 +42,10 @@ trait Foxy_UI {
 	/**
 	 * Foxy logo render HTML
 	 *
+	 * @param boolean $alternate_logo Load second logo from theme settings.
 	 * @return void
 	 */
-	public static function logo() {
+	public static function logo( $alternate_logo = false ) {
 		$wrap_tag = 2;
 		if ( is_home() ) {
 			$wrap_tag = 1;
@@ -67,11 +68,28 @@ trait Foxy_UI {
 	 */
 	public static function menu( $location, $args = array() ) {
 		$args = apply_filters( 'foxy_default_ui_menu_args', array(
-			'theme_location' => $location,
+			'theme_location'   => $location,
+			'show_logo'        => false,
+			'alternative_logo' => false,
 		) );
-		wp_nav_menu(
-			apply_filters( "foxy_ui_menu_{$location}_args", $args )
+		$args = apply_filters(
+			"foxy_ui_menu_{$location}_args",
+			$args
 		);
+		do_action( 'foxy_before_render_menu', $args, $location );
+		do_action( "foxy_before_render_{$location}_menu", $args, $location );
+		wp_nav_menu( $args );
+		do_action( "foxy_after_render_{$location}_menu", $args, $location );
+		do_action( 'foxy_after_render_menu', $args, $location );
+	}
+
+	/**
+	 * Get main menu location
+	 *
+	 * @return string
+	 */
+	public static function get_main_menu() {
+		return apply_filters( 'foxy_default_main_menu_location', 'primary' );
 	}
 
 	/**
@@ -84,13 +102,8 @@ trait Foxy_UI {
 		return has_nav_menu( $location );
 	}
 
-	public static function has_footer_widget() {
-		self::$footer_widget_num > 0;
-	}
-
 	public static function footer_widgets() {
-		$footer_widget_num = self::get_footer_num();
-		var_dump($footer_widget_num);die;
+		$footer_widget_num = self::get_num_footer_widgets();
 		do_action( 'foxy_before_footer_widget_loop' );
 		for ( $index = 1; $index <= $footer_widget_num; $index++ ) {
 			$sidebar_id = 'footer-' . $index;
