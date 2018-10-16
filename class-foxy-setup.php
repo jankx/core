@@ -124,6 +124,14 @@ class Foxy_Setup {
 	 * @return void
 	 */
 	public function core_init() {
+		/**
+		 * Use thumbnail for post and other post type
+		 */
+		add_theme_support( 'post-thumbnails' );
+
+		/**
+		 * Setup CSS framework for Foxy
+		 */
 		$ui_framework_name       = apply_filters( 'foxy_default_ui_framework', 'gris' );
 		$ui_framework_class_name = apply_filters(
 			'foxy_ui_framework_class_name',
@@ -136,7 +144,7 @@ class Foxy_Setup {
 	}
 
 	/**
-	 * Undocumented function
+	 * Setup WordPress menus
 	 *
 	 * @return void
 	 */
@@ -204,6 +212,10 @@ class Foxy_Setup {
 			register_sidebar( $primary_sidebar_args );
 		}
 
+		/**
+		 * Action hook for add other sidebar
+		 * Integrate with other plugins and theme functions.
+		 */
 		do_action( 'foxy_register_additional_sidebars' );
 
 		$this->register_footer_widgets( $sidebar_args );
