@@ -26,12 +26,11 @@ trait Foxy_Template {
 			if ( ! $template_name ) {
 				continue;
 			}
-			$template_name = 'templates/' . $template_name;
-			if ( file_exists( FOXY_ACTIVE_THEME_DIR . $template_name ) ) {
-				$located = FOXY_ACTIVE_THEME_DIR . $template_name;
+			if ( file_exists( FOXY_ACTIVE_THEME_DIR . 'templates/' . $template_name ) ) {
+				$located = FOXY_ACTIVE_THEME_DIR . 'templates/' . $template_name;
 				break;
-			} elseif ( file_exists( FOXY_TEMPLATE_DIR . $template_name ) ) {
-				$located = FOXY_TEMPLATE_DIR . $template_name;
+			} elseif ( file_exists( FOXY_TEMPLATE_DIR . 'templates/' . $template_name ) ) {
+				$located = FOXY_TEMPLATE_DIR . 'templates/' . $template_name;
 				break;
 			}
 		}

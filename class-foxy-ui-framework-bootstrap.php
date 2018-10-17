@@ -34,6 +34,9 @@ class Foxy_UI_Framework_Bootstrap extends Foxy_UI_Framework_Base {
 	 */
 	protected $assets_dir;
 
+	/**
+	 * Bootsttrap UI Framework constructor
+	 */
 	public function __construct() {
 		$this->version = $this->bootstrap_version();
 
@@ -109,7 +112,7 @@ class Foxy_UI_Framework_Bootstrap extends Foxy_UI_Framework_Base {
 				'depth'           => 2, // 1 = no dropdowns, 2 = with dropdowns.
 				'container'       => 'div',
 				'container_class' => 'collapse navbar-collapse',
-				'container_id'    => 'bs-example-navbar-collapse-1',
+				'container_id'    => 'foxy-menu-' . $args['theme_location'],
 				'menu_class'      => 'navbar-nav',
 				'fallback_cb'     => $walker_class . '::fallback',
 				'walker'          => new $walker_class(),
@@ -118,11 +121,14 @@ class Foxy_UI_Framework_Bootstrap extends Foxy_UI_Framework_Base {
 	}
 
 	public function bootstrap_open_navigation_tag( $args, $location ) {
+		if ( ! $args['ui_framework'] ) {
+			return;
+		}
 		?>
 		<nav class="navbar navbar-expand-md navbar-light bg-light" role="navigation">
 		<div class="container">
 			<!-- Brand and toggle get grouped for better mobile display -->
-			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-controls="bs-example-navbar-collapse-1" aria-expanded="false" aria-label="Toggle navigation">
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#foxy-menu-<?php echo esc_attr( $location ); ?>" aria-controls="foxy-menu-<?php echo esc_attr( $location ); ?>" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
 		<?php
@@ -131,7 +137,10 @@ class Foxy_UI_Framework_Bootstrap extends Foxy_UI_Framework_Base {
 		}
 	}
 
-	public function bootstrap_close_navigation_tag() {
+	public function bootstrap_close_navigation_tag( $args ) {
+		if ( ! $args['ui_framework'] ) {
+			return;
+		}
 		?>
 				</div>
 			</div>

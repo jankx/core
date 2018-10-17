@@ -129,19 +129,6 @@ class Foxy_Setup {
 		 * Use thumbnail for post and other post type
 		 */
 		add_theme_support( 'post-thumbnails' );
-
-		/**
-		 * Setup CSS framework for Foxy
-		 */
-		$ui_framework_name       = apply_filters( 'foxy_default_ui_framework', 'gris' );
-		$ui_framework_class_name = apply_filters(
-			'foxy_ui_framework_class_name',
-			sprintf( 'Foxy_UI_Framework_%s', ucfirst( $ui_framework_name ) ),
-			$ui_framework_name
-		);
-		$this->foxy->set_ui_framework(
-			new $ui_framework_class_name()
-		);
 	}
 
 	/**
@@ -295,6 +282,19 @@ class Foxy_Setup {
 	 * @return void
 	 */
 	public function layout_setup() {
+		/**
+		 * Setup CSS framework for Foxy
+		 */
+		$ui_framework_name       = apply_filters( 'foxy_default_ui_framework', 'gris' );
+		$ui_framework_class_name = apply_filters(
+			'foxy_ui_framework_class_name',
+			sprintf( 'Foxy_UI_Framework_%s', ucfirst( $ui_framework_name ) ),
+			$ui_framework_name
+		);
+		$this->foxy->set_ui_framework(
+			new $ui_framework_class_name()
+		);
+
 		Foxy_UI_Layout_Renderer::render();
 	}
 }

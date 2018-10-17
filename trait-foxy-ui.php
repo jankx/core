@@ -37,6 +37,13 @@ trait Foxy_UI {
 			);
 		}
 		$this->ui_framework = $framework;
+
+		/**
+		 * Create UI Closure for Foxy
+		 */
+		$this->ui = function() {
+			return $this->ui_framework;
+		};
 	}
 
 	/**
@@ -63,24 +70,72 @@ trait Foxy_UI {
 	 * Foxy UI show menu
 	 *
 	 * @param string $location Menu location need to render.
-	 * @param array  $args Menu args use to render menu.
+	 * @param array  $original_args Menu args use to render menu.
 	 * @return void
 	 */
-	public static function menu( $location, $args = array() ) {
-		$args = apply_filters( 'foxy_default_ui_menu_args', array(
-			'theme_location'   => $location,
-			'show_logo'        => false,
-			'alternative_logo' => false,
-		) );
-		$args = apply_filters(
-			"foxy_ui_menu_{$location}_args",
-			$args
+	public static function menu( $location, $original_args = array() ) {
+		/**
+		 * Parse menu args with Foxy menu args default value
+		 */
+		$args = wp_parse_args(
+			$original_args,
+			apply_filters(
+				'foxy_default_ui_menu_args', array(
+					'theme_location'   => $location,
+					'show_logo'        => false,
+					'alternative_logo' => false,
+					'ui_framework'     => true,
+				)
+			),
+			$location
 		);
+
+		/**
+		 * Filter menu args by theme location
+		 */
+		$args = apply_filters( "foxy_ui_menu_{$location}_args", $args, $location );
+
+		/**
+		 * Reset args to don't use UI Framework
+		 */
+		if ( ! $args['ui_framework'] ) {
+			self::reset_menu_args( $args, $original_args );
+		}
+
+		/**
+		 * Rendering menu template
+		 */
 		do_action( 'foxy_before_render_menu', $args, $location );
 		do_action( "foxy_before_render_{$location}_menu", $args, $location );
 		wp_nav_menu( $args );
 		do_action( "foxy_after_render_{$location}_menu", $args, $location );
 		do_action( 'foxy_after_render_menu', $args, $location );
+	}
+
+	/**
+	 * Reset menu args when $args['ui_framework'] is set value is `false`
+	 *
+	 * @param array $args          Current menu args.
+	 * @param array $original_args Original menu args are setted by you.
+	 * @return void
+	 */
+	protected static function reset_menu_args( &$args, $original_args ) {
+		$menu_reset_args = apply_filters(
+			'foxy_reset_menu_args', array(
+				'container_class' => 'navigation',
+				'container_id'    => 'foxy-menu-' . $args['theme_location'],
+				'fallback_cb'     => '',
+				'walker'          => '',
+			)
+		);
+
+		foreach ( $menu_reset_args as $reset_key => $reset_value ) {
+			if ( isset( $original_args[ $reset_key ] ) ) {
+				$args[ $reset_key ] = $original_args[ $reset_key ];
+			} else {
+				$args[ $reset_key ] = $reset_value;
+			}
+		}
 	}
 
 	/**
