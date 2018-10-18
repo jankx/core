@@ -114,8 +114,8 @@ class Foxy_Setup {
 	public function init_hooks() {
 		add_action( 'after_setup_theme', array( $this, 'core_init' ), 33 );
 		add_action( 'init', array( $this, 'menus' ), 33 );
-		add_action( 'init', array( $this, 'sidebars' ), 33 );
 		add_action( 'init', array( $this, 'datas' ), 33 );
+		add_action( 'widgets_init', array( $this, 'sidebars' ), 33 );
 		add_action( 'template_redirect', array( $this, 'layout_setup' ) );
 	}
 
@@ -129,6 +129,11 @@ class Foxy_Setup {
 		 * Use thumbnail for post and other post type
 		 */
 		add_theme_support( 'post-thumbnails' );
+
+		/**
+		 * Add theme support posts format
+		 */
+		add_theme_support( 'post-formats', array( 'aside', 'standard', 'image', 'video' ) );
 	}
 
 	/**
