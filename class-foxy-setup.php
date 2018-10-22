@@ -5,6 +5,7 @@
  * @package Foxy/Core
  * @author Puleeno Nguyen <puleeno@gmail.com>
  * @license GPL-3
+ * @link https://wpclouds.com
  */
 
 /**
@@ -45,9 +46,26 @@ class Foxy_Setup {
 	 * Define constants, register autoload and init hooks
 	 */
 	public function __construct() {
+		/**
+		 * Foxy compatibility with other thirdparty
+		 */
+		$this->compatibility();
+
+		// Register autoload class.
 		$this->autoload();
+
+		// Define foxy constants.
 		$this->define_constants();
+
+		/**
+		 * Include foxy helpers
+		 */
+		$this->includes();
+
+		// Init action & filter hooks.
 		$this->init_hooks();
+
+		// Load foxy addons.
 		$this->load_addons();
 
 		$this->foxy = Foxy::instance();
@@ -57,6 +75,8 @@ class Foxy_Setup {
 
 		// Set foxy instance to global for other integrate.
 		$GLOBALS['foxy'] = $this->foxy;
+
+		do_action( 'foxy_loaded' );
 	}
 
 
@@ -83,6 +103,23 @@ class Foxy_Setup {
 	}
 
 	/**
+	 * Foxy compatibility
+	 *
+	 * @return void
+	 */
+	public function compatibility() {
+		$foxy_dir = dirname( FOXY_FRAMEWORK_FILE ) . '/';
+
+		/**
+		 * WordPress compatibility
+		 */
+		require_once $foxy_dir . 'function-wordpress-compatibility.php';
+
+		// Free up memory.
+		unset( $foxy_dir );
+	}
+
+	/**
 	 * Autoload classe and trait files.
 	 *
 	 * @return void
@@ -104,6 +141,15 @@ class Foxy_Setup {
 				}
 			}
 		);
+	}
+
+	/**
+	 * Include foxy helpers and nested files
+	 *
+	 * @return void
+	 */
+	public function includes() {
+		require_once FOXY_FRAMEWORK_CORE . 'function-foxy-template.php';
 	}
 
 	/**
@@ -275,6 +321,9 @@ class Foxy_Setup {
 	 * @return void
 	 */
 	public function load_addons() {
+		/**
+		 * Get active foxy addons
+		 */
 		$addons = Foxy::get_active_addons();
 		foreach ( $addons as $addon ) {
 			require_once $addon;
