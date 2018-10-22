@@ -192,4 +192,13 @@ trait Foxy_UI {
 	 * @return void
 	 */
 	public static function breadcrumb() {}
+
+	/**
+	 * Render post meta at frontend
+	 *
+	 * @return void
+	 */
+	public static function post_meta() {
+
+	}
 }
