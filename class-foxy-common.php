@@ -7,6 +7,10 @@
  * @author Puleeno Nguyen <puleeno@gmail.com>
  * @link https://wpclouds.com
  */
+
+/**
+ * Foxy_Common class
+ */
 class Foxy_Common {
 	const LAYOUT_CONTENT_SIDEBAR         = 'cs';
 	const LAYOUT_SIDEBAR_CONTENT         = 'sc';
