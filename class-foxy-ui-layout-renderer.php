@@ -66,7 +66,12 @@ class Foxy_UI_Layout_Renderer {
 	 * @return void
 	 */
 	public function render_content() {
-
+		add_action( 'foxy_index_content', 'foxy_index_content' );
+		add_action( 'foxy_error_404_content', 'foxy_error_404_content' );
+		add_action( 'foxy_archive_content', 'foxy_archive_content' );
+		add_action( 'foxy_search_content', 'foxy_search_content' );
+		add_action( 'foxy_page_content', 'foxy_page_content' );
+		add_action( 'foxy_single_content', 'foxy_single_content' );
 	}
 
 	/**

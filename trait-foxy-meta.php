@@ -30,7 +30,7 @@ trait Foxy_Meta {
 	 *
 	 * @return string
 	 */
-	public function meta( $meta_key, $id = null, $meta_type = 'post' ) {
+	public function get_meta( $meta_key, $id = null, $meta_type = 'post' ) {
 		if ( is_null( $id ) ) {
 			$id = get_the_ID();
 		}
