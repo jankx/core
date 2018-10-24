@@ -88,12 +88,12 @@ trait Foxy_Layout {
 	/**
 	 * Set theme layout
 	 *
-	 * @param string $layout Layout will be apply to set layout for WordPresss page, post, category,etc.
+	 * @param string $layout Layout will be apply to set layout for WordPress page, post, category,etc.
 	 * @return void
 	 */
 	public function set_layout( $layout ) {
-		if ( in_array(
-			$layout,
+		$supported_layouts = apply_filters(
+			'foxy_supported_layouts',
 			array(
 				Foxy_Common::LAYOUT_CONTENT_SIDEBAR,
 				Foxy_Common::LAYOUT_SIDEBAR_CONTENT,
@@ -102,7 +102,8 @@ trait Foxy_Layout {
 				Foxy_Common::LAYOUT_CONTENT_SIDEBAR_CONTENT,
 				Foxy_Common::LAYOUT_SIDEBAR_CONTENT_CONTENT,
 			)
-		) ) {
+		);
+		if ( in_array( $layout, $supported_layouts, true ) ) {
 			self::$layout = $layout;
 		} else {
 			self::$layout = '';
