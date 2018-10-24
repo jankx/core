@@ -77,11 +77,36 @@ trait Foxy_Layout {
 	}
 
 	/**
-	 * Set theme or page layout
+	 * Get default layout for theme
 	 *
+	 * @return string
+	 */
+	public static function get_default_layout() {
+		return apply_filters( 'foxy_default_layout', Foxy_Common::LAYOUT_CONTENT_SIDEBAR );
+	}
+
+	/**
+	 * Set theme layout
+	 *
+	 * @param string $layout Layout will be apply to set layout for WordPresss page, post, category,etc.
 	 * @return void
 	 */
-	public function set_layout() {
+	public function set_layout( $layout ) {
+		if ( in_array(
+			$layout,
+			array(
+				Foxy_Common::LAYOUT_CONTENT_SIDEBAR,
+				Foxy_Common::LAYOUT_SIDEBAR_CONTENT,
+				Foxy_Common::LAYOUT_FULL_WIDTH,
+				Foxy_Common::LAYOUT_CONTENT_CONTENT_SIDEBAR,
+				Foxy_Common::LAYOUT_CONTENT_SIDEBAR_CONTENT,
+				Foxy_Common::LAYOUT_SIDEBAR_CONTENT_CONTENT,
+			)
+		) ) {
+			self::$layout = $layout;
+		} else {
+			self::$layout = '';
+		}
 	}
 
 
@@ -90,7 +115,10 @@ trait Foxy_Layout {
 	 *
 	 * @return string
 	 */
-	public function get_layout() {
-		return Foxy_Common::LAYOUT_CONTENT_SIDEBAR;
+	public static function get_layout() {
+		if ( ! empty( self::$layout ) ) {
+			return self::$layout;
+		}
+		return self::get_default_layout();
 	}
 }

@@ -49,6 +49,8 @@ class Foxy_UI_Layout_Renderer {
 		$layout->render_header();
 		$layout->render_content();
 		$layout->render_footer();
+
+		add_filter( 'body_class', array( $layout, 'body_classes' ) );
 	}
 
 	/**
@@ -58,6 +60,11 @@ class Foxy_UI_Layout_Renderer {
 	 */
 	public function render_header() {
 
+	}
+
+	public function body_classes( $classes ) {
+		$classes[] = sprintf( 'layout-%s', Foxy::get_layout() );
+		return $classes;
 	}
 
 	/**

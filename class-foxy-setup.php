@@ -259,7 +259,7 @@ class Foxy_Setup {
 		 * Action hook for add other sidebar
 		 * Integrate with other plugins and theme functions.
 		 */
-		do_action( 'foxy_register_additional_sidebars' );
+		do_action( 'foxy_register_additional_sidebars', $sidebar_args );
 
 		$this->register_footer_widgets( $sidebar_args );
 	}
