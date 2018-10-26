@@ -38,13 +38,7 @@ class Foxy_UI_Framework_Bootstrap extends Foxy_UI_Framework_Base {
 	 * Bootsttrap UI Framework constructor
 	 */
 	public function __construct() {
-		$this->version = $this->bootstrap_version();
-
-		$this->major_version = (int) substr(
-			$this->version,
-			0,
-			strpos( $this->version, '.' )
-		);
+		list( $this->version, $this->major_version ) = $this->bootstrap_version();
 
 		$this->assets_dir = apply_filters(
 			'foxy_ui_bootstrap_framework_assets',
@@ -80,7 +74,12 @@ class Foxy_UI_Framework_Bootstrap extends Foxy_UI_Framework_Base {
 	 * @return string
 	 */
 	protected function bootstrap_version() {
-		return apply_filters( 'foxy_ui_bootstrap_framework_version', $this->version );
+		$version = apply_filters( 'foxy_ui_bootstrap_framework_version', $this->version );
+		$version_major = explode( '.', $version );
+		return array(
+			$version,
+			array_shift( $version_major ),
+		);
 	}
 
 	/**
@@ -166,7 +165,12 @@ class Foxy_UI_Framework_Bootstrap extends Foxy_UI_Framework_Base {
 	 * @return string
 	 */
 	public function container( $close_tag = false ) {
-		// code not be implement.
+		if (empty($close_tag)) {
+			echo '<div class="container">';
+		} else {
+			echo '</div>';
+		}
+
 	}
 
 	/**

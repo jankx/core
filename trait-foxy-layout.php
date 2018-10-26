@@ -7,6 +7,10 @@
  * @subpackage UI
  * @author Puleeno Nguyen <puleeno@gmail.com>
  */
+
+/**
+ * Foxy_Layout trait
+ */
 trait Foxy_Layout {
 	/**
 	 * Theme or page layout
@@ -118,8 +122,15 @@ trait Foxy_Layout {
 	 */
 	public static function get_layout() {
 		if ( ! empty( self::$layout ) ) {
-			return self::$layout;
+			$layout = self::$layout;
 		}
-		return self::get_default_layout();
+		$layout = self::get_default_layout();
+
+		return apply_filters( 'foxy_layout', $layout );
+	}
+
+
+	public static function content_has_container() {
+		return apply_filters( 'foxy_content_container', true );
 	}
 }
