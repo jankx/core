@@ -47,22 +47,49 @@ abstract class Foxy_UI_Framework_Base implements Foxy_UI_Framework_Interface {
 	 * @param array $args Setting for tag.
 	 * @return string
 	 */
-	public function tag( $args = array() ) {
+	public function tag( $args = array(), $attributes = null ) {
+		$context = '';
 		$args = wp_parse_args(
 			$args, array(
+				'name'            => 'div',
 				'id'              => '',
+				'class'           => '',
 				'responsive'      => true,
 				'mobile_columns'  => '',
 				'tablet_columns'  => '',
 				'desktop_columns' => '',
 				'xtra_columns'    => '',
-				'echo'            => true
+				'close'           => false,
+				'echo'            => true,
 			)
 		);
-		if ( empty( $args['id'] ) ) {
-
-		} else {
-
+		$class_names = $args['class'];
+		$id = '';
+		if ( ! empty( $args['id'] ) ) {
+			$id = sprintf( ' id="%s"', esc_attr( $args['id'] ) );
+			$context = 'tag_' . $args['id'];
+			$args = apply_filters( "foxy_ui_tag_{$context}", $args, $context );
+			$attributes = apply_filters( "foxy_ui_tag_{$context}_attr", $attributes, $args, $context );
+			$class_names = apply_filters( "foxy_ui_{$context}_class_name", $class_names );
 		}
+		if ( ! empty( $args['close'] ) ) {
+			$tag = sprintf( '</%s>', $args['name'] );
+		} else {
+			$tag = sprintf(
+				'<%1$s%2$s%3$s%4$s>',
+				$args['name'],
+				$id,
+				$class_names ? ' ' . $class_names : '',
+				$this->generate_attributes( $attributes )
+			);
+		}
+		if ( empty( $args['echo'] ) ) {
+			return $tag;
+		}
+		echo $tag; // WPCS: XSS ok.
+	}
+
+	public function generate_attributes( $attributes = null ) {
+		return '';
 	}
 }

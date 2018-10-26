@@ -12,10 +12,10 @@
  * Foxy_Common class
  */
 class Foxy_Common {
-	const LAYOUT_CONTENT_SIDEBAR         = 'cs';
-	const LAYOUT_SIDEBAR_CONTENT         = 'sc';
-	const LAYOUT_FULL_WIDTH              = 'fw';
-	const LAYOUT_CONTENT_CONTENT_SIDEBAR = 'ccs';
-	const LAYOUT_CONTENT_SIDEBAR_CONTENT = 'csc';
-	const LAYOUT_SIDEBAR_CONTENT_CONTENT = 'scc';
+	const LAYOUT_FULL_WIDTH              = 0;
+	const LAYOUT_CONTENT_SIDEBAR         = 1;
+	const LAYOUT_CONTENT_CONTENT_SIDEBAR = 2;
+	const LAYOUT_SIDEBAR_CONTENT         = 4;
+	const LAYOUT_CONTENT_SIDEBAR_CONTENT = 5;
+	const LAYOUT_SIDEBAR_CONTENT_CONTENT = 8;
 }
