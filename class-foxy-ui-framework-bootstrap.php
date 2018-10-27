@@ -39,6 +39,7 @@ class Foxy_UI_Framework_Bootstrap extends Foxy_UI_Framework_Base {
 	 */
 	public function __construct() {
 		list( $this->version, $this->major_version ) = $this->bootstrap_version();
+		$this->{'init_class_name_bootstrap_' . $this->major_version}();
 
 		$this->assets_dir = apply_filters(
 			'foxy_ui_bootstrap_framework_assets',
@@ -75,11 +76,28 @@ class Foxy_UI_Framework_Bootstrap extends Foxy_UI_Framework_Base {
 	 */
 	protected function bootstrap_version() {
 		$version = apply_filters( 'foxy_ui_bootstrap_framework_version', $this->version );
+
 		$version_major = explode( '.', $version );
 		return array(
 			$version,
 			array_shift( $version_major ),
 		);
+	}
+
+	public function init_class_name_bootstrap_3() {
+		$this->mobile_class_prefix = 'col-xs';
+		$this->small_tablet_class_prefix = 'col-sm-';
+		$this->tablet_class_prefix = 'col-md-';
+		$this->desktop_class_prefix = 'col-lg-';
+		$this->xtra_class_prefix = 'col-sx-';
+	}
+
+	public function init_class_name_bootstrap_4() {
+		$this->mobile_class_prefix = 'col-';
+		$this->small_tablet_class_prefix = 'col-sm-';
+		$this->tablet_class_prefix = 'col-md-';
+		$this->desktop_class_prefix = 'col-lg-';
+		$this->xtra_class_prefix = 'col-xl-';
 	}
 
 	/**
@@ -136,15 +154,17 @@ class Foxy_UI_Framework_Bootstrap extends Foxy_UI_Framework_Base {
 		}
 	}
 
+	/**
+	 * Close navigtation tag
+	 *
+	 * @param array $args Menu arguments.
+	 * @return void
+	 */
 	public function bootstrap_close_navigation_tag( $args ) {
 		if ( ! $args['ui_framework'] ) {
 			return;
 		}
-		?>
-				</div>
-			</div>
-		</nav>
-		<?php
+		echo '</div></nav>';
 	}
 
 	public function bootstrap_navbrand_class( $class_name ) {
@@ -152,8 +172,8 @@ class Foxy_UI_Framework_Bootstrap extends Foxy_UI_Framework_Base {
 	}
 
 	public function add_class_to_footer_widgets( $default_args ) {
-		$footer_widget = Foxy::get_num_footer_widgets();
-		$default_args['before_widget'] = '<div id="%1$s" class="widget col-sm-6 col-lg-' . (12/$footer_widget) . ' %2$s">';
+		$footer_widget                 = Foxy::get_num_footer_widgets();
+		$default_args['before_widget'] = '<div id="%1$s" class="widget col-sm-6 col-lg-' . ( 12 / $footer_widget ) . ' %2$s">';
 		return $default_args;
 	}
 
@@ -165,7 +185,7 @@ class Foxy_UI_Framework_Bootstrap extends Foxy_UI_Framework_Base {
 	 * @return string
 	 */
 	public function container( $close_tag = false ) {
-		if (empty($close_tag)) {
+		if ( empty( $close_tag ) ) {
 			echo '<div class="container">';
 		} else {
 			echo '</div>';
