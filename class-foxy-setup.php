@@ -339,7 +339,7 @@ class Foxy_Setup {
 		/**
 		 * Setup CSS framework for Foxy
 		 */
-		$ui_framework_name       = apply_filters( 'foxy_default_ui_framework', 'gris' );
+		$ui_framework_name       = apply_filters( 'foxy_default_ui_framework', 'bootstrap' );
 		$ui_framework_class_name = apply_filters(
 			'foxy_ui_framework_class_name',
 			sprintf( 'Foxy_UI_Framework_%s', ucfirst( $ui_framework_name ) ),
