@@ -86,7 +86,7 @@ trait Foxy_Layout {
 	 * @return string
 	 */
 	public static function get_default_layout() {
-		return apply_filters( 'foxy_default_layout', Foxy_Common::LAYOUT_CONTENT_SIDEBAR );
+		return apply_filters( 'foxy_default_layout', Foxy_Common::LAYOUT_SIDEBAR_CONTENT );
 	}
 
 	/**
@@ -102,9 +102,9 @@ trait Foxy_Layout {
 				Foxy_Common::LAYOUT_CONTENT_SIDEBAR,
 				Foxy_Common::LAYOUT_SIDEBAR_CONTENT,
 				Foxy_Common::LAYOUT_FULL_WIDTH,
-				Foxy_Common::LAYOUT_CONTENT_CONTENT_SIDEBAR,
-				Foxy_Common::LAYOUT_CONTENT_SIDEBAR_CONTENT,
-				Foxy_Common::LAYOUT_SIDEBAR_CONTENT_CONTENT,
+				Foxy_Common::LAYOUT_CONTENT_SIDEBAR_SIDEBAR,
+				Foxy_Common::LAYOUT_SIDEBAR_CONTENT_SIDEBAR,
+				Foxy_Common::LAYOUT_SIDEBAR_SIDEBAR_CONTENT,
 			)
 		);
 		if ( in_array( $layout, $supported_layouts, true ) ) {
@@ -130,6 +130,11 @@ trait Foxy_Layout {
 	}
 
 
+	/**
+	 * Check content has container to multi purpose
+	 *
+	 * @return bool
+	 */
 	public static function content_has_container() {
 		return apply_filters( 'foxy_content_container', true );
 	}
