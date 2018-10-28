@@ -20,7 +20,7 @@ trait Foxy_Ultility {
 	 * @return string
 	 */
 	public static function make_slug( $source ) {
-		return sanitize_title( $source );
+		return str_replace( '_', '-', sanitize_title( $source ) );
 	}
 
 	/**
