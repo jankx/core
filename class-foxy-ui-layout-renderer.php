@@ -76,12 +76,24 @@ class Foxy_UI_Layout_Renderer {
 		add_action( 'foxy_before_main_content', array( $this, 'main_content_open' ), 5 );
 		add_action( 'foxy_after_main_content', array( $this, 'main_content_close' ), 3 );
 
-		add_action( 'foxy_index_content', 'foxy_index_content' );
-		add_action( 'foxy_error_404_content', 'foxy_error_404_content' );
-		add_action( 'foxy_archive_content', 'foxy_archive_content' );
-		add_action( 'foxy_search_content', 'foxy_search_content' );
-		add_action( 'foxy_page_content', 'foxy_page_content' );
-		add_action( 'foxy_single_content', 'foxy_single_content' );
+		if ( is_home() ) {
+			add_action( 'foxy_index_content', 'foxy_index_content' );
+		}
+		if ( is_404() ) {
+			add_action( 'foxy_error_404_content', 'foxy_error_404_content' );
+		}
+		if ( is_archive() ) {
+			add_action( 'foxy_archive_content', 'foxy_archive_content' );
+		}
+		if ( is_search() ) {
+			add_action( 'foxy_search_content', 'foxy_search_content' );
+		}
+		if ( is_page() ) {
+			add_action( 'foxy_page_content', 'foxy_page_content' );
+		}
+		if ( is_single() ) {
+			add_action( 'foxy_single_content', 'foxy_single_content' );
+		}
 	}
 
 	public function content_wrap_open() {
