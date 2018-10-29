@@ -16,10 +16,10 @@ if ( defined( 'WP_DEBUG' ) && WP_DEBUG === true ) {
 	 * @param mixed $var Variable need to dump.
 	 * @return void
 	 */
-	function dd( $var ) {
+	function dd( $var, $print_r = false ) {
+		$method = $print_r ? 'print_r' : 'var_dump';
 		echo '<pre>';
-			// phpcs:ignore
-			print_r( $var );
+			$method( $var );
 		echo '</pre>';
 		exit();
 	}

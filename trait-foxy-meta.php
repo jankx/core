@@ -30,11 +30,13 @@ trait Foxy_Meta {
 	 *
 	 * @return string
 	 */
-	public function get_meta( $meta_key, $id = null, $meta_type = 'post' ) {
-		if ( is_null( $id ) ) {
-			$id = get_the_ID();
-		}
-		return get_metadata( $meta_type, $id, $meta_key );
+	public static function get_meta( $meta_key, $post_id = null, $single = true ) {
+		return get_metadata(
+			'post',
+			Foxy::get_object_id( $post_id, WP_Post::class ),
+			$meta_key,
+			$single
+		);
 	}
 
 	/**
@@ -45,11 +47,21 @@ trait Foxy_Meta {
 	 *
 	 * @return string
 	 */
-	public function user_meta( $meta_key, $user_id = null ) {
-		if ( is_null( $user_id ) ) {
-			$user    = wp_get_current_user();
-			$user_id = $user->ID();
-		}
-		return get_metadata( 'user', $user_id, $meta_key );
+	public static function user_meta( $meta_key, $user_id = null, $single = true ) {
+		return get_metadata(
+			'user',
+			Foxy::get_object_id( $user_id, WP_User::class ),
+			$meta_key,
+			$single
+		);
+	}
+
+	public static function term_meta( $meta_key, $term_id, $single = true ) {
+		return get_metadata(
+			'term',
+			Foxy::get_object_id( $term_id, WP_Term::class ),
+			$meta_key,
+			$single
+		);
 	}
 }

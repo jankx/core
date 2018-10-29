@@ -176,6 +176,10 @@ trait Foxy_UI {
 		do_action( 'foxy_after_footer_widget_loop' );
 	}
 
+	public static function has_title( $post_id = null ) {
+		return 'yes' !== Foxy::get_meta( 'foxy_hide_post_title', $post_id, true );
+	}
+
 	/**
 	 * Show WordPress pagination integrate with UI CSS Framework
 	 *
