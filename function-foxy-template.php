@@ -123,10 +123,15 @@ function foxy_no_content() {
  * @param string $post_type Post type need to render content.
  * @return void
  */
-function foxy_default_content( $post_type = null ) {
+function foxy_default_content( $post_type = 'post' ) {
+	if ( is_null( $post_type ) ) {
+		$post_type = 'post';
+	}
 	?>
-	<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+	<article id="<?php printf( '%s-%d', esc_attr( $post_type ), get_the_ID() ); // WPCS: XSS ok. ?>" <?php post_class(); ?>>
+		<?php if ( Foxy::has_title() ) : ?>
 		<h1 class="post-title"><?php the_title(); ?></h1>
+		<?php endif; ?>
 		<div class="content"><?php the_content(); ?></div>
 		<?php
 			Foxy::post_meta( $post_type );
@@ -144,9 +149,11 @@ function foxy_default_content( $post_type = null ) {
 function foxy_detault_loop_content( $post_type = null ) {
 	?>
 	<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+		<?php if ( Foxy::has_title() ) : ?>
 		<h3 class="post-title">
 			<a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php the_title(); ?></a>
 		</h3>
+		<?php endif; ?>
 		<div class="content"><?php the_excerpt(); ?></div>
 		<?php
 			Foxy::post_meta( $post_type );

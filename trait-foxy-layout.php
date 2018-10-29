@@ -20,36 +20,15 @@ trait Foxy_Layout {
 	protected static $layout = '';
 
 	/**
-	 * Number of footer widgets
-	 *
-	 * @var integer
-	 */
-	protected static $num_footer_widgets = 3;
-
-	/**
-	 * Use second sidebar flag
-	 *
-	 * @var boolean
-	 */
-	protected static $use_second_sidebar = true;
-
-	/**
-	 * Set number of footer wigets use in theme
-	 *
-	 * @param int $num Number of footer widgets.
-	 * @return void
-	 */
-	public static function set_num_footer_widgets( $num ) {
-		self::$num_footer_widgets = (int) $num;
-	}
-
-	/**
 	 * Get number of footer widgets
 	 *
 	 * @return int
 	 */
 	public static function get_num_footer_widgets() {
-		return (int) self::$num_footer_widgets;
+		return (int) apply_filters(
+			'foxy_num_footer_widgets',
+			3
+		);
 	}
 
 	/**
@@ -58,17 +37,7 @@ trait Foxy_Layout {
 	 * @return boolean
 	 */
 	public static function has_footer_widget() {
-		return self::$num_footer_widgets > 0;
-	}
-
-	/**
-	 * Enable or disable second sidebar in theme
-	 *
-	 * @param boolean $use Status want to set to second sidebar.
-	 * @return void
-	 */
-	public static function use_second_sidebar( $use = true ) {
-		self::$use_second_sidebar = (bool) $use;
+		return self::get_num_footer_widgets() > 0;
 	}
 
 	/**
@@ -76,8 +45,11 @@ trait Foxy_Layout {
 	 *
 	 * @return bool
 	 */
-	public static function get_second_sidebar() {
-		return (bool) self::$use_second_sidebar;
+	public static function has_second_sidebar() {
+		return apply_filters(
+			'foxy_has_second_sidebar',
+			true
+		);
 	}
 
 	/**
@@ -86,7 +58,10 @@ trait Foxy_Layout {
 	 * @return string
 	 */
 	public static function get_default_layout() {
-		return apply_filters( 'foxy_default_layout', Foxy_Common::LAYOUT_SIDEBAR_CONTENT );
+		return apply_filters(
+			'foxy_default_layout',
+			Foxy_Common::LAYOUT_SIDEBAR_CONTENT
+		);
 	}
 
 	/**
@@ -96,17 +71,24 @@ trait Foxy_Layout {
 	 * @return void
 	 */
 	public function set_layout( $layout ) {
-		$supported_layouts = apply_filters(
-			'foxy_supported_layouts',
-			array(
-				Foxy_Common::LAYOUT_CONTENT_SIDEBAR,
-				Foxy_Common::LAYOUT_SIDEBAR_CONTENT,
-				Foxy_Common::LAYOUT_FULL_WIDTH,
+		$supported_layouts = array(
+			Foxy_Common::LAYOUT_CONTENT_SIDEBAR,
+			Foxy_Common::LAYOUT_SIDEBAR_CONTENT,
+			Foxy_Common::LAYOUT_FULL_WIDTH,
+		);
+
+		if ( Foxy::has_second_sidebar() ) {
+			$supported_layouts = array_merge($supported_layouts, array(
 				Foxy_Common::LAYOUT_CONTENT_SIDEBAR_SIDEBAR,
 				Foxy_Common::LAYOUT_SIDEBAR_CONTENT_SIDEBAR,
 				Foxy_Common::LAYOUT_SIDEBAR_SIDEBAR_CONTENT,
-			)
+			));
+		}
+		$supported_layouts = apply_filters(
+			'foxy_supported_layouts',
+			$supported_layouts
 		);
+
 		if ( in_array( $layout, $supported_layouts, true ) ) {
 			self::$layout = $layout;
 		} else {
@@ -121,11 +103,10 @@ trait Foxy_Layout {
 	 * @return string
 	 */
 	public static function get_layout() {
-		if ( ! empty( self::$layout ) ) {
-			$layout = self::$layout;
+		$layout = self::$layout;
+		if ( '' === $layout ) {
+			$layout = self::get_default_layout();
 		}
-		$layout = self::get_default_layout();
-
 		return apply_filters( 'foxy_layout', $layout );
 	}
 
@@ -136,6 +117,13 @@ trait Foxy_Layout {
 	 * @return bool
 	 */
 	public static function content_has_container() {
-		return apply_filters( 'foxy_content_container', true );
+		return apply_filters(
+			'foxy_content_container',
+			true
+		);
+	}
+
+	public static function post_layout() {
+
 	}
 }

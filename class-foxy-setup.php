@@ -237,7 +237,7 @@ class Foxy_Setup {
 		);
 		register_sidebar( $primary_sidebar_args );
 
-		if ( Foxy::get_second_sidebar() ) {
+		if ( Foxy::has_second_sidebar() ) {
 			/**
 			 * Second sidebar args
 			 */
