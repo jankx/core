@@ -12,6 +12,9 @@
  * Foxy_Common class
  */
 class Foxy_Common {
+	/**
+	 * Supported site layouts
+	 */
 	const LAYOUT_FULL_WIDTH              = 0;
 	const LAYOUT_CONTENT_SIDEBAR         = 1;
 	const LAYOUT_CONTENT_SIDEBAR_SIDEBAR = 2;
@@ -19,8 +22,20 @@ class Foxy_Common {
 	const LAYOUT_SIDEBAR_CONTENT_SIDEBAR = 5;
 	const LAYOUT_SIDEBAR_SIDEBAR_CONTENT = 8;
 
-	const POST_LAYOUT_CARD_STYLE = 'card';
-	const POST_LAYOUT_LIST_TYPE = 'list';
-	const POST_LAYOUT_LARGE_TOP_STYLE = 'large_top';
+	/**
+	 * Post layouts
+	 */
+	const POST_LAYOUT_CARD_STYLE       = 'card';
+	const POST_LAYOUT_LIST_TYPE        = 'list';
+	const POST_LAYOUT_TIMELINE_TYPE    = 'timeline';
+	const POST_LAYOUT_SLIDE_TYPE       = 'slide';
+	const POST_LAYOUT_MANSORY_TYPE     = 'mansory';
+	const POST_LAYOUT_LARGE_TOP_STYLE  = 'large_top';
 	const POST_LAYOUT_LARGE_LEFT_STYLE = 'large_left';
+
+	/**
+	 * Taxonomy layouts
+	 */
+	const POST_CATEGORY_LAYOUT_CARD_STYLE = 'card';
+	const POST_CATEGORY_LAYOUT_TAB_STYLE  = 'tab';
 }
