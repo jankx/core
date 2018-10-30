@@ -176,6 +176,12 @@ trait Foxy_UI {
 		do_action( 'foxy_after_footer_widget_loop' );
 	}
 
+	/**
+	 * Check the post has show title
+	 *
+	 * @param int $post_id Post ID want to check the post has show title.
+	 * @return boolean
+	 */
 	public static function has_title( $post_id = null ) {
 		return 'yes' !== Foxy::get_meta( 'foxy_hide_post_title', $post_id, true );
 	}
@@ -203,6 +209,10 @@ trait Foxy_UI {
 	 * @return void
 	 */
 	public static function post_meta() {
+
+	}
+
+	public function thumbnail() {
 
 	}
 }
