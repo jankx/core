@@ -19,6 +19,8 @@ trait Foxy_Layout {
 	 */
 	protected static $layout = '';
 
+	protected static $custom_404_error_template = true;
+
 	/**
 	 * Get number of footer widgets
 	 *
@@ -123,7 +125,21 @@ trait Foxy_Layout {
 		);
 	}
 
-	public static function post_layout() {
+	public static function post_layout( $args = array(), $posts = null ) {
+		$method = empty( $posts ) ? 'default_loop_layout' : __FUNCTION__;
+		return forward_static_call(
+			array(
+				Foxy_Post_Layout::class,
+				$method,
+			),
+			$args, $posts
+		);
+	}
 
+	public static function custom_404_error_template( $custom = null ) {
+		if ( is_null( $custom ) ) {
+			return self::$custom_404_error_template;
+		}
+		self::$custom_404_error_template = (bool) $custom;
 	}
 }

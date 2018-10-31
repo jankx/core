@@ -56,7 +56,13 @@ class Foxy_UI_Layout_Renderer {
 	 * @return void
 	 */
 	public function render_header() {
+		if ( is_404() ) {
+			add_action( 'foxy_header', array( $this, 'disable_404_custom_template' ) );
+		}
+	}
 
+	public function disable_404_custom_template() {
+		Foxy::custom_404_error_template( false );
 	}
 
 	public function body_classes( $classes ) {

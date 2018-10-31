@@ -58,7 +58,6 @@ abstract class Foxy_UI_Framework_Base implements Foxy_UI_Framework_Interface {
 	 * Foxy_UI_Framework_Base constructor
 	 */
 	public function __construct() {
-		add_action( 'wp_enqueue_scripts', array( $this, 'register_scripts' ), 3 );
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ), 33 );
 	}
 
@@ -70,8 +69,12 @@ abstract class Foxy_UI_Framework_Base implements Foxy_UI_Framework_Interface {
 	 */
 	public function enqueue_scripts() {
 		if ( ! apply_filters( 'foxy_ui_framework_enqueue_scripts', false, $this->get_name(), $this->version ) ) {
-			wp_enqueue_style( $this->get_name() );
-			wp_enqueue_script( $this->get_name() );
+			wp_enqueue_style( Foxy::get_template_name() );
+			wp_enqueue_script( Foxy::get_template_name() );
+			if ( is_child_theme() ) {
+				wp_enqueue_style( Foxy::get_theme_name() );
+				wp_enqueue_script( Foxy::get_theme_name() );
+			}
 		}
 		do_action( 'foxy_ui_framework_enqueue_scripts' );
 	}
@@ -89,6 +92,7 @@ abstract class Foxy_UI_Framework_Base implements Foxy_UI_Framework_Interface {
 			$args, array(
 				'name'            => 'div',
 				'id'              => '',
+				'context'         => '',
 				'class'           => '',
 				'responsive'      => true,
 				'mobile_columns'  => '',
@@ -104,11 +108,17 @@ abstract class Foxy_UI_Framework_Base implements Foxy_UI_Framework_Interface {
 		$id          = '';
 		if ( ! empty( $args['id'] ) ) {
 			$id          = sprintf( ' id="%s"', esc_attr( $args['id'] ) );
-			$context     = 'tag_' . $args['id'];
+			if ( empty( $args['context'] ) ) {
+				$args['context'] = $args['id'];
+			}
+		}
+		if ( ! empty( $args['context'] ) ) {
+			$context     = 'tag_' . $args['context'];
 			$args        = apply_filters( "foxy_ui_tag_{$context}", $args, $context );
 			$attributes  = apply_filters( "foxy_ui_tag_{$context}_attr", $attributes, $args, $context );
 			$class_names = apply_filters( "foxy_ui_{$context}_class_name", $class_names );
 		}
+
 		if ( ! empty( $args['close'] ) ) {
 			$tag = sprintf( '</%s>', $args['name'] );
 		} else {

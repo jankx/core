@@ -84,4 +84,12 @@ trait Foxy_Ultility {
 
 		return true;
 	}
+
+	public static function get_theme_name() {
+		return basename( FOXY_ACTIVE_THEME_DIR );
+	}
+
+	public static function get_template_name() {
+		return basename( FOXY_TEMPLATE_DIR );
+	}
 }

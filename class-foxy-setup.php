@@ -150,6 +150,7 @@ class Foxy_Setup {
 	 */
 	public function includes() {
 		require_once FOXY_FRAMEWORK_CORE . 'function-foxy-template.php';
+		require_once FOXY_FRAMEWORK_CORE . 'function-foxy-content-template.php';
 	}
 
 	/**
