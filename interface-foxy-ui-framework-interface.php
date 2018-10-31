@@ -26,7 +26,7 @@ interface Foxy_UI_Framework_Interface {
 	 *
 	 * @return void
 	 */
-	public function register_scripts();
+	public function enqueue_scripts();
 
 	/**
 	 * Create container block

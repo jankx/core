@@ -13,7 +13,7 @@
  * Foxy index content
  */
 function foxy_index_content() {
-	echo 'index';
+	Foxy::post_layout( 'list' );
 }
 
 /**
@@ -22,7 +22,7 @@ function foxy_index_content() {
  * @return void
  */
 function foxy_error_404_content() {
-	echo '404';
+
 }
 
 /**
@@ -31,7 +31,7 @@ function foxy_error_404_content() {
  * @return void
  */
 function foxy_archive_content() {
-	echo 'archive';
+	Foxy::post_layout( 'card' );
 }
 
 /**
@@ -88,24 +88,28 @@ function foxy_page_content() {
  */
 function foxy_single_content() {
 	the_post();
-	$current_post_type = Foxy::make_slug( get_post_type() );
-	$content_hook      = "foxy_single_{$current_post_type}_content";
+	$post_type = get_post_type();
+	$post_type_file = Foxy::make_slug( $post_type );
+
+	$content_hook      = "foxy_single_{$post_type}_content";
 	if ( ! Foxy::hook_is_empty( $content_hook ) ) {
 		do_action( $content_hook );
 	} else {
 		$template = Foxy::search_template(
 			array(
-				$current_post_type . '/content.php',
-				'content/' . $current_post_type . '.php',
+				$post_type_file . '/content.php',
+				'content/' . $post_type_file . '.php',
 				'content/default.php',
 			)
 		);
 		if ( ! empty( $template ) ) :
 			require $template;
 		else :
-			foxy_default_content( $current_post_type );
+			foxy_default_content( $post_type );
 		endif;
 	}
+	do_action( 'foxy_after_single_content', $post_type );
+	do_action( "foxy_after_single_{$post_type}_content" );
 }
 
 
@@ -115,6 +119,29 @@ function foxy_single_content() {
  * @return void
  */
 function foxy_no_content() {
+	do_action( 'foxy_ui_before_no_content' );
+	$template = Foxy::search_template(array(
+		'no-content.php',
+	));
+	if ( empty( $template ) ) {
+		Foxy::ui()->tag(array(
+			'name' => 'h2',
+			'id' => 'no-content-heading',
+			'class' => 'no-content',
+		));
+		echo esc_html__( 'OOOP!!', 'foxy' );
+		Foxy::ui()->tag(array(
+			'name' => 'h2',
+			'context' => 'no-content-heading',
+			'close' => true,
+		));
+		echo '<div class="no-content-desc">';
+			printf( esc_html__( 'Don\'t have anything', 'foxy' ) );
+		echo '</div>';
+	} else {
+		require $template;
+	}
+	do_action( 'foxy_ui_after_no_content' );
 }
 
 /**
@@ -123,21 +150,25 @@ function foxy_no_content() {
  * @param string $post_type Post type need to render content.
  * @return void
  */
-function foxy_default_content( $post_type = 'post' ) {
+function foxy_default_content( $post_type = null ) {
 	if ( is_null( $post_type ) ) {
-		$post_type = 'post';
+		$post_type = get_post_type();
 	}
-	?>
-	<article id="<?php printf( '%s-%d', esc_attr( $post_type ), get_the_ID() ); // WPCS: XSS ok. ?>" <?php post_class(); ?>>
-		<?php if ( Foxy::has_title() ) : ?>
-		<h1 class="post-title"><?php the_title(); ?></h1>
-		<?php endif; ?>
-		<div class="content"><?php the_content(); ?></div>
-		<?php
-			Foxy::post_meta( $post_type );
-		?>
-	</article>
-	<?php
+	Foxy::ui()->tag( array(
+		'name'    => 'article',
+		'context' => 'article-' . $post_type,
+		'class'   => implode( ' ', get_post_class() ),
+	) );
+	do_action( 'foxy_before_post_content', $post_type );
+	do_action( 'foxy_post_content', $post_type );
+	do_action( 'foxy_after_post_content', $post_type );
+	Foxy::ui()->tag(
+		array(
+			'name'    => 'article',
+			'context' => 'article-' . $post_type,
+			'close'   => true,
+		)
+	);
 }
 
 /**
@@ -146,18 +177,46 @@ function foxy_default_content( $post_type = 'post' ) {
  * @param string $post_type Post type need to render content.
  * @return void
  */
-function foxy_detault_loop_content( $post_type = null ) {
-	?>
-	<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-		<?php if ( Foxy::has_title() ) : ?>
-		<h3 class="post-title">
-			<a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php the_title(); ?></a>
-		</h3>
-		<?php endif; ?>
-		<div class="content"><?php the_excerpt(); ?></div>
-		<?php
-			Foxy::post_meta( $post_type );
-		?>
-	</article>
-	<?php
+function foxy_detault_loop_content( $post_type = null, $style = null ) {
+	if ( is_null( $post_type ) ) {
+		$post_type = get_post_type();
+	}
+	Foxy::ui()->tag( array(
+		'name'    => 'article',
+		'context' => 'article-' . $post_type,
+		'class'   => implode( ' ', get_post_class() ),
+	) );
+	echo '<div class="item-inner">';
+	do_action( "foxy_before_post_layout_{$post_type}_loop_content", $style );
+	if ( has_post_thumbnail() ) {
+		Foxy::ui()->tag( array(
+			'name' => 'figure',
+			'class' => 'item-thumb',
+			'context' => 'post-layout-figure',
+		) );
+
+		do_action( 'foxy_post_layout_image', $post_type, $style );
+		do_action( "foxy_post_layout_{$post_type}_figure", $style );
+
+		Foxy::ui()->tag( array(
+			'name' => 'figure',
+			'context' => 'post-layout-figure',
+			'close' => true
+		) );
+	}
+
+	echo '<div class="item-info">';
+		do_action( 'foxy_post_layout_content', $post_type, $style );
+		do_action( "foxy_post_layout_{$post_type}_addition_info", $style );
+	echo '</div>'; // Close .item-info tag.
+
+	do_action( "foxy_after_{$post_type}_loop_content", $style );
+	echo '</div>'; // Close .item-inner tag.
+	Foxy::ui()->tag(
+		array(
+			'name'    => 'article',
+			'context' => 'article-' . $post_type,
+			'close'   => true,
+		)
+	);
 }

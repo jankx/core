@@ -105,7 +105,7 @@ class Foxy_UI_Framework_Bootstrap extends Foxy_UI_Framework_Base {
 	 *
 	 * @return void
 	 */
-	public function register_scripts() {
+	public function enqueue_scripts() {
 		wp_register_style(
 			$this->get_name(),
 			$this->assets_dir . 'css/bootstrap.min.css',
@@ -120,6 +120,34 @@ class Foxy_UI_Framework_Bootstrap extends Foxy_UI_Framework_Base {
 			$this->version,
 			true
 		);
+		wp_register_style(
+			Foxy::get_template_name(),
+			get_template_directory_uri() . '/style.css',
+			array( $this->get_name() )
+		);
+		wp_register_script(
+			Foxy::get_template_name(),
+			get_template_directory_uri() . '/public/js/foxy.js',
+			array( $this->get_name() ),
+			null,
+			true
+		);
+		if ( is_child_theme() ) {
+			wp_register_style(
+				Foxy::get_theme_name(),
+				get_stylesheet_uri(),
+				array( Foxy::get_template_name() )
+			);
+			wp_register_script(
+				Foxy::get_theme_name(),
+				get_stylesheet_directory_uri() . '/public/js/bds.js',
+				array( Foxy::get_template_name() ),
+				null,
+				true
+			);
+		}
+
+		parent::enqueue_scripts();
 	}
 
 	public function menu_args( $args ) {
