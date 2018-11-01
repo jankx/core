@@ -19,7 +19,7 @@ class Foxy_Post_Layout {
 				$style, $has_carousel
 			),
 		));
-		$wrap_class = $args['carousel'] ? 'post-layout-wrap owlcarousel' : 'post-layout-wrap';
+		$wrap_class = $args['carousel'] ? 'post-layout-wrap owl-carousel' : 'post-layout-wrap';
 		if ( $posts->have_posts() ) {
 			Foxy::ui()->tag(array(
 				'name' => 'section',
