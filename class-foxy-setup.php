@@ -114,6 +114,7 @@ class Foxy_Setup {
 		 * WordPress compatibility
 		 */
 		require_once $foxy_dir . 'function-wordpress-compatibility.php';
+		require_once $foxy_dir . 'function-foxy-helpers.php';
 
 		// Free up memory.
 		unset( $foxy_dir );
