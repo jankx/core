@@ -163,6 +163,14 @@ abstract class Foxy_UI_Framework_Base implements Foxy_UI_Framework_Interface {
 	}
 
 	public function generate_attributes( $attributes = null ) {
-		return '';
+		$allowed_attributes = apply_filters( 'foxy_allowed_html_attributes', array( 'src', 'href', 'title', 'style' ) );
+		$output = '';
+		foreach ( (array) $attributes as $attribute => $attr_value ) {
+			if ( ! in_array( $attribute, $allowed_attributes, true ) ) {
+				continue;
+			}
+			$output .= sprintf( ' %s="%s"', $attribute, $attr_value );
+		}
+		return $output;
 	}
 }
