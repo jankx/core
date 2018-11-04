@@ -127,7 +127,7 @@ class Foxy_Data {
 		$meta_boxes = apply_filters( 'foxy_post_metas', array() );
 		if ( ! empty( $meta_boxes ) && is_array( $meta_boxes ) ) {
 			foreach ( $meta_boxes as $id => $args ) {
-				if ( ! in_array( $current_screen->id, (array) $args['post_type'] ) ) {
+				if ( ! in_array( $current_screen->id, (array) $args['post_type'], true ) ) {
 					unset( $meta_boxes[ $id ] );
 					continue;
 				}
