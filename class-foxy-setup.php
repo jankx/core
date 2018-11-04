@@ -73,6 +73,8 @@ class Foxy_Setup {
 			Foxy_Admin::instance();
 		}
 
+		$this->load_assets();
+
 		// Set foxy instance to global for other integrate.
 		$GLOBALS['foxy'] = $this->foxy;
 
@@ -315,6 +317,8 @@ class Foxy_Setup {
 		 * Get instance of Foxy_Data to register data
 		 */
 		Foxy_Data::instance();
+
+
 	}
 
 	/**
@@ -330,6 +334,16 @@ class Foxy_Setup {
 		foreach ( $addons as $addon ) {
 			require_once $addon;
 		}
+	}
+
+
+	public function load_assets() {
+		/**
+		 * Set foxy asset instance to foxy core.
+		 */
+		$this->foxy->asset = function() {
+			return Foxy_Asset::instance();
+		};
 	}
 
 	/**

@@ -37,9 +37,27 @@ class Foxy_Data {
 	public function __construct() {
 		$this->register_posts_types();
 		$this->register_taxonomies();
-		$this->add_post_metas();
-		$this->add_terms_metas();
-		$this->add_user_metas();
+
+		/**
+		 * Setup meta framework for Foxy Core.
+		 */
+		$meta_framework = apply_filters( 'foxy_default_meta_framework', 'WordPress' );
+
+		$meta_framework_class = apply_filters(
+			'foxy_meta_framework_class',
+			sprintf( 'Foxy_Meta_Framework_' . ucfirst( $meta_framework ) )
+		);
+
+		Foxy::instance()->set_meta_framework(
+			new $meta_framework_class()
+		);
+
+		/**
+		 * Adding Foxy meta data into WordPress
+		 */
+		add_action( 'add_meta_boxes', array( $this, 'add_post_metas' ) );
+		// $this->add_terms_metas();
+		// $this->add_user_metas();
 	}
 
 	/**
@@ -105,9 +123,33 @@ class Foxy_Data {
 	 * @return void
 	 */
 	public function add_post_metas() {
+		$current_screen = get_current_screen();
 		$meta_boxes = apply_filters( 'foxy_post_metas', array() );
 		if ( ! empty( $meta_boxes ) && is_array( $meta_boxes ) ) {
+			foreach ( $meta_boxes as $id => $args ) {
+				if ( ! in_array( $current_screen->id, (array) $args['post_type'] ) ) {
+					unset( $meta_boxes[ $id ] );
+					continue;
+				}
+				$args = wp_parse_args( $args, array(
+					'title' => '',
+					'icon' => '',
+					'context' => 'normal',
+					'priority' => 'default',
+					'fields' => array()
+				));
+				$args = apply_filters( "foxy_post_meta_{$id}_args", $args );
 
+				add_meta_box(
+					$id,
+					Foxy::meta()->meta_title( $args ),
+					array( Foxy::meta(), 'factory' ),
+					$args['post_type'],
+					$args['context'],
+					$args['priority'],
+					$args['fields']
+				);
+			}
 		}
 	}
 

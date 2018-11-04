@@ -157,7 +157,7 @@ function foxy_default_content( $post_type = null ) {
 	Foxy::ui()->tag( array(
 		'name'    => 'article',
 		'context' => 'article-' . $post_type,
-		'class'   => implode( ' ', get_post_class() ),
+		'class'   => implode( ' ', get_post_class( 'item item-detail' ) ),
 	) );
 	do_action( 'foxy_before_post_content', $post_type );
 	do_action( 'foxy_post_content', $post_type );
@@ -184,7 +184,7 @@ function foxy_detault_loop_content( $post_type = null, $style = null ) {
 	Foxy::ui()->tag( array(
 		'name'    => 'article',
 		'context' => 'article-' . $post_type,
-		'class'   => implode( ' ', get_post_class() ),
+		'class'   => implode( ' ', get_post_class( 'item loop-item' ) ),
 	) );
 	echo '<div class="item-inner">';
 	do_action( "foxy_before_post_layout_{$post_type}_loop_content", $style );

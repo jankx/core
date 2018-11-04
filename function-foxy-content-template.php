@@ -8,7 +8,7 @@ function foxy_loop_post_thumbnail($post_type, $style) {
 		'context' => 'default-post-thumbnail'
 	), array(
 		'href' => get_the_permalink(),
-		'title' => get_the_title()
+		'title' => get_the_title(),
 	));
 		the_post_thumbnail( $size );
 	echo '</a>';

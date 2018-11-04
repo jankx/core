@@ -58,6 +58,12 @@ class Foxy_Post_Layout {
 	}
 
 	public static function default_loop_layout( $args = array() ) {
+		$args = wp_parse_args( $args, array(
+			'style' => 'list',
+		) );
+
+		$style =  $args['style'];
+
 		Foxy::ui()->tag(array(
 			'class' => sprintf( 'post-layout post-layout-%1$s style-%1$s', $style ),
 		));

@@ -20,6 +20,30 @@ trait Foxy_Meta {
 	protected $meta_framework;
 
 	/**
+	 * Set Meta Framework for Foxy
+	 *
+	 * @param Foxy_Meta_Framework_Base $framework Foxy UI framework.
+	 * @throws \Exception Throw exception if $framework is not be instance of Foxy_UI_Framework_Base.
+	 * @return void
+	 */
+	public function set_meta_framework( $framework ) {
+		if ( ! ( $framework instanceof Foxy_Meta_Framework_Base ) ) {
+			throw new \Exception(
+				sprintf( 'Meta Framework must be instance of %s class', 'Foxy_Meta_Framework_Base' ),
+				333
+			);
+		}
+		$this->meta_framework = $framework;
+
+		/**
+		 * Create UI Closure for Foxy
+		 */
+		$this->meta = function() {
+			return $this->meta_framework;
+		};
+	}
+
+	/**
 	 * Get meta value via meta framework
 	 * Every meta framework has different method to get meta value
 	 * So Foxy framework must integrate with meta framework is used
