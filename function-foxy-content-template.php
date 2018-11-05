@@ -54,3 +54,21 @@ function foxy_single_post_content( $post_type ) {
 		'close' => true,
 	));
 }
+
+
+/**
+ * Filter post excerpt length
+ */
+add_filter( 'excerpt_length', 'foxy_post_excerpt_length' );
+function foxy_post_excerpt_length( $length ) {
+	if ( 'post' === get_post_type() ) {
+		$length = 20;
+	}
+	return $length;
+}
+
+add_filter( 'excerpt_more', 'foxy_post_excerpt_more_text' );
+function foxy_post_excerpt_more_text( $more_text ) {
+	$more_text = '&hellip;';
+	return $more_text;
+}

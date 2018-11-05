@@ -17,7 +17,7 @@ abstract class Foxy_Meta_Framework_Base implements Foxy_Meta_Framework_Interface
 			if ( empty( $field['type'] ) || empty($field['id'] ) ) {
 				continue;
 			}
-			$field_callback = apply_filters( "foxy_meta_{$field_element['type']}_callback", array( $this, $field_element['type'] ) );
+			$field_callback = apply_filters( "foxy_meta_{$field['type']}_callback", array( $this, $field['type'] ) );
 			$check_foxy_supports =  is_callable( $field_callback );
 			if ( $check_foxy_supports && isset( $_POST[ $field['id'] ] ) ) {
 				update_post_meta( $post_id, $field['id'], $_POST[ $field['id'] ] );

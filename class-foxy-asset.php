@@ -19,6 +19,7 @@ class Foxy_Asset {
 
 
 	public function __construct() {
+		add_action( 'wp_enqueue_scripts', array( $this, 'register_libraries' ), 3 );
 		add_action( 'wp_enqueue_scripts', array( $this, 'call_scripts' ), 33 );
 		add_action( 'wp_head', array( $this, 'header' ), 33 );
 		add_action( 'wp_footer', array( $this, 'footer' ), 33 );
@@ -31,7 +32,10 @@ class Foxy_Asset {
 		return $this;
 	}
 
-	public function script() {
+	public function script($script) {
+		if ( ! in_array( $script, $this->scripts, true ) ) {
+			$this->scripts[] = $script;
+		}
 		return $this;
 	}
 
@@ -43,6 +47,9 @@ class Foxy_Asset {
 		return $this;
 	}
 
+	public function register_libraries() {
+	}
+
 	public function call_scripts() {
 
 	}
@@ -51,5 +58,12 @@ class Foxy_Asset {
 	}
 
 	public function footer() {
+		?>
+		<script>
+			(function($){
+				<?php echo implode("\n", $this->scripts); ?>
+			})(jQuery);
+		</script>
+		<?php
 	}
 }
