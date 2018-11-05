@@ -10,6 +10,8 @@ class Foxy_Admin_UI_Common {
 		return self::$instance;
 	}
 
+
+
 	public function admin_featured_column() {
 	}
 
