@@ -220,3 +220,8 @@ function foxy_detault_loop_content( $post_type = null, $style = null ) {
 		)
 	);
 }
+
+
+function foxy_get_search_form( $form ) {
+	return $form;
+}
