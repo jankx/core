@@ -34,6 +34,7 @@ class Foxy_UI_Layout_Renderer {
 		$this->render_sidebar();
 		$this->render_content();
 		$this->render_footer();
+		$this->render_something();
 
 		add_filter( 'body_class', array( $this, 'body_classes' ) );
 	}
@@ -155,6 +156,10 @@ class Foxy_UI_Layout_Renderer {
 			add_action( 'foxy_before_second_sidebar_content', array( $this, 'second_sidebar_wrap_open' ) );
 			add_action( 'foxy_after_sidebar_content', array( $this, 'second_sidebar_wrap_close' ) );
 		}
+	}
+
+	public function render_something() {
+		add_filter( 'get_search_form', 'foxy_get_search_form' );
 	}
 
 	/**

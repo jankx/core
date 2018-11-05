@@ -12,6 +12,10 @@ class Foxy_Admin {
 
     public function __construct() {
         $this->setting_up_ui_framework();
+
+        Foxy::instance()->admin = function() {
+            return self::instance();
+        };
     }
 
 
@@ -28,5 +32,9 @@ class Foxy_Admin {
 		Foxy::instance()->set_ui_framework(
 			new $ui_framework_class_name()
 		);
+    }
+
+    public function common() {
+        return Foxy_Admin_UI_Common::instance();
     }
 }
