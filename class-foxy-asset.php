@@ -24,23 +24,23 @@ class Foxy_Asset {
 		add_action( 'wp_footer', array( $this, 'footer' ), 33 );
 	}
 	public function js() {
-		return self;
+		return $this;
 	}
 
 	public function css() {
-		return self;
+		return $this;
 	}
 
 	public function script() {
-		return self;
+		return $this;
 	}
 
 	public function style() {
-		return self;
+		return $this;
 	}
 
 	public function lib() {
-		return self;
+		return $this;
 	}
 
 	public function call_scripts() {
