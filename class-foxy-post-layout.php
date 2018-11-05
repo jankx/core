@@ -1,6 +1,9 @@
 <?php
 
 class Foxy_Post_Layout {
+	public function supported_layout() {
+	}
+
 	public static function post_layout( $args = array(), $posts ) {
 		if ( ! ( $posts instanceof WP_Query ) ) {
 			// Check $posts variable is instance of WP_Query.
