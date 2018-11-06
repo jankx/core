@@ -66,6 +66,29 @@ trait Foxy_Layout {
 		);
 	}
 
+	public function get_supported_layouts() {
+		$supported_layouts = array(
+			Foxy_Common::LAYOUT_CONTENT_SIDEBAR => __( 'Content-Sidebar', 'foxy' ),
+			Foxy_Common::LAYOUT_SIDEBAR_CONTENT => __( 'Sidebar-Content', 'foxy' ),
+			Foxy_Common::LAYOUT_FULL_WIDTH      => __( 'Full Width', 'foxy' ),
+		);
+
+		if ( Foxy::has_second_sidebar() ) {
+			$supported_layouts = array_merge(
+				$supported_layouts,
+				array(
+					Foxy_Common::LAYOUT_CONTENT_SIDEBAR_SIDEBAR => __( 'Content-Sidebar-Sidebar', 'foxy' ),
+					Foxy_Common::LAYOUT_SIDEBAR_CONTENT_SIDEBAR => __( 'Sidebar-Content-Sidebar', 'foxy' ),
+					Foxy_Common::LAYOUT_SIDEBAR_SIDEBAR_CONTENT => __( 'Sidebar-Sidebar-Content', 'foxy' ),
+				)
+			);
+		}
+		return apply_filters(
+			'foxy_supported_layouts',
+			$supported_layouts
+		);
+	}
+
 	/**
 	 * Set theme layout
 	 *
@@ -73,23 +96,7 @@ trait Foxy_Layout {
 	 * @return void
 	 */
 	public function set_layout( $layout ) {
-		$supported_layouts = array(
-			Foxy_Common::LAYOUT_CONTENT_SIDEBAR,
-			Foxy_Common::LAYOUT_SIDEBAR_CONTENT,
-			Foxy_Common::LAYOUT_FULL_WIDTH,
-		);
-
-		if ( Foxy::has_second_sidebar() ) {
-			$supported_layouts = array_merge($supported_layouts, array(
-				Foxy_Common::LAYOUT_CONTENT_SIDEBAR_SIDEBAR,
-				Foxy_Common::LAYOUT_SIDEBAR_CONTENT_SIDEBAR,
-				Foxy_Common::LAYOUT_SIDEBAR_SIDEBAR_CONTENT,
-			));
-		}
-		$supported_layouts = apply_filters(
-			'foxy_supported_layouts',
-			$supported_layouts
-		);
+		$supported_layouts = self::get_supported_layout();
 
 		if ( in_array( $layout, $supported_layouts, true ) ) {
 			self::$layout = $layout;
