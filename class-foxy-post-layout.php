@@ -4,7 +4,16 @@ class Foxy_Post_Layout {
 	public function supported_layout() {
 	}
 
-	public static function post_layout( $args = array(), $posts ) {
+	public static function column_styles() {
+		return array(
+			Foxy_Common::POST_LAYOUT_CARD_STYLE,
+			Foxy_Common::POST_LAYOUT_MANSORY_STYLE,
+			Foxy_Common::POST_LAYOUT_LARGE_TOP_STYLE,
+			Foxy_Common::POST_LAYOUT_LARGE_LEFT_STYLE,
+		);
+	}
+
+	public static function post_layout( $args = array(), $posts, $widget_args = null ) {
 		if ( ! ( $posts instanceof WP_Query ) ) {
 			// Check $posts variable is instance of WP_Query.
 			throw new Exception( 'Argument #1 must be instance of WP_Query' );
@@ -38,35 +47,41 @@ class Foxy_Post_Layout {
 			sprintf( 'row-item-%s', $args['row_items'] ),
 		);
 
-		Foxy::ui()->tag(array(
-			'class' => implode( ' ', $class_names ),
-		));
+		Foxy::ui()->tag(
+			array(
+				'class' => implode( ' ', $class_names ),
+			)
+		);
 		$wrap_class = $args['carousel'] ? 'post-layout-wrap owl-carousel' : 'post-layout-wrap';
 		if ( $posts->have_posts() ) {
-			Foxy::ui()->tag(array(
-				'name' => 'section',
-				'class' => $wrap_class,
-			));
-			do_action( 'foxy_post_layout_before_loop' );
-			do_action( "foxy_post_layout_{$style}_before_loop" );
+			Foxy::ui()->tag(
+				array(
+					'name' => 'section',
+					'class' => $wrap_class,
+				)
+			);
+			do_action( 'foxy_post_layout_before_loop', $args, $widget_args );
+			do_action( "foxy_post_layout_{$style}_before_loop", $args, $widget_args );
 			while ( $posts->have_posts() ) {
 				$posts->the_post();
 				if ( Foxy::hook_is_empty( "foxy_post_layout_{$style}_loop" ) ) {
 					$current_post_type = get_post_type();
-					$template = Foxy::search_template(array(
-					));
+					$template = Foxy::search_template(
+						array(
+						)
+					);
 					if ( ! empty( $template ) ) {
 						require $template;
 					} else {
-						foxy_detault_loop_content( $current_post_type, $style );
+						foxy_detault_loop_content( $current_post_type, $args, $widget_args );
 					}
 				} else {
-					do_action( "foxy_post_layout_{$style}_loop" );
+					do_action( "foxy_post_layout_{$style}_loop", $args, $widget_args );
 				}
 			}
 
-			do_action( "foxy_post_layout_{$style}_end_loop" );
-			do_action( 'foxy_post_layout_after_loop' );
+			do_action( "foxy_post_layout_{$style}_end_loop", $args, $widget_args );
+			do_action( 'foxy_post_layout_after_loop', $args, $widget_args );
 			Foxy::ui()->tag(
 				array(
 					'name' => 'section',
@@ -81,32 +96,41 @@ class Foxy_Post_Layout {
 	}
 
 	public static function default_loop_layout( $args = array() ) {
-		$args = wp_parse_args( $args, array(
-			'style' => 'list',
-		) );
+		$args = wp_parse_args(
+			$args,
+			array(
+				'style' => 'list',
+			)
+		);
 
 		$style =  $args['style'];
 
-		Foxy::ui()->tag(array(
-			'class' => sprintf( 'post-layout post-layout-%1$s style-%1$s', $style ),
-		));
+		Foxy::ui()->tag(
+			array(
+				'class' => sprintf( 'post-layout post-layout-%1$s style-%1$s', $style ),
+			)
+		);
 		if ( have_posts() ) {
-			Foxy::ui()->tag(array(
-				'name' => 'section',
-				'class' => 'post-layout-wrap'
-			));
+			Foxy::ui()->tag(
+				array(
+					'name'  => 'section',
+					'class' => 'post-layout-wrap',
+				)
+			);
 			do_action( 'foxy_post_layout_before_loop' );
 			do_action( "foxy_post_layout_{$style}_before_loop" );
 			while ( have_posts() ) {
 				the_post();
 				if ( Foxy::hook_is_empty( "foxy_post_layout_{$style}_loop" ) ) {
 					$current_post_type = get_post_type();
-					$template = Foxy::search_template(array(
-					));
+					$template = Foxy::search_template(
+						array(
+						)
+					);
 					if ( ! empty( $template ) ) {
 						require $template;
 					} else {
-						foxy_detault_loop_content( $current_post_type, $style );
+						foxy_detault_loop_content( $current_post_type, $args );
 					}
 				} else {
 					do_action( "foxy_post_layout_{$style}_loop" );
@@ -115,15 +139,15 @@ class Foxy_Post_Layout {
 
 			do_action( "foxy_post_layout_{$style}_end_loop" );
 			do_action( 'foxy_post_layout_after_loop' );
-			Foxy::ui()->tag(array(
-				'name' => 'section',
-				'close' => 'true'
-			));
+			Foxy::ui()->tag(
+				array(
+					'name'  => 'section',
+					'close' => 'true',
+				)
+			);
 		} else {
 			foxy_no_content();
 		}
-		Foxy::ui()->tag(array(
-			'close' => true,
-		));
+		Foxy::ui()->tag( array( 'close' => true ) );
 	}
 }
