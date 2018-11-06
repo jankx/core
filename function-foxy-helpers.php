@@ -29,3 +29,32 @@ function foxy_get_domain_name( $host ) {
 	}
 	return $domain_name;
 }
+
+
+/**
+ * Check action & filter hooks is empty callback
+ *
+ * @param string $hook_name Hook name need to check is empty.
+ * @return bool
+ */
+function foxy_check_empty_hook( $hook_name ) {
+	global $wp_filter;
+
+	/**
+	 * If object doesn't exists this mean hook is empty
+	 */
+	if ( empty( $wp_filter[ $hook_name ] ) ) {
+		return true;
+	}
+
+	return ! isset( $wp_filter[ $hook_name ]->callbacks ) && count( $wp_filter[ $hook_name ]->callbacks ) > 0;
+}
+
+
+function foxy_get_theme_name() {
+	return basename( FOXY_ACTIVE_THEME_DIR );
+}
+
+function foxy_get_template_name() {
+	return basename( FOXY_TEMPLATE_DIR );
+}

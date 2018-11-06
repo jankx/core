@@ -121,12 +121,12 @@ class Foxy_UI_Framework_Bootstrap extends Foxy_UI_Framework_Base {
 			true
 		);
 		wp_register_style(
-			Foxy::get_template_name(),
+			foxy_get_template_name(),
 			get_template_directory_uri() . '/style.css',
 			array( $this->get_name() )
 		);
 		wp_register_script(
-			Foxy::get_template_name(),
+			foxy_get_template_name(),
 			get_template_directory_uri() . '/public/js/foxy.js',
 			array( $this->get_name() ),
 			null,
@@ -134,14 +134,14 @@ class Foxy_UI_Framework_Bootstrap extends Foxy_UI_Framework_Base {
 		);
 		if ( is_child_theme() ) {
 			wp_register_style(
-				Foxy::get_theme_name(),
+				foxy_get_theme_name(),
 				get_stylesheet_uri(),
-				array( Foxy::get_template_name() )
+				array( foxy_get_template_name() )
 			);
 			wp_register_script(
-				Foxy::get_theme_name(),
+				foxy_get_theme_name(),
 				get_stylesheet_directory_uri() . '/public/js/bds.js',
-				array( Foxy::get_template_name() ),
+				array( foxy_get_template_name() ),
 				null,
 				true
 			);
