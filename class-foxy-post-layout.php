@@ -67,20 +67,17 @@ class Foxy_Post_Layout {
 
 			do_action( "foxy_post_layout_{$style}_end_loop" );
 			do_action( 'foxy_post_layout_after_loop' );
-
-			echo '<div class="clearfix"></div>';
 			Foxy::ui()->tag(
 				array(
 					'name' => 'section',
 					'close' => 'true',
 				)
 			);
+			echo '<div class="clearfix"></div>';
 		} else {
 			foxy_no_content();
 		}
-		Foxy::ui()->tag(array(
-			'close' => true,
-		));
+		Foxy::ui()->tag( array( 'close' => true ) );
 	}
 
 	public static function default_loop_layout( $args = array() ) {

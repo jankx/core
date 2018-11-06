@@ -186,27 +186,39 @@ trait Foxy_UI {
 		return 'yes' !== Foxy::get_meta( 'foxy_hide_post_title', $post_id, true );
 	}
 
+	private static function carousel_responsive_options( $args, $instance ) {
+		$responsive = apply_filters(
+			'foxy_widget_default_carousel_responsive',
+			array(
+				0 => (object) array(
+					'items' => 1,
+				),
+				767 => (object) array(
+					'items' => 2,
+				),
+				992 => (object) array(
+					'items' => 3,
+				),
+				1200 => (object) array(
+					'items' => 4,
+				),
+			)
+		);
+		return apply_filters( "foxy_widget_{$args['widget_id']}_carousel_responsive", $responsive );
+	}
+
 	public static function carousel_options( $use_carousel, $args, $instance ) {
 		if ( $use_carousel ) {
-			$carousel_options = array();
-			if (in_array($args['id'], array( 'primary', 'second' ))) {
+			$carousel_options = apply_filters(
+				'foxy_default_carousel_options',
+				array(
+					'loop' => true,
+				)
+			);
+			if ( in_array( $args['id'], array( 'primary', 'second' ), true ) ) {
 				$carousel_options['items'] = 1;
 			} else {
-				$responsive = array(
-					0 => (object) array(
-						'items' => 1,
-					),
-					767 => (object) array(
-						'items' => 2,
-					),
-					992 => (object) array(
-						'items' => 3,
-					),
-					1200 => (object) array(
-						'items' => 4,
-					)
-				);
-				$carousel_options['responsive'] = apply_filters( 'foxy_widget_carousel_responsive', $responsive );
+				$carousel_options['responsive'] = self::carousel_responsive_options( $args, $instance );
 			}
 			Foxy::asset()->lib( 'carousel' )->script(
 				sprintf(
