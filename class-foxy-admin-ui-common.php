@@ -18,7 +18,22 @@ class Foxy_Admin_UI_Common {
 	public function choose_site_layout() {
 	}
 
-	public function widget_post_layout( $instance ) {
+	public function widget_post_layout( $widget, $instance ) {
+		$layouts = Foxy_Post_Layout::supported_post_layouts();
+		if ( ! isset( $instance['style'] ) ) {
+			$instance['style'] = '';
+		}
+		?>
+		<p>
+			<label for="<?php echo $widget->get_field_id( 'style' ); ?>"><?php _e( 'Layout type', 'foxy' ); ?></label>
+			<select class="widefat" name="<?php echo $widget->get_field_name( 'style' ); ?>" id="<?php echo $widget->get_field_id( 'style' ); ?>">
+				<option value=""><?php esc_html_e( 'Default', 'foxy' ); ?></option>
+			<?php foreach ( $layouts as $layout => $name ) : ?>
+				<option value="<?php echo $layout ?>"<?php selected( $layout, $instance['style'] ) ?>><?php echo $name; ?></option>
+			<?php endforeach; ?>
+			</select>
+		</p>
+		<?php
 	}
 
 	public function widget_post_taxonomy_layout( $instance ) {
