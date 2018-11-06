@@ -1,7 +1,16 @@
 <?php
 
 class Foxy_Post_Layout {
-	public function supported_layout() {
+	public static function supported_post_layouts() {
+		return array(
+			Foxy_Common::POST_LAYOUT_LIST_STYLE       => __('List', 'foxy' ),
+			Foxy_Common::POST_LAYOUT_CARD_STYLE       => __( 'Card', 'foxy' ),
+			// Foxy_Common::POST_LAYOUT_TIMELINE_STYLE   => __( 'Timeline', 'foxy' ),
+			// Foxy_Common::POST_LAYOUT_SLIDE_STYLE      => __( 'Slide', 'foxy' ),
+			// Foxy_Common::POST_LAYOUT_MANSORY_STYLE    => __( 'Mansory', 'foxy' ),
+			// Foxy_Common::POST_LAYOUT_LARGE_TOP_STYLE  => __( 'Top large block', 'foxy' ),
+			// Foxy_Common::POST_LAYOUT_LARGE_LEFT_STYLE => __( 'Left large block', 'foxy' ),
+		);
 	}
 
 	public static function column_styles() {
