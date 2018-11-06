@@ -212,7 +212,9 @@ trait Foxy_UI {
 			$carousel_options = apply_filters(
 				'foxy_default_carousel_options',
 				array(
-					'loop' => true,
+					'loop'   => true,
+					'nav'    => true,
+					'margin' => 20,
 				)
 			);
 			if ( in_array( $args['id'], array( 'primary', 'second' ), true ) ) {
