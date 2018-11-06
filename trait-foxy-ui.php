@@ -196,7 +196,7 @@ trait Foxy_UI {
 					0 => (object) array(
 						'items' => 1,
 					),
-					560 => (object) array(
+					767 => (object) array(
 						'items' => 2,
 					),
 					992 => (object) array(
