@@ -89,7 +89,7 @@ class Foxy_UI_Framework_Bootstrap extends Foxy_UI_Framework_Base {
 		$this->small_tablet_class_prefix = 'col-sm-';
 		$this->tablet_class_prefix = 'col-md-';
 		$this->desktop_class_prefix = 'col-lg-';
-		$this->xtra_class_prefix = 'col-sx-';
+		$this->extra_class_prefix = 'col-sx-';
 	}
 
 	public function init_class_name_bootstrap_4() {
@@ -97,7 +97,7 @@ class Foxy_UI_Framework_Bootstrap extends Foxy_UI_Framework_Base {
 		$this->small_tablet_class_prefix = 'col-sm-';
 		$this->tablet_class_prefix = 'col-md-';
 		$this->desktop_class_prefix = 'col-lg-';
-		$this->xtra_class_prefix = 'col-xl-';
+		$this->extra_class_prefix = 'col-xl-';
 	}
 
 	/**

@@ -1,7 +1,7 @@
 <?php
 
 add_action( 'foxy_post_layout_image', 'foxy_loop_post_thumbnail', 10, 2 );
-function foxy_loop_post_thumbnail($post_type, $style) {
+function foxy_loop_post_thumbnail( $post_type, $style ) {
 	$size = apply_filters( 'foxy_loop_post_thumbnail_size', 'medium', $post_type, $style );
 	Foxy::ui()->tag(
 		array(
@@ -67,6 +67,22 @@ function foxy_single_post_title( $post_type ) {
 	echo '</h1>';
 }
 
+add_action( 'foxy_post_layout_before_loop', 'foxy_post_layout_before_loop', 3, 2);
+function foxy_post_layout_before_loop( $args, $widget_args ) {
+	if ( $args['carousel'] || ! in_array( $args['style'], Foxy_Post_Layout::column_styles(), true ) ) {
+		return;
+	}
+	Foxy::ui()->tag( array( 'class' => 'row' ) );
+}
+
+add_action( 'foxy_post_layout_after_loop', 'foxy_post_layout_after_loop', 33, 2);
+function foxy_post_layout_after_loop( $args, $widget_args ) {
+	if ( $args['carousel'] || ! in_array( $args['style'], Foxy_Post_Layout::column_styles(), true ) ) {
+		return;
+	}
+	Foxy::ui()->tag( array( 'close' => true ) );
+}
+
 add_action( 'foxy_post_content', 'foxy_single_post_content' );
 function foxy_single_post_content( $post_type ) {
 	Foxy::ui()->tag(
@@ -77,6 +93,7 @@ function foxy_single_post_content( $post_type ) {
 	the_content();
 	echo '</div>';
 }
+
 
 
 /**

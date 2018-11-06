@@ -26,10 +26,10 @@ class Foxy_Common {
 	 * Post layouts
 	 */
 	const POST_LAYOUT_CARD_STYLE       = 'card';
-	const POST_LAYOUT_LIST_TYPE        = 'list';
-	const POST_LAYOUT_TIMELINE_TYPE    = 'timeline';
-	const POST_LAYOUT_SLIDE_TYPE       = 'slide';
-	const POST_LAYOUT_MANSORY_TYPE     = 'mansory';
+	const POST_LAYOUT_LIST_STYLE       = 'list';
+	const POST_LAYOUT_TIMELINE_STYLE   = 'timeline';
+	const POST_LAYOUT_SLIDE_STYLE      = 'slide';
+	const POST_LAYOUT_MANSORY_STYLE    = 'mansory';
 	const POST_LAYOUT_LARGE_TOP_STYLE  = 'large_top';
 	const POST_LAYOUT_LARGE_LEFT_STYLE = 'large_left';
 

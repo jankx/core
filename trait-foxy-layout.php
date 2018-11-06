@@ -125,14 +125,14 @@ trait Foxy_Layout {
 		);
 	}
 
-	public static function post_layout( $args = array(), $posts = null ) {
+	public static function post_layout( $args = array(), $posts = null, $widget_args = null ) {
 		$method = empty( $posts ) ? 'default_loop_layout' : __FUNCTION__;
 		return forward_static_call(
 			array(
 				Foxy_Post_Layout::class,
 				$method,
 			),
-			$args, $posts
+			$args, $posts, $widget_args
 		);
 	}
 
