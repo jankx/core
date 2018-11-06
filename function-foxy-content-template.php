@@ -3,14 +3,33 @@
 add_action( 'foxy_post_layout_image', 'foxy_loop_post_thumbnail', 10, 2 );
 function foxy_loop_post_thumbnail($post_type, $style) {
 	$size = apply_filters( 'foxy_loop_post_thumbnail_size', 'medium', $post_type, $style );
-	Foxy::ui()->tag(array(
-		'name' => 'a',
-		'context' => 'default-post-thumbnail'
-	), array(
-		'href' => get_the_permalink(),
-		'title' => get_the_title(),
-	));
-		the_post_thumbnail( $size );
+	Foxy::ui()->tag(
+		array(
+			'name'    => 'a',
+			'context' => 'default-post-thumbnail',
+		),
+		array(
+			'href'  => get_the_permalink(),
+			'title' => get_the_title(),
+		)
+	);
+	the_post_thumbnail( $size );
+	echo '</a>';
+}
+
+add_action( 'foxy_post_layout_no_image', 'foxy_loop_no_image', 10, 2 );
+function foxy_loop_no_image() {
+	Foxy::ui()->tag(
+		array(
+			'name'    => 'a',
+			'context' => 'no-post-thumbnail',
+		),
+		array(
+			'href'  => get_the_permalink(),
+			'title' => get_the_title(),
+		)
+	);
+	echo '<span class="foxy-image-icon fx-picture-o"></span>';
 	echo '</a>';
 }
 

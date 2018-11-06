@@ -181,29 +181,17 @@ function foxy_detault_loop_content( $post_type = null, $style = null ) {
 	if ( is_null( $post_type ) ) {
 		$post_type = get_post_type();
 	}
-	Foxy::ui()->tag( array(
-		'name'    => 'article',
-		'context' => 'article-' . $post_type,
-		'class'   => implode( ' ', get_post_class( 'item loop-item' ) ),
-	) );
+	Foxy::ui()->tag(
+		array(
+			'name'    => 'article',
+			'context' => 'article-' . $post_type,
+			'class'   => implode( ' ', get_post_class( 'item loop-item' ) ),
+		)
+	);
 	echo '<div class="item-inner">';
 	do_action( "foxy_before_post_layout_{$post_type}_loop_content", $style );
-	if ( has_post_thumbnail() ) {
-		Foxy::ui()->tag( array(
-			'name' => 'figure',
-			'class' => 'item-thumb',
-			'context' => 'post-layout-figure',
-		) );
 
-		do_action( 'foxy_post_layout_image', $post_type, $style );
-		do_action( "foxy_post_layout_{$post_type}_figure", $style );
-
-		Foxy::ui()->tag( array(
-			'name' => 'figure',
-			'context' => 'post-layout-figure',
-			'close' => true
-		) );
-	}
+	foxy_default_loop_image( $post_type, $style );
 
 	echo '<div class="item-info">';
 		do_action( 'foxy_post_layout_content', $post_type, $style );
@@ -219,6 +207,51 @@ function foxy_detault_loop_content( $post_type = null, $style = null ) {
 			'close'   => true,
 		)
 	);
+}
+
+function foxy_default_loop_image( $post_type = null, $style = null ) {
+	if ( has_post_thumbnail() ) {
+		Foxy::ui()->tag(
+			array(
+				'name'    => 'figure',
+				'class'   => 'item-thumb',
+				'context' => 'post-layout-figure',
+			)
+		);
+
+		do_action( 'foxy_post_layout_image', $post_type, $style );
+		do_action( "foxy_post_layout_{$post_type}_figure", $style );
+
+		Foxy::ui()->tag(
+			array(
+				'name'    => 'figure',
+				'context' => 'post-layout-figure',
+				'close'   => true,
+			)
+		);
+	} else {
+		$show_no_image = apply_filters( "foxy_show_{$post_type}_no_image", true );
+		if ( $show_no_image ) {
+			Foxy::ui()->tag(
+				array(
+					'name'    => 'figure',
+					'class'   => 'item-thumb no-image',
+					'context' => 'post-layout-figure',
+				)
+			);
+
+			do_action( 'foxy_post_layout_no_image', $post_type, $style );
+			do_action( "foxy_post_layout_{$post_type}_figure", $style );
+
+			Foxy::ui()->tag(
+				array(
+					'name'    => 'figure',
+					'context' => 'post-layout-figure',
+					'close'   => true,
+				)
+			);
+		}
+	}
 }
 
 

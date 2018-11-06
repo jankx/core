@@ -9,12 +9,26 @@ class Foxy_Post_Layout {
 			// Check $posts variable is instance of WP_Query.
 			throw new Exception( 'Argument #1 must be instance of WP_Query' );
 		}
-		$args = wp_parse_args( $args, array(
-			'style' => 'card',
-			'row_items' => 4,
-			'carousel' => false,
-		));
+		/**
+		 * Merge post layout settings with default settings
+		 */
+		$args = wp_parse_args(
+			$args,
+			array(
+				'style' => 'card',
+				'row_items' => 4,
+				'carousel' => false,
+			)
+		);
+
+		/**
+		 * Clone style setting in argument to new variable
+		 */
 		$style = $args['style'];
+
+		/**
+		 * Generate css class for carousel
+		 */
 		$has_carousel = $args['carousel'] ? 'has-carousel' : 'not-carousel';
 
 		$class_names = array(
