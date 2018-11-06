@@ -10,12 +10,20 @@ class Foxy_Admin_UI_Common {
 		return self::$instance;
 	}
 
-
-
 	public function admin_featured_column() {
 	}
 
 	public function choose_site_layout() {
+		$supported_layouts = Foxy::get_supported_layouts();
+		$selected_layout   = Foxy::get_layout();
+		?>
+		<select class="widefat" name="site_layout" id="site_layout">
+			<option value=""><?php _e( 'Default' ); ?></option>
+		<?php foreach( $supported_layouts as $supported_layout => $layout_name ): ?>
+			<option value="<?php echo $supported_layout; ?>"<?php selected( $supported_layout, $selected_layout ); ?>><?php echo $layout_name; ?></option>
+		<?php endforeach; ?>
+		</select>
+		<?php
 	}
 
 	public function widget_post_layout( $widget, $instance ) {
@@ -46,5 +54,17 @@ class Foxy_Admin_UI_Common {
 	}
 
 	public function post_type_archive_choose_layout() {
+	}
+
+	public static function choose_hide_post_title( $post ) {
+		$hide_title = Foxy::has_title( $post->ID );
+		?>
+		<div class="misc-pub-section misc-pub-hide-title">
+			<label for="foxy-hide-title">
+				<input type="checkbox" id="foxy-hide-title" name="foxy_hide_post_title" value="yes"<?php checked( false, $hide_title ); ?>>
+				<?php esc_html_e( 'Foxy hide the title', 'foxy' ); ?>
+			</label>
+		</div>
+		<?php
 	}
 }
