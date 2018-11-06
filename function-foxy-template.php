@@ -177,42 +177,31 @@ function foxy_default_content( $post_type = null ) {
  * @param string $post_type Post type need to render content.
  * @return void
  */
-function foxy_detault_loop_content( $post_type = null, $layout_args = null, $widget_args = null ) {
+function foxy_detault_loop_content( $post_type = null, $article_tag = array() ) {
 	if ( is_null( $post_type ) ) {
 		$post_type = get_post_type();
 	}
-	$article_tag = array(
-		'name'    => 'article',
-		'context' => 'article-' . $post_type,
-		'class'   => implode( ' ', get_post_class( 'item loop-item' ) ),
+	$article_tag = wp_parse_args(
+		$article_tag,
+		array(
+			'name'    => 'article',
+			'context' => 'article-' . $post_type,
+			'class'   => implode( ' ', get_post_class( 'item loop-item' ) ),
+		)
 	);
-	if ( empty( $layout_args['carousel'] ) && in_array( $layout_args['style'], Foxy_Post_Layout::column_styles(), true ) ) {
-		$loop_content_columns = apply_filters(
-			"foxy_loop_{$post_type}_columns",
-			array(
-				'mobile_columns'  => 12,
-				'tablet_columns'  => 6,
-				'desktop_columns' => 4,
-				'xtra_columns'    => 3,
-			),
-			$layout_args,
-			$widget_args
-		);
-		$article_tag = array_merge( $article_tag, $loop_content_columns );
-	}
 
 	Foxy::ui()->tag( $article_tag );
 	echo '<div class="item-inner">';
-	do_action( "foxy_before_post_layout_{$post_type}_loop_content", $layout_args, $widget_args );
+	do_action( "foxy_before_post_layout_{$post_type}_loop_content", $article_tag );
 
-	foxy_default_loop_image( $post_type, $layout_args, $widget_args );
+	foxy_default_loop_image( $post_type, $article_tag );
 
 	echo '<div class="item-info">';
-		do_action( 'foxy_post_layout_content', $post_type, $layout_args, $widget_args );
-		do_action( "foxy_post_layout_{$post_type}_addition_info", $layout_args, $widget_args );
+		do_action( 'foxy_post_layout_content', $post_type, $article_tag );
+		do_action( "foxy_post_layout_{$post_type}_addition_info", $article_tag );
 	echo '</div>'; // Close .item-info tag.
 
-	do_action( "foxy_after_{$post_type}_loop_content", $layout_args, $widget_args );
+	do_action( "foxy_after_{$post_type}_loop_content", $article_tag );
 	echo '</div>'; // Close .item-inner tag.
 	Foxy::ui()->tag(
 		array(
@@ -223,7 +212,7 @@ function foxy_detault_loop_content( $post_type = null, $layout_args = null, $wid
 	);
 }
 
-function foxy_default_loop_image( $post_type = null, $layout_args = null, $widget_args ) {
+function foxy_default_loop_image( $post_type = null, $article_tag = null ) {
 	if ( has_post_thumbnail() ) {
 		Foxy::ui()->tag(
 			array(
@@ -233,8 +222,8 @@ function foxy_default_loop_image( $post_type = null, $layout_args = null, $widge
 			)
 		);
 
-		do_action( 'foxy_post_layout_image', $post_type, $layout_args );
-		do_action( "foxy_post_layout_{$post_type}_figure", $layout_args );
+		do_action( 'foxy_post_layout_image', $post_type, $article_tag );
+		do_action( "foxy_post_layout_{$post_type}_figure", $article_tag );
 
 		Foxy::ui()->tag(
 			array(
@@ -254,8 +243,8 @@ function foxy_default_loop_image( $post_type = null, $layout_args = null, $widge
 				)
 			);
 
-			do_action( 'foxy_post_layout_no_image', $post_type, $layout_args );
-			do_action( "foxy_post_layout_{$post_type}_figure", $layout_args );
+			do_action( 'foxy_post_layout_no_image', $post_type, $article_tag );
+			do_action( "foxy_post_layout_{$post_type}_figure", $article_tag );
 
 			Foxy::ui()->tag(
 				array(

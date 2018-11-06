@@ -13,6 +13,40 @@ class Foxy_Post_Layout {
 		);
 	}
 
+	public static function generate_article_tag( $post_type, $layout_args, $widget_args = null ) {
+		$article_tag = array();
+		if (
+			empty( $layout_args['carousel'] ) &&
+			in_array(
+				$layout_args['style'],
+				Foxy_Post_Layout::column_styles(),
+				true
+			) &&
+			(
+				empty( $widget_args ) ||
+				! in_array(
+					$widget_args['id'],
+					array( 'primary', 'second' ),
+					true
+				)
+			)
+		) {
+			$loop_content_columns = apply_filters(
+				"foxy_loop_{$post_type}_columns",
+				array(
+					'mobile_columns'  => 12,
+					'tablet_columns'  => 6,
+					'desktop_columns' => 4,
+					'xtra_columns'    => 3,
+				),
+				$layout_args,
+				$widget_args
+			);
+			$article_tag = array_merge( $article_tag, $loop_content_columns );
+		}
+		return $article_tag;
+	}
+
 	public static function post_layout( $args = array(), $posts, $widget_args = null ) {
 		if ( ! ( $posts instanceof WP_Query ) ) {
 			// Check $posts variable is instance of WP_Query.
@@ -73,7 +107,14 @@ class Foxy_Post_Layout {
 					if ( ! empty( $template ) ) {
 						require $template;
 					} else {
-						foxy_detault_loop_content( $current_post_type, $args, $widget_args );
+						foxy_detault_loop_content(
+							$current_post_type,
+							self::generate_article_tag(
+								$current_post_type,
+								$args,
+								$widget_args
+							)
+						);
 					}
 				} else {
 					do_action( "foxy_post_layout_{$style}_loop", $args, $widget_args );
@@ -130,7 +171,13 @@ class Foxy_Post_Layout {
 					if ( ! empty( $template ) ) {
 						require $template;
 					} else {
-						foxy_detault_loop_content( $current_post_type, $args );
+						foxy_detault_loop_content(
+							$current_post_type,
+							self::generate_article_tag(
+								$current_post_type,
+								$args
+							)
+						);
 					}
 				} else {
 					do_action( "foxy_post_layout_{$style}_loop" );
