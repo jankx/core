@@ -69,11 +69,11 @@ abstract class Foxy_UI_Framework_Base implements Foxy_UI_Framework_Interface {
 	 */
 	public function enqueue_scripts() {
 		if ( ! apply_filters( 'foxy_ui_framework_enqueue_scripts', false, $this->get_name(), $this->version ) ) {
-			wp_enqueue_style( Foxy::get_template_name() );
-			wp_enqueue_script( Foxy::get_template_name() );
+			wp_enqueue_style( foxy_get_template_name() );
+			wp_enqueue_script( foxy_get_template_name() );
 			if ( is_child_theme() ) {
-				wp_enqueue_style( Foxy::get_theme_name() );
-				wp_enqueue_script( Foxy::get_theme_name() );
+				wp_enqueue_style( foxy_get_theme_name() );
+				wp_enqueue_script( foxy_get_theme_name() );
 			}
 		}
 		do_action( 'foxy_ui_framework_enqueue_scripts' );

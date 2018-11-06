@@ -92,7 +92,7 @@ function foxy_single_content() {
 	$post_type_file = Foxy::make_slug( $post_type );
 
 	$content_hook      = "foxy_single_{$post_type}_content";
-	if ( ! Foxy::hook_is_empty( $content_hook ) ) {
+	if ( ! foxy_check_empty_hook( $content_hook ) ) {
 		do_action( $content_hook );
 	} else {
 		$template = Foxy::search_template(
@@ -197,8 +197,14 @@ function foxy_detault_loop_content( $post_type = null, $article_tag = array() ) 
 	foxy_default_loop_image( $post_type, $article_tag );
 
 	echo '<div class="item-info">';
+
+	if ( foxy_check_empty_hook( "foxy_{$post_type}_layout_content" ) ) {
 		do_action( 'foxy_post_layout_content', $post_type, $article_tag );
-		do_action( "foxy_post_layout_{$post_type}_addition_info", $article_tag );
+	} else {
+		do_action( "foxy_{$post_type}_layout_content", $post_type, $article_tag );
+	}
+	do_action( "foxy_post_layout_{$post_type}_addition_info", $article_tag );
+
 	echo '</div>'; // Close .item-info tag.
 
 	do_action( "foxy_after_{$post_type}_loop_content", $article_tag );

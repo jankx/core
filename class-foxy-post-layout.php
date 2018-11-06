@@ -96,7 +96,7 @@ class Foxy_Post_Layout {
 			do_action( "foxy_post_layout_{$style}_before_loop", $args, $widget_args );
 			while ( $posts->have_posts() ) {
 				$posts->the_post();
-				if ( Foxy::hook_is_empty( "foxy_post_layout_{$style}_loop" ) ) {
+				if ( foxy_check_empty_hook( "foxy_post_layout_{$style}_loop" ) ) {
 					$current_post_type = get_post_type();
 					$template = Foxy::search_template(
 						array(
@@ -160,7 +160,7 @@ class Foxy_Post_Layout {
 			do_action( "foxy_post_layout_{$style}_before_loop" );
 			while ( have_posts() ) {
 				the_post();
-				if ( Foxy::hook_is_empty( "foxy_post_layout_{$style}_loop" ) ) {
+				if ( foxy_check_empty_hook( "foxy_post_layout_{$style}_loop" ) ) {
 					$current_post_type = get_post_type();
 					$template = Foxy::search_template(
 						array(
