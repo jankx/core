@@ -59,7 +59,6 @@ class Foxy_Post_Layout {
 			$args,
 			array(
 				'style' => 'card',
-				'row_items' => 4,
 				'carousel' => false,
 			)
 		);
@@ -78,7 +77,6 @@ class Foxy_Post_Layout {
 			'post-layout',
 			$has_carousel,
 			sprintf( '%s-layout', $style ),
-			sprintf( 'row-item-%s', $args['row_items'] ),
 		);
 
 		Foxy::ui()->tag(
