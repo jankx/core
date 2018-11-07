@@ -17,16 +17,17 @@ class Foxy_Admin_UI_Common {
 	public function admin_featured_column() {
 	}
 
-	public function choose_site_layout() {
+	public static function choose_site_layout() {
 		$supported_layouts = Foxy::get_supported_layouts();
 		$selected_layout   = Foxy::get_layout();
 		?>
-		<select class="widefat" name="site_layout" id="site_layout">
+		<select class="widefat" name="foxy_site_layout" id="site_layout">
 			<option value=""><?php _e( 'Default' ); ?></option>
 		<?php foreach( $supported_layouts as $supported_layout => $layout_name ): ?>
 			<option value="<?php echo $supported_layout; ?>"<?php selected( $supported_layout, $selected_layout ); ?>><?php echo $layout_name; ?></option>
 		<?php endforeach; ?>
 		</select>
+		<div class="foxy-desc"><?php esc_html_e('Lorem ipsum dolor sit, amet consectetur adipisicing elit. Debitis alias cupiditate omnis iure! Optio delectus tempore voluptas, perspiciatis blanditiis eos?', 'foxy'); ?></div>
 		<?php
 	}
 

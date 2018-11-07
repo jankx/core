@@ -66,22 +66,24 @@ trait Foxy_Layout {
 		);
 	}
 
-	public function get_supported_layouts() {
+	public static function get_supported_layouts() {
 		$supported_layouts = array(
 			Foxy_Common::LAYOUT_CONTENT_SIDEBAR => __( 'Content-Sidebar', 'foxy' ),
 			Foxy_Common::LAYOUT_SIDEBAR_CONTENT => __( 'Sidebar-Content', 'foxy' ),
 			Foxy_Common::LAYOUT_FULL_WIDTH      => __( 'Full Width', 'foxy' ),
 		);
 
+
 		if ( Foxy::has_second_sidebar() ) {
-			$supported_layouts = array_merge(
-				$supported_layouts,
-				array(
-					Foxy_Common::LAYOUT_CONTENT_SIDEBAR_SIDEBAR => __( 'Content-Sidebar-Sidebar', 'foxy' ),
-					Foxy_Common::LAYOUT_SIDEBAR_CONTENT_SIDEBAR => __( 'Sidebar-Content-Sidebar', 'foxy' ),
-					Foxy_Common::LAYOUT_SIDEBAR_SIDEBAR_CONTENT => __( 'Sidebar-Sidebar-Content', 'foxy' ),
-				)
+			$second_sidebar_keys = array(
+				'LAYOUT_CONTENT_SIDEBAR_SIDEBAR' => __( 'Content-Sidebar-Sidebar', 'foxy' ),
+				'LAYOUT_SIDEBAR_CONTENT_SIDEBAR' => __( 'Sidebar-Content-Sidebar', 'foxy' ),
+				'LAYOUT_SIDEBAR_SIDEBAR_CONTENT' => __( 'Sidebar-Sidebar-Content', 'foxy' ),
 			);
+			foreach ( $second_sidebar_keys as $key => $label ) {
+				$key                       = constant( "Foxy_Common::{$key}" );
+				$supported_layouts[ $key ] = $label;
+			}
 		}
 		return apply_filters(
 			'foxy_supported_layouts',
@@ -113,6 +115,9 @@ trait Foxy_Layout {
 	 */
 	public static function get_layout() {
 		$layout = self::$layout;
+		if ( is_singular() ) {
+			$layout = get_post_meta( get_the_ID(), 'foxy_site_layout', true );
+		}
 		if ( '' === $layout ) {
 			$layout = self::get_default_layout();
 		}
