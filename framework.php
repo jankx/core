@@ -8,6 +8,10 @@
  * @link https://wpclouds.com
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit( 'Cheatin huh?' );
+}
+
 /**
  * Check Foxy framework don't have registered
  */

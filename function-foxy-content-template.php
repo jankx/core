@@ -94,8 +94,6 @@ function foxy_single_post_content( $post_type ) {
 	echo '</div>';
 }
 
-
-
 /**
  * Filter post excerpt length
  */

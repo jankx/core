@@ -1,11 +1,15 @@
 <?php
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit( 'Cheatin huh?' );
+}
+
 class Foxy_Admin_UI_Common {
 	protected static $instance;
 
 	public static function instance() {
 		if ( is_null( self::$instance ) ) {
-			self::$instance = new self;
+			self::$instance = new self();
 		}
 		return self::$instance;
 	}
