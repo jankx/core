@@ -41,6 +41,7 @@ class Foxy_Admin {
 
     public function setup_screen_edit_post() {
         add_action( 'post_submitbox_misc_actions', array( Foxy_Admin_UI_Common::class, 'choose_hide_post_title' ) );
+        add_action( 'add_meta_boxes', array( $this, 'choose_site_layout' ) );
         add_action( 'save_post', array( $this, 'save_foxy_framework_fields' ), 10, 2 );
     }
 
@@ -50,5 +51,15 @@ class Foxy_Admin {
         } else {
             delete_post_meta( $post_id, 'foxy_hide_post_title' );
         }
+        if ( isset( $_POST['foxy_site_layout'] ) && '' !== $_POST['foxy_site_layout'] ) {
+            update_post_meta( $post_id, 'foxy_site_layout', $_POST['foxy_site_layout'] );
+        } else {
+            delete_post_meta( $post_id, 'foxy_site_layout' );
+        }
+    }
+
+    public function choose_site_layout( $post ) {
+        $foxy_supported_custom_layout = apply_filters( 'foxy_post_type_support_custom_layout', array( 'page', 'post' ) );
+        add_meta_box( 'foxy-site-layout', __('Site Layout', 'foxy'), array( Foxy_Admin_UI_Common::class, 'choose_site_layout' ), $foxy_supported_custom_layout );
     }
 }
