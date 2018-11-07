@@ -4,10 +4,6 @@ abstract class Foxy_Meta_Framework_Base implements Foxy_Meta_Framework_Interface
 		add_action( 'save_post', array( $this, 'save_post_metas' ), 10 ,2 );
 	}
 
-	public function get( $field_name ) {
-
-	}
-
 	public function save_post_metas( $post_id, $post ) {
 		$meta_boxes = apply_filters( 'foxy_post_metas', array() );
 		$post_metas = $this->filter_post_type_metas( $post, $meta_boxes );
