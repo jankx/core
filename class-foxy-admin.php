@@ -16,9 +16,8 @@ class Foxy_Admin {
         Foxy::instance()->admin = function() {
             return self::instance();
         };
-        $this->setup_screen_edit_post();
+        add_action( 'current_screen', array( $this, 'setup_screen_edit_post' ) );
     }
-
 
     public function setting_up_ui_framework() {
         /**
@@ -40,12 +39,21 @@ class Foxy_Admin {
     }
 
     public function setup_screen_edit_post() {
-        add_action( 'post_submitbox_misc_actions', array( Foxy_Admin_UI_Common::class, 'choose_hide_post_title' ) );
+        $current_screen = get_current_screen();
+        if ( 'post' !== $current_screen->base ) {
+            return;
+        }
+
+        $hide_title_supports = apply_filters( 'foxy_post_type_support_hide_title', array( 'post', 'page' ) );
+        if ( in_array($current_screen->post_type, $hide_title_supports, true ) ) {
+            add_action( 'post_submitbox_misc_actions', array( Foxy_Admin_UI_Common::class, 'choose_hide_post_title' ) );
+        }
+
         add_action( 'add_meta_boxes', array( $this, 'choose_site_layout' ) );
         add_action( 'save_post', array( $this, 'save_foxy_framework_fields' ), 10, 2 );
     }
 
-    public function save_foxy_framework_fields( $post_id, $post )  {
+    public function save_foxy_framework_fields( $post_id, $post ) {
         if ( isset( $_POST['foxy_hide_post_title'] ) ) {
             update_post_meta( $post_id, 'foxy_hide_post_title', 'yes' );
         } else {

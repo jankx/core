@@ -58,3 +58,17 @@ function foxy_get_theme_name() {
 function foxy_get_template_name() {
 	return basename( FOXY_TEMPLATE_DIR );
 }
+
+/**
+ * Create slug for post type, taxonomy or others
+ *
+ * @param string $source Source need to make slug.
+ * @return string
+ */
+function foxy_make_slug( $source ) {
+	return preg_replace(
+		'/_/',
+		'-',
+		sanitize_title( $source )
+	);
+}

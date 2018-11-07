@@ -43,7 +43,7 @@ function foxy_search_content() {
 	if ( have_posts() ) {
 		while ( have_posts() ) {
 			the_post();
-			$current_post_type = Foxy::make_slug( get_post_type() );
+			$current_post_type = foxy_make_slug( get_post_type() );
 			$template          = Foxy::search_template(
 				array(
 					$current_post_type . '/loop.php',
@@ -89,7 +89,7 @@ function foxy_page_content() {
 function foxy_single_content() {
 	the_post();
 	$post_type = get_post_type();
-	$post_type_file = Foxy::make_slug( $post_type );
+	$post_type_file = foxy_make_slug( $post_type );
 
 	$content_hook      = "foxy_single_{$post_type}_content";
 	if ( ! foxy_check_empty_hook( $content_hook ) ) {
