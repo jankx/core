@@ -23,7 +23,12 @@ class Foxy_Post_Layout {
 	}
 
 	public static function generate_article_tag( $post_type, $layout_args, $widget_args = null ) {
-		$article_tag = array();
+		$article_tag = array(
+			'args' => array(
+				'layout' => $layout_args,
+				'widget' => $widget_args,
+			),
+		);
 		if (
 			empty( $layout_args['carousel'] ) &&
 			in_array(
@@ -40,6 +45,7 @@ class Foxy_Post_Layout {
 				)
 			)
 		) {
+
 			$loop_content_columns = apply_filters(
 				"foxy_loop_{$post_type}_columns",
 				array(

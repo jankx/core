@@ -200,7 +200,6 @@ class Foxy_UI_Layout_Renderer {
 				$args, array(
 					'mobile_columns'  => 12,
 					'tablet_columns'  => 8,
-					'desktop_columns' => 9,
 				)
 			);
 		} elseif ( 0 === $this->num_sidebar ) {
@@ -251,7 +250,6 @@ class Foxy_UI_Layout_Renderer {
 				$args, array(
 					'mobile_columns'  => 12,
 					'tablet_columns'  => 4,
-					'desktop_columns' => 3,
 				)
 			);
 		} else {
