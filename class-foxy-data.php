@@ -41,7 +41,7 @@ class Foxy_Data {
 		/**
 		 * Setup meta framework for Foxy Core.
 		 */
-		$meta_framework = apply_filters( 'foxy_default_meta_framework', 'WordPress' );
+		$meta_framework = apply_filters( 'foxy_default_meta_framework', 'foxy' );
 
 		$meta_framework_class = apply_filters(
 			'foxy_meta_framework_class',

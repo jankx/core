@@ -36,7 +36,6 @@ class Foxy_Embed {
 		parse_str( $video_info['query'], $query );
 		$embed = "<iframe
 		src=\"https://www.youtube-nocookie.com/embed/{$query['v']}?start={$options['start']}\"
-		frameborder=\"0\"
 		allow=\"{$options['allow']}\"";
 		$embed .= $options['allow_fullscreen'] ? 'allowfullscreen' : '';
 		$embed .= '></iframe>';

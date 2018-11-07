@@ -48,9 +48,9 @@ trait Foxy_Meta {
 	 * Every meta framework has different method to get meta value
 	 * So Foxy framework must integrate with meta framework is used
 	 *
-	 * @param string $meta_key   Meta key need to get value.
-	 * @param int    $id         Post or User ID need to get meta value.
-	 * @param string $meta_type  Meta type may be is post or user.
+	 * @param string $meta_key Meta key need to get value.
+	 * @param int    $post_id  Post or User ID need to get meta value.
+	 * @param bool   $single   Return value type is single if true or not return array.
 	 *
 	 * @return string
 	 */
@@ -66,8 +66,9 @@ trait Foxy_Meta {
 	/**
 	 * Get user meta from WordPress user meta
 	 *
-	 * @param string $meta_key  Meta key need to get meta value.
-	 * @param int    $user_id   User ID need to get meta value.
+	 * @param string $meta_key Meta key need to get meta value.
+	 * @param int    $user_id  User ID need to get meta value.
+	 * @param bool   $single   Return value type is single if true or not return array.
 	 *
 	 * @return string
 	 */

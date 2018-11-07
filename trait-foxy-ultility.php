@@ -13,16 +13,6 @@
  * Foxy_Ultility trait
  */
 trait Foxy_Ultility {
-	/**
-	 * Create slug for post type, taxonomy or others
-	 *
-	 * @param string $source Source need to make slug.
-	 * @return string
-	 */
-	public static function make_slug( $source ) {
-		return str_replace( '_', '-', sanitize_title( $source ) );
-	}
-
 	public static function get_object_id( $object_or_id, $class_name ) {
 		if ( is_numeric( $object_or_id ) ) {
 			return $object_or_id;
