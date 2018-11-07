@@ -9,6 +9,10 @@
  * @link https://wpclouds.com
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit( 'Cheatin huh?' );
+}
+
 if ( defined( 'WP_DEBUG' ) && WP_DEBUG === true ) {
 	/**
 	 * Dump variable only useable in development
@@ -24,4 +28,13 @@ if ( defined( 'WP_DEBUG' ) && WP_DEBUG === true ) {
 		echo '</pre>';
 		exit();
 	}
+}
+
+
+add_filter( 'kses_allowed_protocols', 'foxy_allowed_protocols' );
+function foxy_allowed_protocols( $protocols ) {
+	// Add skype protocol to WordPress allowed protocols.
+	$protocols = array_merge( $protocols, array( 'skype' ) );
+
+	return $protocols;
 }

@@ -219,7 +219,12 @@ function foxy_detault_loop_content( $post_type = null, $article_tag = array() ) 
 }
 
 function foxy_default_loop_image( $post_type = null, $article_tag = null ) {
+	$no_image = '_no';
 	if ( has_post_thumbnail() ) {
+		$no_image = '';
+	}
+	if ( empty( $no_image ) || apply_filters( "foxy_show_{$post_type}_no_image", true ) ) {
+		do_action( 'foxy_post_layout_before_image', $post_type, $article_tag );
 		Foxy::ui()->tag(
 			array(
 				'name'    => 'figure',
@@ -227,9 +232,12 @@ function foxy_default_loop_image( $post_type = null, $article_tag = null ) {
 				'context' => 'post-layout-figure',
 			)
 		);
+		echo '<div class="item-thumb-inner">';
 
-		do_action( 'foxy_post_layout_image', $post_type, $article_tag );
+		do_action( "foxy_post_layout{$no_image}_image", $post_type, $article_tag );
 		do_action( "foxy_post_layout_{$post_type}_figure", $article_tag );
+
+		echo '</div><!-- End .item-thumb-inner -->';
 
 		Foxy::ui()->tag(
 			array(
@@ -238,28 +246,7 @@ function foxy_default_loop_image( $post_type = null, $article_tag = null ) {
 				'close'   => true,
 			)
 		);
-	} else {
-		$show_no_image = apply_filters( "foxy_show_{$post_type}_no_image", true );
-		if ( $show_no_image ) {
-			Foxy::ui()->tag(
-				array(
-					'name'    => 'figure',
-					'class'   => 'item-thumb no-image',
-					'context' => 'post-layout-figure',
-				)
-			);
-
-			do_action( 'foxy_post_layout_no_image', $post_type, $article_tag );
-			do_action( "foxy_post_layout_{$post_type}_figure", $article_tag );
-
-			Foxy::ui()->tag(
-				array(
-					'name'    => 'figure',
-					'context' => 'post-layout-figure',
-					'close'   => true,
-				)
-			);
-		}
+		do_action( 'foxy_post_layout_after_image', $post_type, $article_tag );
 	}
 }
 
