@@ -12,6 +12,8 @@
  * Foxy_Meta_Framework_Interface interface
  */
 interface Foxy_Meta_Framework_Interface {
+	public function get( $meta_key, $post_id = null, $is_single = true );
+
 	/**
 	 * Meta data content factory
 	 *
@@ -19,5 +21,5 @@ interface Foxy_Meta_Framework_Interface {
 	 * @param array   $fields Foxy meta data setting fields.
 	 * @return void
 	 */
-	public function factory( $post_type, $fields );
+	public function metabox_callback( $post_type, $fields );
 }

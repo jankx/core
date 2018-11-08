@@ -27,7 +27,7 @@ abstract class Foxy_Meta_Framework_Base implements Foxy_Meta_Framework_Interface
 		$title = '';
 		if ( ! empty( $args['icon'] ) ) {
 			$title .= sprintf( '<span class="foxy-meta-icon %s"></span> ', $args['icon'] );
-		} elseif( ! empty( $args['image'] ) ) {
+		} elseif ( ! empty( $args['image'] ) ) {
 			$title .= sprintf(
 				'<span class="foxy-image foxy-meta-image"><img src="%s" alt="%s"/></span> ',
 				$args['image'],
@@ -45,7 +45,7 @@ abstract class Foxy_Meta_Framework_Base implements Foxy_Meta_Framework_Interface
 			if ( 'tab' === $field['type'] ) {
 				$tabs = array_merge( $tabs, $field );
 			} else {
-				if (!empty($field['tab'])) {
+				if ( ! empty( $field['tab'] ) ) {
 					$fields[ $field['tab'] ][] = $field;
 				} else {
 					$fields['fxng'][] = $field;
