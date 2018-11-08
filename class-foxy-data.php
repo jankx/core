@@ -143,7 +143,7 @@ class Foxy_Data {
 				add_meta_box(
 					$id,
 					Foxy::meta()->meta_title( $args ),
-					array( Foxy::meta(), 'factory' ),
+					array( Foxy::meta(), 'metabox_callback' ),
 					$args['post_type'],
 					$args['context'],
 					$args['priority'],
