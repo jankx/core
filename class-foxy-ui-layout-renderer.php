@@ -241,8 +241,9 @@ class Foxy_UI_Layout_Renderer {
 	 */
 	public function sidebar_wrap_open() {
 		$args = array(
-			'name' => 'aside',
-			'id'   => 'primary-sidebar',
+			'name'  => 'aside',
+			'id'    => 'primary-sidebar',
+			'class' => 'sidebar',
 		);
 
 		if ( 1 === $this->num_sidebar ) {
@@ -286,8 +287,9 @@ class Foxy_UI_Layout_Renderer {
 	 */
 	public function second_sidebar_wrap_open() {
 		$args = array(
-			'name' => 'aside',
-			'id'   => 'second-sidebar',
+			'name'            => 'aside',
+			'id'              => 'second-sidebar',
+			'class'           => 'sidebar',
 			'mobile_columns'  => 12,
 			'tablet_columns'  => 6,
 			'desktop_columns' => 3,
