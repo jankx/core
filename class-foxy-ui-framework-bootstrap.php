@@ -14,13 +14,6 @@
  */
 class Foxy_UI_Framework_Bootstrap extends Foxy_UI_Framework_Base {
 	/**
-	 * Boostrap version use for Foxy UI Bootstrap
-	 *
-	 * @var string
-	 */
-	protected $version = '4.1.3';
-
-	/**
 	 * Bootstrap major version
 	 *
 	 * @var int
@@ -28,35 +21,18 @@ class Foxy_UI_Framework_Bootstrap extends Foxy_UI_Framework_Base {
 	protected $major_version = 4;
 
 	/**
-	 * Bootstrap asset directory location
-	 *
-	 * @var string
-	 */
-	protected $assets_dir;
-
-	/**
 	 * Bootsttrap UI Framework constructor
 	 */
 	public function __construct() {
-		list( $this->version, $this->major_version ) = $this->bootstrap_version();
+		$this->major_version = $this->bootstrap_version();
 		$this->{'init_class_name_bootstrap_' . $this->major_version}();
-
-		$this->assets_dir = apply_filters(
-			'foxy_ui_bootstrap_framework_assets',
-			sprintf(
-				'%s/public/lib/bootstrap-%s/',
-				get_template_directory_uri(),
-				$this->version
-			)
-		);
+		Foxy::asset()->lib( 'bootstrap' );
 
 		add_filter( 'foxy_default_ui_menu_args', array( $this, 'menu_args' ) );
 		add_action( 'foxy_before_render_menu', array( $this, 'bootstrap_open_navigation_tag' ), 5, 2 );
 		add_action( 'foxy_after_render_menu', array( $this, 'bootstrap_close_navigation_tag' ), 15 );
 		add_filter( 'foxy_logo_class_name', array( $this, 'bootstrap_navbrand_class' ) );
 		add_filter( 'foxy_sidebar_default_footer_args', array( $this, 'add_class_to_footer_widgets' ) );
-
-		parent::__construct();
 	}
 
 	/**
@@ -75,13 +51,9 @@ class Foxy_UI_Framework_Bootstrap extends Foxy_UI_Framework_Base {
 	 * @return string
 	 */
 	protected function bootstrap_version() {
-		$version = apply_filters( 'foxy_ui_bootstrap_framework_version', $this->version );
-
-		$version_major = explode( '.', $version );
-		return array(
-			$version,
-			array_shift( $version_major ),
-		);
+		$bootstrap_version = apply_filters( 'foxy_asset_bootstrap_version', '4.1.3' );
+		$version_major = explode( '.', $bootstrap_version );
+		return array_shift( $version_major );
 	}
 
 	public function init_class_name_bootstrap_3() {
@@ -98,56 +70,6 @@ class Foxy_UI_Framework_Bootstrap extends Foxy_UI_Framework_Base {
 		$this->tablet_class_prefix = 'col-md-';
 		$this->desktop_class_prefix = 'col-lg-';
 		$this->extra_class_prefix = 'col-xl-';
-	}
-
-	/**
-	 * Register bootstrap assets for framework
-	 *
-	 * @return void
-	 */
-	public function enqueue_scripts() {
-		wp_register_style(
-			$this->get_name(),
-			$this->assets_dir . 'css/bootstrap.min.css',
-			array(),
-			$this->version
-		);
-
-		wp_register_script(
-			$this->get_name(),
-			$this->assets_dir . 'js/bootstrap.min.js',
-			array( 'jquery' ),
-			$this->version,
-			true
-		);
-		wp_register_style(
-			foxy_get_template_name(),
-			get_template_directory_uri() . '/style.css',
-			array( $this->get_name() )
-		);
-		wp_register_script(
-			foxy_get_template_name(),
-			get_template_directory_uri() . '/public/js/foxy.js',
-			array( $this->get_name() ),
-			null,
-			true
-		);
-		if ( is_child_theme() ) {
-			wp_register_style(
-				foxy_get_theme_name(),
-				get_stylesheet_uri(),
-				array( foxy_get_template_name() )
-			);
-			wp_register_script(
-				foxy_get_theme_name(),
-				get_stylesheet_directory_uri() . '/public/js/bds.js',
-				array( foxy_get_template_name() ),
-				null,
-				true
-			);
-		}
-
-		parent::enqueue_scripts();
 	}
 
 	public function menu_args( $args ) {

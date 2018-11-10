@@ -21,14 +21,6 @@ interface Foxy_UI_Framework_Interface {
 	public function get_name();
 
 	/**
-	 * Method register_scripts must be defined in extended class
-	 * This method use to register all scripts and styles use for theme
-	 *
-	 * @return void
-	 */
-	public function enqueue_scripts();
-
-	/**
 	 * Create container block
 	 *
 	 * @param boolean $close_tag Output close tag for container.
