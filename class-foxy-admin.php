@@ -16,6 +16,14 @@ class Foxy_Admin {
         Foxy::instance()->admin = function() {
             return self::instance();
         };
+
+        Foxy::asset()->register_css(
+            'admin-foxy',
+            self::asset_url('css/foxy.css'),
+            array(),
+            FOXY_THEME_FRAMEWORK_VERSION
+        )->css( 'admin-foxy' );
+
         add_action( 'current_screen', array( $this, 'setup_screen_edit_post' ) );
     }
 
@@ -69,5 +77,11 @@ class Foxy_Admin {
     public function choose_site_layout( $post ) {
         $foxy_supported_custom_layout = apply_filters( 'foxy_post_type_support_custom_layout', array( 'page', 'post' ) );
         add_meta_box( 'foxy-site-layout', __('Site Layout', 'foxy'), array( Foxy_Admin_UI_Common::class, 'choose_site_layout' ), $foxy_supported_custom_layout );
+    }
+
+    public static function asset_url( $path = null ) {
+        $template_directory = get_template_directory_uri();
+        $asset_url = sprintf( '%s/admin/%s', $template_directory, $path );
+        return apply_filters( 'foxy_admin_asset_url', $asset_url, $path, $template_directory );
     }
 }

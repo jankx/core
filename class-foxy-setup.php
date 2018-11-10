@@ -68,15 +68,13 @@ class Foxy_Setup {
 		// Load foxy addons.
 		$this->load_addons();
 
-		$this->foxy = Foxy::instance();
+		$this->load_assets();
+
 		if ( Foxy::is_admin() ) {
 			Foxy_Admin::instance();
 		}
-
-		$this->load_assets();
-
 		// Set foxy instance to global for other integrate.
-		$GLOBALS['foxy'] = $this->foxy;
+		$GLOBALS['foxy'] = Foxy::instance();
 
 		do_action( 'foxy_loaded' );
 	}
@@ -341,9 +339,14 @@ class Foxy_Setup {
 		/**
 		 * Set foxy asset instance to foxy core.
 		 */
-		$this->foxy->asset = function() {
+		Foxy::instance()->asset = function() {
 			return Foxy_Asset::instance();
 		};
+
+		/**
+		 * Initial asset
+		 */
+		Foxy::asset();
 	}
 
 	/**

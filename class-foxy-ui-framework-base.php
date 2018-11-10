@@ -55,31 +55,6 @@ abstract class Foxy_UI_Framework_Base implements Foxy_UI_Framework_Interface {
 	protected $xtra_class_prefix = '';
 
 	/**
-	 * Foxy_UI_Framework_Base constructor
-	 */
-	public function __construct() {
-		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ), 33 );
-	}
-
-	/**
-	 * This method will register assets automatic by UI framework name
-	 * Other plugin or theme function can integrate with foxy ui framework via filter & action hook.
-	 *
-	 * @return void
-	 */
-	public function enqueue_scripts() {
-		if ( ! apply_filters( 'foxy_ui_framework_enqueue_scripts', false, $this->get_name(), $this->version ) ) {
-			wp_enqueue_style( foxy_get_template_name() );
-			wp_enqueue_script( foxy_get_template_name() );
-			if ( is_child_theme() ) {
-				wp_enqueue_style( foxy_get_theme_name() );
-				wp_enqueue_script( foxy_get_theme_name() );
-			}
-		}
-		do_action( 'foxy_ui_framework_enqueue_scripts' );
-	}
-
-	/**
 	 * Open or close HTML tag with many option
 	 *
 	 * @param array $args Setting for tag.
@@ -90,18 +65,18 @@ abstract class Foxy_UI_Framework_Base implements Foxy_UI_Framework_Interface {
 		$context     = '';
 		$args        = wp_parse_args(
 			$args, array(
-				'name'            => 'div',
-				'id'              => '',
-				'context'         => '',
-				'class'           => '',
-				'responsive'      => true,
-				'mobile_columns'  => '',
-				'small_tablet_columns'  => '',
-				'tablet_columns'  => '',
-				'desktop_columns' => '',
-				'xtra_columns'    => '',
-				'close'           => false,
-				'echo'            => true,
+				'name'                 => 'div',
+				'id'                   => '',
+				'context'              => '',
+				'class'                => '',
+				'responsive'           => true,
+				'mobile_columns'       => '',
+				'small_tablet_columns' => '',
+				'tablet_columns'       => '',
+				'desktop_columns'      => '',
+				'xtra_columns'         => '',
+				'close'                => false,
+				'echo'                 => true,
 			)
 		);
 		$class_names = $this->generate_class( $args );
@@ -163,7 +138,7 @@ abstract class Foxy_UI_Framework_Base implements Foxy_UI_Framework_Interface {
 	}
 
 	public function generate_attributes( $attributes = null ) {
-		$allowed_attributes = apply_filters( 'foxy_allowed_html_attributes', array( 'src', 'href', 'title', 'style' ) );
+		$allowed_attributes = apply_filters( 'foxy_allowed_html_attributes', array( 'src', 'href', 'title', 'style', 'for' ) );
 		$output = '';
 		foreach ( (array) $attributes as $attribute => $attr_value ) {
 			if ( ! in_array( $attribute, $allowed_attributes, true ) ) {
@@ -172,5 +147,13 @@ abstract class Foxy_UI_Framework_Base implements Foxy_UI_Framework_Interface {
 			$output .= sprintf( ' %s="%s"', $attribute, $attr_value );
 		}
 		return $output;
+	}
+
+	public function container( $close = false ) {
+		Foxy::ui()->tag( array(
+			'context' => 'foxy-container-tag',
+			'class'   => 'container',
+			'close'   => $close,
+		) );
 	}
 }
