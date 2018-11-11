@@ -31,7 +31,7 @@ class Foxy_Asset {
 		if ( Foxy::is_admin() ) {
 			$prefix = 'admin';
 		}
-		add_action( "{$prefix}_enqueue_scripts", array( $this, 'register_scripts' ) );
+		add_action( "{$prefix}_enqueue_scripts", array( $this, 'register_scripts' ), 22 );
 		add_action( "{$prefix}_enqueue_scripts", array( $this, 'call_scripts' ), 33 );
 		add_action( "{$prefix}_head", array( $this, 'header' ), 33 );
 		add_action( "{$prefix}_footer", array( $this, 'footer' ), 33 );

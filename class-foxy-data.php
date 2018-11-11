@@ -132,11 +132,11 @@ class Foxy_Data {
 					continue;
 				}
 				$args = wp_parse_args( $args, array(
-					'title' => '',
-					'icon' => '',
-					'context' => 'normal',
+					'title'    => '',
+					'icon'     => '',
+					'context'  => 'normal',
 					'priority' => 'default',
-					'fields' => array()
+					'fields'   => array(),
 				));
 				$args = apply_filters( "foxy_post_meta_{$id}_args", $args );
 
