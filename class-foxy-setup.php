@@ -70,11 +70,12 @@ class Foxy_Setup {
 
 		$this->load_assets();
 
+		$this->foxy = Foxy::instance();
 		if ( Foxy::is_admin() ) {
 			Foxy_Admin::instance();
 		}
 		// Set foxy instance to global for other integrate.
-		$GLOBALS['foxy'] = Foxy::instance();
+		$GLOBALS['foxy'] = $this->foxy;
 
 		do_action( 'foxy_loaded' );
 	}
