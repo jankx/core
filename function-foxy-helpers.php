@@ -106,3 +106,25 @@ function foxy_get_current_object_id( $class_name ) {
 	}
 	return apply_filters( 'foxy_get_current_object_id', $current_id, $class_name );
 }
+
+/**
+ * Undocumented function
+ *
+ * @param [type] $partial_file
+ * @return void
+ */
+function foxy_get_partial_info( $partial_file ) {
+	return get_file_data(
+		$partial_file,
+		array(
+			'Name'        => 'Partial Name',
+			'PluginURI'   => 'Partial URI',
+			'Version'     => 'Version',
+			'Description' => 'Description',
+			'Author'      => 'Author',
+			'AuthorURI'   => 'Author URI',
+			'TextDomain'  => 'Text Domain',
+			'DomainPath'  => 'Domain Path',
+		)
+	);
+}
