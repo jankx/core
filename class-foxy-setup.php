@@ -347,13 +347,7 @@ class Foxy_Setup {
 		/**
 		 * Initial asset
 		 */
-		Foxy::asset()
-			->register_css(
-				foxy_get_template_name(),
-				get_template_directory_uri() . '/style.css',
-				array( Foxy::get_ui_framework() ),
-				FOXY_THEME_FRAMEWORK_VERSION
-			)->css( foxy_get_template_name() );
+		Foxy::asset()->register_framework_assets();
 	}
 
 	/**

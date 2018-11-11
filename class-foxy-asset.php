@@ -114,6 +114,28 @@ class Foxy_Asset {
 		do_action( 'foxy_register_assets' );
 	}
 
+	public function register_framework_assets() {
+		if ( is_admin() ) {
+			$this->register_css(
+				'admin-foxy',
+				self::asset_url('css/foxy.css'),
+				array(),
+				FOXY_THEME_FRAMEWORK_VERSION
+			)->css( 'admin-foxy' );
+
+			do_action( 'foxy_load_assets_admin' );
+		} else {
+			$this->register_css(
+				foxy_get_template_name(),
+				get_template_directory_uri() . '/style.css',
+				array( Foxy::get_ui_framework() ),
+				FOXY_THEME_FRAMEWORK_VERSION
+			)->css( foxy_get_template_name() );
+
+			do_action( 'foxy_load_assets_frontent' );
+		}
+	}
+
 	public function register_js( $handler, $js_url, $dep = array(), $ver = '', $in_footer = true ) {
 		$this->registered_js[ $handler ] = array( $handler, $js_url, $dep, $ver, $in_footer );
 		return $this;
