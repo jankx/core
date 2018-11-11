@@ -118,7 +118,7 @@ class Foxy_Asset {
 		if ( is_admin() ) {
 			$this->register_css(
 				'admin-foxy',
-				self::asset_url('css/foxy.css'),
+				Foxy_Admin::asset_url( 'css/foxy.css' ),
 				array(),
 				FOXY_THEME_FRAMEWORK_VERSION
 			)->css( 'admin-foxy' );
