@@ -161,7 +161,7 @@ class Foxy_Setup {
 	 * @return void
 	 */
 	public function init_hooks() {
-		add_action( 'after_setup_theme', array( $this, 'core_init' ), 33 );
+		add_action( 'after_setup_theme', array( $this, 'core_init' ) );
 		add_action( 'init', array( $this, 'menus' ), 33 );
 		add_action( 'init', array( $this, 'datas' ), 33 );
 		add_action( 'widgets_init', array( $this, 'sidebars' ), 33 );
@@ -347,7 +347,13 @@ class Foxy_Setup {
 		/**
 		 * Initial asset
 		 */
-		Foxy::asset();
+		Foxy::asset()
+			->register_css(
+				foxy_get_template_name(),
+				get_template_directory_uri() . '/style.css',
+				array( Foxy::get_ui_framework() ),
+				FOXY_THEME_FRAMEWORK_VERSION
+			)->css( foxy_get_template_name() );
 	}
 
 	/**
@@ -359,7 +365,7 @@ class Foxy_Setup {
 		/**
 		 * Setup CSS framework for Foxy
 		 */
-		$ui_framework_name       = apply_filters( 'foxy_default_ui_framework', 'bootstrap' );
+		$ui_framework_name       = Foxy::get_ui_framework();
 		$ui_framework_class_name = apply_filters(
 			'foxy_ui_framework_class_name',
 			sprintf( 'Foxy_UI_Framework_%s', ucfirst( $ui_framework_name ) ),

@@ -12,10 +12,10 @@ class Foxy_UI_Framework_Admin extends Foxy_UI_Framework_Base {
 	}
 
 	public function init_class_names() {
-		$this->mobile_class_prefix = 'fxc-';
+		$this->mobile_class_prefix       = 'fxc-mob-';
 		$this->small_tablet_class_prefix = 'fxc-stab-';
-		$this->tablet_class_prefix = 'fxc-tab-';
-		$this->desktop_class_prefix = 'fxc-desk-';
-		$this->extra_class_prefix = 'fxc-xtra-';
+		$this->tablet_class_prefix       = 'fxc-tab-';
+		$this->desktop_class_prefix      = 'fxc-desk-';
+		$this->extra_class_prefix        = 'fxc-xtra-';
 	}
 }
