@@ -17,13 +17,6 @@ class Foxy_Admin {
             return self::instance();
         };
 
-        Foxy::asset()->register_css(
-            'admin-foxy',
-            self::asset_url('css/foxy.css'),
-            array(),
-            FOXY_THEME_FRAMEWORK_VERSION
-        )->css( 'admin-foxy' );
-
         add_action( 'current_screen', array( $this, 'setup_screen_edit_post' ) );
     }
 
