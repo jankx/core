@@ -21,10 +21,15 @@ if ( defined( 'WP_DEBUG' ) && WP_DEBUG === true ) {
 	 * @param bool  $print_r Use print_r function alternate var_dump function.
 	 * @return void
 	 */
-	function dd( $var, $print_r = false ) {
-		$method = $print_r ? 'print_r' : 'var_dump';
+	function dd() {
+		$args   = func_get_args();
+		$method = array_pop( $args );
+		if ( ! in_array( $method, array( 'print_r', 'var_dump' ), true ) ) {
+			$args[] = $method;
+			$method = 'var_dump';
+		}
 		echo '<pre>';
-			$method( $var );
+		call_user_func_array( $method, $args );
 		echo '</pre>';
 		exit();
 	}
@@ -40,12 +45,28 @@ function foxy_allowed_protocols( $protocols ) {
 }
 
 if ( ! function_exists( 'array_column' ) ) {
-    function array_column( $array, $column_name ) {
-        return array_map(
-			function ( $element ) use( $column_name ) {
-				return $element[ $column_name ];
-			},
-			$array
-		);
-    }
+	function array_column( $input, $column_key, $index_key = null ) {
+		$arr = array_map( function( $d ) use ( $column_key, $index_key ) {
+			if ( ! isset( $d[ $column_key ] ) ) {
+				return null;
+			}
+			if ( null !== $index_key ) {
+				return array( $d[ $index_key ] => $d[ $column_key ] );
+			}
+			return $d[ $column_key ];
+		}, $input );
+
+		if ( null !== $index_key ) {
+			$tmp = array();
+			foreach ( $arr as $ar ) {
+				$tmp[ key( $ar ) ] = current( $ar );
+			}
+			$arr = $tmp;
+		}
+		return $arr;
+	}
+}
+
+function foxy_get_terms( $args ) {
+	return get_terms( $args );
 }
