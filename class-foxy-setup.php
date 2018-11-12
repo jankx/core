@@ -183,6 +183,8 @@ class Foxy_Setup {
 		 * Add theme support posts format
 		 */
 		add_theme_support( 'post-formats', array( 'aside', 'standard', 'image', 'video' ) );
+
+		Foxy_Shortcodes::shortcodes();
 	}
 
 	/**
