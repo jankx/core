@@ -29,7 +29,7 @@ function foxy_loop_no_image() {
 			'title' => get_the_title(),
 		)
 	);
-	echo '<span class="foxy-image-icon fx-picture-o"></span>';
+	echo '<span class="foxy-image-icon fx-picture"></span>';
 	echo '</a>';
 }
 
