@@ -31,7 +31,33 @@ function foxy_error_404_content() {
  * @return void
  */
 function foxy_archive_content() {
-	Foxy::post_layout( 'card' );
+	if ( is_category() ) {
+		$action_hook = 'foxy_archive_category_content';
+		$post_layout = Foxy::get_option( 'archive_category_post_layout', false );
+	} elseif ( is_tag() ) {
+		$action_hook = 'foxy_archive_tag_content';
+		$post_layout = Foxy::get_option( 'archive_tag_post_layout', false );
+	} elseif ( is_tax() ) {
+		$post_layout = Foxy::get_option( 'archive_category_post_layout', false );
+	} elseif ( is_date() ) {
+		$action_hook = 'foxy_archive_date_content';
+		$post_layout = Foxy::get_option( 'archive_date_post_layout', false );
+	} elseif ( is_author() ) {
+		$action_hook = 'foxy_archive_author_content';
+		$post_layout = Foxy::get_option( 'archive_author_post_layout', false );
+	} else {
+		$action_hook = 'foxy_archive_post_type_content';
+		$post_layout = Foxy::get_option( 'archive_post_type_post_layout', false );
+	}
+	if ( false === $post_layout ) {
+		$post_layout = Foxy::get_option( 'archive_post_layout', 'list' );
+	}
+
+	if ( ! foxy_check_empty_hook( $action_hook ) ) {
+		do_action( $action_hook, $post_layout );
+	} else {
+		Foxy::post_layout( $post_layout );
+	}
 }
 
 /**
