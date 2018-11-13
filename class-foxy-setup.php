@@ -65,6 +65,8 @@ class Foxy_Setup {
 		// Init action & filter hooks.
 		$this->init_hooks();
 
+		$this->load_options();
+
 		// Load foxy addons.
 		$this->load_addons();
 
@@ -335,6 +337,10 @@ class Foxy_Setup {
 		foreach ( $addons as $addon ) {
 			require_once $addon;
 		}
+	}
+
+	public function load_options() {
+		Foxy::set_option_framework( new Foxy_Option_Framework_Foxy() );
 	}
 
 
