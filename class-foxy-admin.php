@@ -12,12 +12,11 @@ class Foxy_Admin {
 
     public function __construct() {
         $this->setting_up_ui_framework();
-
         Foxy::instance()->admin = function() {
             return self::instance();
         };
-
         add_action( 'current_screen', array( $this, 'setup_screen_edit_post' ) );
+        add_action( 'admin_init', array( Foxy_Admin_Option_Page::class, 'instance' ) );
     }
 
     public function setting_up_ui_framework() {
