@@ -138,7 +138,7 @@ abstract class Foxy_UI_Framework_Base implements Foxy_UI_Framework_Interface {
 	}
 
 	public function generate_attributes( $attributes = null ) {
-		$allowed_attributes = apply_filters( 'foxy_allowed_html_attributes', array( 'src', 'href', 'title', 'style', 'for' ) );
+		$allowed_attributes = apply_filters( 'foxy_allowed_html_attributes', array( 'src', 'href', 'title', 'style', 'for', 'method', 'action' ) );
 		$output = '';
 		foreach ( (array) $attributes as $attribute => $attr_value ) {
 			if ( ! in_array( $attribute, $allowed_attributes, true ) ) {
