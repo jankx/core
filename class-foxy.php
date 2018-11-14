@@ -1,4 +1,4 @@
-	<?php
+<?php
 /**
  * Foxy framework main class
  *
