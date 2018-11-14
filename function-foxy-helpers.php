@@ -52,11 +52,11 @@ function foxy_check_empty_hook( $hook_name ) {
 
 
 function foxy_get_theme_name() {
-	return basename( FOXY_ACTIVE_THEME_DIR );
+	return foxy_make_slug( basename( FOXY_ACTIVE_THEME_DIR ) );
 }
 
 function foxy_get_template_name() {
-	return basename( FOXY_TEMPLATE_DIR );
+	return foxy_make_slug( basename( FOXY_TEMPLATE_DIR ) );
 }
 
 /**
