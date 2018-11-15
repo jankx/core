@@ -23,6 +23,6 @@ class Foxy_Option_Framework_Foxy extends Foxy_Option_Framework_Base {
 		return $default_value;
 	}
 
-	public function add_section( $fields ) {
+	public function add_sections( $sections ) {
 	}
 }
