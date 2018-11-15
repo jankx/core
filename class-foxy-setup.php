@@ -65,8 +65,6 @@ class Foxy_Setup {
 		// Init action & filter hooks.
 		$this->init_hooks();
 
-		$this->load_options();
-
 		// Load foxy addons.
 		$this->load_addons();
 
@@ -166,6 +164,7 @@ class Foxy_Setup {
 		add_action( 'after_setup_theme', array( $this, 'core_init' ) );
 		add_action( 'init', array( $this, 'menus' ), 33 );
 		add_action( 'init', array( $this, 'datas' ), 33 );
+		add_action( 'init', array( $this, 'load_options' ), 33 );
 		add_action( 'widgets_init', array( $this, 'sidebars' ), 33 );
 		add_action( 'template_redirect', array( $this, 'layout_setup' ) );
 	}
