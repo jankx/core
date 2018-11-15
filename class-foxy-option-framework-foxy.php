@@ -13,7 +13,7 @@ class Foxy_Option_Framework_Foxy extends Foxy_Option_Framework_Base {
 
 	public function __construct() {
 		parent::__construct();
-		$this->factory = Foxy_Fields_Factory_Option();
+		$this->factory = new Foxy_Fields_Factory_Option();
 	}
 
 	public function load_options( $id, $refresh = flase ) {
