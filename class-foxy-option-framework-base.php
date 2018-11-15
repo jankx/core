@@ -24,17 +24,12 @@ abstract class Foxy_Option_Framework_Base implements Foxy_Option_Framework_Inter
 	 * Foxy_Option_Framework_Base constructor
 	 */
 	public function __construct() {
-		$this->id = apply_filters( 'foxy_default_option_key_name', foxy_get_theme_name() );
-		$this->load_options( $this->id );
+		$this->id( apply_filters( 'foxy_default_option_key_name', foxy_get_theme_name() ) );
 		$this->set_args( $this->id, $this->default_args() );
 	}
 
 	public function id( $id = null ) {
-		if ( is_null( $id ) ) {
-			return $this->id;
-		}
-		$this->id = $id;
-
+		$this->id = preg_replace( '/-/', '_', $id );
 		return $this;
 	}
 

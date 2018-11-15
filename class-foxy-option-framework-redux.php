@@ -1,14 +1,14 @@
 <?php
 class Foxy_Option_Framework_Redux extends Foxy_Option_Framework_Base {
 	public function load_options( $id, $refresh = flase ) {
-		$this->loaded_options[ $id ] = $GLOBALS[ $this->id() ];
+		$this->loaded_options[ $id ] = $GLOBALS[ $id ];
 	}
 
 	public function get_option( $option_name, $default_value = false ) {
-		if ( isset( $this->loaded_options[ $this->id() ] ) ) {
-			return array_get( $this->loaded_options[ $this->id() ], $option_name, $default_value );
+		if ( ! isset( $this->loaded_options[ $this->id ] ) ) {
+			$this->load_options( $this->id );
 		}
-		return $default_value;
+		return array_get( $this->loaded_options[ $this->id ], $option_name, $default_value );
 	}
 
 	public function set_args( $id, $args ) {

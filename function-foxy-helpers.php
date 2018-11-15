@@ -163,6 +163,9 @@ function foxy_group_all_meta_fields( $original_fields ) {
 }
 
 
-function array_get( $arr, $index, $default_value ) {
-
+function array_get( $arr, $index, $default_value = false ) {
+	if ( isset( $arr[ $index ] ) ) {
+		return $arr[ $index ];
+	}
+	return $default_value;
 }
