@@ -26,7 +26,7 @@ trait Foxy_Option {
 	 * @throws Exception Throw exception if $framework is not instanceof Foxy_Option_Framework_Base class.
 	 * @return void
 	 */
-	public static function set_option_framework( $framework ) {
+	public function set_option_framework( $framework ) {
 		if ( ! ( $framework instanceof Foxy_Option_Framework_Base ) ) {
 			throw new Exception(
 				sprintf( 'Option Framework must be instance of %s class', 'Foxy_Option_Framework_Base' ),
@@ -34,6 +34,10 @@ trait Foxy_Option {
 			);
 		}
 		self::$option_framework = $framework;
+
+		$this->option = function() {
+			return self::$option_framework;
+		};
 	}
 
 	/**

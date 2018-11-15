@@ -62,15 +62,18 @@ class Foxy_Setup {
 		 */
 		$this->includes();
 
+		$this->foxy = Foxy::instance();
+
 		// Init action & filter hooks.
 		$this->init_hooks();
 
 		// Load foxy addons.
 		$this->load_addons();
 
+		$this->load_options();
+
 		$this->load_assets();
 
-		$this->foxy = Foxy::instance();
 		if ( Foxy::is_admin() ) {
 			Foxy_Admin::instance();
 		}
@@ -164,7 +167,6 @@ class Foxy_Setup {
 		add_action( 'after_setup_theme', array( $this, 'core_init' ) );
 		add_action( 'init', array( $this, 'menus' ), 33 );
 		add_action( 'init', array( $this, 'datas' ), 33 );
-		add_action( 'init', array( $this, 'load_options' ), 33 );
 		add_action( 'widgets_init', array( $this, 'sidebars' ), 33 );
 		add_action( 'template_redirect', array( $this, 'layout_setup' ) );
 	}
@@ -339,7 +341,7 @@ class Foxy_Setup {
 	}
 
 	public function load_options() {
-		Foxy::set_option_framework( new Foxy_Option_Framework_Foxy() );
+		$this->foxy->set_option_framework( new Foxy_Option_Framework_Redux() );
 	}
 
 

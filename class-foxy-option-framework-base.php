@@ -26,6 +26,7 @@ abstract class Foxy_Option_Framework_Base implements Foxy_Option_Framework_Inter
 	 */
 	public function __construct() {
 		$this->id = apply_filters( 'foxy_default_option_key_name', foxy_get_theme_name() );
+		$this->load_options( $this->id );
 	}
 
 	public function id( $id ) {
