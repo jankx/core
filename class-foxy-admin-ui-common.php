@@ -23,11 +23,11 @@ class Foxy_Admin_UI_Common {
 		?>
 		<select class="widefat" name="foxy_site_layout" id="site_layout">
 			<option value=""><?php _e( 'Default' ); ?></option>
-		<?php foreach( $supported_layouts as $supported_layout => $layout_name ): ?>
+		<?php foreach ( $supported_layouts as $supported_layout => $layout_name ) : ?>
 			<option value="<?php echo $supported_layout; ?>"<?php selected( $supported_layout, $selected_layout ); ?>><?php echo $layout_name; ?></option>
 		<?php endforeach; ?>
 		</select>
-		<div class="foxy-desc"><?php esc_html_e('Lorem ipsum dolor sit, amet consectetur adipisicing elit. Debitis alias cupiditate omnis iure! Optio delectus tempore voluptas, perspiciatis blanditiis eos?', 'foxy'); ?></div>
+		<div class="foxy-desc"><?php esc_html_e( 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Debitis alias cupiditate omnis iure! Optio delectus tempore voluptas, perspiciatis blanditiis eos?', 'foxy' ); ?></div>
 		<?php
 	}
 
@@ -42,7 +42,7 @@ class Foxy_Admin_UI_Common {
 			<select class="widefat" name="<?php echo $widget->get_field_name( 'style' ); ?>" id="<?php echo $widget->get_field_id( 'style' ); ?>">
 				<option value=""><?php esc_html_e( 'Default', 'foxy' ); ?></option>
 			<?php foreach ( $layouts as $layout => $name ) : ?>
-				<option value="<?php echo $layout ?>"<?php selected( $layout, $instance['style'] ) ?>><?php echo $name; ?></option>
+				<option value="<?php echo $layout; ?>"<?php selected( $layout, $instance['style'] ); ?>><?php echo $name; ?></option>
 			<?php endforeach; ?>
 			</select>
 		</p>

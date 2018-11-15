@@ -322,7 +322,6 @@ class Foxy_Setup {
 		 */
 		Foxy_Data::instance();
 
-
 	}
 
 	/**

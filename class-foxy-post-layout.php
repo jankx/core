@@ -3,8 +3,8 @@
 class Foxy_Post_Layout {
 	public static function supported_post_layouts() {
 		return array(
-			Foxy_Common::POST_LAYOUT_LIST_STYLE       => __('List', 'foxy' ),
-			Foxy_Common::POST_LAYOUT_CARD_STYLE       => __( 'Card', 'foxy' ),
+			Foxy_Common::POST_LAYOUT_LIST_STYLE => __( 'List', 'foxy' ),
+			Foxy_Common::POST_LAYOUT_CARD_STYLE => __( 'Card', 'foxy' ),
 			// Foxy_Common::POST_LAYOUT_TIMELINE_STYLE   => __( 'Timeline', 'foxy' ),
 			// Foxy_Common::POST_LAYOUT_SLIDE_STYLE      => __( 'Slide', 'foxy' ),
 			// Foxy_Common::POST_LAYOUT_MANSORY_STYLE    => __( 'Mansory', 'foxy' ),
@@ -57,7 +57,7 @@ class Foxy_Post_Layout {
 				$layout_args,
 				$widget_args
 			);
-			$article_tag = array_merge( $article_tag, $loop_content_columns );
+			$article_tag          = array_merge( $article_tag, $loop_content_columns );
 		}
 		return $article_tag;
 	}
@@ -73,7 +73,7 @@ class Foxy_Post_Layout {
 		$args = wp_parse_args(
 			$args,
 			array(
-				'style' => 'card',
+				'style'    => 'card',
 				'carousel' => false,
 			)
 		);
@@ -103,7 +103,7 @@ class Foxy_Post_Layout {
 		if ( $posts->have_posts() ) {
 			Foxy::ui()->tag(
 				array(
-					'name' => 'section',
+					'name'  => 'section',
 					'class' => $wrap_class,
 				)
 			);
@@ -113,9 +113,8 @@ class Foxy_Post_Layout {
 				$posts->the_post();
 				if ( foxy_check_empty_hook( "foxy_post_layout_{$style}_loop" ) ) {
 					$current_post_type = get_post_type();
-					$template = Foxy::search_template(
-						array(
-						)
+					$template          = Foxy::search_template(
+						array()
 					);
 					if ( ! empty( $template ) ) {
 						require $template;
@@ -138,7 +137,7 @@ class Foxy_Post_Layout {
 			do_action( 'foxy_post_layout_after_loop', $args, $widget_args );
 			Foxy::ui()->tag(
 				array(
-					'name' => 'section',
+					'name'  => 'section',
 					'close' => 'true',
 				)
 			);
@@ -157,7 +156,7 @@ class Foxy_Post_Layout {
 			)
 		);
 
-		$style =  $args['style'];
+		$style = $args['style'];
 
 		Foxy::ui()->tag(
 			array(
@@ -177,9 +176,8 @@ class Foxy_Post_Layout {
 				the_post();
 				if ( foxy_check_empty_hook( "foxy_post_layout_{$style}_loop" ) ) {
 					$current_post_type = get_post_type();
-					$template = Foxy::search_template(
-						array(
-						)
+					$template          = Foxy::search_template(
+						array()
 					);
 					if ( ! empty( $template ) ) {
 						require $template;

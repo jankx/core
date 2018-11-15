@@ -73,7 +73,6 @@ trait Foxy_Layout {
 			Foxy_Common::LAYOUT_FULL_WIDTH      => __( 'Full Width', 'foxy' ),
 		);
 
-
 		if ( Foxy::has_second_sidebar() ) {
 			$second_sidebar_keys = array(
 				'LAYOUT_CONTENT_SIDEBAR_SIDEBAR' => __( 'Content-Sidebar-Sidebar', 'foxy' ),

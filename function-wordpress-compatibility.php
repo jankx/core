@@ -46,15 +46,17 @@ function foxy_allowed_protocols( $protocols ) {
 
 if ( ! function_exists( 'array_column' ) ) {
 	function array_column( $input, $column_key, $index_key = null ) {
-		$arr = array_map( function( $d ) use ( $column_key, $index_key ) {
-			if ( ! isset( $d[ $column_key ] ) ) {
-				return null;
-			}
-			if ( null !== $index_key ) {
-				return array( $d[ $index_key ] => $d[ $column_key ] );
-			}
-			return $d[ $column_key ];
-		}, $input );
+		$arr = array_map(
+			function( $d ) use ( $column_key, $index_key ) {
+				if ( ! isset( $d[ $column_key ] ) ) {
+					return null;
+				}
+				if ( null !== $index_key ) {
+					return array( $d[ $index_key ] => $d[ $column_key ] );
+				}
+					return $d[ $column_key ];
+			}, $input
+		);
 
 		if ( null !== $index_key ) {
 			$tmp = array();

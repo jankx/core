@@ -13,5 +13,5 @@ interface Foxy_Option_Framework_Interface {
 	 */
 	public function get_option( $option_name, $default_value = false );
 
-	public function add_section( $fields );
+	public function add_sections( $sections );
 }
