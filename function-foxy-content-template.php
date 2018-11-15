@@ -38,7 +38,7 @@ function foxy_loop_post_title( $post_type, $style ) {
 	$tag = apply_filters( 'foxy_default_loop_title_tag', 'h3' );
 	Foxy::ui()->tag(
 		array(
-			'name' => $tag,
+			'name'  => $tag,
 			'class' => 'item-title ' . $post_type . '-name',
 		)
 	);
@@ -67,7 +67,7 @@ function foxy_single_post_title( $post_type ) {
 	echo '</h1>';
 }
 
-add_action( 'foxy_post_layout_before_loop', 'foxy_post_layout_before_loop', 3, 2);
+add_action( 'foxy_post_layout_before_loop', 'foxy_post_layout_before_loop', 3, 2 );
 function foxy_post_layout_before_loop( $args, $widget_args ) {
 	if ( $args['carousel'] || ! in_array( $args['style'], Foxy_Post_Layout::column_styles(), true ) ) {
 		return;
@@ -75,7 +75,7 @@ function foxy_post_layout_before_loop( $args, $widget_args ) {
 	Foxy::ui()->tag( array( 'class' => 'row' ) );
 }
 
-add_action( 'foxy_post_layout_after_loop', 'foxy_post_layout_after_loop', 33, 2);
+add_action( 'foxy_post_layout_after_loop', 'foxy_post_layout_after_loop', 33, 2 );
 function foxy_post_layout_after_loop( $args, $widget_args ) {
 	if ( $args['carousel'] || ! in_array( $args['style'], Foxy_Post_Layout::column_styles(), true ) ) {
 		return;

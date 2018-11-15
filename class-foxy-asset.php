@@ -8,13 +8,13 @@ class Foxy_Asset {
 	 * @var array
 	 */
 
-	protected $registered_js = array();
+	protected $registered_js  = array();
 	protected $registered_css = array();
-	protected $js = array();
-	protected $css = array();
-	protected $styles = array();
-	protected $scripts = array();
-	protected $libraries = array();
+	protected $js             = array();
+	protected $css            = array();
+	protected $styles         = array();
+	protected $scripts        = array();
+	protected $libraries      = array();
 
 	public static function instance() {
 		if ( is_null( self::$instance ) ) {
@@ -70,7 +70,7 @@ class Foxy_Asset {
 			$lib_assets = wp_parse_args(
 				$this->libraries[ $lib ],
 				array(
-					'js' => false,
+					'js'  => false,
 					'css' => false,
 				)
 			);
@@ -183,7 +183,12 @@ class Foxy_Asset {
 	}
 
 	public function header() {
-		Foxy::ui()->tag( array( 'name' => 'style', 'context' => 'foxy-ui-style-tag' ) );
+		Foxy::ui()->tag(
+			array(
+				'name'    => 'style',
+				'context' => 'foxy-ui-style-tag',
+			)
+		);
 		echo implode( "\n", $this->styles ); // WPCS: XSS ok.
 		echo '</style>';
 		// Free up memory.

@@ -20,10 +20,12 @@ trait Foxy_Config {
 	 * @return mixed
 	 */
 	public static function load_config( $config_file, $default_value = false ) {
-		$config_diretories = apply_filters( 'foxy_config_directories', array(
-			FOXY_ACTIVE_THEME_DIR . 'configs/',
-			FOXY_TEMPLATE_DIR . 'configs/',
-		) );
+		$config_diretories = apply_filters(
+			'foxy_config_directories', array(
+				FOXY_ACTIVE_THEME_DIR . 'configs/',
+				FOXY_TEMPLATE_DIR . 'configs/',
+			)
+		);
 
 		foreach ( $config_diretories as $config_directory ) {
 			if ( file_exists( $config_directory . $config_file ) ) {

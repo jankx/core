@@ -114,10 +114,10 @@ function foxy_page_content() {
  */
 function foxy_single_content() {
 	the_post();
-	$post_type = get_post_type();
+	$post_type      = get_post_type();
 	$post_type_file = foxy_make_slug( $post_type );
 
-	$content_hook      = "foxy_single_{$post_type}_content";
+	$content_hook = "foxy_single_{$post_type}_content";
 	if ( ! foxy_check_empty_hook( $content_hook ) ) {
 		do_action( $content_hook );
 	} else {
@@ -146,21 +146,27 @@ function foxy_single_content() {
  */
 function foxy_no_content() {
 	do_action( 'foxy_ui_before_no_content' );
-	$template = Foxy::search_template(array(
-		'no-content.php',
-	));
+	$template = Foxy::search_template(
+		array(
+			'no-content.php',
+		)
+	);
 	if ( empty( $template ) ) {
-		Foxy::ui()->tag(array(
-			'name' => 'h2',
-			'id' => 'no-content-heading',
-			'class' => 'no-content',
-		));
+		Foxy::ui()->tag(
+			array(
+				'name'  => 'h2',
+				'id'    => 'no-content-heading',
+				'class' => 'no-content',
+			)
+		);
 		echo esc_html__( 'OOOP!!', 'foxy' );
-		Foxy::ui()->tag(array(
-			'name' => 'h2',
-			'context' => 'no-content-heading',
-			'close' => true,
-		));
+		Foxy::ui()->tag(
+			array(
+				'name'    => 'h2',
+				'context' => 'no-content-heading',
+				'close'   => true,
+			)
+		);
 		echo '<div class="no-content-desc">';
 			printf( esc_html__( 'Don\'t have anything', 'foxy' ) );
 		echo '</div>';
@@ -180,11 +186,13 @@ function foxy_default_content( $post_type = null ) {
 	if ( is_null( $post_type ) ) {
 		$post_type = get_post_type();
 	}
-	Foxy::ui()->tag( array(
-		'name'    => 'article',
-		'context' => 'article-' . $post_type,
-		'class'   => implode( ' ', get_post_class( 'item item-detail' ) ),
-	) );
+	Foxy::ui()->tag(
+		array(
+			'name'    => 'article',
+			'context' => 'article-' . $post_type,
+			'class'   => implode( ' ', get_post_class( 'item item-detail' ) ),
+		)
+	);
 	do_action( 'foxy_before_post_content', $post_type );
 	do_action( 'foxy_post_content', $post_type );
 	do_action( 'foxy_after_post_content', $post_type );

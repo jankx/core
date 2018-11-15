@@ -18,8 +18,8 @@ function foxy_get_domain_name( $host ) {
 	/**
 	 * The dot separates the subdomain and the domain name
 	 */
-	$offset = strlen( $host ) - $last_dot + 1;
-	$subdomain_dot = strrpos( $host, '.', -$offset);
+	$offset        = strlen( $host ) - $last_dot + 1;
+	$subdomain_dot = strrpos( $host, '.', -$offset );
 
 	if ( false === $subdomain_dot ) {
 		$domain_name = substr( $host, 0, $last_dot );
@@ -77,7 +77,7 @@ function foxy_make_slug( $source ) {
 function foxy_get_object_id( $object_or_id, $class_name ) {
 	if ( is_numeric( $object_or_id ) ) {
 		return $object_or_id;
-	} elseif( is_null( $object_or_id ) ) {
+	} elseif ( is_null( $object_or_id ) ) {
 		return foxy_get_current_object_id( $class_name );
 	} else {
 		if (
@@ -99,7 +99,7 @@ function foxy_get_current_object_id( $class_name ) {
 	switch ( $class_name ) {
 		case 'WP_Post':
 			$current_id = get_the_ID();
-		break;
+			break;
 		case 'WP_User';
 			$current_id = get_current_user_id();
 		break;
@@ -146,7 +146,7 @@ function foxy_filter_post_type_metas( $post_type, $metas ) {
 
 
 function foxy_group_all_meta_fields( $original_fields ) {
-	$tabs = array();
+	$tabs   = array();
 	$fields = array();
 	foreach ( $original_fields as $field ) {
 		if ( 'tab' === $field['type'] ) {
@@ -160,4 +160,9 @@ function foxy_group_all_meta_fields( $original_fields ) {
 		}
 	}
 	return array( $tabs, $fields );
+}
+
+
+function array_get( $arr, $index, $default_value ) {
+
 }

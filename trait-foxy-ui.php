@@ -194,13 +194,13 @@ trait Foxy_UI {
 		$responsive = apply_filters(
 			'foxy_widget_default_carousel_responsive',
 			array(
-				0 => (object) array(
+				0    => (object) array(
 					'items' => 1,
 				),
-				767 => (object) array(
+				767  => (object) array(
 					'items' => 2,
 				),
-				992 => (object) array(
+				992  => (object) array(
 					'items' => 3,
 				),
 				1200 => (object) array(

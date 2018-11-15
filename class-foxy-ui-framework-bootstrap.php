@@ -52,24 +52,24 @@ class Foxy_UI_Framework_Bootstrap extends Foxy_UI_Framework_Base {
 	 */
 	protected function bootstrap_version() {
 		$bootstrap_version = apply_filters( 'foxy_asset_bootstrap_version', '4.1.3' );
-		$version_major = explode( '.', $bootstrap_version );
+		$version_major     = explode( '.', $bootstrap_version );
 		return array_shift( $version_major );
 	}
 
 	public function init_class_name_bootstrap_3() {
-		$this->mobile_class_prefix = 'col-xs';
+		$this->mobile_class_prefix       = 'col-xs';
 		$this->small_tablet_class_prefix = 'col-sm-';
-		$this->tablet_class_prefix = 'col-md-';
-		$this->desktop_class_prefix = 'col-lg-';
-		$this->extra_class_prefix = 'col-sx-';
+		$this->tablet_class_prefix       = 'col-md-';
+		$this->desktop_class_prefix      = 'col-lg-';
+		$this->extra_class_prefix        = 'col-sx-';
 	}
 
 	public function init_class_name_bootstrap_4() {
-		$this->mobile_class_prefix = 'col-';
+		$this->mobile_class_prefix       = 'col-';
 		$this->small_tablet_class_prefix = 'col-sm-';
-		$this->tablet_class_prefix = 'col-md-';
-		$this->desktop_class_prefix = 'col-lg-';
-		$this->extra_class_prefix = 'col-xl-';
+		$this->tablet_class_prefix       = 'col-md-';
+		$this->desktop_class_prefix      = 'col-lg-';
+		$this->extra_class_prefix        = 'col-xl-';
 	}
 
 	public function menu_args( $args ) {

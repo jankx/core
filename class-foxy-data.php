@@ -124,20 +124,22 @@ class Foxy_Data {
 	 */
 	public function add_post_metas() {
 		$current_screen = get_current_screen();
-		$meta_boxes = apply_filters( 'foxy_post_metas', array() );
+		$meta_boxes     = apply_filters( 'foxy_post_metas', array() );
 		if ( ! empty( $meta_boxes ) && is_array( $meta_boxes ) ) {
 			foreach ( $meta_boxes as $id => $args ) {
 				if ( ! in_array( $current_screen->id, (array) $args['post_type'], true ) ) {
 					unset( $meta_boxes[ $id ] );
 					continue;
 				}
-				$args = wp_parse_args( $args, array(
-					'title'    => '',
-					'icon'     => '',
-					'context'  => 'normal',
-					'priority' => 'default',
-					'fields'   => array(),
-				));
+				$args = wp_parse_args(
+					$args, array(
+						'title'    => '',
+						'icon'     => '',
+						'context'  => 'normal',
+						'priority' => 'default',
+						'fields'   => array(),
+					)
+				);
 				$args = apply_filters( "foxy_post_meta_{$id}_args", $args );
 
 				add_meta_box(

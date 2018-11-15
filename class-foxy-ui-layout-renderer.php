@@ -198,14 +198,14 @@ class Foxy_UI_Layout_Renderer {
 		if ( 1 === $this->num_sidebar ) {
 			$args = wp_parse_args(
 				$args, array(
-					'mobile_columns'  => 12,
-					'tablet_columns'  => 8,
+					'mobile_columns' => 12,
+					'tablet_columns' => 8,
 				)
 			);
 		} elseif ( 0 === $this->num_sidebar ) {
 			$args = wp_parse_args(
 				$args, array(
-					'mobile_columns'  => 12,
+					'mobile_columns' => 12,
 				)
 			);
 		} else {
@@ -249,8 +249,8 @@ class Foxy_UI_Layout_Renderer {
 		if ( 1 === $this->num_sidebar ) {
 			$args = wp_parse_args(
 				$args, array(
-					'mobile_columns'  => 12,
-					'tablet_columns'  => 4,
+					'mobile_columns' => 12,
+					'tablet_columns' => 4,
 				)
 			);
 		} else {

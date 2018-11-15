@@ -82,7 +82,7 @@ abstract class Foxy_UI_Framework_Base implements Foxy_UI_Framework_Interface {
 		$class_names = $this->generate_class( $args );
 		$id          = '';
 		if ( ! empty( $args['id'] ) ) {
-			$id          = sprintf( ' id="%s"', esc_attr( $args['id'] ) );
+			$id = sprintf( ' id="%s"', esc_attr( $args['id'] ) );
 			if ( empty( $args['context'] ) ) {
 				$args['context'] = $args['id'];
 			}
@@ -113,11 +113,11 @@ abstract class Foxy_UI_Framework_Base implements Foxy_UI_Framework_Interface {
 
 	public function generate_class( $args ) {
 		$support_columns = array(
-			'mobile' => 'mobile_columns',
+			'mobile'       => 'mobile_columns',
 			'small_tablet' => 'small_tablet_columns',
-			'tablet' => 'tablet_columns',
-			'desktop' => 'desktop_columns',
-			'extra' => 'xtra_columns',
+			'tablet'       => 'tablet_columns',
+			'desktop'      => 'desktop_columns',
+			'extra'        => 'xtra_columns',
 		);
 		// Init class name.
 		$class_names = $args['class'];
@@ -132,14 +132,14 @@ abstract class Foxy_UI_Framework_Base implements Foxy_UI_Framework_Interface {
 		}
 
 		if ( ! empty( $class_names ) ) {
-			$class_names = sprintf(' class="%s"', trim( $class_names ) );
+			$class_names = sprintf( ' class="%s"', trim( $class_names ) );
 		}
 		return apply_filters( 'foxy_ui_generate_class_names_output', $class_names, $support_columns, $args );
 	}
 
 	public function generate_attributes( $attributes = null ) {
 		$allowed_attributes = apply_filters( 'foxy_allowed_html_attributes', array( 'src', 'href', 'title', 'style', 'for', 'method', 'action' ) );
-		$output = '';
+		$output             = '';
 		foreach ( (array) $attributes as $attribute => $attr_value ) {
 			if ( ! in_array( $attribute, $allowed_attributes, true ) ) {
 				continue;
@@ -150,10 +150,12 @@ abstract class Foxy_UI_Framework_Base implements Foxy_UI_Framework_Interface {
 	}
 
 	public function container( $close = false ) {
-		Foxy::ui()->tag( array(
-			'context' => 'foxy-container-tag',
-			'class'   => 'container',
-			'close'   => $close,
-		) );
+		Foxy::ui()->tag(
+			array(
+				'context' => 'foxy-container-tag',
+				'class'   => 'container',
+				'close'   => $close,
+			)
+		);
 	}
 }
