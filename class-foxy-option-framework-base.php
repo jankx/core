@@ -78,22 +78,6 @@ abstract class Foxy_Option_Framework_Base implements Foxy_Option_Framework_Inter
 			'show_import_export' => true,
 		);
 
-		$args['admin_bar_links'][] = array(
-			'id'    => 'redux-docs',
-			'href'  => 'https://docs.foxytheme.com',
-			'title' => __( 'Documentation', 'foxy' ),
-		);
-		$args['admin_bar_links'][] = array(
-			'id'    => 'redux-support',
-			'href'  => 'https://cloud.icescrum.com/p/FOXY/#/backlog/sandbox',
-			'title' => __( 'Support', 'foxy' ),
-		);
-		$args['admin_bar_links'][] = array(
-			'id'    => 'redux-extensions',
-			'href'  => 'https://foxytheme.com/addons',
-			'title' => __( 'Addons', 'foxy' ),
-		);
-
 		$args['share_icons'][] = array(
 			'url'   => 'https://github.com/foxy-theme/foxy',
 			'title' => 'Visit us on GitHub',
