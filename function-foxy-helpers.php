@@ -169,3 +169,18 @@ function array_get( $arr, $index, $default_value = false, $check_empty = false )
 	}
 	return $default_value;
 }
+
+function array_set_values( &$dest_arr, $values ) {
+	foreach ($values as $key1 => $key2) {
+		if (is_numeric($key)) {
+			$key = $key2;
+			$value = '';
+		} else {
+			$key = $key1;
+			$value = $key2;
+		}
+		if(!isset($dest_arr[$key])) {
+			$dest_arr[$key]= $value;
+		}
+	}
+}
