@@ -110,3 +110,17 @@ function foxy_post_excerpt_more_text( $more_text ) {
 	$more_text = '&hellip;';
 	return $more_text;
 }
+
+add_action( 'foxy_post_layout_after_default_loop', 'foxy_loop_paginate' );
+function foxy_loop_paginate() {
+	global $wp_query;
+
+	$big = 999999999; // need an unlikely integer
+
+	echo paginate_links( array(
+		'base' => str_replace( $big, '%#%', esc_url( get_pagenum_link( $big ) ) ),
+		'format' => '?paged=%#%',
+		'current' => max( 1, get_query_var('paged') ),
+		'total' => $wp_query->max_num_pages,
+	) );
+}
