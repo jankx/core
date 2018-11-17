@@ -163,8 +163,8 @@ function foxy_group_all_meta_fields( $original_fields ) {
 }
 
 
-function array_get( $arr, $index, $default_value = false ) {
-	if ( isset( $arr[ $index ] ) ) {
+function array_get( $arr, $index, $default_value = false, $check_empty = false ) {
+	if ( isset( $arr[ $index ] ) && ( empty( $check_empty ) || ! empty( $arr[ $index ] ) ) ) {
 		return $arr[ $index ];
 	}
 	return $default_value;

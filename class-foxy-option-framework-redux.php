@@ -1,6 +1,6 @@
 <?php
 class Foxy_Option_Framework_Redux extends Foxy_Option_Framework_Base {
-	public function load_options( $id, $refresh = flase ) {
+	public function load_options( $id, $refresh = false ) {
 		$this->loaded_options[ $id ] = $GLOBALS[ $id ];
 	}
 

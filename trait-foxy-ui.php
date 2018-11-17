@@ -46,7 +46,7 @@ trait Foxy_UI {
 		};
 	}
 
-	public function get_ui_framework() {
+	public static function get_ui_framework() {
 		return apply_filters( 'foxy_default_ui_framework', 'bootstrap' );
 	}
 

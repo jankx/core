@@ -147,6 +147,16 @@ trait Foxy_Layout {
 		);
 	}
 
+	public static function user_layout( $layout_args = array(), $users, $widget_args = null ) {
+		return forward_static_call(
+			array(
+				Foxy_User_Layout::class,
+				__FUNCTION__,
+			),
+			$layout_args, $users, $widget_args
+		);
+	}
+
 	public static function custom_404_error_template( $custom = null ) {
 		if ( is_null( $custom ) ) {
 			return self::$custom_404_error_template;
