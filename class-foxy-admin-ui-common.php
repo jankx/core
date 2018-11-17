@@ -31,12 +31,37 @@ class Foxy_Admin_UI_Common {
 		<?php
 	}
 
-	public function widget_post_layout( $widget, $instance ) {
+	private function widget_instance_empty( $need_check, &$instance ) {
+		foreach ( (array) $need_check as $field ) {
+			if ( ! isset( $instance[ $field ] ) ) {
+				$instance[ $field ] = '';
+			}
+		}
+	}
+
+	public function widget_post_common( $widget, $instance, $has_feature = false ) {
 		$layouts = Foxy_Post_Layout::supported_post_layouts();
-		if ( ! isset( $instance['style'] ) ) {
-			$instance['style'] = '';
+		$this->widget_instance_empty( array( 'style', 'data_type' ), $instance );
+		$data_types = array(
+			'recent'      => __( 'Recents', 'foxy' ),
+			'related'     => __( 'Related', 'foxy' ),
+			'most_viewed' => __( 'Most viewed', 'foxy' ),
+		);
+
+		if ( $has_feature ) {
+			$data_types = array(
+				'featured' => __( 'Featured', 'foxy' ),
+			) + $data_types;
 		}
 		?>
+		<p>
+			<label for="<?php echo $widget->get_field_id( 'data_type' ); ?>"><?php _e( 'Real Estate Type', 'real-estate' ); ?></label>
+			<select class="widefat" name="<?php echo $widget->get_field_name( 'data_type' ); ?>" id="<?php echo $widget->get_field_id( 'data_type' ); ?>">
+			<?php foreach ( $data_types as $data_type => $label ) : ?>
+				<option value="<?php echo $data_type; ?>"<?php selected( $data_type, $instance['data_type'] ); ?>><?php echo $label; ?></option>
+			<?php endforeach; ?>
+			</select>
+		</p>
 		<p>
 			<label for="<?php echo $widget->get_field_id( 'style' ); ?>"><?php _e( 'Layout type', 'foxy' ); ?></label>
 			<select class="widefat" name="<?php echo $widget->get_field_name( 'style' ); ?>" id="<?php echo $widget->get_field_id( 'style' ); ?>">
@@ -46,7 +71,19 @@ class Foxy_Admin_UI_Common {
 			<?php endforeach; ?>
 			</select>
 		</p>
+		<p>
+			<label for="<?php echo $widget->get_field_id( 'posts_per_page' ); ?>"><?php _e( 'Number of items (Default 5 items)', 'foxy' ); ?></label>
+			<input type="number" class="widefat" id="<?php echo $widget->get_field_id( 'posts_per_page' ); ?>" name="<?php echo $widget->get_field_name( 'posts_per_page' ); ?>" value="
+																<?php
+																if ( isset( $instance['posts_per_page'] ) ) {
+																	echo $instance['posts_per_page']; }
+?>
+">
+		</p>
 		<?php
+	}
+
+	public function widget_taxonomy_common( $widget, $instance ) {
 	}
 
 	public function widget_post_taxonomy_layout( $instance ) {

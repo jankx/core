@@ -42,6 +42,9 @@ abstract class Foxy_Option_Framework_Base implements Foxy_Option_Framework_Inter
 		}
 
 		foreach ( $section_groups as $sections ) {
+			if ( empty( $sections ) ) {
+				continue;
+			}
 			$this->add_sections( $sections );
 		}
 		// Free up memory.
@@ -54,7 +57,7 @@ abstract class Foxy_Option_Framework_Base implements Foxy_Option_Framework_Inter
 		$page_title = sprintf( __( '%s Options', 'foxy' ), $theme_name );
 		$menu_title = strlen( $theme_name ) <= 6 ? $page_title : __( 'Theme Options', 'foxy' );
 		$args       = array(
-			'opt_name'           => $opt_name,
+			'opt_name'           => $this->id,
 			'display_name'       => $theme_name,
 			'menu_title'         => $menu_title,
 			'page_title'         => $page_title,
@@ -98,7 +101,7 @@ abstract class Foxy_Option_Framework_Base implements Foxy_Option_Framework_Inter
 		$args['footer_text'] = __( '<p>This text is displayed below the options panel. It isn\'t required, but more info is always better! The footer_text field accepts all HTML.</p>', 'foxy' );
 
 		// Free up memory.
-		unset($theme, $theme_name, $page_title, $menu_title);
+		unset( $theme, $theme_name, $page_title, $menu_title );
 
 		return apply_filters( 'foxy_default_option_args', $args );
 	}
