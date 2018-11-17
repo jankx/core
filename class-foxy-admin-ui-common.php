@@ -73,12 +73,14 @@ class Foxy_Admin_UI_Common {
 		</p>
 		<p>
 			<label for="<?php echo $widget->get_field_id( 'posts_per_page' ); ?>"><?php _e( 'Number of items (Default 5 items)', 'foxy' ); ?></label>
-			<input type="number" class="widefat" id="<?php echo $widget->get_field_id( 'posts_per_page' ); ?>" name="<?php echo $widget->get_field_name( 'posts_per_page' ); ?>" value="
-																<?php
-																if ( isset( $instance['posts_per_page'] ) ) {
-																	echo $instance['posts_per_page']; }
-?>
-">
+			<input type="number" class="widefat"
+				id="<?php echo $widget->get_field_id( 'posts_per_page' ); ?>"
+				name="<?php echo $widget->get_field_name( 'posts_per_page' ); ?>"
+				value="<?php
+				if ( isset( $instance['posts_per_page'] ) ) {
+					echo $instance['posts_per_page'];
+				} ?>"
+			>
 		</p>
 		<?php
 	}

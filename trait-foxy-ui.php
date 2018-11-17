@@ -228,7 +228,7 @@ trait Foxy_UI {
 			}
 			Foxy::asset()->lib( 'carousel' )->script(
 				sprintf(
-					'$(\'#%s .post-layout .owl-carousel\').owlCarousel(%s);',
+					'$(\'#%s .owl-carousel\').owlCarousel(%s);',
 					$args['widget_id'],
 					json_encode( (object) $carousel_options )
 				)

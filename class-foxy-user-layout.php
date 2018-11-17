@@ -2,6 +2,7 @@
 
 class Foxy_User_Layout {
 	public static function user_layout( $layout_args, $users, $widget_args = null ) {
+		echo '<div class="owl-carousel">';
 		foreach ( $users as $user ) {
 			$user_link = apply_filters( 'foxy_user_link', get_author_posts_url( $user->ID, $user->user_nicename ) )
 			?>
@@ -10,5 +11,6 @@ class Foxy_User_Layout {
 			</a>
 			<?php
 		}
+		echo '</div>';
 	}
 }

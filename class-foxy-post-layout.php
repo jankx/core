@@ -170,7 +170,7 @@ class Foxy_Post_Layout {
 					'class' => 'post-layout-wrap',
 				)
 			);
-			do_action( 'foxy_post_layout_before_loop' );
+			do_action( 'foxy_post_layout_before_default_loop' );
 			do_action( "foxy_post_layout_{$style}_before_loop" );
 			while ( have_posts() ) {
 				the_post();
@@ -196,7 +196,7 @@ class Foxy_Post_Layout {
 			}
 
 			do_action( "foxy_post_layout_{$style}_end_loop" );
-			do_action( 'foxy_post_layout_after_loop' );
+			do_action( 'foxy_post_layout_after_default_loop' );
 			Foxy::ui()->tag(
 				array(
 					'name'  => 'section',
