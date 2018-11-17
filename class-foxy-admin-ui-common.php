@@ -31,17 +31,9 @@ class Foxy_Admin_UI_Common {
 		<?php
 	}
 
-	private function widget_instance_empty( $need_check, &$instance ) {
-		foreach ( (array) $need_check as $field ) {
-			if ( ! isset( $instance[ $field ] ) ) {
-				$instance[ $field ] = '';
-			}
-		}
-	}
-
 	public function widget_post_common( $widget, $instance, $has_feature = false ) {
 		$layouts = Foxy_Post_Layout::supported_post_layouts();
-		$this->widget_instance_empty( array( 'style', 'data_type' ), $instance );
+		array_set_values( $instance, array( 'style', 'data_type' ) );
 		$data_types = array(
 			'recent'      => __( 'Recents', 'foxy' ),
 			'related'     => __( 'Related', 'foxy' ),
@@ -76,16 +68,32 @@ class Foxy_Admin_UI_Common {
 			<input type="number" class="widefat"
 				id="<?php echo $widget->get_field_id( 'posts_per_page' ); ?>"
 				name="<?php echo $widget->get_field_name( 'posts_per_page' ); ?>"
-				value="<?php
+				value="
+				<?php
 				if ( isset( $instance['posts_per_page'] ) ) {
 					echo $instance['posts_per_page'];
-				} ?>"
+				}
+				?>
+				"
 			>
 		</p>
 		<?php
 	}
 
 	public function widget_taxonomy_common( $widget, $instance ) {
+	}
+
+	public function widget_title( $widget, $instance ) {
+		?>
+		<p>
+			<label for="<?php echo $widget->get_field_id( 'title' ); ?>"><?php _e( 'Title' ); ?></label>
+			<input type="text" class="widefat"
+				id="<?php echo $widget->get_field_id( 'title' ); ?>"
+				name="<?php echo $widget->get_field_name( 'title' ); ?>"
+				value="<?php echo $instance['title']; ?>"
+			>
+		</p>
+		<?php
 	}
 
 	public function widget_post_taxonomy_layout( $instance ) {
