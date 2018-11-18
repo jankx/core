@@ -84,6 +84,9 @@ function foxy_archive_content() {
  * @return void
  */
 function foxy_search_content() {
+	?>
+	<h1 class="page-title">Kết quả tìm kiếm</h1>
+	<?php
 	if ( have_posts() ) {
 		Foxy::post_layout( 'card' );
 	} else {
