@@ -113,14 +113,43 @@ function foxy_post_excerpt_more_text( $more_text ) {
 
 add_action( 'foxy_post_layout_after_default_loop', 'foxy_loop_paginate' );
 function foxy_loop_paginate() {
+	bootstrap_pagination();
+}
+
+
+function bootstrap_pagination( $echo = true ) {
 	global $wp_query;
 
 	$big = 999999999; // need an unlikely integer
 
-	echo paginate_links( array(
-		'base' => str_replace( $big, '%#%', esc_url( get_pagenum_link( $big ) ) ),
-		'format' => '?paged=%#%',
-		'current' => max( 1, get_query_var('paged') ),
-		'total' => $wp_query->max_num_pages,
-	) );
+	$pages = paginate_links( array(
+			'base' => str_replace( $big, '%#%', esc_url( get_pagenum_link( $big ) ) ),
+			'format' => '?paged=%#%',
+			'current' => max( 1, get_query_var('paged') ),
+			'total' => $wp_query->max_num_pages,
+			'type'  => 'array',
+			'prev_next'   => true,
+			'prev_text'    => __('« Prev'),
+			'next_text'    => __('Next »'),
+		)
+	);
+
+	if( is_array( $pages ) ) {
+		$paged = ( get_query_var('paged') == 0 ) ? 1 : get_query_var('paged');
+
+		$pagination = '<nav aria-label="Page navigation example"><ul class="pagination">';
+
+		foreach ( $pages as $page ) {
+			$page = str_replace('page-numbers', 'page-link', $page);
+			$pagination .= "<li class=\"page-item\">$page</li>";
+		}
+
+		$pagination .= '</nav></ul>';
+
+		if ( $echo ) {
+			echo $pagination;
+		} else {
+			return $pagination;
+		}
+	}
 }
