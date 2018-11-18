@@ -45,10 +45,9 @@ class Foxy {
 	 * @return mixed
 	 */
 	public function __call( $method, $args ) {
-		return call_user_func_array(
-			$this->$method,
-			$args
-		);
+		if ( isset( $this->$method ) && is_callable( $this->$method ) ) {
+			return call_user_func_array( $this->$method, $args );
+		}
 	}
 
 	/**
@@ -59,11 +58,10 @@ class Foxy {
 	 * @return mixed
 	 */
 	public static function __callStatic( $method, $args ) {
-		$instance = self::instance();
-		return call_user_func_array(
-			array( $instance, $method ),
-			$args
-		);
+		$method = array( self::instance(), $method );
+		if ( is_callable( $method ) ) {
+			return call_user_func_array( $method, $args );
+		}
 	}
 
 	/**

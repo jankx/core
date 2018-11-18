@@ -172,7 +172,7 @@ function array_get( $arr, $index, $default_value = false, $check_empty = false )
 
 function array_set_values( &$dest_arr, $values ) {
 	foreach ($values as $key1 => $key2) {
-		if (is_numeric($key)) {
+		if (is_numeric($key1)) {
 			$key = $key2;
 			$value = '';
 		} else {
