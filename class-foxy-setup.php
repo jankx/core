@@ -364,6 +364,9 @@ class Foxy_Setup {
 	 * @return void
 	 */
 	public function layout_setup() {
+		if ( ! Foxy::is_frontend() ) {
+			return;
+		}
 		/**
 		 * Setup CSS framework for Foxy
 		 */
