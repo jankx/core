@@ -33,25 +33,43 @@ function foxy_error_404_content() {
 function foxy_archive_content() {
 	if ( is_category() ) {
 		$action_hook = 'foxy_archive_category_content';
+		$title = single_cat_title( '', false );
 		$post_layout = Foxy::get_option( 'archive_category_post_layout', false );
 	} elseif ( is_tag() ) {
 		$action_hook = 'foxy_archive_tag_content';
+		$title = single_tag_title( '', false );
 		$post_layout = Foxy::get_option( 'archive_tag_post_layout', false );
 	} elseif ( is_tax() ) {
+		$action_hook = 'foxy_archive_tax_content';
+		$title = get_queried_object()->taxonomy;
 		$post_layout = Foxy::get_option( 'archive_category_post_layout', false );
 	} elseif ( is_date() ) {
 		$action_hook = 'foxy_archive_date_content';
+		if ( is_year() ) {
+			/* translators: Yearly archive title. 1: Year */
+			$title = sprintf( __( 'Year: %s' ), get_the_date( _x( 'Y', 'yearly archives date format' ) ) );
+		} elseif ( is_month() ) {
+			/* translators: Monthly archive title. 1: Month name and year */
+			$title = sprintf( __( 'Month: %s' ), get_the_date( _x( 'F Y', 'monthly archives date format' ) ) );
+		} elseif ( is_day() ) {
+			/* translators: Daily archive title. 1: Date */
+			$title = sprintf( __( 'Day: %s' ), get_the_date( _x( 'F j, Y', 'daily archives date format' ) ) );
+		}
 		$post_layout = Foxy::get_option( 'archive_date_post_layout', false );
 	} elseif ( is_author() ) {
 		$action_hook = 'foxy_archive_author_content';
+		$title = get_the_author();
 		$post_layout = Foxy::get_option( 'archive_author_post_layout', false );
 	} else {
 		$action_hook = 'foxy_archive_post_type_content';
+		$title = post_type_archive_title( '', false );
 		$post_layout = Foxy::get_option( 'archive_post_type_post_layout', false );
 	}
 	if ( false === $post_layout ) {
 		$post_layout = Foxy::get_option( 'archive_post_layout', 'list' );
 	}
+
+	foxy_archive_title( $title );
 
 	if ( ! foxy_check_empty_hook( $action_hook ) ) {
 		do_action( $action_hook, $post_layout );
