@@ -154,3 +154,21 @@ function bootstrap_pagination( $echo = true ) {
 		}
 	}
 }
+
+add_action( 'foxy_before_main_content', 'foxy_alert_messages', 6 );
+function foxy_alert_messages() {
+	$alert_type = (bool)array_get($_GET, 'result', true) ?  'success' : 'danger';
+	$messages = array_get($_GET, 'messages', array());
+	?>
+	<div class="messages" style="margin: 20px 0;">
+		<?php if(!empty($messages)): ?>
+		<?php foreach($messages as $message): ?>
+		<div class="alert alert-<?php echo $alert_type; ?> alert-dismissible">
+			<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+			<?php echo $message; ?>
+		</div>
+		<?php endforeach; ?>
+		<?php endif; ?>
+	</div>
+	<?php
+}
