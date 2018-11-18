@@ -8,7 +8,7 @@ trait Foxy_Request {
 		return defined( 'DOING_AJAX' );
 	}
 
-	public function is_cron() {
+	public static function is_cron() {
 		return defined( 'DOING_CRON' );
 	}
 

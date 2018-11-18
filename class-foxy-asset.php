@@ -58,7 +58,7 @@ class Foxy_Asset {
 		return $this;
 	}
 
-	public function style() {
+	public function style( $style ) {
 		if ( ! in_array( $style, $this->styles, true ) ) {
 			$this->styles[] = $style;
 		}

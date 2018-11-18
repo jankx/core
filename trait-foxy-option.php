@@ -48,6 +48,11 @@ trait Foxy_Option {
 	 * @return mixed
 	 */
 	public static function get_option( $option_name, $default_value = false ) {
+		$pre = apply_filters( 'foxy_option_' . $option_name, null );
+		if ( ! is_null( $pre ) ) {
+			return $pre;
+		}
+
 		return call_user_func(
 			array( self::$option_framework, 'get_option' ),
 			$option_name,
