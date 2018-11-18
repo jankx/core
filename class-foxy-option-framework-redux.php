@@ -1,7 +1,9 @@
 <?php
 class Foxy_Option_Framework_Redux extends Foxy_Option_Framework_Base {
 	public function load_options( $id, $refresh = false ) {
-		$this->loaded_options[ $id ] = $GLOBALS[ $id ];
+		if ( isset( $GLOBALS[ $id ] ) ) {
+			$this->loaded_options[ $id ] = $GLOBALS[ $id ];
+		}
 	}
 
 	public function get_option( $option_name, $default_value = false ) {

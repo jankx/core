@@ -67,22 +67,7 @@ function foxy_archive_content() {
  */
 function foxy_search_content() {
 	if ( have_posts() ) {
-		while ( have_posts() ) {
-			the_post();
-			$current_post_type = foxy_make_slug( get_post_type() );
-			$template          = Foxy::search_template(
-				array(
-					$current_post_type . '/loop.php',
-					'loop/' . $current_post_type . '.php',
-					'loop/defaut.php',
-				)
-			);
-			if ( ! empty( $template ) ) {
-				require $template;
-			} else {
-				foxy_detault_loop_content( $current_post_type );
-			}
-		}
+		Foxy::post_layout( 'card' );
 	} else {
 		foxy_no_content();
 	}
