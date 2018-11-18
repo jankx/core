@@ -72,3 +72,8 @@ if ( ! function_exists( 'array_column' ) ) {
 function foxy_get_terms( $args ) {
 	return get_terms( $args );
 }
+
+
+function foxy_archive_title( $title ) {
+	printf( '<h1 class="page-title">%s</h1>', $title );
+}
