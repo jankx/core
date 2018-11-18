@@ -72,7 +72,9 @@ class Foxy_Setup {
 
 		$this->load_options();
 
-		$this->load_assets();
+		if(Foxy::is_frontend() || Foxy::is_admin()) {
+			$this->load_assets();
+		}
 
 		if ( Foxy::is_admin() ) {
 			Foxy_Admin::instance();
