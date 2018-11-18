@@ -23,6 +23,7 @@ function foxy_loop_no_image() {
 		array(
 			'name'    => 'a',
 			'context' => 'no-post-thumbnail',
+			'class' => 'no-image'
 		),
 		array(
 			'href'  => get_the_permalink(),
