@@ -17,6 +17,6 @@ trait Foxy_Request {
 	}
 
 	public static function is_frontend() {
-		return ! is_admin() && ! defined( 'DOING_CRON' ) && defined( 'DOING_AJAX' );
+		return ( ! is_admin() || defined( 'DOING_AJAX' ) ) && ! defined( 'DOING_CRON' ) && ! defined( 'REST_REQUEST' );
 	}
 }
