@@ -14,6 +14,8 @@
 interface Foxy_Meta_Framework_Interface {
 	public function get( $meta_key, $post_id = null, $is_single = true );
 
+	public function set( $post_id, $meta_key, $value );
+
 	/**
 	 * Meta data content factory
 	 *

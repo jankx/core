@@ -76,4 +76,8 @@ class Foxy {
 			define( $name, $val );
 		}
 	}
+
+	public static function has_addon( $addon_name ) {
+		return isset( self::instance()->$addon_name ) && is_callable( self::instance()->$addon_name );
+	}
 }
