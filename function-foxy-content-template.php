@@ -53,6 +53,9 @@ function foxy_loop_post_excerpt( $post_type, $style ) {
 
 add_action( 'foxy_before_post_content', 'foxy_single_post_title' );
 function foxy_single_post_title( $post_type ) {
+	if ( ! Foxy::has_title() ) {
+		return;
+	}
 	Foxy::ui()->tag(
 		array(
 			'name'  => 'h1',
