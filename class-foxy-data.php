@@ -19,6 +19,8 @@ class Foxy_Data {
 	 */
 	protected static $instance;
 
+	protected $post_meta_framework;
+
 	/**
 	 * Get Foxy_Data instance
 	 *
@@ -37,25 +39,9 @@ class Foxy_Data {
 	public function __construct() {
 		$this->register_posts_types();
 		$this->register_taxonomies();
+		$this->register_post_metas();
 
-		/**
-		 * Setup meta framework for Foxy Core.
-		 */
-		$meta_framework = apply_filters( 'foxy_default_meta_framework', 'foxy' );
 
-		$meta_framework_class = apply_filters(
-			'foxy_meta_framework_class',
-			sprintf( 'Foxy_Meta_Framework_' . ucfirst( $meta_framework ) )
-		);
-
-		Foxy::instance()->set_meta_framework(
-			new $meta_framework_class()
-		);
-
-		/**
-		 * Adding Foxy meta data into WordPress
-		 */
-		add_action( 'add_meta_boxes', array( $this, 'add_post_metas' ) );
 		// $this->add_terms_metas();
 		// $this->add_user_metas();
 	}
@@ -115,6 +101,29 @@ class Foxy_Data {
 		}
 		// Free up memory.
 		unset( $taxonomy, $args, $taxonomies );
+	}
+
+	public function register_post_metas() {
+		$post_meta = new Foxy_Meta();
+
+		/**
+		 * Setup meta framework for Foxy Core.
+		 */
+		$meta_framework = apply_filters( 'foxy_default_meta_framework', 'foxy' );
+
+		$meta_framework_class = apply_filters(
+			'foxy_meta_framework_class',
+			sprintf( 'Foxy_Meta_Framework_' . ucfirst( $meta_framework ) )
+		);
+
+		Foxy::instance()->set_meta_framework(
+			new $meta_framework_class( $post_meta )
+		);
+
+		/**
+		 * Adding Foxy meta data into WordPress
+		 */
+		add_action( 'add_meta_boxes', array( $this, 'add_post_metas' ) );
 	}
 
 	/**

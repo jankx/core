@@ -14,6 +14,7 @@ class Foxy_Asset {
 	protected $css            = array();
 	protected $styles         = array();
 	protected $scripts        = array();
+	protected $init_scripts   = array();
 	protected $libraries      = array();
 
 	public static function instance() {
@@ -34,6 +35,7 @@ class Foxy_Asset {
 		add_action( "{$prefix}_enqueue_scripts", array( $this, 'register_scripts' ), 22 );
 		add_action( "{$prefix}_enqueue_scripts", array( $this, 'call_scripts' ), 33 );
 		add_action( "{$prefix}_head", array( $this, 'header' ), 33 );
+		add_action( "{$prefix}_footer", array( $this, 'init_scripts' ), 5 );
 		add_action( "{$prefix}_footer", array( $this, 'footer' ), 33 );
 	}
 
@@ -51,9 +53,11 @@ class Foxy_Asset {
 		return $this;
 	}
 
-	public function script( $script ) {
-		if ( ! in_array( $script, $this->scripts, true ) ) {
-			$this->scripts[] = $script;
+	public function script( $script, $init = false ) {
+		$script_type = $init ? 'init_scripts' : 'scripts';
+
+		if ( ! in_array( $script, $this->$script_type, true ) ) {
+			$this->$script_type = $this->$script_type + array( $script );
 		}
 		return $this;
 	}
@@ -175,7 +179,7 @@ class Foxy_Asset {
 
 		if ( is_array( $this->js ) && count( $this->js ) ) {
 			foreach ( $this->js as $js ) {
-				wp_enqueue_style( $js );
+				wp_enqueue_script( $js );
 			}
 		}
 		// Free up memory.
@@ -193,6 +197,16 @@ class Foxy_Asset {
 		echo '</style>';
 		// Free up memory.
 		unset( $this->styles );
+	}
+
+	public function init_scripts() {
+		?>
+		<script>
+			<?php echo implode( "\n", $this->init_scripts ); // WPCS: XSS ok. ?>
+		</script>
+		<?php
+		// Free up memory.
+		unset( $this->init_scripts );
 	}
 
 	public function footer() {

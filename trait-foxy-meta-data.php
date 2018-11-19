@@ -11,7 +11,7 @@
 /**
  * Foxy_Meta trait
  */
-trait Foxy_Meta {
+trait Foxy_Meta_Data {
 	/**
 	 * WordPress Meta Framework integrate with Foxy theme framework
 	 *
