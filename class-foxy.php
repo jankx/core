@@ -14,7 +14,7 @@ class Foxy {
 	/**
 	 * Use foxy traits
 	 */
-	use Foxy_Option, Foxy_Config, Foxy_Plugin, Foxy_Addon, Foxy_Meta, Foxy_Request, Foxy_Layout, Foxy_Template, Foxy_UI;
+	use Foxy_Option, Foxy_Config, Foxy_Plugin, Foxy_Addon, Foxy_Meta_Data, Foxy_Request, Foxy_Layout, Foxy_Template, Foxy_UI;
 
 	const CORE_VERSION = '1.0.0';
 

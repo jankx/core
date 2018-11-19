@@ -70,6 +70,7 @@ if ( ! function_exists( 'array_column' ) ) {
 }
 
 function foxy_get_terms( $args ) {
+	$args = wp_parse_args( $args, array( 'hide_empty' => false ) );
 	return get_terms( $args );
 }
 
