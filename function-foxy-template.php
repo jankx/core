@@ -41,7 +41,7 @@ function foxy_archive_content() {
 		$post_layout = Foxy::get_option( 'archive_tag_post_layout', false );
 	} elseif ( is_tax() ) {
 		$action_hook = 'foxy_archive_tax_content';
-		$title = get_queried_object()->taxonomy;
+		$title = get_queried_object()->name;
 		$post_layout = Foxy::get_option( 'archive_category_post_layout', false );
 	} elseif ( is_date() ) {
 		$action_hook = 'foxy_archive_date_content';
