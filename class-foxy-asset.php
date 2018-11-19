@@ -54,10 +54,14 @@ class Foxy_Asset {
 	}
 
 	public function script( $script, $init = false ) {
-		$script_type = $init ? 'init_scripts' : 'scripts';
-
-		if ( ! in_array( $script, $this->$script_type, true ) ) {
-			$this->$script_type = $this->$script_type + array( $script );
+		if ($init) {
+			if ( ! in_array( $script, $this->init_scripts, true ) ) {
+				$this->init_scripts[] = $script;
+			}
+		} else {
+			if ( ! in_array( $script, $this->scripts, true ) ) {
+				$this->scripts[] = $script;
+			}
 		}
 		return $this;
 	}
