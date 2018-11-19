@@ -63,6 +63,15 @@ trait Foxy_Meta_Data {
 		);
 	}
 
+	public static function set_meta( $post_id, $meta_key, $value ) {
+		return call_user_func(
+			array( self::instance()->meta_framework, 'set' ),
+			$post_id,
+			$meta_key,
+			$value
+		);
+	}
+
 	/**
 	 * Get user meta from WordPress user meta
 	 *
