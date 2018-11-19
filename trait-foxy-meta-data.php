@@ -57,7 +57,7 @@ trait Foxy_Meta_Data {
 	public static function get_meta( $meta_key, $post_id = null, $single = true ) {
 		return get_metadata(
 			'post',
-			Foxy::get_object_id( $post_id, WP_Post::class ),
+			foxy_get_object_id( $post_id, WP_Post::class ),
 			$meta_key,
 			$single
 		);
@@ -75,7 +75,7 @@ trait Foxy_Meta_Data {
 	public static function user_meta( $meta_key, $user_id = null, $single = true ) {
 		return get_metadata(
 			'user',
-			Foxy::get_object_id( $user_id, WP_User::class ),
+			foxy_get_object_id( $user_id, WP_User::class ),
 			$meta_key,
 			$single
 		);
@@ -84,7 +84,7 @@ trait Foxy_Meta_Data {
 	public static function term_meta( $meta_key, $term_id, $single = true ) {
 		return get_metadata(
 			'term',
-			Foxy::get_object_id( $term_id, WP_Term::class ),
+			foxy_get_object_id( $term_id, WP_Term::class ),
 			$meta_key,
 			$single
 		);
