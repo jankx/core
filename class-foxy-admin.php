@@ -57,9 +57,8 @@ class Foxy_Admin {
 	public function save_foxy_framework_fields( $post_id, $post ) {
 		if ( isset( $_POST['foxy_hide_post_title'] ) ) {
 			update_post_meta( $post_id, 'foxy_hide_post_title', 'yes' );
-		} else {
-			delete_post_meta( $post_id, 'foxy_hide_post_title' );
 		}
+
 		if ( isset( $_POST['foxy_site_layout'] ) && '' !== $_POST['foxy_site_layout'] ) {
 			update_post_meta( $post_id, 'foxy_site_layout', $_POST['foxy_site_layout'] );
 		} else {
