@@ -237,17 +237,16 @@ function foxy_detault_loop_content( $post_type = null, $article_tag = array() ) 
 	foxy_default_loop_image( $post_type, $article_tag );
 
 	echo '<div class="item-info">';
-
 	if ( foxy_check_empty_hook( "foxy_{$post_type}_layout_content" ) ) {
 		do_action( 'foxy_post_layout_content', $post_type, $article_tag );
 	} else {
 		do_action( "foxy_{$post_type}_layout_content", $post_type, $article_tag );
 	}
-	do_action( "foxy_post_layout_{$post_type}_addition_info", $article_tag );
+	do_action( "foxy_post_layout_{$post_type}_addition_info", $post_type, $article_tag );
 
 	echo '</div>'; // Close .item-info tag.
 
-	do_action( "foxy_after_{$post_type}_loop_content", $article_tag );
+	do_action( "foxy_after_{$post_type}_loop_content", $post_type, $article_tag );
 	echo '</div>'; // Close .item-inner tag.
 	Foxy::ui()->tag(
 		array(
@@ -275,7 +274,7 @@ function foxy_default_loop_image( $post_type = null, $article_tag = null ) {
 		echo '<div class="item-thumb-inner">';
 
 		do_action( "foxy_post_layout{$no_image}_image", $post_type, $article_tag );
-		do_action( "foxy_post_layout_{$post_type}_figure", $article_tag );
+		do_action( "foxy_post_layout_{$post_type}_figure", $post_type, $article_tag );
 
 		echo '</div><!-- End .item-thumb-inner -->';
 
