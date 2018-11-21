@@ -217,7 +217,7 @@ function foxy_default_content( $post_type = null ) {
  * @param string $post_type Post type need to render content.
  * @return void
  */
-function foxy_detault_loop_content( $post_type = null, $article_tag = array() ) {
+function foxy_detault_loop_content( $post_type = null, $style = 'list', $article_tag = array() ) {
 	if ( is_null( $post_type ) ) {
 		$post_type = get_post_type();
 	}
@@ -232,21 +232,22 @@ function foxy_detault_loop_content( $post_type = null, $article_tag = array() ) 
 
 	Foxy::ui()->tag( $article_tag );
 	echo '<div class="item-inner">';
-	do_action( "foxy_before_post_layout_{$post_type}_loop_content", $article_tag );
+	do_action( "foxy_before_post_layout_{$post_type}_loop_content", $style, $article_tag );
 
-	foxy_default_loop_image( $post_type, $article_tag );
+	foxy_default_loop_image( $post_type, $style, $article_tag );
 
 	echo '<div class="item-info">';
-	if ( foxy_check_empty_hook( "foxy_{$post_type}_layout_content" ) ) {
-		do_action( 'foxy_post_layout_content', $post_type, $article_tag );
+	if ( foxy_check_empty_hook( "foxy_{$post_type}_{$style}_layout_content" ) ) {
+		do_action( 'foxy_post_layout_content', $post_type, $style, $article_tag );
 	} else {
-		do_action( "foxy_{$post_type}_layout_content", $post_type, $article_tag );
+		do_action( "foxy_{$post_type}_{$style}_layout_content", $post_type, $style, $article_tag );
 	}
-	do_action( "foxy_post_layout_{$post_type}_addition_info", $post_type, $article_tag );
+	do_action( "foxy_post_layout_{$post_type}_addition_info", $post_type, $style, $article_tag );
+	do_action( "foxy_post_layout_{$post_type}_{$style}_addition_info", $post_type, $style, $article_tag );
 
 	echo '</div>'; // Close .item-info tag.
 
-	do_action( "foxy_after_{$post_type}_loop_content", $post_type, $article_tag );
+	do_action( "foxy_after_{$post_type}_loop_content", $post_type, $style, $article_tag );
 	echo '</div>'; // Close .item-inner tag.
 	Foxy::ui()->tag(
 		array(
@@ -257,13 +258,13 @@ function foxy_detault_loop_content( $post_type = null, $article_tag = array() ) 
 	);
 }
 
-function foxy_default_loop_image( $post_type = null, $article_tag = null ) {
+function foxy_default_loop_image( $post_type = null, $style = 'list', $article_tag = null ) {
 	$no_image = '_no';
 	if ( has_post_thumbnail() ) {
 		$no_image = '';
 	}
 	if ( empty( $no_image ) || apply_filters( "foxy_show_{$post_type}_no_image", true ) ) {
-		do_action( 'foxy_post_layout_before_image', $post_type, $article_tag );
+		do_action( 'foxy_post_layout_before_image', $post_type, $style, $article_tag );
 		Foxy::ui()->tag(
 			array(
 				'name'    => 'figure',
@@ -273,8 +274,8 @@ function foxy_default_loop_image( $post_type = null, $article_tag = null ) {
 		);
 		echo '<div class="item-thumb-inner">';
 
-		do_action( "foxy_post_layout{$no_image}_image", $post_type, $article_tag );
-		do_action( "foxy_post_layout_{$post_type}_figure", $post_type, $article_tag );
+		do_action( "foxy_post_layout{$no_image}_image", $post_type, $style, $article_tag );
+		do_action( "foxy_post_layout_{$post_type}_{$style}_figure", $post_type, $style, $article_tag );
 
 		echo '</div><!-- End .item-thumb-inner -->';
 
@@ -285,7 +286,7 @@ function foxy_default_loop_image( $post_type = null, $article_tag = null ) {
 				'close'   => true,
 			)
 		);
-		do_action( 'foxy_post_layout_after_image', $post_type, $article_tag );
+		do_action( 'foxy_post_layout_after_image', $post_type, $style, $article_tag );
 	}
 }
 
