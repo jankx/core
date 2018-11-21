@@ -81,7 +81,7 @@ class Foxy_Post_Layout {
 		/**
 		 * Clone style setting in argument to new variable
 		 */
-		$style = $args['style'];
+		$style = array_get( $args, 'style', 'list' );
 
 		/**
 		 * Generate css class for carousel
@@ -99,6 +99,7 @@ class Foxy_Post_Layout {
 				'class' => implode( ' ', $class_names ),
 			)
 		);
+
 		$wrap_class = $args['carousel'] ? 'post-layout-wrap owl-carousel' : 'post-layout-wrap';
 		if ( $posts->have_posts() ) {
 			Foxy::ui()->tag(
@@ -121,6 +122,7 @@ class Foxy_Post_Layout {
 					} else {
 						foxy_detault_loop_content(
 							$current_post_type,
+							$style,
 							self::generate_article_tag(
 								$current_post_type,
 								$args,
@@ -184,6 +186,7 @@ class Foxy_Post_Layout {
 					} else {
 						foxy_detault_loop_content(
 							$current_post_type,
+							$style,
 							self::generate_article_tag(
 								$current_post_type,
 								$args

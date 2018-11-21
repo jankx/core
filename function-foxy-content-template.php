@@ -34,8 +34,8 @@ function foxy_loop_no_image() {
 	echo '</a>';
 }
 
-add_action( 'foxy_post_layout_content', 'foxy_loop_post_title', 10, 2 );
-function foxy_loop_post_title( $post_type, $style ) {
+add_action( 'foxy_post_layout_content', 'foxy_loop_post_title', 10, 3 );
+function foxy_loop_post_title( $post_type, $style, $article_tag = null ) {
 	$tag = apply_filters( 'foxy_default_loop_title_tag', 'h3' );
 	Foxy::ui()->tag(
 		array(
@@ -46,8 +46,8 @@ function foxy_loop_post_title( $post_type, $style ) {
 	printf( '<a href="%1$s" title="%2$s">%2$s</a></%3$s>', get_the_permalink(), get_the_title(), esc_attr( $tag ) ); // WPCS: XSS ok.
 }
 
-add_action( 'foxy_post_layout_content', 'foxy_loop_post_excerpt', 10, 2 );
-function foxy_loop_post_excerpt( $post_type, $style ) {
+add_action( 'foxy_post_layout_content', 'foxy_loop_post_excerpt', 10, 3 );
+function foxy_loop_post_excerpt( $post_type, $style, $article_tag = null ) {
 	printf( '<div class="item-desc %1$s-desc">%2$s</div>', esc_attr( $post_type ), get_the_excerpt() ); // WPCS: XSS ok.
 }
 
