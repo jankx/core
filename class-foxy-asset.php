@@ -47,7 +47,6 @@ class Foxy_Asset {
 	}
 
 	public function css( $handler ) {
-		var_dump($this->css);
 		if ( ! in_array( $handler, $this->css, true ) ) {
 			$this->css[] = $handler;
 		}
