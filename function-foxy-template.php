@@ -40,9 +40,10 @@ function foxy_archive_content() {
 		$title = single_tag_title( '', false );
 		$post_layout = Foxy::get_option( 'archive_tag_post_layout', false );
 	} elseif ( is_tax() ) {
-		$action_hook = 'foxy_archive_tax_content';
-		$title = get_queried_object()->name;
-		$post_layout = Foxy::get_option( 'archive_category_post_layout', false );
+		$tax = get_queried_object();
+		$title = $tax->name;
+		$action_hook = "foxy_archive_taxonomy_{$tax->taxonomy}_content";
+		$post_layout = Foxy::get_option( 'archive_taxonomy_post_layout', false );
 	} elseif ( is_date() ) {
 		$action_hook = 'foxy_archive_date_content';
 		if ( is_year() ) {
@@ -61,7 +62,8 @@ function foxy_archive_content() {
 		$title = get_the_author();
 		$post_layout = Foxy::get_option( 'archive_author_post_layout', false );
 	} else {
-		$action_hook = 'foxy_archive_post_type_content';
+		$post_type = get_post_type();
+		$action_hook = 'foxy_archive_post_type_{$post_type}_content';
 		$title = post_type_archive_title( '', false );
 		$post_layout = Foxy::get_option( 'archive_post_type_post_layout', false );
 	}
@@ -237,10 +239,10 @@ function foxy_detault_loop_content( $post_type = null, $style = 'list', $article
 	foxy_default_loop_image( $post_type, $style, $article_tag );
 
 	echo '<div class="item-info">';
-	if ( foxy_check_empty_hook( "foxy_{$post_type}_{$style}_layout_content" ) ) {
+	if ( foxy_check_empty_hook( "foxy_loop_{$post_type}_{$style}_layout_content" ) ) {
 		do_action( 'foxy_post_layout_content', $post_type, $style, $article_tag );
 	} else {
-		do_action( "foxy_{$post_type}_{$style}_layout_content", $post_type, $style, $article_tag );
+		do_action( "foxy_loop_{$post_type}_{$style}_layout_content", $post_type, $style, $article_tag );
 	}
 	do_action( "foxy_post_layout_{$post_type}_addition_info", $post_type, $style, $article_tag );
 	do_action( "foxy_post_layout_{$post_type}_{$style}_addition_info", $post_type, $style, $article_tag );
@@ -275,7 +277,7 @@ function foxy_default_loop_image( $post_type = null, $style = 'list', $article_t
 		echo '<div class="item-thumb-inner">';
 
 		do_action( "foxy_post_layout{$no_image}_image", $post_type, $style, $article_tag );
-		do_action( "foxy_post_layout_{$post_type}_{$style}_figure", $post_type, $style, $article_tag );
+		do_action( "foxy_loop_{$post_type}_{$style}_layout_figure", $post_type, $style, $article_tag );
 
 		echo '</div><!-- End .item-thumb-inner -->';
 
