@@ -126,7 +126,7 @@ trait Foxy_UI {
 	protected static function reset_menu_args( &$args, $original_args ) {
 		$menu_reset_args = apply_filters(
 			'foxy_reset_menu_args', array(
-				'container_class' => 'navigation',
+				'container_class' => 'navigation raw-menu',
 				'container_id'    => 'foxy-menu-' . $args['theme_location'],
 				'fallback_cb'     => '',
 				'walker'          => '',

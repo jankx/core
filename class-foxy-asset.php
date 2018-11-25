@@ -191,6 +191,9 @@ class Foxy_Asset {
 	}
 
 	public function header() {
+		if ( empty( $this->styles ) ) {
+			return;
+		}
 		Foxy::ui()->tag(
 			array(
 				'name'    => 'style',
@@ -204,6 +207,9 @@ class Foxy_Asset {
 	}
 
 	public function init_scripts() {
+		if ( empty( $this->init_scripts ) ) {
+			return;
+		}
 		?>
 		<script>
 			<?php echo implode( "\n", $this->init_scripts ); // WPCS: XSS ok. ?>
@@ -214,6 +220,9 @@ class Foxy_Asset {
 	}
 
 	public function footer() {
+		if ( empty( $this->scripts ) ) {
+			return;
+		}
 		?>
 		<script>
 			(function($){
