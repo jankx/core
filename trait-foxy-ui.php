@@ -168,16 +168,14 @@ trait Foxy_UI {
 	 */
 	public static function footer_widgets() {
 		$num_footer_widgets = self::get_num_footer_widgets();
-		do_action( 'foxy_before_footer_widget_loop' );
+		do_action( 'foxy_before_footer_widget_loop', $num_footer_widgets );
 		for ( $index = 1; $index <= $num_footer_widgets; $index++ ) {
 			$sidebar_id = 'footer-' . $index;
-			do_action( 'foxy_before_footer_widget' );
-			do_action( "foxy_before_footer_widget_{$sidebar_id}" );
+			do_action( 'foxy_before_footer_widget', $sidebar_id, $num_footer_widgets );
 				dynamic_sidebar( $sidebar_id );
-			do_action( "foxy_after_footer_widget_{$sidebar_id}" );
-			do_action( 'foxy_after_footer_widget' );
+			do_action( 'foxy_after_footer_widget', $sidebar_id, $num_footer_widgets );
 		}
-		do_action( 'foxy_after_footer_widget_loop' );
+		do_action( 'foxy_after_footer_widget_loop', $num_footer_widgets );
 	}
 
 	/**

@@ -1,4 +1,4 @@
-<?php
+ <?php
 /**
  * Bootstrap CSS framework driver for Foxy UI Framework
  *
@@ -9,7 +9,7 @@
  */
 
 /**
- * Foxy_UI_Framework_Bootstrap class
+ * Foxy_UI_Framey./;'[work_Bootstrap class
  * Default Version: Bootstrap 4
  */
 class Foxy_UI_Framework_Bootstrap extends Foxy_UI_Framework_Base {
@@ -141,5 +141,18 @@ class Foxy_UI_Framework_Bootstrap extends Foxy_UI_Framework_Base {
 			echo '</div>';
 		}
 
+	}
+
+	public function pull_and_push_layout( $args ) {
+		$class_name = '';
+		if ( $this->major_version == 4 ) {
+			if ( ! empty( $args['pull'] ) ) {
+				$class_name .= ' order-1';
+			}
+			if ( ! empty( $args['push'] ) ) {
+				$class_name .= ' order-2';
+			}
+		}
+		return $class_name;
 	}
 }
