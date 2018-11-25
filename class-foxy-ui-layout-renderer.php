@@ -60,7 +60,11 @@ class Foxy_UI_Layout_Renderer {
 		if ( is_404() ) {
 			add_action( 'foxy_header', array( $this, 'disable_404_custom_template' ) );
 		} else {
-			add_action( 'foxy_header', array( $this, 'site_header' ) );
+			add_action( 'foxy_before_header', array( $this, 'open_site_header' ), 5 );
+			add_action( 'foxy_after_header', array( $this, 'close_site_header' ), 15 );
+
+			add_action( 'foxy_header', array( $this, 'header_top_menu' ) );
+			add_action( 'foxy_header', array( $this, 'header_main_menu' ), 15 );
 		}
 	}
 
@@ -68,7 +72,20 @@ class Foxy_UI_Layout_Renderer {
 		Foxy::custom_404_error_template( false );
 	}
 
-	public function site_header() {
+	public function open_site_header() {
+		Foxy::ui()->tag( array(
+			'name' => 'header',
+			'class' => 'site-header',
+		) );
+	}
+	public function close_site_header() {
+		Foxy::ui()->tag( array(
+			'name' => 'header',
+			'close' => true,
+		) );
+	}
+
+	public function header_top_menu() {
 		if ( Foxy::has_menu( 'top-menu' ) ) {
 			Foxy::ui()->wrap( 'top-menu', array( 'has_container' => true ) );
 			Foxy::menu( 'top-menu', array(
@@ -77,9 +94,11 @@ class Foxy_UI_Layout_Renderer {
 			do_action( 'foxy_after_top_menu' );
 			Foxy::ui()->close_wrap( array( 'has_container' => true ) );
 		}
+	}
 
+	public function header_main_menu() {
 		if ( Foxy::has_menu( 'primary' ) ) {
-			Foxy::ui()->wrap( 'site-header' );
+			Foxy::ui()->wrap( 'primary-menu' );
 			Foxy::menu( 'primary', array(
 				'depth' => 3,
 			) );
@@ -126,7 +145,8 @@ class Foxy_UI_Layout_Renderer {
 
 	public function content_wrap_open() {
 		$args = array(
-			'id' => 'content-sidebar-wrap',
+			'id' => 'content-sidebar',
+			'class' => 'content-sidebar-wrap'
 		);
 		Foxy::ui()->tag( $args );
 		Foxy::ui()->container();
@@ -159,6 +179,9 @@ class Foxy_UI_Layout_Renderer {
 	 * @return void
 	 */
 	public function render_footer() {
+		add_action( 'foxy_before_footer', array( $this, 'open_footer_widget' ), 5 );
+		add_action( 'foxy_after_footer', array( $this, 'close_footer_widget' ), 15 );
+
 		add_action( 'foxy_footer', array( $this, 'footer_widgets' ), 5 );
 		add_action( 'foxy_footer', array( $this, 'footer_menu' ) );
 		add_action( 'foxy_footer', array( $this, 'footer_copyright' ), 15 );
@@ -167,6 +190,20 @@ class Foxy_UI_Layout_Renderer {
 		add_action( 'foxy_after_footer_widget_loop', array( $this, 'close_widget_row_tag' ) );
 		add_action( 'foxy_before_footer_widget', array( $this, 'open_widget_area' ), 10, 2 );
 		add_action( 'foxy_after_footer_widget', array( $this, 'close_widget_area' ), 10, 2 );
+	}
+
+	public function open_footer_widget() {
+		Foxy::ui()->tag( array(
+			'name' => 'footer',
+			'class' => 'site-footer'
+		) );
+	}
+
+	public function close_footer_widget() {
+		Foxy::ui()->tag( array(
+			'name' => 'footer',
+			'close' => true,
+		) );
 	}
 
 	public function footer_widgets() {
