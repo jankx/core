@@ -131,6 +131,11 @@ abstract class Foxy_UI_Framework_Base implements Foxy_UI_Framework_Interface {
 			$class_names .= sprintf( ' %1$s%2$s', $this->{$prefix . '_class_prefix'}, $args[ $column ] );
 		}
 
+		$callback = array( $this, 'pull_and_push_layout' );
+		if ( is_callable( $callback ) ) {
+			$class_names .= call_user_func( $callback, $args );
+		}
+
 		if ( ! empty( $class_names ) ) {
 			$class_names = sprintf( ' class="%s"', trim( $class_names ) );
 		}
@@ -157,5 +162,32 @@ abstract class Foxy_UI_Framework_Base implements Foxy_UI_Framework_Interface {
 				'close'   => $close,
 			)
 		);
+	}
+
+	public function wrap( $class_name, $args = array() ) {
+		$args = wp_parse_args( $args, array(
+			'class'   => $class_name,
+			'has_container' => false,
+			'context' => 'foxy_ui_' . $class_name . '_wrap',
+		));
+		Foxy::ui()->tag( $args );
+		if ( $args['has_container'] ) {
+			$this->container();
+		}
+		Foxy::ui()->tag( array(
+			'class' => sprintf( '%s-inner', $class_name )
+		) );
+	}
+
+	public function close_wrap( $args = array() ) {
+		$args = wp_parse_args( $args, array(
+			'close'         => true,
+			'has_container' => false,
+		));
+		echo '</div>';
+		if ( $args['has_container'] ) {
+			$this->container( true );
+		}
+		Foxy::ui()->tag( $args );
 	}
 }

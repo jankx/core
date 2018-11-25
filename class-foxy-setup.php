@@ -203,7 +203,9 @@ class Foxy_Setup {
 			apply_filters(
 				'foxy_nav_menus',
 				array(
-					'primary' => __( 'Primary Navigation', 'foxy' ),
+					'primary'     => __( 'Primary Navigation', 'foxy' ),
+					'top-menu'    => __( 'Top Menu', 'foxy' ),
+					'bottom-menu' => __('Bottom Menu', 'foxy'),
 				)
 			)
 		);

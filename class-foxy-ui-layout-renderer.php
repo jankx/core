@@ -59,11 +59,32 @@ class Foxy_UI_Layout_Renderer {
 	public function render_header() {
 		if ( is_404() ) {
 			add_action( 'foxy_header', array( $this, 'disable_404_custom_template' ) );
+		} else {
+			add_action( 'foxy_header', array( $this, 'site_header' ) );
 		}
 	}
 
 	public function disable_404_custom_template() {
 		Foxy::custom_404_error_template( false );
+	}
+
+	public function site_header() {
+		if ( Foxy::has_menu( 'top-menu' ) ) {
+			Foxy::ui()->wrap( 'top-menu', array( 'has_container' => true ) );
+			Foxy::menu( 'top-menu', array(
+				'ui_framework' => false,
+			) );
+			do_action( 'foxy_after_top_menu' );
+			Foxy::ui()->close_wrap( array( 'has_container' => true ) );
+		}
+
+		if ( Foxy::has_menu( 'primary' ) ) {
+			Foxy::ui()->wrap( 'site-header' );
+			Foxy::menu( 'primary', array(
+				'depth' => 3,
+			) );
+			Foxy::ui()->close_wrap();
+		}
 	}
 
 	public function body_classes( $classes ) {
@@ -138,7 +159,75 @@ class Foxy_UI_Layout_Renderer {
 	 * @return void
 	 */
 	public function render_footer() {
+		add_action( 'foxy_footer', array( $this, 'footer_widgets' ), 5 );
+		add_action( 'foxy_footer', array( $this, 'footer_menu' ) );
+		add_action( 'foxy_footer', array( $this, 'footer_copyright' ), 15 );
 
+		add_action( 'foxy_before_footer_widget_loop', array( $this, 'open_widget_row_tag' ) );
+		add_action( 'foxy_after_footer_widget_loop', array( $this, 'close_widget_row_tag' ) );
+		add_action( 'foxy_before_footer_widget', array( $this, 'open_widget_area' ), 10, 2 );
+		add_action( 'foxy_after_footer_widget', array( $this, 'close_widget_area' ), 10, 2 );
+	}
+
+	public function footer_widgets() {
+		if ( Foxy::has_footer_widget() ) {
+			Foxy::ui()->wrap( 'footer-widgets', array( 'has_container' => true ) );
+			Foxy::footer_widgets();
+			Foxy::ui()->close_wrap( array( 'has_container' => true ) );
+		}
+	}
+
+	public function footer_menu() {
+		if ( Foxy::has_menu( 'bottom-menu' ) ) {
+			Foxy::ui()->wrap( 'footer-menu', array( 'has_container' => true ) );
+			Foxy::menu( 'bottom-menu', array(
+				'ui_framework' => false
+			) );
+			do_action( 'foxy_after_footer_menu' );
+			Foxu::ui()->close_wrap( array( 'has_container' => true ) );
+		}
+	}
+
+	public function footer_copyright() {
+		$template = Foxy::search_template(array(
+			'footer-text.php',
+			'footer/text.php',
+		));
+		if ( ! empty( $template ) ) {
+			require $template;
+		} else {
+			Foxy::ui()->wrap( 'copyright-text', array( 'has_container' => true ) );
+			printf( __( 'Copyright &copy; %1$d <a href="%2$s" title="%3$s">%3$s</a>. All rights reserved.', 'foxy' ), esc_html( date( 'Y' ) ), esc_attr( home_url() ), esc_html(get_bloginfo( 'name' ) ) );
+			Foxy::ui()->close_wrap( array( 'has_container' => true ) );
+		}
+	}
+
+	public function open_widget_area( $sidebar_id, $num_footer_widgets ) {
+		$args = array( 'class' => 'widget-area' );
+		if ( $num_footer_widgets % 2 === 0 ) {
+			$args['tablet_columns'] = 6;
+			if ( $num_footer_widgets > 3 ) {
+				$args['desktop_columns'] = 3;
+			}
+		} else {
+			$args['desktop_columns'] = 12 / $num_footer_widgets;
+		}
+
+		Foxy::ui()->tag( $args );
+	}
+
+	public function close_widget_area() {
+		echo '</div>';
+	}
+
+	public function open_widget_row_tag() {
+		Foxy::ui()->tag( array(
+			'class' => 'row'
+		) );
+	}
+
+	public function close_widget_row_tag() {
+		echo '</div>';
 	}
 
 	public function render_sidebar() {
@@ -202,6 +291,9 @@ class Foxy_UI_Layout_Renderer {
 					'tablet_columns' => 8,
 				)
 			);
+			if ( Foxy::get_layout() == Foxy_Common::LAYOUT_SIDEBAR_CONTENT ) {
+				$args['push'] = 4;
+			}
 		} elseif ( 0 === $this->num_sidebar ) {
 			$args = wp_parse_args(
 				$args, array(
@@ -253,6 +345,9 @@ class Foxy_UI_Layout_Renderer {
 					'tablet_columns' => 4,
 				)
 			);
+			if ( Foxy::get_layout() == Foxy_Common::LAYOUT_SIDEBAR_CONTENT ) {
+				$args['pull'] = 8;
+			}
 		} else {
 			$args = wp_parse_args(
 				$args, array(
