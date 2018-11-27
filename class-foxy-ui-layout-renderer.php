@@ -221,7 +221,7 @@ class Foxy_UI_Layout_Renderer {
 				'ui_framework' => false
 			) );
 			do_action( 'foxy_after_footer_menu' );
-			Foxu::ui()->close_wrap( array( 'has_container' => true ) );
+			Foxy::ui()->close_wrap( array( 'has_container' => true ) );
 		}
 	}
 
