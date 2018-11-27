@@ -125,6 +125,7 @@ function foxy_single_content() {
 	$post_type      = get_post_type();
 	$post_type_file = foxy_make_slug( $post_type );
 
+	do_action( 'foxy_before_single_main_content', $post_type );
 	$content_hook = "foxy_single_{$post_type}_content";
 	if ( ! foxy_check_empty_hook( $content_hook ) ) {
 		do_action( $content_hook );
@@ -142,7 +143,7 @@ function foxy_single_content() {
 			foxy_default_content( $post_type );
 		endif;
 	}
-	do_action( 'foxy_after_single_content', $post_type );
+	do_action( 'foxy_after_single_main_content', $post_type );
 	do_action( "foxy_after_single_{$post_type}_content" );
 }
 
