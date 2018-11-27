@@ -5,6 +5,7 @@ class Foxy_Post_Layout {
 		return array(
 			Foxy_Common::POST_LAYOUT_LIST_STYLE => __( 'List', 'foxy' ),
 			Foxy_Common::POST_LAYOUT_CARD_STYLE => __( 'Card', 'foxy' ),
+			Foxy_Common::POST_LAYOUT_LIST_TITLE_STYLE => __( 'List Only Title', 'foxy' ),
 			// Foxy_Common::POST_LAYOUT_TIMELINE_STYLE   => __( 'Timeline', 'foxy' ),
 			// Foxy_Common::POST_LAYOUT_SLIDE_STYLE      => __( 'Slide', 'foxy' ),
 			// Foxy_Common::POST_LAYOUT_MANSORY_STYLE    => __( 'Mansory', 'foxy' ),
@@ -102,9 +103,14 @@ class Foxy_Post_Layout {
 
 		$wrap_class = $args['carousel'] ? 'post-layout-wrap owl-carousel' : 'post-layout-wrap';
 		if ( $posts->have_posts() ) {
+			if ( $style === Foxy_Common::POST_LAYOUT_LIST_TITLE_STYLE ) {
+				$tag = 'ul';
+			} else {
+				$tag = 'section';
+			}
 			Foxy::ui()->tag(
 				array(
-					'name'  => 'section',
+					'name'  => $tag,
 					'class' => $wrap_class,
 				)
 			);
@@ -139,7 +145,7 @@ class Foxy_Post_Layout {
 			do_action( 'foxy_post_layout_after_loop', $args, $widget_args );
 			Foxy::ui()->tag(
 				array(
-					'name'  => 'section',
+					'name'  => $tag,
 					'close' => 'true',
 				)
 			);
