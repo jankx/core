@@ -27,6 +27,7 @@ class Foxy_Common {
 	 */
 	const POST_LAYOUT_CARD_STYLE       = 'card';
 	const POST_LAYOUT_LIST_STYLE       = 'list';
+	const POST_LAYOUT_LIST_TITLE_STYLE = 'list_title';
 	const POST_LAYOUT_TIMELINE_STYLE   = 'timeline';
 	const POST_LAYOUT_SLIDE_STYLE      = 'slide';
 	const POST_LAYOUT_MANSORY_STYLE    = 'mansory';
