@@ -14,6 +14,24 @@
  * Foxy_Template trait
  */
 trait Foxy_Template {
+	protected static $page_template = null;
+
+	public static function set_page_template( $page_template ) {
+		/**
+		 * Only accept $template_name variable has value.
+		 */
+		if ( empty( $page_template ) ) {
+			return;
+		}
+		self::$page_template = $page_template;
+	}
+
+	public static function get_page_template() {
+		if ( is_null( self::$page_template ) ) {
+			throw new Exception( 'Please use action hook after `template_direct` has been run' );
+		}
+		return self::$page_template;
+	}
 	/**
 	 * Search template path
 	 *

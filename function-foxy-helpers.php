@@ -1,10 +1,49 @@
 <?php
 /**
  * @package Foxy/Core
- * @author Puleeno Nguyen <puleeno@gmail.com>
+ * @author  Puleeno Nguyen <puleeno@gmail.com>
  * @license GPL
- * @link https://wpclouds.com
+ * @link    https://wpclouds.com
  */
+
+function foxy_detect_page_template() {
+	if ( is_embed() ) {
+		$page_template = 'embed';
+	} elseif ( is_404() ) {
+		$page_template = '404';
+	} elseif ( is_search() ) {
+		$page_template = 'search';
+	} elseif ( is_front_page() ) {
+		$page_template = 'front_page';
+	} elseif ( is_home() ) {
+		$page_template = 'home';
+	} elseif ( is_post_type_archive() ) {
+		$page_template = 'post_type_archive';
+	} elseif ( is_tax() ) {
+		$page_template = 'taxonomy';
+	} elseif ( is_attachment() ) {
+		$page_template = 'attachment';
+	} elseif ( is_single() ) {
+		$page_template = 'single';
+	} elseif ( is_page() ) {
+		$page_template = 'page';
+	} elseif ( is_singular() ) {
+		$page_template = 'single';
+	} elseif ( is_category() ) {
+		$page_template = 'category';
+	} elseif ( is_tag() ) {
+		$page_template = 'tag';
+	} elseif ( is_author() ) {
+		$page_template = 'author';
+	} elseif ( is_date() ) {
+		$page_template = 'date';
+	} elseif ( is_archive() ) {
+		$page_template = 'archive';
+	} else {
+		$page_template = 'custom';
+	}
+	Foxy::set_page_template( $page_template );
+}
 
 function foxy_get_domain_name( $host ) {
 	/**
@@ -34,7 +73,7 @@ function foxy_get_domain_name( $host ) {
 /**
  * Check action & filter hooks is empty callback
  *
- * @param string $hook_name Hook name need to check is empty.
+ * @param  string $hook_name Hook name need to check is empty.
  * @return bool
  */
 function foxy_check_empty_hook( $hook_name ) {
@@ -56,13 +95,13 @@ function foxy_get_theme_name() {
 }
 
 function foxy_get_template_name() {
-	return foxy_make_slug( basename( FOXY_TEMPLATE_DIR ) );
+	 return foxy_make_slug( basename( FOXY_TEMPLATE_DIR ) );
 }
 
 /**
  * Create slug for post type, taxonomy or others
  *
- * @param string $source Source need to make slug.
+ * @param  string $source Source need to make slug.
  * @return string
  */
 function foxy_make_slug( $source ) {
@@ -80,13 +119,12 @@ function foxy_get_object_id( $object_or_id, $class_name ) {
 	} elseif ( is_null( $object_or_id ) ) {
 		return foxy_get_current_object_id( $class_name );
 	} else {
-		if (
-			in_array(
-				$class_name,
-				array( 'WP_User', 'WP_Post', 'WP_Term' ),
-				true
-			)
-			&& $object_or_id instanceof $class_name
+		if ( in_array(
+			$class_name,
+			array( 'WP_User', 'WP_Post', 'WP_Term' ),
+			true
+		)
+		&& $object_or_id instanceof $class_name
 		) {
 			return $object_or_id->ID;
 		}
@@ -110,7 +148,7 @@ function foxy_get_current_object_id( $class_name ) {
 /**
  * Undocumented function
  *
- * @param [type] $partial_file
+ * @param  [type] $partial_file
  * @return void
  */
 function foxy_get_partial_info( $partial_file ) {
@@ -171,16 +209,16 @@ function array_get( $arr, $index, $default_value = false, $check_empty = false )
 }
 
 function array_set_values( &$dest_arr, $values ) {
-	foreach ($values as $key1 => $key2) {
-		if (is_numeric($key1)) {
-			$key = $key2;
+	foreach ( $values as $key1 => $key2 ) {
+		if ( is_numeric( $key1 ) ) {
+			$key   = $key2;
 			$value = '';
 		} else {
-			$key = $key1;
+			$key   = $key1;
 			$value = $key2;
 		}
-		if(!isset($dest_arr[$key])) {
-			$dest_arr[$key]= $value;
+		if ( ! isset( $dest_arr[ $key ] ) ) {
+			$dest_arr[ $key ] = $value;
 		}
 	}
 }

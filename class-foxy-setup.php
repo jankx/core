@@ -170,6 +170,7 @@ class Foxy_Setup {
 		add_action( 'init', array( $this, 'menus' ), 33 );
 		add_action( 'init', array( $this, 'datas' ), 33 );
 		add_action( 'widgets_init', array( $this, 'sidebars' ), 33 );
+		add_action( 'template_redirect', 'foxy_detect_page_template', 5 );
 		add_action( 'template_redirect', array( $this, 'layout_setup' ) );
 	}
 
