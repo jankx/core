@@ -27,6 +27,9 @@ class Foxy_UI_Layout_Renderer {
 	 */
 	protected $num_sidebar;
 
+	protected $file_header;
+	protected $file_footer;
+
 	public function __construct() {
 		$this->num_sidebar = Foxy::get_layout() % 3;
 
@@ -60,12 +63,12 @@ class Foxy_UI_Layout_Renderer {
 		add_action( 'foxy_before_header', array( $this, 'open_site_header' ), 5 );
 		add_action( 'foxy_after_header', array( $this, 'close_site_header' ), 15 );
 
-		$template = Foxy::search_template( 'header.php' );
-		if ( empty( $template ) ) {
+		$this->file_header = Foxy::search_template( 'header.php' );
+		if ( empty( $this->file_header ) ) {
 			add_action( 'foxy_header', array( $this, 'header_top_menu' ) );
 			add_action( 'foxy_header', array( $this, 'header_main_menu' ), 15 );
 		} else {
-			require $template;
+			add_action( 'foxy_header', array( $this, 'load_file_header' ) );
 		}
 	}
 
@@ -80,6 +83,10 @@ class Foxy_UI_Layout_Renderer {
 			'name' => 'header',
 			'close' => true,
 		) );
+	}
+
+	public function load_file_header() {
+		require $this->file_header;
 	}
 
 	public function header_top_menu() {
@@ -179,8 +186,8 @@ class Foxy_UI_Layout_Renderer {
 		add_action( 'foxy_before_footer', array( $this, 'open_footer_tag' ), 5 );
 		add_action( 'foxy_after_footer', array( $this, 'close_footer_tag' ), 15 );
 
-		$template = Foxy::search_template( 'footer.php' );
-		if(empty($template)) {
+		$this->file_footer = Foxy::search_template( 'footer.php' );
+		if ( empty( $this->file_footer ) ) {
 			add_action( 'foxy_footer', array( $this, 'footer_widgets' ), 5 );
 			add_action( 'foxy_footer', array( $this, 'footer_menu' ) );
 			add_action( 'foxy_footer', array( $this, 'footer_copyright' ), 15 );
@@ -190,7 +197,7 @@ class Foxy_UI_Layout_Renderer {
 			add_action( 'foxy_before_footer_widget', array( $this, 'open_widget_area' ), 10, 2 );
 			add_action( 'foxy_after_footer_widget', array( $this, 'close_widget_area' ), 10, 2 );
 		} else {
-			require $template;
+			add_action( 'foxy_footer', array( $this, 'load_file_footer' ) );
 		}
 	}
 
@@ -206,6 +213,10 @@ class Foxy_UI_Layout_Renderer {
 			'name' => 'footer',
 			'close' => true,
 		) );
+	}
+
+	public function load_file_footer() {
+		require $this->file_footer;
 	}
 
 	public function footer_widgets() {
