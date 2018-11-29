@@ -57,19 +57,15 @@ class Foxy_UI_Layout_Renderer {
 	 * @return void
 	 */
 	public function render_header() {
-		if ( is_404() ) {
-			add_action( 'foxy_header', array( $this, 'disable_404_custom_template' ) );
-		} else {
+		$template = Foxy::search_template( 'header.php' );
+		if ( empty( $template ) ) {
 			add_action( 'foxy_before_header', array( $this, 'open_site_header' ), 5 );
 			add_action( 'foxy_after_header', array( $this, 'close_site_header' ), 15 );
-
 			add_action( 'foxy_header', array( $this, 'header_top_menu' ) );
 			add_action( 'foxy_header', array( $this, 'header_main_menu' ), 15 );
+		} else {
+			require $template;
 		}
-	}
-
-	public function disable_404_custom_template() {
-		Foxy::custom_404_error_template( false );
 	}
 
 	public function open_site_header() {
@@ -179,17 +175,23 @@ class Foxy_UI_Layout_Renderer {
 	 * @return void
 	 */
 	public function render_footer() {
-		add_action( 'foxy_before_footer', array( $this, 'open_footer_widget' ), 5 );
-		add_action( 'foxy_after_footer', array( $this, 'close_footer_widget' ), 15 );
+		$template = Foxy::search_template( 'footer.php' );
 
-		add_action( 'foxy_footer', array( $this, 'footer_widgets' ), 5 );
-		add_action( 'foxy_footer', array( $this, 'footer_menu' ) );
-		add_action( 'foxy_footer', array( $this, 'footer_copyright' ), 15 );
+		if(empty($template)) {
+			add_action( 'foxy_before_footer', array( $this, 'open_footer_widget' ), 5 );
+			add_action( 'foxy_after_footer', array( $this, 'close_footer_widget' ), 15 );
 
-		add_action( 'foxy_before_footer_widget_loop', array( $this, 'open_widget_row_tag' ) );
-		add_action( 'foxy_after_footer_widget_loop', array( $this, 'close_widget_row_tag' ) );
-		add_action( 'foxy_before_footer_widget', array( $this, 'open_widget_area' ), 10, 2 );
-		add_action( 'foxy_after_footer_widget', array( $this, 'close_widget_area' ), 10, 2 );
+			add_action( 'foxy_footer', array( $this, 'footer_widgets' ), 5 );
+			add_action( 'foxy_footer', array( $this, 'footer_menu' ) );
+			add_action( 'foxy_footer', array( $this, 'footer_copyright' ), 15 );
+
+			add_action( 'foxy_before_footer_widget_loop', array( $this, 'open_widget_row_tag' ) );
+			add_action( 'foxy_after_footer_widget_loop', array( $this, 'close_widget_row_tag' ) );
+			add_action( 'foxy_before_footer_widget', array( $this, 'open_widget_area' ), 10, 2 );
+			add_action( 'foxy_after_footer_widget', array( $this, 'close_widget_area' ), 10, 2 );
+		} else {
+			require $template;
+		}
 	}
 
 	public function open_footer_widget() {
