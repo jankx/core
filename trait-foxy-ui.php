@@ -112,6 +112,9 @@ trait Foxy_UI {
 		do_action( 'foxy_before_render_menu', $args, $location );
 		do_action( "foxy_before_render_{$location}_menu", $args, $location );
 		wp_nav_menu( $args );
+		if ( array_get( $args, 'search_form', false ) ) {
+			Foxy::template( 'searchform.php' );
+		}
 		do_action( "foxy_after_render_{$location}_menu", $args, $location );
 		do_action( 'foxy_after_render_menu', $args, $location );
 	}
