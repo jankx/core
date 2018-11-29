@@ -104,7 +104,7 @@ class Foxy_UI_Layout_Renderer {
 		if ( Foxy::has_menu( 'primary' ) ) {
 			Foxy::ui()->wrap( 'primary-menu' );
 			Foxy::menu( 'primary', array(
-				'depth' => 3,
+				'show_logo' => true,
 			) );
 			Foxy::ui()->close_wrap();
 		}
