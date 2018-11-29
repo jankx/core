@@ -99,7 +99,7 @@ class Foxy_UI_Framework_Bootstrap extends Foxy_UI_Framework_Base {
 				<span class="navbar-toggler-icon"></span>
 			</button>
 		<?php
-		if ( $location === Foxy::get_main_menu() || (bool) $args['show_logo'] ) {
+		if ( (bool) $args['show_logo'] ) {
 			Foxy::logo( $args['alternative_logo'] );
 		}
 	}
