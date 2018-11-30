@@ -63,7 +63,7 @@ function foxy_archive_content() {
 		$post_layout = Foxy::get_option( 'archive_author_post_layout', false );
 	} else {
 		$post_type = get_post_type();
-		$action_hook = 'foxy_archive_post_type_{$post_type}_content';
+		$action_hook = "foxy_archive_post_type_{$post_type}_content";
 		$title = post_type_archive_title( '', false );
 		$post_layout = Foxy::get_option( 'archive_post_type_post_layout', false );
 	}
@@ -72,7 +72,6 @@ function foxy_archive_content() {
 	}
 
 	foxy_archive_title( $title );
-
 	if ( ! foxy_check_empty_hook( $action_hook ) ) {
 		do_action( $action_hook, $post_layout );
 	} else {
@@ -90,7 +89,7 @@ function foxy_search_content() {
 	<h1 class="page-title">Kết quả tìm kiếm</h1>
 	<?php
 	if ( have_posts() ) {
-		Foxy::post_layout( 'card' );
+		Foxy::post_layout( array('style' => 'card' ) );
 	} else {
 		foxy_no_content();
 	}
