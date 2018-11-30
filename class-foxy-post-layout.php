@@ -2,7 +2,7 @@
 
 class Foxy_Post_Layout {
 	public static function supported_post_layouts() {
-		return array(
+		$supported_layouts = array(
 			Foxy_Common::POST_LAYOUT_LIST_STYLE => __( 'List', 'foxy' ),
 			Foxy_Common::POST_LAYOUT_CARD_STYLE => __( 'Card', 'foxy' ),
 			Foxy_Common::POST_LAYOUT_LIST_TITLE_STYLE => __( 'List Only Title', 'foxy' ),
@@ -12,6 +12,7 @@ class Foxy_Post_Layout {
 			// Foxy_Common::POST_LAYOUT_LARGE_TOP_STYLE  => __( 'Top large block', 'foxy' ),
 			// Foxy_Common::POST_LAYOUT_LARGE_LEFT_STYLE => __( 'Left large block', 'foxy' ),
 		);
+		return apply_filters( 'foxy_post_layouts', $supported_layouts );
 	}
 
 	public static function column_styles() {
@@ -119,7 +120,7 @@ class Foxy_Post_Layout {
 			while ( $posts->have_posts() ) {
 				$posts->the_post();
 				$current_post_type = get_post_type();
-				if ( foxy_check_empty_hook( "foxy_post_layout_{$style}_loop" ) ) {
+				if ( foxy_check_empty_hook( "foxy_{$current_post_type}_layout_{$style}_loop" ) ) {
 					$template          = Foxy::search_template(
 						array()
 					);
@@ -137,7 +138,7 @@ class Foxy_Post_Layout {
 						);
 					}
 				} else {
-					do_action( "foxy_post_layout_{$style}_loop", $args, $widget_args );
+					do_action( "foxy_{$current_post_type}_layout_{$style}_loop", $args, $widget_args );
 				}
 			}
 
@@ -175,7 +176,7 @@ class Foxy_Post_Layout {
 			Foxy::ui()->tag(
 				array(
 					'name'  => 'section',
-					'class' => 'post-layout-wrap',
+					'class' => 'post-layout-wrap row',
 				)
 			);
 			do_action( 'foxy_post_layout_before_default_loop' );
