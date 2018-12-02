@@ -169,7 +169,7 @@ class Foxy_Setup {
 		add_action( 'after_setup_theme', array( $this, 'core_init' ) );
 		add_action( 'init', array( $this, 'menus' ), 33 );
 		add_action( 'init', array( $this, 'datas' ), 33 );
-		add_action( 'init', array( $this, 'layout_setup' ) );
+		add_action( 'wp', array( $this, 'layout_setup' ) );
 		add_action( 'widgets_init', array( $this, 'sidebars' ), 33 );
 		add_action( 'template_redirect', 'foxy_detect_page_template', 5 );
 	}
