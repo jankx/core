@@ -48,8 +48,9 @@ class Foxy_Post_Layout {
 			)
 		) {
 
+			$style = array_get( $layout_args, 'style', 'card' );
 			$loop_content_columns = apply_filters(
-				"foxy_loop_{$post_type}_columns",
+				"foxy_loop_{$post_type}_{$style}_columns",
 				array(
 					'mobile_columns'  => 12,
 					'tablet_columns'  => 6,
