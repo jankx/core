@@ -299,6 +299,10 @@ class Foxy_UI_Layout_Renderer {
 
 	public function render_something() {
 		add_filter( 'get_search_form', 'foxy_get_search_form' );
+		if ( empty( Foxy::custom_404_error_template() ) ) {
+			add_action( 'foxy_before_error_404_content', 'get_header', 3 );
+			add_action( 'foxy_after_error_404_content', 'get_footer', 3 );
+		}
 	}
 
 	/**
