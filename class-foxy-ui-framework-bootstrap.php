@@ -1,4 +1,4 @@
- <?php
+<?php
 /**
  * Bootstrap CSS framework driver for Foxy UI Framework
  *

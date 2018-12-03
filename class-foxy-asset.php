@@ -160,16 +160,12 @@ class Foxy_Asset {
 				call_user_func_array( 'wp_register_style', $args );
 			}
 		}
-		// Free up memory.
-		unset( $this->registered_css, $args );
 
 		if ( ! empty( $this->registered_js ) ) {
 			foreach ( $this->registered_js as $args ) {
 				call_user_func_array( 'wp_register_script', $args );
 			}
 		}
-		// Free up memory.
-		unset( $this->registered_js, $args );
 	}
 
 	public function call_scripts() {
@@ -178,16 +174,12 @@ class Foxy_Asset {
 				wp_enqueue_style( $css );
 			}
 		}
-		// Free up memory.
-		unset( $this->css, $css );
 
 		if ( is_array( $this->js ) && count( $this->js ) ) {
 			foreach ( $this->js as $js ) {
 				wp_enqueue_script( $js );
 			}
 		}
-		// Free up memory.
-		unset( $this->js, $js );
 	}
 
 	public function header() {
@@ -202,8 +194,6 @@ class Foxy_Asset {
 		);
 		echo implode( "\n", $this->styles ); // WPCS: XSS ok.
 		echo '</style>';
-		// Free up memory.
-		unset( $this->styles );
 	}
 
 	public function init_scripts() {
@@ -215,8 +205,6 @@ class Foxy_Asset {
 			<?php echo implode( "\n", $this->init_scripts ); // WPCS: XSS ok. ?>
 		</script>
 		<?php
-		// Free up memory.
-		unset( $this->init_scripts );
 	}
 
 	public function footer() {
@@ -230,7 +218,5 @@ class Foxy_Asset {
 			})(jQuery);
 		</script>
 		<?php
-		// Free up memory.
-		unset( $this->scripts );
 	}
 }

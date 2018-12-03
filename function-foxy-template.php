@@ -143,7 +143,7 @@ function foxy_single_content() {
 		endif;
 	}
 	do_action( 'foxy_after_single_main_content', $post_type );
-	do_action( "foxy_after_single_{$post_type}_content" );
+	do_action( "foxy_after_single_{$post_type}_content", $post_type );
 }
 
 
