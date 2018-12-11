@@ -93,6 +93,7 @@ class Foxy_Setup {
 	 * @return void
 	 */
 	public function define_constants() {
+		Foxy::define( 'FOXY_THEME_FRAMEWORK_VERSION', '1.0' );
 		Foxy::define( 'FOXY_FRAMEWORK_CORE', dirname( FOXY_FRAMEWORK_FILE ) . '/' );
 		Foxy::define( 'FOXY_ACTIVE_THEME_DIR', get_stylesheet_directory() . '/' );
 		Foxy::define( 'FOXY_TEMPLATE_DIR', get_template_directory() . '/' );
@@ -381,6 +382,11 @@ class Foxy_Setup {
 			sprintf( 'Foxy_UI_Framework_%s', ucfirst( $ui_framework_name ) ),
 			$ui_framework_name
 		);
+
+		if ( ! class_exists( $ui_framework_class_name ) ) {
+			return;
+		}
+
 		$this->foxy->set_ui_framework(
 			new $ui_framework_class_name()
 		);
