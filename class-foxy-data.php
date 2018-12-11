@@ -116,6 +116,10 @@ class Foxy_Data {
 			sprintf( 'Foxy_Meta_Framework_' . ucfirst( $meta_framework ) )
 		);
 
+		if ( ! class_exists( $meta_framework_class ) ) {
+			return;
+		}
+
 		Foxy::instance()->set_meta_framework(
 			new $meta_framework_class( $post_meta )
 		);
