@@ -5,6 +5,7 @@ class Foxy_UI_Framework_Admin extends Foxy_UI_Framework_Base {
 	 */
 	public function __construct() {
 		$this->init_class_names();
+		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
 	}
 
 	public function get_name() {
@@ -17,5 +18,19 @@ class Foxy_UI_Framework_Admin extends Foxy_UI_Framework_Base {
 		$this->tablet_class_prefix       = 'fxc-tab-';
 		$this->desktop_class_prefix      = 'fxc-desk-';
 		$this->extra_class_prefix        = 'fxc-xtra-';
+	}
+
+	public function enqueue_scripts() {
+		Foxy::asset()->script("$(document).ready(function(){
+				var firstel = $('.foxy-tabs .foxy-tab:first a').addClass('active').attr('href');
+				$(firstel).addClass('active');
+			});
+			$('.foxy-tabs .foxy-tab a').click(function(e){
+				e.preventDefault();
+				$('.foxy-tabs .foxy-tab .active').removeClass('active');
+				$('.foxy-fields-wrap.active').removeClass('active');
+			    var target = $(this).addClass('active').attr( 'href' );
+			    $(target).addClass('active');
+			});");
 	}
 }
