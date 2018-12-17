@@ -142,6 +142,7 @@ class Foxy_Post_Layout {
 					do_action( "foxy_{$current_post_type}_layout_{$style}_loop", $args, $widget_args );
 				}
 			}
+			wp_reset_postdata();
 
 			do_action( "foxy_post_layout_{$style}_end_loop", $args, $widget_args );
 			do_action( 'foxy_post_layout_after_loop', $args, $widget_args );
@@ -205,6 +206,7 @@ class Foxy_Post_Layout {
 					do_action( "foxy_post_layout_{$style}_loop" );
 				}
 			}
+			wp_reset_postdata();
 
 			do_action( "foxy_post_layout_{$style}_end_loop" );
 			do_action( 'foxy_post_layout_after_default_loop' );
