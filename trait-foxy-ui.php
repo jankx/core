@@ -266,4 +266,11 @@ trait Foxy_UI {
 	public function thumbnail() {
 
 	}
+
+	public function loading() {
+		Foxy::ui()->wrap( '.loading-wrap' );
+		Foxy::ui()->tag( array('class' => 'loading' ) );
+		Foxy::ui()->tag( array('close' => true ) );
+		Foxy::ui()->close_wrap();
+	}
 }
