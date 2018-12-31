@@ -222,3 +222,9 @@ function array_set_values( &$dest_arr, $values ) {
 		}
 	}
 }
+
+
+function foxy_addon_register_activation_hook( $addon_file, $activation_hook ) {
+	$hook_name = sprintf( '%s_activation_hook', $addon_file );
+	add_action( $hook_name, $activation_hook );
+}
