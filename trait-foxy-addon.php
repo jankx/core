@@ -105,7 +105,31 @@ trait Foxy_Addon {
 		if ( ! empty( $pre_get_active_addons ) && is_array( $pre_get_active_addons ) ) {
 			return $pre_get_active_addons;
 		}
-
+		add_action( 'foxy_loaded', array( __CLASS__, 'install_addons' ) );
 		return array_keys( self::get_addons() );
+	}
+
+	public static function get_installed_addons() {
+		return get_option( 'foxy_installed_addons', array() );
+	}
+
+	public static function is_addon_installed( $addon_file, $installed_addons = null ) {
+		if ( is_null( $addons ) ) {
+			$installed_addons = self::get_installed_addons();
+		}
+		return in_array( $addon_file, $installed_addons, true );
+	}
+
+	public static function install_addons() {
+		$addons = self::get_active_addons();
+		$installed_addons = Foxy::get_installed_addons();
+		foreach ( $addons as $addon ) {
+			if ( ! Foxy::is_addon_installed( $addon, $installed_addons ) ) {
+				$activate_hook = sprintf( '%s_activation_hook', $addon );
+				do_action( $activate_hook );
+				$installed_addons[] = $addon;
+			}
+		}
+		update_option( 'foxy_installed_addons', $installed_addons );
 	}
 }

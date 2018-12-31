@@ -59,4 +59,8 @@ trait Foxy_Option {
 			$default_value
 		);
 	}
+
+	public static function update_option( $option_name, $option_value ) {
+		update_option( $option_name, $option_value );
+	}
 }
