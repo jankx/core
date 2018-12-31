@@ -105,7 +105,9 @@ trait Foxy_Addon {
 		if ( ! empty( $pre_get_active_addons ) && is_array( $pre_get_active_addons ) ) {
 			return $pre_get_active_addons;
 		}
-		add_action( 'foxy_loaded', array( __CLASS__, 'install_addons' ) );
+		if ( is_admin() ) {
+			add_action( 'foxy_loaded', array( __CLASS__, 'install_addons' ) );
+		}
 		return array_keys( self::get_addons() );
 	}
 
@@ -114,7 +116,7 @@ trait Foxy_Addon {
 	}
 
 	public static function is_addon_installed( $addon_file, $installed_addons = null ) {
-		if ( is_null( $addons ) ) {
+		if ( is_null( $installed_addons ) ) {
 			$installed_addons = self::get_installed_addons();
 		}
 		return in_array( $addon_file, $installed_addons, true );
