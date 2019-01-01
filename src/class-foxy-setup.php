@@ -94,7 +94,7 @@ class Foxy_Setup {
 	 */
 	public function define_constants() {
 		Foxy::define( 'FOXY_THEME_FRAMEWORK_VERSION', '1.0' );
-		Foxy::define( 'FOXY_FRAMEWORK_CORE', dirname( FOXY_FRAMEWORK_FILE ) . '/' );
+		Foxy::define( 'FOXY_FRAMEWORK_CORE', dirname( FOXY_FRAMEWORK_FILE ) . '/src/' );
 		Foxy::define( 'FOXY_ACTIVE_THEME_DIR', get_stylesheet_directory() . '/' );
 		Foxy::define( 'FOXY_TEMPLATE_DIR', get_template_directory() . '/' );
 	}
@@ -115,7 +115,7 @@ class Foxy_Setup {
 	 * @return void
 	 */
 	public function compatibility() {
-		$foxy_dir = dirname( FOXY_FRAMEWORK_FILE ) . '/';
+		$foxy_dir = dirname( FOXY_FRAMEWORK_FILE ) . '/src/';
 
 		/**
 		 * WordPress compatibility
@@ -138,7 +138,7 @@ class Foxy_Setup {
 			function( $class_name ) use ( $search_prefixs ) {
 				foreach ( $search_prefixs as $prefix ) {
 					$real_file = sprintf(
-						'%1$s/%2$s-%3$s.php',
+						'%1$s/src/%2$s-%3$s.php',
 						dirname( FOXY_FRAMEWORK_FILE ),
 						$prefix,
 						$this->convert_class_to_file( $class_name )
