@@ -1,0 +1,18 @@
+{
+    "name": "foxy-theme-framework/core",
+    "description": "Foxy Core for theme framework",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "WPClouds",
+            "email": "foxy@wpclouds.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "files": [
+            "framework.php"
+        ]
+    }
+}

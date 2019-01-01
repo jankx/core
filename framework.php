@@ -18,7 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 if ( ! class_exists( 'Foxy' ) && ! defined( 'FOXY_FRAMEWORK_FILE' ) ) {
 	define( 'FOXY_FRAMEWORK_FILE', __FILE__ );
 
-	require_once dirname( FOXY_FRAMEWORK_FILE ) . '/class-foxy-setup.php';
+	require_once dirname( FOXY_FRAMEWORK_FILE ) . '/src/class-foxy-setup.php';
 	Foxy_Setup::initialize();
 }
 
