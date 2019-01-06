@@ -167,7 +167,7 @@ function foxy_no_content() {
 				'class' => 'no-content',
 			)
 		);
-		echo esc_html__( 'OOOP!!', 'foxy' );
+		echo esc_html__( 'OOOP, Rất tiếc!!', 'foxy' );
 		Foxy::ui()->tag(
 			array(
 				'name'    => 'h2',
@@ -176,7 +176,9 @@ function foxy_no_content() {
 			)
 		);
 		echo '<div class="no-content-desc">';
-			printf( esc_html__( 'Don\'t have anything', 'foxy' ) );
+			?>
+			Trang hiện tại chưa có nội dung. Xin vui lòng quay lại sau.
+			<?php
 		echo '</div>';
 	} else {
 		require $template;
