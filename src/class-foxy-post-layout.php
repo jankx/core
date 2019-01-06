@@ -123,7 +123,7 @@ class Foxy_Post_Layout {
 				$current_post_type = get_post_type();
 				if ( foxy_check_empty_hook( "foxy_{$current_post_type}_layout_{$style}_loop" ) ) {
 					$template          = Foxy::search_template(
-						array()
+						array( $current_post_type . '/' . $style . '.php' )
 					);
 					if ( ! empty( $template ) ) {
 						require $template;
