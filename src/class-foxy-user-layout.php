@@ -7,13 +7,13 @@ class Foxy_User_Layout {
 			'context' => 'user-layout-item',
 			'class' => 'item',
 		);
-		$has_carousel = ('use' === array_get($widget_args, 'use_carousel', false));
+		$has_carousel = ( 'use' === array_get( $widget_args, 'use_carousel', false ) );
 
-		if ($has_carousel) {
+		if ( $has_carousel ) {
 			$user_classes .= ' owl-carousel';
 		} else {
 			$user_classes .= ' row';
-			$tag = array_merge($tag, array(
+			$tag = array_merge( $tag, array(
 				'mobile_columns' => 12,
 				'tablet_columns' => 6,
 				'desktop_columns' => 4,
@@ -27,7 +27,7 @@ class Foxy_User_Layout {
 			<a href="<?php echo $user_link; ?>" title="<?php echo $user->display_name; ?>">
 				<div class="text-center">
 					<img src="<?php echo get_avatar_url( $user->email ); ?>" alt="<?php echo $user->display_name; ?>">
-				<?php if(!$has_carousel): ?><h4 class="name"><?php echo $user->display_name; ?></h4><?php endif; ?>
+				<?php if ( ! $has_carousel ): ?><h4 class="name"><?php echo $user->display_name; ?></h4><?php endif; ?>
 				</div>
 			</a>
 			</div>

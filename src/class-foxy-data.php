@@ -41,7 +41,6 @@ class Foxy_Data {
 		$this->register_taxonomies();
 		$this->register_post_metas();
 
-
 		// $this->add_terms_metas();
 		// $this->add_user_metas();
 	}
@@ -85,6 +84,7 @@ class Foxy_Data {
 						'hierarchical'          => true,
 						'show_ui'               => true,
 						'show_admin_column'     => true,
+						'show_in_rest'          => true,
 						'update_count_callback' => '_update_post_term_count',
 						'query_var'             => true,
 					)
@@ -115,7 +115,6 @@ class Foxy_Data {
 			'foxy_meta_framework_class',
 			sprintf( 'Foxy_Meta_Framework_' . ucfirst( $meta_framework ) )
 		);
-
 		if ( ! class_exists( $meta_framework_class ) ) {
 			return;
 		}
@@ -123,6 +122,7 @@ class Foxy_Data {
 		Foxy::instance()->set_meta_framework(
 			new $meta_framework_class( $post_meta )
 		);
+
 
 		/**
 		 * Adding Foxy meta data into WordPress
