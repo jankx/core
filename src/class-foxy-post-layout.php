@@ -42,7 +42,7 @@ class Foxy_Post_Layout {
 				empty( $widget_args ) ||
 				! in_array(
 					$widget_args['id'],
-					array( 'primary', 'second', 'home', 'realty-single', 'realty-archive' ),
+					array( 'primary', 'second', 'home-sidebar', 'realty-single', 'realty-archive' ),
 					true
 				)
 			)

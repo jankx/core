@@ -222,7 +222,7 @@ trait Foxy_UI {
 					'margin' => 20,
 				)
 			);
-			if ( in_array( $args['id'], array( 'primary', 'second' ), true ) ) {
+			if ( in_array( $args['id'], array( 'primary', 'second', 'home-sidebar', 'realty-single', 'realty-archive' ), true ) ) {
 				$carousel_options['items'] = 1;
 			} else {
 				$carousel_options['responsive'] = self::carousel_responsive_options( $args, $instance );
