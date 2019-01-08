@@ -1,18 +1,15 @@
 {
-    "name": "foxy-theme-framework/core",
-    "description": "Foxy Core for theme framework",
+    "name": "jankx/core",
+    "description": "This is the core of Jankx theme framework and is also usable on its own as embed framework",
     "type": "library",
     "license": "MIT",
     "authors": [
         {
-            "name": "WPClouds",
-            "email": "foxy@wpclouds.com"
+            "name": "Puleeno Nguyen",
+            "email": "puleeno@gmail.com"
         }
     ],
     "require": {},
     "autoload": {
-        "files": [
-            "framework.php"
-        ]
     }
 }
