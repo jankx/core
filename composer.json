@@ -11,7 +11,6 @@
     }
   ],
   "require": {
-    "jankx/admin": "dev-dev",
     "jankx/fields": "dev-dev",
     "jankx/options": "dev-dev",
     "jankx/assets": "dev-dev",
