@@ -1,25 +1,25 @@
 {
-    "name": "jankx/core",
-    "description": "This is the core of Jankx theme framework and is also usable on its own as embed framework",
-    "type": "library",
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "Puleeno Nguyen",
-            "email": "puleeno@gmail.com"
-        }
-    ],
-    "require": {
-        "jankx/admin": "dev-master",
-        "jankx/fields": "dev-master",
-        "jankx/options": "dev-master",
-        "jankx/assets": "dev-master",
-        "jankx/translation": "dev-master",
-        "jankx/template": "dev-master",
-        "jankx/ui-framework": "dev-master",
-        "jankx/data-types": "dev-master",
-        "jankx/human-number": "dev-master"
-    },
-    "autoload": {
+  "name": "jankx/core",
+  "description": "This is the core of Jankx theme framework and is also usable on its own as embed framework",
+  "type": "library",
+  "license": "MIT",
+  "minimum-stability": "dev",
+  "authors": [
+    {
+      "name": "Puleeno Nguyen",
+      "email": "puleeno@gmail.com"
     }
+  ],
+  "require": {
+    "jankx/admin": "dev-master",
+    "jankx/fields": "dev-master",
+    "jankx/options": "dev-master",
+    "jankx/assets": "dev-master",
+    "jankx/translation": "dev-master",
+    "jankx/template": "dev-master",
+    "jankx/ui-framework": "dev-master",
+    "jankx/data-types": "dev-master",
+    "jankx/human-number": "dev-master"
+  },
+  "autoload": {}
 }
