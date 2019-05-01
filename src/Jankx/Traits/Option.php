@@ -8,28 +8,29 @@
  * @link https://wpclouds.com
  */
 
+namespace Jankx\Core\Traits;
 /**
- * Foxy_Option trait
+ * Option trait
  */
-trait Foxy_Option {
+trait Option {
 	/**
 	 * Integrate option framework
 	 *
-	 * @var Foxy_Option_Base
+	 * @var Option_Base
 	 */
 	protected static $option_framework;
 
 	/**
 	 * Set option framework for Foxy Framework
 	 *
-	 * @param  Foxy_Option_Framework_Base $framework Option framework use in theme.
-	 * @throws Exception Throw exception if $framework is not instanceof Foxy_Option_Framework_Base class.
+	 * @param  Option_Framework_Base $framework Option framework use in theme.
+	 * @throws Exception Throw exception if $framework is not instanceof Option_Framework_Base class.
 	 * @return void
 	 */
 	public function set_option_framework( $framework ) {
-		if ( ! ( $framework instanceof Foxy_Option_Framework_Base ) ) {
+		if ( ! ( $framework instanceof Option_Framework_Base ) ) {
 			throw new Exception(
-				sprintf( 'Option Framework must be instance of %s class', 'Foxy_Option_Framework_Base' ),
+				sprintf( 'Option Framework must be instance of %s class', 'Option_Framework_Base' ),
 				333
 			);
 		}
@@ -48,7 +49,7 @@ trait Foxy_Option {
 	 * @return mixed
 	 */
 	public static function get_option( $option_name, $default_value = false ) {
-		$pre = apply_filters( 'foxy_option_' . $option_name, null );
+		$pre = apply_filters( 'option_' . $option_name, null );
 		if ( ! is_null( $pre ) ) {
 			return $pre;
 		}

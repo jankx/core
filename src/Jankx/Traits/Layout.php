@@ -8,10 +8,12 @@
  * @author Puleeno Nguyen <puleeno@gmail.com>
  */
 
+namespace Jankx\Core\Traits;
+
 /**
- * Foxy_Layout trait
+ * Layout trait
  */
-trait Foxy_Layout {
+trait LayoutTrait {
 	/**
 	 * Theme or page layout
 	 *
@@ -28,7 +30,7 @@ trait Foxy_Layout {
 	 */
 	public static function get_num_footer_widgets() {
 		return (int) apply_filters(
-			'foxy_num_footer_widgets',
+			'num_footer_widgets',
 			3
 		);
 	}
@@ -49,7 +51,7 @@ trait Foxy_Layout {
 	 */
 	public static function has_second_sidebar() {
 		return apply_filters(
-			'foxy_has_second_sidebar',
+			'has_second_sidebar',
 			true
 		);
 	}
@@ -61,16 +63,16 @@ trait Foxy_Layout {
 	 */
 	public static function get_default_layout() {
 		return apply_filters(
-			'foxy_default_layout',
-			Foxy_Common::LAYOUT_SIDEBAR_CONTENT
+			'default_layout',
+			Common::LAYOUT_SIDEBAR_CONTENT
 		);
 	}
 
 	public static function get_supported_layouts() {
 		$supported_layouts = array(
-			Foxy_Common::LAYOUT_CONTENT_SIDEBAR => __( 'Content-Sidebar', 'foxy' ),
-			Foxy_Common::LAYOUT_SIDEBAR_CONTENT => __( 'Sidebar-Content', 'foxy' ),
-			Foxy_Common::LAYOUT_FULL_WIDTH      => __( 'Full Width', 'foxy' ),
+			Common::LAYOUT_CONTENT_SIDEBAR => __( 'Content-Sidebar', 'foxy' ),
+			Common::LAYOUT_SIDEBAR_CONTENT => __( 'Sidebar-Content', 'foxy' ),
+			Common::LAYOUT_FULL_WIDTH      => __( 'Full Width', 'foxy' ),
 		);
 
 		if ( Foxy::has_second_sidebar() ) {
@@ -80,12 +82,12 @@ trait Foxy_Layout {
 				'LAYOUT_SIDEBAR_SIDEBAR_CONTENT' => __( 'Sidebar-Sidebar-Content', 'foxy' ),
 			);
 			foreach ( $second_sidebar_keys as $key => $label ) {
-				$key                       = constant( "Foxy_Common::{$key}" );
+				$key                       = constant( "Common::{$key}" );
 				$supported_layouts[ $key ] = $label;
 			}
 		}
 		return apply_filters(
-			'foxy_supported_layouts',
+			'supported_layouts',
 			$supported_layouts
 		);
 	}
@@ -115,12 +117,12 @@ trait Foxy_Layout {
 	public static function get_layout() {
 		$layout = self::$layout;
 		if ( is_singular() ) {
-			$layout = get_post_meta( get_the_ID(), 'foxy_site_layout', true );
+			$layout = get_post_meta( get_the_ID(), 'site_layout', true );
 		}
 		if ( '' === $layout ) {
 			$layout = self::get_default_layout();
 		}
-		return apply_filters( 'foxy_layout', $layout );
+		return apply_filters( 'layout', $layout );
 	}
 
 
@@ -131,7 +133,7 @@ trait Foxy_Layout {
 	 */
 	public static function content_has_container() {
 		return apply_filters(
-			'foxy_content_container',
+			'content_container',
 			true
 		);
 	}
@@ -140,7 +142,7 @@ trait Foxy_Layout {
 		$method = empty( $posts ) ? 'default_loop_layout' : __FUNCTION__;
 		return forward_static_call(
 			array(
-				Foxy_Post_Layout::class,
+				Post_Layout::class,
 				$method,
 			),
 			$args, $posts, $widget_args
@@ -150,7 +152,7 @@ trait Foxy_Layout {
 	public static function user_layout( $layout_args = array(), $users, $widget_args = null ) {
 		return forward_static_call(
 			array(
-				Foxy_User_Layout::class,
+				User_Layout::class,
 				__FUNCTION__,
 			),
 			$layout_args, $users, $widget_args

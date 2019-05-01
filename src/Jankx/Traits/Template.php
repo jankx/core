@@ -10,10 +10,11 @@
  * @link https://wpclouds.com
  */
 
+namespace Jankx\Core;
 /**
- * Foxy_Template trait
+ * Template trait
  */
-trait Foxy_Template {
+trait Template {
 	protected static $page_template = null;
 
 	public static function set_page_template( $page_template ) {
@@ -44,11 +45,11 @@ trait Foxy_Template {
 			if ( ! $template_name ) {
 				continue;
 			}
-			if ( file_exists( FOXY_ACTIVE_THEME_DIR . 'templates/' . $template_name ) ) {
-				$located = FOXY_ACTIVE_THEME_DIR . 'templates/' . $template_name;
+			if ( file_exists( ACTIVE_THEME_DIR . 'templates/' . $template_name ) ) {
+				$located = ACTIVE_THEME_DIR . 'templates/' . $template_name;
 				break;
-			} elseif ( file_exists( FOXY_TEMPLATE_DIR . 'templates/' . $template_name ) ) {
-				$located = FOXY_TEMPLATE_DIR . 'templates/' . $template_name;
+			} elseif ( file_exists( TEMPLATE_DIR . 'templates/' . $template_name ) ) {
+				$located = TEMPLATE_DIR . 'templates/' . $template_name;
 				break;
 			}
 		}

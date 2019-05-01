@@ -1,5 +1,7 @@
 <?php
-trait Foxy_Request {
+namespace Jankx\Core\Traits;
+
+trait Request {
 	public static function is_admin() {
 		return is_admin() && ! defined( 'DOING_AJAX' );
 	}

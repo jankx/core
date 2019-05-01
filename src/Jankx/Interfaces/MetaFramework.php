@@ -8,10 +8,12 @@
  * @license GPL
  */
 
+namespace Jankx\Core;
+
 /**
- * Foxy_Meta_Framework_Interface interface
+ * MetaFrameworkInterface interface
  */
-interface Foxy_Meta_Framework_Interface {
+interface MetaFrameworkInterface {
 	public function get( $meta_key, $post_id = null, $is_single = true );
 
 	public function set( $post_id, $meta_key, $value );

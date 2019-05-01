@@ -1,4 +1,6 @@
 <?php
+namespace Jankx\Core;
+
 class Foxy_Widget_Filters {
 	public function is_home() {
 

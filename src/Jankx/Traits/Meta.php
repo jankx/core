@@ -8,28 +8,29 @@
  * @link https://wpclouds.com
  */
 
+namespace Jankx\Core\Traits;
 /**
- * Foxy_Meta trait
+ * Meta trait
  */
-trait Foxy_Meta_Data {
+trait Meta {
 	/**
 	 * WordPress Meta Framework integrate with Foxy theme framework
 	 *
-	 * @var instaceof Foxy_Meta_Base
+	 * @var instaceof Meta_Base
 	 */
 	protected $meta_framework;
 
 	/**
 	 * Set Meta Framework for Foxy
 	 *
-	 * @param Foxy_Meta_Framework_Base $framework Foxy UI framework.
-	 * @throws \Exception Throw exception if $framework is not be instance of Foxy_UI_Framework_Base.
+	 * @param Meta_Framework_Base $framework Foxy UI framework.
+	 * @throws \Exception Throw exception if $framework is not be instance of UI_Framework_Base.
 	 * @return void
 	 */
 	public function set_meta_framework( $framework ) {
-		if ( ! ( $framework instanceof Foxy_Meta_Framework_Base ) ) {
+		if ( ! ( $framework instanceof Meta_Framework_Base ) ) {
 			throw new \Exception(
-				sprintf( 'Meta Framework must be instance of %s class', 'Foxy_Meta_Framework_Base' ),
+				sprintf( 'Meta Framework must be instance of %s class', 'Meta_Framework_Base' ),
 				333
 			);
 		}
@@ -57,7 +58,7 @@ trait Foxy_Meta_Data {
 	public static function get_meta( $meta_key, $post_id = null, $single = true ) {
 		return get_metadata(
 			'post',
-			foxy_get_object_id( $post_id, WP_Post::class ),
+			get_object_id( $post_id, WP_Post::class ),
 			$meta_key,
 			$single
 		);
@@ -84,7 +85,7 @@ trait Foxy_Meta_Data {
 	public static function user_meta( $meta_key, $user_id = null, $single = true ) {
 		return get_metadata(
 			'user',
-			foxy_get_object_id( $user_id, WP_User::class ),
+			get_object_id( $user_id, WP_User::class ),
 			$meta_key,
 			$single
 		);
@@ -93,7 +94,7 @@ trait Foxy_Meta_Data {
 	public static function term_meta( $meta_key, $term_id, $single = true ) {
 		return get_metadata(
 			'term',
-			foxy_get_object_id( $term_id, WP_Term::class ),
+			get_object_id( $term_id, WP_Term::class ),
 			$meta_key,
 			$single
 		);

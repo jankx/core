@@ -7,10 +7,12 @@
  * @author Puleeno Nguyen <puleeno@gmail.com>
  */
 
+namespace Jankx\Core\Traits;
+
 /**
- * Foxy_Addon trait
+ * Addon trait
  */
-trait Foxy_Addon {
+trait Addon {
 	/**
 	 * Foxy addon header
 	 * List header info will be used when parse addon info from file comments.
@@ -59,7 +61,7 @@ trait Foxy_Addon {
 	 * @return string
 	 */
 	public static function get_addons_directory() {
-		return apply_filters( 'foxy_addon_directory', FOXY_ACTIVE_THEME_DIR . 'addons' );
+		return apply_filters( 'addon_directory', ACTIVE_THEME_DIR . 'addons' );
 	}
 
 	/**
@@ -101,18 +103,18 @@ trait Foxy_Addon {
 		 *
 		 * @todo Build foxy addons manager feature
 		 */
-		$pre_get_active_addons = apply_filters( 'foxy_active_addons', array() );
+		$pre_get_active_addons = apply_filters( 'active_addons', array() );
 		if ( ! empty( $pre_get_active_addons ) && is_array( $pre_get_active_addons ) ) {
 			return $pre_get_active_addons;
 		}
 		if ( is_admin() ) {
-			add_action( 'foxy_loaded', array( __CLASS__, 'install_addons' ) );
+			add_action( 'loaded', array( __CLASS__, 'install_addons' ) );
 		}
 		return array_keys( self::get_addons() );
 	}
 
 	public static function get_installed_addons() {
-		return get_option( 'foxy_installed_addons', array() );
+		return get_option( 'installed_addons', array() );
 	}
 
 	public static function is_addon_installed( $addon_file, $installed_addons = null ) {
@@ -132,6 +134,6 @@ trait Foxy_Addon {
 				$installed_addons[] = $addon;
 			}
 		}
-		update_option( 'foxy_installed_addons', $installed_addons );
+		update_option( 'installed_addons', $installed_addons );
 	}
 }

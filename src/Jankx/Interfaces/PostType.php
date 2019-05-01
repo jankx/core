@@ -1,5 +1,7 @@
 <?php
 
+namespace Jankx\Core;
+
 interface Foxy_Post_Type_Interface {
 	public function get();
 

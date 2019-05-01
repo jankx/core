@@ -1,34 +1,44 @@
 <?php
 /**
- * Foxy framework main class
+ * Jankx framework main class
  *
- * @package Foxy/Core
+ * @package Jankx/Core
  * @author Puleeno Nguyen
  * @license GPL-3
  */
 
+use Jankx\Core;
+
 /**
- * Foxy class
+ * Jankx class
  */
-class Foxy {
+class Jankx {
 	/**
-	 * Use foxy traits
+	 * Use Jankx traits
 	 */
-	use Foxy_Option, Foxy_Config, Foxy_Plugin, Foxy_Addon, Foxy_Meta_Data, Foxy_Request, Foxy_Layout, Foxy_Template, Foxy_UI;
+	use OptionTrait,
+	ConfigTrait,
+	PluginTrait,
+	AddonTrait,
+	Meta_DataTrait,
+	RequestTrait,
+	LayoutTrait,
+	TemplateTrait,
+	UITrait;
 
 	const CORE_VERSION = '1.0.0';
 
 	/**
-	 * Foxy main instance
+	 * Jankx main instance
 	 *
-	 * @var Foxy
+	 * @var Jankx
 	 */
 	protected static $instance;
 
 	/**
-	 * This method use to get Foxy instance
+	 * This method use to get Jankx instance
 	 *
-	 * @return Foxy
+	 * @return Jankx
 	 */
 	public static function instance() {
 		if ( is_null( self::$instance ) ) {
@@ -38,9 +48,9 @@ class Foxy {
 	}
 
 	/**
-	 * Foxy overload method to get foxy addon instance
+	 * Jankx overload method to get Jankx addon instance
 	 *
-	 * @param string $method Foxy addon name.
+	 * @param string $method Jankx addon name.
 	 * @param array  $args   Arguments is used in method.
 	 * @return mixed
 	 */
@@ -51,9 +61,9 @@ class Foxy {
 	}
 
 	/**
-	 * Foxy overload method to get foxy addon instance
+	 * Jankx overload method to get Jankx addon instance
 	 *
-	 * @param string $method Foxy addon name.
+	 * @param string $method Jankx addon name.
 	 * @param array  $args   Arguments is used in method.
 	 * @return mixed
 	 */

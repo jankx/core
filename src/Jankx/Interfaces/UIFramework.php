@@ -9,6 +9,8 @@
  * @link https://wpclouds.com
  */
 
+namespace Jankx\Core;
+
 /**
  * Foxy_UI_Framework_Interface interface
  */

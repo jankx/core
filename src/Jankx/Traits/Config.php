@@ -8,10 +8,11 @@
  * @link https://wpclouds.com
  */
 
+namespace Jankx\Core\Traits;
 /**
- * Foxy_Config class
+ * Config class
  */
-trait Foxy_Config {
+trait Config {
 	/**
 	 * Get foxy config from PHP file
 	 *
@@ -21,9 +22,9 @@ trait Foxy_Config {
 	 */
 	public static function load_config( $config_file, $default_value = false ) {
 		$config_diretories = apply_filters(
-			'foxy_config_directories', array(
-				FOXY_ACTIVE_THEME_DIR . 'configs/',
-				FOXY_TEMPLATE_DIR . 'configs/',
+			'config_directories', array(
+				ACTIVE_THEME_DIR . 'configs/',
+				TEMPLATE_DIR . 'configs/',
 			)
 		);
 

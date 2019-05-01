@@ -8,10 +8,11 @@
  * @link https://wpclouds.com
  */
 
+namespace Jankx\Core\Traits;
 /**
- * Foxy_UI trait
+ * UI trait
  */
-trait Foxy_UI {
+trait UI {
 	/**
 	 * UI Framework use in Foxy framework
 	 * Current supportes:
@@ -25,14 +26,14 @@ trait Foxy_UI {
 	/**
 	 * Set UI Framework for Foxy Framework
 	 *
-	 * @param Foxy_UI_Framework_Base $framework Foxy UI framework.
-	 * @throws \Exception Throw exception if $framework is not be instance of Foxy_UI_Framework_Base.
+	 * @param UI_Framework_Base $framework Foxy UI framework.
+	 * @throws \Exception Throw exception if $framework is not be instance of UI_Framework_Base.
 	 * @return void
 	 */
 	public function set_ui_framework( $framework ) {
-		if ( ! ( $framework instanceof Foxy_UI_Framework_Base ) ) {
+		if ( ! ( $framework instanceof UI_Framework_Base ) ) {
 			throw new \Exception(
-				sprintf( 'UI Framework must be instance of %s class', 'Foxy_UI_Framework_Base' ),
+				sprintf( 'UI Framework must be instance of %s class', 'UI_Framework_Base' ),
 				333
 			);
 		}
@@ -47,7 +48,7 @@ trait Foxy_UI {
 	}
 
 	public static function get_ui_framework() {
-		return apply_filters( 'foxy_default_ui_framework', 'bootstrap' );
+		return apply_filters( 'default_ui_framework', 'bootstrap' );
 	}
 
 	/**
@@ -64,7 +65,7 @@ trait Foxy_UI {
 		$template     = '<h%1$d id="site-brand-logo" class="%2$s">
 			<a href="%3$s" title="%4$s">%4$s</a>
 		</h%1$d>';
-		$logo_classes = apply_filters( 'foxy_logo_class_name', 'site-logo' );
+		$logo_classes = apply_filters( 'logo_class_name', 'site-logo' );
 
 		// phpcs:ignore
 		printf( $template, $wrap_tag, $logo_classes, home_url(), get_bloginfo( 'name' ) );
@@ -84,7 +85,7 @@ trait Foxy_UI {
 		$args = wp_parse_args(
 			$original_args,
 			apply_filters(
-				'foxy_default_ui_menu_args', array(
+				'default_ui_menu_args', array(
 					'theme_location'   => $location,
 					'show_logo'        => false,
 					'alternative_logo' => false,
@@ -97,7 +98,7 @@ trait Foxy_UI {
 		/**
 		 * Filter menu args by theme location
 		 */
-		$args = apply_filters( "foxy_ui_menu_{$location}_args", $args, $location );
+		$args = apply_filters( "ui_menu_{$location}_args", $args, $location );
 
 		/**
 		 * Reset args to don't use UI Framework
@@ -109,14 +110,14 @@ trait Foxy_UI {
 		/**
 		 * Rendering menu template
 		 */
-		do_action( 'foxy_before_render_menu', $args, $location );
-		do_action( "foxy_before_render_{$location}_menu", $args, $location );
+		do_action( 'before_render_menu', $args, $location );
+		do_action( "before_render_{$location}_menu", $args, $location );
 		wp_nav_menu( $args );
 		if ( array_get( $args, 'search_form', false ) ) {
 			Foxy::template( 'searchform.php' );
 		}
-		do_action( "foxy_after_render_{$location}_menu", $args, $location );
-		do_action( 'foxy_after_render_menu', $args, $location );
+		do_action( "after_render_{$location}_menu", $args, $location );
+		do_action( 'after_render_menu', $args, $location );
 	}
 
 	/**
@@ -128,7 +129,7 @@ trait Foxy_UI {
 	 */
 	protected static function reset_menu_args( &$args, $original_args ) {
 		$menu_reset_args = apply_filters(
-			'foxy_reset_menu_args', array(
+			'reset_menu_args', array(
 				'container_class' => 'navigation raw-menu',
 				'container_id'    => 'foxy-menu-' . $args['theme_location'],
 				'fallback_cb'     => '',
@@ -151,7 +152,7 @@ trait Foxy_UI {
 	 * @return string
 	 */
 	public static function get_main_menu() {
-		return apply_filters( 'foxy_default_main_menu_location', 'primary' );
+		return apply_filters( 'default_main_menu_location', 'primary' );
 	}
 
 	/**
@@ -171,14 +172,14 @@ trait Foxy_UI {
 	 */
 	public static function footer_widgets() {
 		$num_footer_widgets = self::get_num_footer_widgets();
-		do_action( 'foxy_before_footer_widget_loop', $num_footer_widgets );
+		do_action( 'before_footer_widget_loop', $num_footer_widgets );
 		for ( $index = 1; $index <= $num_footer_widgets; $index++ ) {
 			$sidebar_id = 'footer-' . $index;
-			do_action( 'foxy_before_footer_widget', $sidebar_id, $num_footer_widgets );
+			do_action( 'before_footer_widget', $sidebar_id, $num_footer_widgets );
 				dynamic_sidebar( $sidebar_id );
-			do_action( 'foxy_after_footer_widget', $sidebar_id, $num_footer_widgets );
+			do_action( 'after_footer_widget', $sidebar_id, $num_footer_widgets );
 		}
-		do_action( 'foxy_after_footer_widget_loop', $num_footer_widgets );
+		do_action( 'after_footer_widget_loop', $num_footer_widgets );
 	}
 
 	/**
@@ -188,12 +189,12 @@ trait Foxy_UI {
 	 * @return boolean
 	 */
 	public static function has_title( $post_id = null ) {
-		return 'yes' !== Foxy::get_meta( 'foxy_hide_post_title', $post_id, true );
+		return 'yes' !== Foxy::get_meta( 'hide_post_title', $post_id, true );
 	}
 
 	private static function carousel_responsive_options( $args, $instance ) {
 		$responsive = apply_filters(
-			'foxy_widget_default_carousel_responsive',
+			'widget_default_carousel_responsive',
 			array(
 				0    => (object) array(
 					'items' => 1,
@@ -209,13 +210,13 @@ trait Foxy_UI {
 				),
 			)
 		);
-		return apply_filters( "foxy_widget_{$args['widget_id']}_carousel_responsive", $responsive );
+		return apply_filters( "widget_{$args['widget_id']}_carousel_responsive", $responsive );
 	}
 
 	public static function carousel_options( $use_carousel, $args, $instance ) {
 		if ( $use_carousel ) {
 			$carousel_options = apply_filters(
-				'foxy_default_carousel_options',
+				'default_carousel_options',
 				array(
 					'loop'   => true,
 					'nav'    => true,
@@ -270,7 +271,7 @@ trait Foxy_UI {
 	public static function loading() {
 		Foxy::ui()->wrap( 'loading-wrap' );
 		Foxy::ui()->tag( array( 'class' => 'loading' ) );
-		do_action( 'foxy_ui_loading' );
+		do_action( 'ui_loading' );
 		Foxy::ui()->tag( array( 'close' => true ) );
 		Foxy::ui()->close_wrap();
 	}

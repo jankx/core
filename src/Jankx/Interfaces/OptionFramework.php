@@ -1,5 +1,8 @@
 <?php
-interface Foxy_Option_Framework_Interface {
+
+namespace Jankx\Core;
+
+interface OptionFrameworkInterface {
 	public function id( $id );
 
 	public function load_options( $id, $refresh = false );
