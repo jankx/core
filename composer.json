@@ -11,6 +11,15 @@
     }
   ],
   "require": {
+    "jankx/admin": "dev-dev",
+    "jankx/fields": "dev-dev",
+    "jankx/options": "dev-dev",
+    "jankx/assets": "dev-dev",
+    "jankx/translation": "dev-dev",
+    "jankx/template": "dev-dev",
+    "jankx/ui-framework": "dev-dev",
+    "jankx/data-types": "dev-dev",
+    "jankx/human-number": "dev-dev"
   },
   "autoload": {}
 }
