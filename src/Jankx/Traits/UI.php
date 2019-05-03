@@ -1,11 +1,11 @@
 <?php
 /**
- * Foxy UI
+ * Jankx UI
  *
- * @package Foxy/Core
+ * @package Jankx/Core
  * @subpackage UI
  * @author Puleeno Nguyen <puleeno@gmail.com>
- * @link https://wpclouds.com
+ * @link https://puleeno.com
  */
 
 namespace Jankx\Core\Traits;
@@ -14,7 +14,7 @@ namespace Jankx\Core\Traits;
  */
 trait UI {
 	/**
-	 * UI Framework use in Foxy framework
+	 * UI Framework use in Jankx framework
 	 * Current supportes:
 	 *  - Bootstrap
 	 *  - Gris
@@ -24,9 +24,9 @@ trait UI {
 	protected $ui_framework;
 
 	/**
-	 * Set UI Framework for Foxy Framework
+	 * Set UI Framework for Jankx Framework
 	 *
-	 * @param UI_Framework_Base $framework Foxy UI framework.
+	 * @param UI_Framework_Base $framework Jankx UI framework.
 	 * @throws \Exception Throw exception if $framework is not be instance of UI_Framework_Base.
 	 * @return void
 	 */
@@ -40,7 +40,7 @@ trait UI {
 		$this->ui_framework = $framework;
 
 		/**
-		 * Create UI Closure for Foxy
+		 * Create UI Closure for Jankx
 		 */
 		$this->ui = function() {
 			return $this->ui_framework;
@@ -52,7 +52,7 @@ trait UI {
 	}
 
 	/**
-	 * Foxy logo render HTML
+	 * Jankx logo render HTML
 	 *
 	 * @param boolean $alternate_logo Load second logo from theme settings.
 	 * @return void
@@ -72,7 +72,7 @@ trait UI {
 	}
 
 	/**
-	 * Foxy UI show menu
+	 * Jankx UI show menu
 	 *
 	 * @param string $location Menu location need to render.
 	 * @param array  $original_args Menu args use to render menu.
@@ -80,7 +80,7 @@ trait UI {
 	 */
 	public static function menu( $location, $original_args = array() ) {
 		/**
-		 * Parse menu args with Foxy menu args default value
+		 * Parse menu args with Jankx menu args default value
 		 */
 		$args = wp_parse_args(
 			$original_args,
@@ -114,7 +114,7 @@ trait UI {
 		do_action( "before_render_{$location}_menu", $args, $location );
 		wp_nav_menu( $args );
 		if ( array_get( $args, 'search_form', false ) ) {
-			Foxy::template( 'searchform.php' );
+			Jankx::template( 'searchform.php' );
 		}
 		do_action( "after_render_{$location}_menu", $args, $location );
 		do_action( 'after_render_menu', $args, $location );
@@ -131,7 +131,7 @@ trait UI {
 		$menu_reset_args = apply_filters(
 			'reset_menu_args', array(
 				'container_class' => 'navigation raw-menu',
-				'container_id'    => 'foxy-menu-' . $args['theme_location'],
+				'container_id'    => 'jankx-menu-' . $args['theme_location'],
 				'fallback_cb'     => '',
 				'walker'          => '',
 			)
@@ -189,7 +189,7 @@ trait UI {
 	 * @return boolean
 	 */
 	public static function has_title( $post_id = null ) {
-		return 'yes' !== Foxy::get_meta( 'hide_post_title', $post_id, true );
+		return 'yes' !== Jankx::get_meta( 'hide_post_title', $post_id, true );
 	}
 
 	private static function carousel_responsive_options( $args, $instance ) {
@@ -228,7 +228,7 @@ trait UI {
 			} else {
 				$carousel_options['responsive'] = self::carousel_responsive_options( $args, $instance );
 			}
-			Foxy::asset()->lib( 'carousel' )->script(
+			Jankx::asset()->lib( 'carousel' )->script(
 				sprintf(
 					'$(\'#%s .owl-carousel\').owlCarousel(%s);',
 					$args['widget_id'],
@@ -269,10 +269,10 @@ trait UI {
 	}
 
 	public static function loading() {
-		Foxy::ui()->wrap( 'loading-wrap' );
-		Foxy::ui()->tag( array( 'class' => 'loading' ) );
+		Jankx::ui()->wrap( 'loading-wrap' );
+		Jankx::ui()->tag( array( 'class' => 'loading' ) );
 		do_action( 'ui_loading' );
-		Foxy::ui()->tag( array( 'close' => true ) );
-		Foxy::ui()->close_wrap();
+		Jankx::ui()->tag( array( 'close' => true ) );
+		Jankx::ui()->close_wrap();
 	}
 }

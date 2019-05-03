@@ -1,37 +1,37 @@
 <?php
 /**
- * Foxy Framework
+ * Jankx Framework
  *
- * @package Foxy/Core
+ * @package Jankx/Core
  * @author Puleeno Nguyen <puleeno@gmail.com>
- * @license GPL-3
- * @link https://wpclouds.com
+ * @license @license GPL
+ * @link https://puleeno.com
  */
 
 /**
- * Foxy_Setup class will create Foxy instance and setup all theme features
+ * Jankx_Setup class will create Jankx instance and setup all theme features
  *
  * @since 1.0.0
  */
-class Foxy_Setup {
+class Jankx_Setup {
 	/**
-	 * Foxy_Setup instance
+	 * Jankx_Setup instance
 	 *
-	 * @var Foxy_Setup
+	 * @var Jankx_Setup
 	 */
 	protected static $instance;
 
 	/**
-	 * Foxy instance
+	 * Jankx instance
 	 *
-	 * @var Foxy
+	 * @var Jankx
 	 */
-	protected $foxy;
+	protected $jankx;
 
 	/**
-	 * Foxy initialize
+	 * Jankx initialize
 	 *
-	 * @return Foxy_Setup instance
+	 * @return Jankx_Setup instance
 	 */
 	public static function initialize() {
 		if ( is_null( self::$instance ) ) {
@@ -41,62 +41,62 @@ class Foxy_Setup {
 	}
 
 	/**
-	 * Class Foxy_Setup constructor
+	 * Class Jankx_Setup constructor
 	 *
 	 * Define constants, register autoload and init hooks
 	 */
 	public function __construct() {
 		/**
-		 * Foxy compatibility with other thirdparty
+		 * Jankx compatibility with other thirdparty
 		 */
 		$this->compatibility();
 
 		// Register autoload class.
 		$this->autoload();
 
-		// Define foxy constants.
+		// Define jankx constants.
 		$this->define_constants();
 
 		/**
-		 * Include foxy helpers
+		 * Include jankx helpers
 		 */
 		$this->includes();
 
-		$this->foxy = Foxy::instance();
+		$this->jankx = Jankx::instance();
 
 		// Init action & filter hooks.
 		$this->init_hooks();
 
-		// Load foxy addons.
+		// Load jankx addons.
 		$this->load_addons();
 
 		$this->load_options();
 
-		if(Foxy::is_frontend() || Foxy::is_admin()) {
+		if(Jankx::is_frontend() || Jankx::is_admin()) {
 			$this->load_assets();
 		}
 
-		if ( Foxy::is_admin() ) {
-			Foxy_Admin::instance();
+		if ( Jankx::is_admin() ) {
+			Jankx_Admin::instance();
 		}
-		// Set foxy instance to global for other integrate.
-		$GLOBALS['foxy'] = $this->foxy;
+		// Set jankx instance to global for other integrate.
+		$GLOBALS['jankx'] = $this->jankx;
 
-		do_action( 'foxy_loaded' );
+		do_action( 'jankx_loaded' );
 	}
 
 
 
 	/**
-	 * Define all constant will be used in Foxy Core
+	 * Define all constant will be used in Jankx Core
 	 *
 	 * @return void
 	 */
 	public function define_constants() {
-		Foxy::define( 'FOXY_THEME_FRAMEWORK_VERSION', '1.0' );
-		Foxy::define( 'FOXY_FRAMEWORK_CORE', dirname( FOXY_FRAMEWORK_FILE ) . '/src/' );
-		Foxy::define( 'FOXY_ACTIVE_THEME_DIR', get_stylesheet_directory() . '/' );
-		Foxy::define( 'FOXY_TEMPLATE_DIR', get_template_directory() . '/' );
+		Jankx::define( 'JANKX_THEME_FRAMEWORK_VERSION', '1.0' );
+		Jankx::define( 'JANKX_FRAMEWORK_CORE', dirname( JANKX_FRAMEWORK_FILE ) . '/src/' );
+		Jankx::define( 'JANKX_ACTIVE_THEME_DIR', get_stylesheet_directory() . '/' );
+		Jankx::define( 'JANKX_TEMPLATE_DIR', get_template_directory() . '/' );
 	}
 
 	/**
@@ -110,21 +110,21 @@ class Foxy_Setup {
 	}
 
 	/**
-	 * Foxy compatibility
+	 * Jankx compatibility
 	 *
 	 * @return void
 	 */
 	public function compatibility() {
-		$foxy_dir = dirname( FOXY_FRAMEWORK_FILE ) . '/src/';
+		$jankx_dir = dirname( JANKX_FRAMEWORK_FILE ) . '/src/';
 
 		/**
 		 * WordPress compatibility
 		 */
-		require_once $foxy_dir . 'function-wordpress-compatibility.php';
-		require_once $foxy_dir . 'function-foxy-helpers.php';
+		require_once $jankx_dir . 'function-wordpress-compatibility.php';
+		require_once $jankx_dir . 'function-jankx-helpers.php';
 
 		// Free up memory.
-		unset( $foxy_dir );
+		unset( $jankx_dir );
 	}
 
 	/**
@@ -139,7 +139,7 @@ class Foxy_Setup {
 				foreach ( $search_prefixs as $prefix ) {
 					$real_file = sprintf(
 						'%1$s/src/%2$s-%3$s.php',
-						dirname( FOXY_FRAMEWORK_FILE ),
+						dirname( JANKX_FRAMEWORK_FILE ),
 						$prefix,
 						$this->convert_class_to_file( $class_name )
 					);
@@ -152,17 +152,17 @@ class Foxy_Setup {
 	}
 
 	/**
-	 * Include foxy helpers and nested files
+	 * Include jankx helpers and nested files
 	 *
 	 * @return void
 	 */
 	public function includes() {
-		require_once FOXY_FRAMEWORK_CORE . 'function-foxy-template.php';
-		require_once FOXY_FRAMEWORK_CORE . 'function-foxy-content-template.php';
+		require_once JANKX_FRAMEWORK_CORE . 'function-jankx-template.php';
+		require_once JANKX_FRAMEWORK_CORE . 'function-jankx-content-template.php';
 	}
 
 	/**
-	 * Init hooks for Foxy core
+	 * Init hooks for Jankx core
 	 *
 	 * @return void
 	 */
@@ -172,11 +172,11 @@ class Foxy_Setup {
 		add_action( 'init', array( $this, 'datas' ), 33 );
 		add_action( 'wp', array( $this, 'layout_setup' ) );
 		add_action( 'widgets_init', array( $this, 'sidebars' ), 33 );
-		add_action( 'template_redirect', 'foxy_detect_page_template', 5 );
+		add_action( 'template_redirect', 'jankx_detect_page_template', 5 );
 	}
 
 	/**
-	 * Foxy core initilize
+	 * Jankx core initilize
 	 *
 	 * @return void
 	 */
@@ -191,7 +191,7 @@ class Foxy_Setup {
 		 */
 		add_theme_support( 'post-formats', array( 'aside', 'standard', 'image', 'video' ) );
 
-		Foxy_Shortcodes::shortcodes();
+		Jankx_Shortcodes::shortcodes();
 	}
 
 	/**
@@ -200,14 +200,14 @@ class Foxy_Setup {
 	 * @return void
 	 */
 	public function menus() {
-		$nav_menus = Foxy::load_config(
+		$nav_menus = Jankx::load_config(
 			'menu.php',
 			apply_filters(
-				'foxy_nav_menus',
+				'jankx_nav_menus',
 				array(
-					'primary'     => __( 'Primary Navigation', 'foxy' ),
-					'top-menu'    => __( 'Top Menu', 'foxy' ),
-					'bottom-menu' => __('Bottom Menu', 'foxy'),
+					'primary'     => __( 'Primary Navigation', 'jankx' ),
+					'top-menu'    => __( 'Top Menu', 'jankx' ),
+					'bottom-menu' => __('Bottom Menu', 'jankx'),
 				)
 			)
 		);
@@ -227,7 +227,7 @@ class Foxy_Setup {
 		 * Default sidebar args
 		 */
 		$sidebar_args = apply_filters(
-			'foxy_footer_widgets_defaults_args', array(
+			'jankx_footer_widgets_defaults_args', array(
 				'before_widget' => '<div id="%1$s" class="widget %2$s">',
 				'after_widget'  => '</div>',
 				'before_title'  => '<h3 class="widget-title">',
@@ -239,29 +239,29 @@ class Foxy_Setup {
 		 * Primary sidebar args
 		 */
 		$primary_sidebar_args = apply_filters(
-			'foxy_primary_sidebar_args',
+			'jankx_primary_sidebar_args',
 			wp_parse_args(
 				array(
 					'id'          => 'primary',
-					'name'        => __( 'Primary Sidebar', 'foxy' ),
-					'description' => __( 'Primary sidebar wiget area', 'foxy' ),
+					'name'        => __( 'Primary Sidebar', 'jankx' ),
+					'description' => __( 'Primary sidebar wiget area', 'jankx' ),
 				),
 				$sidebar_args
 			)
 		);
 		register_sidebar( $primary_sidebar_args );
 
-		if ( Foxy::has_second_sidebar() ) {
+		if ( Jankx::has_second_sidebar() ) {
 			/**
 			 * Second sidebar args
 			 */
 			$primary_sidebar_args = apply_filters(
-				'foxy_second_sidebar_args',
+				'jankx_second_sidebar_args',
 				wp_parse_args(
 					array(
 						'id'          => 'second',
-						'name'        => __( 'Second Sidebar', 'foxy' ),
-						'description' => __( 'Second sidebar wiget area', 'foxy' ),
+						'name'        => __( 'Second Sidebar', 'jankx' ),
+						'description' => __( 'Second sidebar wiget area', 'jankx' ),
 					),
 					$sidebar_args
 				)
@@ -273,7 +273,7 @@ class Foxy_Setup {
 		 * Action hook for add other sidebar
 		 * Integrate with other plugins and theme functions.
 		 */
-		do_action( 'foxy_register_additional_sidebars', $sidebar_args );
+		do_action( 'jankx_register_additional_sidebars', $sidebar_args );
 
 		$this->register_footer_widgets( $sidebar_args );
 	}
@@ -288,25 +288,25 @@ class Foxy_Setup {
 		/**
 		 * Get number of footer widgets
 		 */
-		$num_footer_widgets = Foxy::get_num_footer_widgets();
+		$num_footer_widgets = Jankx::get_num_footer_widgets();
 
 		/**
 		 * Footer sidebar default args
 		 */
-		$sidebar_args = apply_filters( 'foxy_sidebar_default_footer_args', $sidebar_args );
+		$sidebar_args = apply_filters( 'jankx_sidebar_default_footer_args', $sidebar_args );
 
 		for ( $index = 1; $index <= $num_footer_widgets; $index++ ) {
 			$sidebar_args['id'] = sprintf( 'footer-%d', $index );
 
 			/* translators: %s: Footer widget index */
-			$sidebar_args['name'] = sprintf( __( 'Footer %d', 'foxy' ), $index );
+			$sidebar_args['name'] = sprintf( __( 'Footer %d', 'jankx' ), $index );
 
 			/* translators: %s: Footer widget area */
-			$sidebar_args['description'] = sprintf( __( 'Footer %d widget area', 'foxy' ), $index );
+			$sidebar_args['description'] = sprintf( __( 'Footer %d widget area', 'jankx' ), $index );
 			/**
 			 * Create filter hooks for footer widget
 			 */
-			$sidebar_args = apply_filters( "foxy_sidebar_footer_{$index}_args", $sidebar_args );
+			$sidebar_args = apply_filters( "jankx_sidebar_footer_{$index}_args", $sidebar_args );
 
 			/**
 			 * Register sidebar
@@ -324,44 +324,44 @@ class Foxy_Setup {
 	 */
 	public function datas() {
 		/**
-		 * Get instance of Foxy_Data to register data
+		 * Get instance of Jankx_Data to register data
 		 */
-		Foxy_Data::instance();
+		Jankx_Data::instance();
 
 	}
 
 	/**
-	 * Load foxy addons
+	 * Load jankx addons
 	 *
 	 * @return void
 	 */
 	public function load_addons() {
 		/**
-		 * Get active foxy addons
+		 * Get active jankx addons
 		 */
-		$addons = Foxy::get_active_addons();
+		$addons = Jankx::get_active_addons();
 		foreach ( $addons as $addon ) {
 			require_once $addon;
 		}
 	}
 
 	public function load_options() {
-		$this->foxy->set_option_framework( new Foxy_Option_Framework_Redux() );
+		$this->jankx->set_option_framework( new Jankx_Option_Framework_Redux() );
 	}
 
 
 	public function load_assets() {
 		/**
-		 * Set foxy asset instance to foxy core.
+		 * Set jankx asset instance to jankx core.
 		 */
-		Foxy::instance()->asset = function() {
-			return Foxy_Asset::instance();
+		Jankx::instance()->asset = function() {
+			return Jankx_Asset::instance();
 		};
 
 		/**
 		 * Initial asset
 		 */
-		Foxy::asset()->register_framework_assets();
+		Jankx::asset()->register_framework_assets();
 	}
 
 	/**
@@ -370,16 +370,16 @@ class Foxy_Setup {
 	 * @return void
 	 */
 	public function layout_setup() {
-		if ( ! Foxy::is_frontend() ) {
+		if ( ! Jankx::is_frontend() ) {
 			return;
 		}
 		/**
-		 * Setup CSS framework for Foxy
+		 * Setup CSS framework for Jankx
 		 */
-		$ui_framework_name       = Foxy::get_ui_framework();
+		$ui_framework_name       = Jankx::get_ui_framework();
 		$ui_framework_class_name = apply_filters(
-			'foxy_ui_framework_class_name',
-			sprintf( 'Foxy_UI_Framework_%s', ucfirst( $ui_framework_name ) ),
+			'jankx_ui_framework_class_name',
+			sprintf( 'Jankx_UI_Framework_%s', ucfirst( $ui_framework_name ) ),
 			$ui_framework_name
 		);
 
@@ -387,10 +387,10 @@ class Foxy_Setup {
 			return;
 		}
 
-		$this->foxy->set_ui_framework(
+		$this->jankx->set_ui_framework(
 			new $ui_framework_class_name()
 		);
 
-		Foxy_UI_Layout_Renderer::render();
+		Jankx_UI_Layout_Renderer::render();
 	}
 }

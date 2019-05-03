@@ -1,12 +1,12 @@
 <?php
 /**
- * @package Foxy/Core
+ * @package Jankx/Core
  * @author  Puleeno Nguyen <puleeno@gmail.com>
- * @license GPL
- * @link    https://wpclouds.com
+ * @license @license GPL
+ * @link    https://puleeno.com
  */
 
-function foxy_detect_page_template() {
+function jankx_detect_page_template() {
 	if ( is_embed() ) {
 		$page_template = 'embed';
 	} elseif ( is_404() ) {
@@ -42,10 +42,10 @@ function foxy_detect_page_template() {
 	} else {
 		$page_template = 'custom';
 	}
-	Foxy::set_page_template( $page_template );
+	Jankx::set_page_template( $page_template );
 }
 
-function foxy_get_domain_name( $host ) {
+function jankx_get_domain_name( $host ) {
 	/**
 	 * Last dot in host name
 	 */
@@ -76,7 +76,7 @@ function foxy_get_domain_name( $host ) {
  * @param  string $hook_name Hook name need to check is empty.
  * @return bool
  */
-function foxy_check_empty_hook( $hook_name ) {
+function jankx_check_empty_hook( $hook_name ) {
 	global $wp_filter;
 
 	/**
@@ -90,12 +90,12 @@ function foxy_check_empty_hook( $hook_name ) {
 }
 
 
-function foxy_get_theme_name() {
-	return foxy_make_slug( basename( FOXY_ACTIVE_THEME_DIR ) );
+function jankx_get_theme_name() {
+	return jankx_make_slug( basename( JANKX_ACTIVE_THEME_DIR ) );
 }
 
-function foxy_get_template_name() {
-	 return foxy_make_slug( basename( FOXY_TEMPLATE_DIR ) );
+function jankx_get_template_name() {
+	 return jankx_make_slug( basename( JANKX_TEMPLATE_DIR ) );
 }
 
 /**
@@ -104,7 +104,7 @@ function foxy_get_template_name() {
  * @param  string $source Source need to make slug.
  * @return string
  */
-function foxy_make_slug( $source ) {
+function jankx_make_slug( $source ) {
 	return preg_replace(
 		'/_/',
 		'-',
@@ -113,11 +113,11 @@ function foxy_make_slug( $source ) {
 }
 
 
-function foxy_get_object_id( $object_or_id, $class_name ) {
+function jankx_get_object_id( $object_or_id, $class_name ) {
 	if ( is_numeric( $object_or_id ) ) {
 		return $object_or_id;
 	} elseif ( is_null( $object_or_id ) ) {
-		return foxy_get_current_object_id( $class_name );
+		return jankx_get_current_object_id( $class_name );
 	} else {
 		if ( in_array(
 			$class_name,
@@ -132,7 +132,7 @@ function foxy_get_object_id( $object_or_id, $class_name ) {
 	return 0;
 }
 
-function foxy_get_current_object_id( $class_name ) {
+function jankx_get_current_object_id( $class_name ) {
 	$current_id = 0;
 	switch ( $class_name ) {
 		case 'WP_Post':
@@ -142,7 +142,7 @@ function foxy_get_current_object_id( $class_name ) {
 			$current_id = get_current_user_id();
 		break;
 	}
-	return apply_filters( 'foxy_get_current_object_id', $current_id, $class_name );
+	return apply_filters( 'jankx_get_current_object_id', $current_id, $class_name );
 }
 
 /**
@@ -151,7 +151,7 @@ function foxy_get_current_object_id( $class_name ) {
  * @param  [type] $partial_file
  * @return void
  */
-function foxy_get_partial_info( $partial_file ) {
+function jankx_get_partial_info( $partial_file ) {
 	return get_file_data(
 		$partial_file,
 		array(
@@ -167,7 +167,7 @@ function foxy_get_partial_info( $partial_file ) {
 	);
 }
 
-function foxy_filter_post_type_metas( $post_type, $metas ) {
+function jankx_filter_post_type_metas( $post_type, $metas ) {
 	$results = array();
 	foreach ( $metas as $id => $args ) {
 		if ( ! in_array( $post_type, (array) $args['post_type'], true ) ) {
@@ -183,7 +183,7 @@ function foxy_filter_post_type_metas( $post_type, $metas ) {
 }
 
 
-function foxy_group_all_meta_fields( $original_fields ) {
+function jankx_group_all_meta_fields( $original_fields ) {
 	$tabs   = array();
 	$fields = array();
 	foreach ( $original_fields as $field ) {
@@ -224,7 +224,7 @@ function array_set_values( &$dest_arr, $values ) {
 }
 
 
-function foxy_addon_register_activation_hook( $addon_file, $activation_hook ) {
+function jankx_addon_register_activation_hook( $addon_file, $activation_hook ) {
 	$hook_name = sprintf( '%s_activation_hook', $addon_file );
 	add_action( $hook_name, $activation_hook );
 }

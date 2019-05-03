@@ -20,5 +20,12 @@
     "jankx/data-types": "dev-master",
     "jankx/human-number": "dev-master"
   },
-  "autoload": {}
+  "autoload": {
+    "psr-4": {
+      "\\": "src/"
+    },
+    "files": [
+      "framework.php"
+    ]
+  }
 }

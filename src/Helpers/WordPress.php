@@ -2,11 +2,11 @@
 /**
  * This file define all method use to compatibility with all WordPress versions.
  *
- * @package Foxy/Core
+ * @package Jankx/Core
  * @subpackage Helper
  * @author Puleeno Nguyen <puleeno@gmail.com>
- * @license GPL
- * @link https://wpclouds.com
+ * @license @license GPL
+ * @link https://puleeno.com
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -36,8 +36,8 @@ if ( defined( 'WP_DEBUG' ) && WP_DEBUG === true ) {
 }
 
 
-add_filter( 'kses_allowed_protocols', 'foxy_allowed_protocols' );
-function foxy_allowed_protocols( $protocols ) {
+add_filter( 'kses_allowed_protocols', 'jankx_allowed_protocols' );
+function jankx_allowed_protocols( $protocols ) {
 	// Add skype protocol to WordPress allowed protocols.
 	$protocols = array_merge( $protocols, array( 'skype' ) );
 
@@ -69,12 +69,12 @@ if ( ! function_exists( 'array_column' ) ) {
 	}
 }
 
-function foxy_get_terms( $args ) {
+function jankx_get_terms( $args ) {
 	$args = wp_parse_args( $args, array( 'hide_empty' => false ) );
 	return get_terms( $args );
 }
 
 
-function foxy_archive_title( $title ) {
+function jankx_archive_title( $title ) {
 	printf( '<h1 class="page-title">%s</h1>', $title );
 }

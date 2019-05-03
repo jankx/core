@@ -1,11 +1,11 @@
 <?php
 /**
  * WordPress has define meta to extends Post infos and User info
- * Foxy will use meta info in a different way
+ * Jankx will use meta info in a different way
  *
- * @package Foxy/Core
+ * @package Jankx/Core
  * @author Puleeno Nguyen <puleeno@gmail.com>
- * @link https://wpclouds.com
+ * @link https://puleeno.com
  */
 
 namespace Jankx\Core\Traits;
@@ -14,16 +14,16 @@ namespace Jankx\Core\Traits;
  */
 trait Meta {
 	/**
-	 * WordPress Meta Framework integrate with Foxy theme framework
+	 * WordPress Meta Framework integrate with Jankx theme framework
 	 *
 	 * @var instaceof Meta_Base
 	 */
 	protected $meta_framework;
 
 	/**
-	 * Set Meta Framework for Foxy
+	 * Set Meta Framework for Jankx
 	 *
-	 * @param Meta_Framework_Base $framework Foxy UI framework.
+	 * @param Meta_Framework_Base $framework Jankx UI framework.
 	 * @throws \Exception Throw exception if $framework is not be instance of UI_Framework_Base.
 	 * @return void
 	 */
@@ -37,7 +37,7 @@ trait Meta {
 		$this->meta_framework = $framework;
 
 		/**
-		 * Create UI Closure for Foxy
+		 * Create UI Closure for Jankx
 		 */
 		$this->meta = function() {
 			return $this->meta_framework;
@@ -47,7 +47,7 @@ trait Meta {
 	/**
 	 * Get meta value via meta framework
 	 * Every meta framework has different method to get meta value
-	 * So Foxy framework must integrate with meta framework is used
+	 * So Jankx framework must integrate with meta framework is used
 	 *
 	 * @param string $meta_key Meta key need to get value.
 	 * @param int    $post_id  Post or User ID need to get meta value.

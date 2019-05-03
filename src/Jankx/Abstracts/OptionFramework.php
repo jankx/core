@@ -2,16 +2,16 @@
 /**
  * This file define all base method of option framework can be use in child class
  *
- * @package Foxy/Core
+ * @package Jankx/Core
  * @author Puleeno Nguyen <puleeno@gmail.com
- * @license GPLv3
- * @link https://wpclouds.com
+ * @license @license GPLv3
+ * @link https://puleeno.com
  */
 
 /**
- * Foxy_Option_Framework_Base class
+ * Jankx_Option_Framework_Base class
  */
-abstract class Foxy_Option_Framework_Base implements Foxy_Option_Framework_Interface {
+abstract class Jankx_Option_Framework_Base implements Jankx_Option_Framework_Interface {
 	/**
 	 * Set current option key for add new fields
 	 *
@@ -21,10 +21,10 @@ abstract class Foxy_Option_Framework_Base implements Foxy_Option_Framework_Inter
 	protected $loaded_options;
 
 	/**
-	 * Foxy_Option_Framework_Base constructor
+	 * Jankx_Option_Framework_Base constructor
 	 */
 	public function __construct() {
-		$this->id( apply_filters( 'foxy_default_option_key_name', foxy_get_theme_name() ) );
+		$this->id( apply_filters( 'jankx_default_option_key_name', jankx_get_theme_name() ) );
 		$this->set_args( $this->id, $this->default_args() );
 	}
 
@@ -36,7 +36,7 @@ abstract class Foxy_Option_Framework_Base implements Foxy_Option_Framework_Inter
 	public function admin_page() {
 		$section_groups = $this->load_option_sections();
 
-		$sort_option_callback = apply_filters( 'foxy_sort_option_callback', false );
+		$sort_option_callback = apply_filters( 'jankx_sort_option_callback', false );
 		if ( is_callable( $sort_option_callback ) ) {
 			usort( $section_groups, $sort_option_callback );
 		}
@@ -54,8 +54,8 @@ abstract class Foxy_Option_Framework_Base implements Foxy_Option_Framework_Inter
 	protected function default_args() {
 		$theme      = wp_get_theme();
 		$theme_name = $theme->get( 'Name' );
-		$page_title = sprintf( __( '%s Options', 'foxy' ), $theme_name );
-		$menu_title = strlen( $theme_name ) <= 6 ? $page_title : __( 'Theme Options', 'foxy' );
+		$page_title = sprintf( __( '%s Options', 'jankx' ), $theme_name );
+		$menu_title = strlen( $theme_name ) <= 6 ? $page_title : __( 'Theme Options', 'jankx' );
 		$args       = array(
 			'opt_name'           => $this->id,
 			'display_name'       => $theme_name,
@@ -64,7 +64,7 @@ abstract class Foxy_Option_Framework_Base implements Foxy_Option_Framework_Inter
 			'display_version'    => $theme->get( 'Version' ),
 			'google_api_key'     => '',
 			'admin_bar'          => true,
-			'admin_bar_icon'     => 'fx-settings',
+			'admin_bar_icon'     => 'jankx-settings',
 			'admin_bar_priority' => 50,
 			'dev_mode'           => false,
 			'update_notice'      => false,
@@ -75,35 +75,35 @@ abstract class Foxy_Option_Framework_Base implements Foxy_Option_Framework_Inter
 			'page_permissions'   => 'edit_theme_options',
 			'menu_icon'          => '',
 			'page_icon'          => 'icon-themes',
-			'page_slug'          => 'foxy',
+			'page_slug'          => 'jankx',
 			'save_defaults'      => true,
 			'default_show'       => false,
 			'show_import_export' => true,
 		);
 
 		$args['share_icons'][] = array(
-			'url'   => 'https://github.com/foxy-theme/foxy',
+			'url'   => 'https://github.com/jankx-theme/jankx',
 			'title' => 'Visit us on GitHub',
-			'icon'  => 'fx-github',
+			'icon'  => 'jankx-github',
 		);
 		$args['share_icons'][] = array(
-			'url'   => 'https://www.facebook.com/foxythemeframework',
+			'url'   => 'https://www.facebook.com/jankxthemeframework',
 			'title' => 'Like us on Facebook',
-			'icon'  => 'fx-facebook',
+			'icon'  => 'jankx-facebook',
 		);
 		$args['share_icons'][] = array(
-			'url'   => 'https://twitter.com/foxythemeframework',
+			'url'   => 'https://twitter.com/jankxthemeframework',
 			'title' => 'Follow us on Twitter',
-			'icon'  => 'fx-twitter',
+			'icon'  => 'jankx-twitter',
 		);
 
-		$args['intro_text']  = __( '<p>This text is displayed above the options panel. It isn\'t required, but more info is always better! The intro_text field accepts all HTML.</p>', 'foxy' );
-		$args['footer_text'] = __( '<p>This text is displayed below the options panel. It isn\'t required, but more info is always better! The footer_text field accepts all HTML.</p>', 'foxy' );
+		$args['intro_text']  = __( '<p>This text is displayed above the options panel. It isn\'t required, but more info is always better! The intro_text field accepts all HTML.</p>', 'jankx' );
+		$args['footer_text'] = __( '<p>This text is displayed below the options panel. It isn\'t required, but more info is always better! The footer_text field accepts all HTML.</p>', 'jankx' );
 
 		// Free up memory.
 		unset( $theme, $theme_name, $page_title, $menu_title );
 
-		return apply_filters( 'foxy_default_option_args', $args );
+		return apply_filters( 'jankx_default_option_args', $args );
 	}
 
 	public function load_option_sections() {
@@ -123,8 +123,8 @@ abstract class Foxy_Option_Framework_Base implements Foxy_Option_Framework_Inter
 			}
 			$group = str_replace(
 				array(
-					FOXY_TEMPLATE_DIR,
-					FOXY_ACTIVE_THEME_DIR,
+					JANKX_TEMPLATE_DIR,
+					JANKX_ACTIVE_THEME_DIR,
 				), '', $option_file
 			);
 			$group = ltrim( $group, 'includes/' );
@@ -149,12 +149,12 @@ abstract class Foxy_Option_Framework_Base implements Foxy_Option_Framework_Inter
 
 	private function search_option_files() {
 		$search_directories = apply_filters(
-			'foxy_options_directories',
+			'jankx_options_directories',
 			array(
-				sprintf( '%soptions', FOXY_TEMPLATE_DIR ),
-				sprintf( '%sincludes/options', FOXY_TEMPLATE_DIR ),
-				sprintf( '%soptions', FOXY_ACTIVE_THEME_DIR ),
-				sprintf( '%sincludes/options', FOXY_ACTIVE_THEME_DIR ),
+				sprintf( '%soptions', JANKX_TEMPLATE_DIR ),
+				sprintf( '%sincludes/options', JANKX_TEMPLATE_DIR ),
+				sprintf( '%soptions', JANKX_ACTIVE_THEME_DIR ),
+				sprintf( '%sincludes/options', JANKX_ACTIVE_THEME_DIR ),
 			)
 		);
 		$option_files       = array();

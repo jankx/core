@@ -2,7 +2,7 @@
 
 namespace Jankx\Core;
 
-interface Foxy_Post_Type_Interface {
+interface Jankx_Post_Type_Interface {
 	public function get();
 
 	public function load();

@@ -1,11 +1,11 @@
 <?php
 /**
- * Foxy option is user configurations in WordPress Admin page
+ * Jankx option is user configurations in WordPress Admin page
  * itegrate with Setting API, Redux Framework, Jackal Framework
  *
- * @package Foxy/Core
+ * @package Jankx/Core
  * @author Puleeno Nguyen <puleeno@gmail.com>
- * @link https://wpclouds.com
+ * @link https://puleeno.com
  */
 
 namespace Jankx\Core\Traits;
@@ -21,7 +21,7 @@ trait Option {
 	protected static $option_framework;
 
 	/**
-	 * Set option framework for Foxy Framework
+	 * Set option framework for Jankx Framework
 	 *
 	 * @param  Option_Framework_Base $framework Option framework use in theme.
 	 * @throws Exception Throw exception if $framework is not instanceof Option_Framework_Base class.
@@ -42,7 +42,7 @@ trait Option {
 	}
 
 	/**
-	 * Get foxy them option via Option Framework
+	 * Get jankx them option via Option Framework
 	 *
 	 * @param string $option_name   Option name (key) want to get value.
 	 * @param mixed  $default_value Default value if option `$option_name` not exists.

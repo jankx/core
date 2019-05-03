@@ -1,11 +1,11 @@
 <?php
 /**
- * Foxy meta framework interface
+ * Jankx meta framework interface
  *
- * @package Foxy/Core
+ * @package Jankx/Core
  * @author Puleeno Nguyen <puleeno@gmail.com>
  * @link https://puleeno.com
- * @license GPL
+ * @license @license GPL
  */
 
 namespace Jankx\Core;
@@ -22,7 +22,7 @@ interface MetaFrameworkInterface {
 	 * Meta data content factory
 	 *
 	 * @param WP_Post $post_type Default argument in action add_meta_box.
-	 * @param array   $fields Foxy meta data setting fields.
+	 * @param array   $fields Jankx meta data setting fields.
 	 * @return void
 	 */
 	public function metabox_callback( $post_type, $fields );

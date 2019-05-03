@@ -1,13 +1,13 @@
 <?php
 /**
- * Foxy Template Helpers
+ * Jankx Template Helpers
  * This file define template methods use to load template files
  * from `templates` directory in theme folder
  *
- * @package Foxy/Core
+ * @package Jankx/Core
  * @subpackage UI
  * @author Puleeno Nguyen <puleeno@gmail.com>
- * @link https://wpclouds.com
+ * @link https://puleeno.com
  */
 
 namespace Jankx\Core;

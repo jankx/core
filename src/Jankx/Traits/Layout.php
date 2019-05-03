@@ -1,9 +1,9 @@
 <?php
 /**
- * Foxy Layout features
+ * Jankx Layout features
  * This file define all layout methods
  *
- * @package Foxy/Core
+ * @package Jankx/Core
  * @subpackage UI
  * @author Puleeno Nguyen <puleeno@gmail.com>
  */
@@ -70,16 +70,16 @@ trait LayoutTrait {
 
 	public static function get_supported_layouts() {
 		$supported_layouts = array(
-			Common::LAYOUT_CONTENT_SIDEBAR => __( 'Content-Sidebar', 'foxy' ),
-			Common::LAYOUT_SIDEBAR_CONTENT => __( 'Sidebar-Content', 'foxy' ),
-			Common::LAYOUT_FULL_WIDTH      => __( 'Full Width', 'foxy' ),
+			Common::LAYOUT_CONTENT_SIDEBAR => __( 'Content-Sidebar', 'jankx' ),
+			Common::LAYOUT_SIDEBAR_CONTENT => __( 'Sidebar-Content', 'jankx' ),
+			Common::LAYOUT_FULL_WIDTH      => __( 'Full Width', 'jankx' ),
 		);
 
-		if ( Foxy::has_second_sidebar() ) {
+		if ( Jankx::has_second_sidebar() ) {
 			$second_sidebar_keys = array(
-				'LAYOUT_CONTENT_SIDEBAR_SIDEBAR' => __( 'Content-Sidebar-Sidebar', 'foxy' ),
-				'LAYOUT_SIDEBAR_CONTENT_SIDEBAR' => __( 'Sidebar-Content-Sidebar', 'foxy' ),
-				'LAYOUT_SIDEBAR_SIDEBAR_CONTENT' => __( 'Sidebar-Sidebar-Content', 'foxy' ),
+				'LAYOUT_CONTENT_SIDEBAR_SIDEBAR' => __( 'Content-Sidebar-Sidebar', 'jankx' ),
+				'LAYOUT_SIDEBAR_CONTENT_SIDEBAR' => __( 'Sidebar-Content-Sidebar', 'jankx' ),
+				'LAYOUT_SIDEBAR_SIDEBAR_CONTENT' => __( 'Sidebar-Sidebar-Content', 'jankx' ),
 			);
 			foreach ( $second_sidebar_keys as $key => $label ) {
 				$key                       = constant( "Common::{$key}" );

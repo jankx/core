@@ -1,11 +1,11 @@
 <?php
 /**
- * Load Foxy config file.
- * Foxy config file use to customize Foxy core function or Foxy addon
+ * Load Jankx config file.
+ * Jankx config file use to customize Jankx core function or Jankx addon
  *
- * @package Foxy/Core
+ * @package Jankx/Core
  * @author Puleeno Nguyen <puleeno@gmail.com>
- * @link https://wpclouds.com
+ * @link https://puleeno.com
  */
 
 namespace Jankx\Core\Traits;
@@ -14,7 +14,7 @@ namespace Jankx\Core\Traits;
  */
 trait Config {
 	/**
-	 * Get foxy config from PHP file
+	 * Get jankx config from PHP file
 	 *
 	 * @param string $config_file Config file path.
 	 * @param mixed  $default_value Default value if config file does not exists.

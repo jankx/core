@@ -1,5 +1,5 @@
 <?php
-class Foxy_Shortcodes {
+class Jankx_Shortcodes {
 	public static function shortcodes() {
 	}
 }

@@ -1,6 +1,6 @@
 <?php
 
-class Foxy_Meta {
+class Jankx_Meta {
 	public function __construct() {
 	}
 }

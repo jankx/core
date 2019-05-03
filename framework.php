@@ -1,11 +1,11 @@
 <?php
 /**
- * Foxy Framework Core
+ * Jankx Framework Core
  *
- * @package Foxy/Core
+ * @package Jankx/Core
  * @author Puleeno Nguyen <puleeno@gmail.com>
- * @license GPL
- * @link https://wpclouds.com
+ * @license @license GPL
+ * @link https://puleeno.com
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -13,22 +13,22 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Check Foxy framework don't have registered
+ * Check Jankx framework don't have registered
  */
-if ( ! class_exists( 'Foxy' ) && ! defined( 'FOXY_FRAMEWORK_FILE' ) ) {
-	define( 'FOXY_FRAMEWORK_FILE', __FILE__ );
+if ( ! class_exists( 'Jankx' ) && ! defined( 'JANKX_FRAMEWORK_FILE' ) ) {
+	define( 'JANKX_FRAMEWORK_FILE', __FILE__ );
 
-	require_once dirname( FOXY_FRAMEWORK_FILE ) . '/src/class-foxy-setup.php';
-	Foxy_Setup::initialize();
+	require_once dirname( JANKX_FRAMEWORK_FILE ) . '/src/class-jankx-setup.php';
+	Jankx_Setup::initialize();
 }
 
-if ( ! function_exists( 'foxy' ) ) {
+if ( ! function_exists( 'jankx' ) ) {
 	/**
-	 * Helper get Foxy instance from $GLOBALS variable
+	 * Helper get Jankx instance from $GLOBALS variable
 	 *
-	 * @return Foxy
+	 * @return Jankx
 	 */
-	function foxy() {
-		return $GLOBALS['foxy'];
+	function jankx() {
+		return $GLOBALS['jankx'];
 	}
 }

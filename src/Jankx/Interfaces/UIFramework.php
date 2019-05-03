@@ -1,20 +1,20 @@
 <?php
 /**
- * Foxy UI Framework interface
+ * Jankx UI Framework interface
  * This file define all function must be implements in UI framework class
  *
- * @package Foxy/Core
+ * @package Jankx/Core
  * @subpackage UI
  * @author Puleeno Nguyen <puleeno@gmail.com>
- * @link https://wpclouds.com
+ * @link https://puleeno.com
  */
 
 namespace Jankx\Core;
 
 /**
- * Foxy_UI_Framework_Interface interface
+ * Jankx_UI_Framework_Interface interface
  */
-interface Foxy_UI_Framework_Interface {
+interface Jankx_UI_Framework_Interface {
 	/**
 	 * This method use to get UI framework name
 	 *

@@ -3,28 +3,28 @@
  * This file will interact with WordPress core to create WordPress data
  * such as: post, page, taxonomy, post meta, user meta
  *
- * @package Foxy/Core
+ * @package Jankx/Core
  * @author Puleeno Nguyen <puleeno@gmail.com>
- * @link https://wpclouds.com
+ * @link https://puleeno.com
  */
 
 /**
- * Foxy Data class
+ * Jankx Data class
  */
-class Foxy_Data {
+class Jankx_Data {
 	/**
-	 * Foxy_Data instance
+	 * Jankx_Data instance
 	 *
-	 * @var Foxy_Data
+	 * @var Jankx_Data
 	 */
 	protected static $instance;
 
 	protected $post_meta_framework;
 
 	/**
-	 * Get Foxy_Data instance
+	 * Get Jankx_Data instance
 	 *
-	 * @return Foxy_Data
+	 * @return Jankx_Data
 	 */
 	public static function instance() {
 		if ( is_null( self::$instance ) ) {
@@ -34,7 +34,7 @@ class Foxy_Data {
 	}
 
 	/**
-	 * Foxy_Data constructor
+	 * Jankx_Data constructor
 	 */
 	public function __construct() {
 		$this->register_posts_types();
@@ -46,12 +46,12 @@ class Foxy_Data {
 	}
 
 	/**
-	 * Register foxy post types from addons or integrated plugins
+	 * Register jankx post types from addons or integrated plugins
 	 *
 	 * @return void
 	 */
 	public function register_posts_types() {
-		$post_types = apply_filters( 'foxy_post_types', array() );
+		$post_types = apply_filters( 'jankx_post_types', array() );
 		if ( ! empty( $post_types ) && is_array( $post_types ) ) {
 			foreach ( $post_types as $post_type => $args ) {
 				register_post_type( $post_type, $args );
@@ -65,12 +65,12 @@ class Foxy_Data {
 	}
 
 	/**
-	 * Register all foxy taxonomies for post types
+	 * Register all jankx taxonomies for post types
 	 *
 	 * @return void
 	 */
 	public function register_taxonomies() {
-		$taxonomies = apply_filters( 'foxy_taxonomies', array() );
+		$taxonomies = apply_filters( 'jankx_taxonomies', array() );
 		if ( ! empty( $taxonomies ) && is_array( $taxonomies ) ) {
 			foreach ( $taxonomies as $taxonomy => $args ) {
 				if ( empty( $args['post_type'] ) ) {
@@ -104,40 +104,40 @@ class Foxy_Data {
 	}
 
 	public function register_post_metas() {
-		$post_meta = new Foxy_Meta();
+		$post_meta = new Jankx_Meta();
 
 		/**
-		 * Setup meta framework for Foxy Core.
+		 * Setup meta framework for Jankx Core.
 		 */
-		$meta_framework = apply_filters( 'foxy_default_meta_framework', 'foxy' );
+		$meta_framework = apply_filters( 'jankx_default_meta_framework', 'jankx' );
 
 		$meta_framework_class = apply_filters(
-			'foxy_meta_framework_class',
-			sprintf( 'Foxy_Meta_Framework_' . ucfirst( $meta_framework ) )
+			'jankx_meta_framework_class',
+			sprintf( 'Jankx_Meta_Framework_' . ucfirst( $meta_framework ) )
 		);
 		if ( ! class_exists( $meta_framework_class ) ) {
 			return;
 		}
 
-		Foxy::instance()->set_meta_framework(
+		Jankx::instance()->set_meta_framework(
 			new $meta_framework_class( $post_meta )
 		);
 
 
 		/**
-		 * Adding Foxy meta data into WordPress
+		 * Adding Jankx meta data into WordPress
 		 */
 		add_action( 'add_meta_boxes', array( $this, 'add_post_metas' ) );
 	}
 
 	/**
-	 * Add foxy metaboxes
+	 * Add jankx metaboxes
 	 *
 	 * @return void
 	 */
 	public function add_post_metas() {
 		$current_screen = get_current_screen();
-		$meta_boxes     = apply_filters( 'foxy_post_metas', array() );
+		$meta_boxes     = apply_filters( 'jankx_post_metas', array() );
 		if ( ! empty( $meta_boxes ) && is_array( $meta_boxes ) ) {
 			foreach ( $meta_boxes as $id => $args ) {
 				if ( ! in_array( $current_screen->id, (array) $args['post_type'], true ) ) {
@@ -153,12 +153,12 @@ class Foxy_Data {
 						'fields'   => array(),
 					)
 				);
-				$args = apply_filters( "foxy_post_meta_{$id}_args", $args );
+				$args = apply_filters( "jankx_post_meta_{$id}_args", $args );
 
 				add_meta_box(
 					$id,
-					Foxy::meta()->meta_title( $args ),
-					array( Foxy::meta(), 'metabox_callback' ),
+					Jankx::meta()->meta_title( $args ),
+					array( Jankx::meta(), 'metabox_callback' ),
 					$args['post_type'],
 					$args['context'],
 					$args['priority'],
@@ -169,24 +169,24 @@ class Foxy_Data {
 	}
 
 	/**
-	 * Add foxy term metas
+	 * Add jankx term metas
 	 *
 	 * @return void
 	 */
 	public function add_terms_metas() {
-		$term_metas = apply_filters( 'foxy_term_metas', array() );
+		$term_metas = apply_filters( 'jankx_term_metas', array() );
 		if ( ! empty( $term_metas ) && is_array( $term_metas ) ) {
 
 		}
 	}
 
 	/**
-	 * Add foxy user metas
+	 * Add jankx user metas
 	 *
 	 * @return void
 	 */
 	public function add_user_metas() {
-		$user_metas = apply_filters( 'foxy_user_metas', array() );
+		$user_metas = apply_filters( 'jankx_user_metas', array() );
 		if ( ! empty( $user_metas ) && is_array( $user_metas ) ) {
 
 		}
