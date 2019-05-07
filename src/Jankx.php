@@ -50,7 +50,13 @@ class Jankx
 
     public function initHooks()
     {
+        add_action('init', array($this, 'setup'), 5);
         add_action('init', array('\Jankx\Initialize', 'init'));
+    }
+
+    public function setup()
+    {
+        $this->theme = new \Jankx\Theme();
     }
 
     public static function isRequest($type)

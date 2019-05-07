@@ -5,6 +5,5 @@ class Initialize
 {
     public static function init()
     {
-        die('zo');
     }
 }
