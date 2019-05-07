@@ -22,8 +22,7 @@
   },
   "autoload": {
     "psr-4": {
-      "": "src/",
-      "Jankx\\": "src/Jankx/"
+      "": "src/"
     },
     "files": [
       "framework.php"

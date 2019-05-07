@@ -1,5 +1,5 @@
 <?php
-namespace Janx;
+namespace Jankx;
 
 class Initialize
 {
