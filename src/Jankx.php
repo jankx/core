@@ -50,7 +50,7 @@ class Jankx
 
     public function initHooks()
     {
-        add_action('init', array($this, 'setup'), 5);
+        add_action('after_setup_theme', array($this, 'setup'));
         add_action('init', array('\Jankx\Initialize', 'init'));
     }
 
@@ -79,7 +79,7 @@ class Jankx
             return false;
         }
         $rest_prefix         = trailingslashit(rest_get_url_prefix());
-        $is_rest_api_request = ( false !== strpos($_SERVER['REQUEST_URI'], $rest_prefix) ); // phpcs:disable WordPress.Security.ValidatedSanitizedInput.MissingUnslash, WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+        $is_rest_api_request = ( false !== strpos($_SERVER['REQUEST_URI'], $rest_prefix) );
         return apply_filters('woocommerce_is_rest_api_request', $is_rest_api_request);
     }
 }
