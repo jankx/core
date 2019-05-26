@@ -52,11 +52,21 @@ class Jankx
     {
         add_action('after_setup_theme', array($this, 'setup'));
         add_action('init', array('\Jankx\Initialize', 'init'));
+
+        /**
+         * Setup template for frontend page
+         */
+        add_action('jankx_setup_environment', array('\Jankx\Template\Initialize', 'loadTemplateFunctions'));
     }
 
     public function setup()
     {
-        $this->theme = new \Jankx\Theme();
+        $this->theme = \Jankx\Theme::getInstance();
+
+        /**
+         * Setup Jankx environment via action hooks
+         */
+        do_action('jankx_setup_environment');
     }
 
     public static function isRequest($type)
@@ -73,6 +83,11 @@ class Jankx
         }
     }
 
+    /**
+     * Check current request is API request
+     *
+     * @return boolean Is API request or not
+     */
     public static function isApiRequest()
     {
         if (empty($_SERVER['REQUEST_URI'])) {
@@ -81,5 +96,18 @@ class Jankx
         $rest_prefix         = trailingslashit(rest_get_url_prefix());
         $is_rest_api_request = ( false !== strpos($_SERVER['REQUEST_URI'], $rest_prefix) );
         return apply_filters('woocommerce_is_rest_api_request', $is_rest_api_request);
+    }
+
+    /**
+     * Get location use to search template for theme
+     * When you want to custom or create a new template for your theme
+     * you can use hook `jankx_template_directory` to change template directory
+     * It will help you avoid modify Jankx templates and conflict when upgrate framework.
+     *
+     * @return string The template location
+     */
+    public static function templateDirectory()
+    {
+        return apply_filters( 'jankx_template_directory', 'templates' );
     }
 }

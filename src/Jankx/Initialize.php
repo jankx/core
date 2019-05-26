@@ -5,10 +5,14 @@ class Initialize
 {
     public static function init()
     {
-        self::theme_supports();
+        self::themeSupports();
     }
 
-    public static function theme_supports() {
+    /**
+     * Setup Jankx theme supports features.
+     */
+    public static function themeSupports()
+    {
         add_theme_support('post-thumbnails');
     }
 }
