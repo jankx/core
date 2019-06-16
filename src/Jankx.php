@@ -14,6 +14,7 @@
 
 /**
  * This class is middle-class interaction between developer and other classes
+ * phpcs:ignoreFile
  */
 class Jankx
 {
@@ -108,6 +109,6 @@ class Jankx
      */
     public static function templateDirectory()
     {
-        return apply_filters( 'jankx_template_directory', 'templates' );
+        return apply_filters('jankx_template_directory', 'templates');
     }
 }
