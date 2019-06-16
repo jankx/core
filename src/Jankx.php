@@ -34,12 +34,29 @@ class Jankx
         $this->initHooks();
     }
 
-    public function __call($method, $args)
+    public function __call($name, $args)
     {
+        $callback = array($this, $name);
+        if (isset($this->$name) && is_callable($callback)) {
+            return call_user_func_array($callback, $args);
+        } else {
+            throw new \Exception(
+                sprintf('Call to undefined method %s::%s()', __CLASS__, $name)
+            );
+        }
     }
 
-    public static function __callStatic($method, $args)
+    public static function __callStatic($name, $args)
     {
+        $instance = self::instance();
+        $callback = array($instance, $name);
+        if (isset($instance->$name) && is_callable($callback)) {
+            return call_user_func_array($callback, $args);
+        } else {
+            throw new \Exception(
+                sprintf('Call to undefined method %s::%s()', __CLASS__, $name)
+            );
+        }
     }
 
     public function includes()
@@ -67,7 +84,7 @@ class Jankx
         /**
          * Setup Jankx environment via action hooks
          */
-        do_action('jankx_setup_environment');
+        do_action('jankx_setup_environment', $this);
     }
 
     public static function isRequest($type)
