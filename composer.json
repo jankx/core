@@ -25,7 +25,9 @@
       "": "src/"
     },
     "files": [
-      "framework.php"
+      "framework.php",
+      "helpers/array.php",
+      "helpers/wordpress.php"
     ]
   }
 }
