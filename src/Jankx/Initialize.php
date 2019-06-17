@@ -2,7 +2,8 @@
 namespace Jankx;
 
 use Jankx\SiteLayouts\Layout as SiteLayout;
-use Jank\UI\Framework as UIFramework;
+use Jankx\UI\Framework as UIFramework;
+use Jankx\Register;
 
 class Initialize
 {
@@ -17,6 +18,12 @@ class Initialize
         if (\Jankx::isRequest('frontend')) {
             $GLOBALS['ui_framework'] = UIFramework::instance();
         }
+
+        /**
+         * Register WordPress native features
+         */
+        add_action('init', array(Register::class, 'menus'));
+        add_action('init', array(Register::class, 'sidebars'));
     }
 
     /**

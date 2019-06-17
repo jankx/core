@@ -34,24 +34,11 @@ class Jankx
         $this->initHooks();
     }
 
-    public function __call($name, $args)
-    {
-        $callback = array($this, $name);
-        if (isset($this->$name) && is_callable($callback)) {
-            return call_user_func_array($callback, $args);
-        } else {
-            throw new \Exception(
-                sprintf('Call to undefined method %s::%s()', __CLASS__, $name)
-            );
-        }
-    }
-
     public static function __callStatic($name, $args)
     {
         $instance = self::instance();
-        $callback = array($instance, $name);
-        if (isset($instance->$name) && is_callable($callback)) {
-            return call_user_func_array($callback, $args);
+        if (isset($instance->$name) && is_callable($instance->$name)) {
+            return call_user_func_array($instance->$name, $args);
         } else {
             throw new \Exception(
                 sprintf('Call to undefined method %s::%s()', __CLASS__, $name)
@@ -68,8 +55,8 @@ class Jankx
 
     public function initHooks()
     {
-        add_action('after_setup_theme', array($this, 'setup'));
-        add_action('init', array('\Jankx\Initialize', 'init'));
+        add_action('after_setup_theme', array('\Jankx\Initialize', 'init'));
+        add_action('init', array($this, 'setup'));
 
         /**
          * Setup template for frontend page
