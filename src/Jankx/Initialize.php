@@ -3,6 +3,8 @@ namespace Jankx;
 
 use Jankx\SiteLayouts\Layout as SiteLayout;
 use Jankx\UI\Framework as UIFramework;
+use Jankx\Asset\Manager as AssetManager;
+use Jankx\PostLayouts\Manager as PostLayoutManager;
 use Jankx\Register;
 
 class Initialize
@@ -15,8 +17,16 @@ class Initialize
             $GLOBALS['site_layout'] = SiteLayout::instance();
         }
 
+        if (class_exists(AssetManager::class)) {
+            $GLOBALS['asset_manager'] = AssetManager::instance();
+        }
+
         if (\Jankx::isRequest('frontend')) {
             $GLOBALS['ui_framework'] = UIFramework::instance();
+        }
+
+        if (class_exists(PostLayoutManager::class)) {
+            $GLOBALS['post_layout'] = PostLayoutManager::instance();
         }
 
         /**
