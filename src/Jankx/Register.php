@@ -5,8 +5,18 @@ class Register
 {
     private static function registerSidebar($id, $args)
     {
-        $args = wp_parse_args($args, array(
-        ));
+        $args = wp_parse_args(
+            $args,
+            apply_filters(
+                'jankx_sidebar_args',
+                array(
+                    'before_widget' => '<div id="%1%s" class="widget %2$s">',
+                    'after_widget'  => '</div>',
+                    'before_title'  => '<h4 class="wtitle widget-title">',
+                    'after_title'   => '</h4>',
+                )
+            )
+        );
         $args['id'] = $id;
         register_sidebar($args);
     }
@@ -14,7 +24,7 @@ class Register
     public static function menus()
     {
         $supportMenus = apply_filters('jankx_support_menus', array(
-            'primary' => __('Primary Menu', 'jankx')
+            'primary' => __('Primary Menu', 'jankx'),
         ));
         foreach ($supportMenus as $location => $description) {
             register_nav_menu($location, $description);
@@ -24,19 +34,15 @@ class Register
     public static function sidebars()
     {
         $maxSidebars = apply_filters('jankx_support_max_sidebars', 2);
-        $sidebarArgs = apply_filters('jankx_sidebar_args', array(
-            'before_widget' => '<div id="%1%s" class="widget %2$s">',
-            'after_widget'  => '</div>',
-            'before_title'  => '<h4 class="wtitle widget-title">',
-            'after_title'   => '</h4>',
-        ));
 
         if ($maxSidebars > 0) {
             self::registerSidebar(
                 'primary',
                 apply_filters(
                     'jankx_sidebar_primary_args',
-                    wp_parse_args($sidebarArgs, array('name' => __('Primary Sidebar', 'jankx')))
+                    array(
+                        'name' => __('Primary Sidebar', 'jankx')
+                    )
                 )
             );
         }
@@ -45,7 +51,9 @@ class Register
                 'sidebar-alt',
                 apply_filters(
                     'jankx_sidebar_alt_args',
-                    wp_parse_args($sidebarArgs, array('name' => __('Second Sidebar', 'jankx')))
+                    array(
+                        'name' => __('Second Sidebar', 'jankx')
+                    )
                 )
             );
         }
