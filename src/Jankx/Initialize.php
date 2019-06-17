@@ -2,6 +2,7 @@
 namespace Jankx;
 
 use Jankx\SiteLayouts\Layout as SiteLayout;
+use Jank\UI\Framework as UIFramework;
 
 class Initialize
 {
@@ -11,6 +12,10 @@ class Initialize
 
         if (class_exists(SiteLayout::class)) {
             $GLOBALS['site_layout'] = SiteLayout::instance();
+        }
+
+        if (\Jankx::isRequest('frontend')) {
+            $GLOBALS['ui_framework'] = UIFramework::instance();
         }
     }
 
