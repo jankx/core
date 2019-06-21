@@ -12,8 +12,8 @@ class Register
                 array(
                     'before_widget' => '<div id="%1%s" class="widget %2$s">',
                     'after_widget'  => '</div>',
-                    'before_title'  => '<h4 class="wtitle widget-title">',
-                    'after_title'   => '</h4>',
+                    'before_title'  => '<h4 class="wtitle widget-title"><span>',
+                    'after_title'   => '</span></h4>',
                 )
             )
         );
@@ -62,7 +62,7 @@ class Register
         if (empty($additionSidebars)) {
             return;
         }
-        foreach ($additionSidebars as $additionSidebar) {
+        foreach ($additionSidebars as $additionSidebar => $sidebarArgs) {
             self::registerSidebar(
                 $additionSidebar,
                 apply_filters(
