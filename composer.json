@@ -18,7 +18,8 @@
     "jankx/template": "dev-master",
     "jankx/ui-framework": "dev-master",
     "jankx/data-types": "dev-master",
-    "jankx/human-number": "dev-master"
+    "jankx/human-number": "dev-master",
+    "mck89/peast": "^1.9.2"
   },
   "autoload": {
     "psr-4": {
@@ -27,7 +28,8 @@
     "files": [
       "framework.php",
       "helpers/array.php",
-      "helpers/wordpress.php"
+      "helpers/wordpress.php",
+      "helpers/jankx.php"
     ]
   }
 }

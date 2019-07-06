@@ -1,0 +1,348 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "9ee8e717e0a816c4f46f0ab230ebf1e0",
+    "packages": [
+        {
+            "name": "jankx/admin",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jankx/admin.git",
+                "reference": "3547ff86f55b9fedf547fb4bc9a361f3dbe9d27c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jankx/admin/zipball/3547ff86f55b9fedf547fb4bc9a361f3dbe9d27c",
+                "reference": "3547ff86f55b9fedf547fb4bc9a361f3dbe9d27c",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Jankx\\Admin\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Puleeno Nguyen",
+                    "email": "puleeno@gmail.com"
+                }
+            ],
+            "description": "The Jankx admin framework is a partial of Jankx theme framework",
+            "time": "2019-05-07T10:39:50+00:00"
+        },
+        {
+            "name": "jankx/assets",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jankx/assets.git",
+                "reference": "3ab580b98124670c0589f3fcefaf76a03d7f82e3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jankx/assets/zipball/3ab580b98124670c0589f3fcefaf76a03d7f82e3",
+                "reference": "3ab580b98124670c0589f3fcefaf76a03d7f82e3",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Jankx\\Asset\\": "src/"
+                },
+                "files": [
+                    "helpers.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Puleeno Nguyen",
+                    "email": "puleeno@gmail.com"
+                }
+            ],
+            "description": "Jankx Assets is used to manage CSS, JS, libraries with beautiful syntax",
+            "time": "2019-07-06T03:54:18+00:00"
+        },
+        {
+            "name": "jankx/data-types",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jankx/data-types.git",
+                "reference": "bdec4917135b97aea3c3c54c7082e190371b3406"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jankx/data-types/zipball/bdec4917135b97aea3c3c54c7082e190371b3406",
+                "reference": "bdec4917135b97aea3c3c54c7082e190371b3406",
+                "shasum": ""
+            },
+            "require": {
+                "jankx/fields": "dev-master"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Jankx\\DataTypes\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Puleeno Nguyen",
+                    "email": "puleeno@gmail.com"
+                }
+            ],
+            "description": "WordPress data types such as: custom post type, taxonoxy, metas,etc",
+            "time": "2019-06-16T06:12:59+00:00"
+        },
+        {
+            "name": "jankx/fields",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jankx/fields.git",
+                "reference": "0bb791f1b7f7cf28f0a68f07c3252c8efe7a590f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jankx/fields/zipball/0bb791f1b7f7cf28f0a68f07c3252c8efe7a590f",
+                "reference": "0bb791f1b7f7cf28f0a68f07c3252c8efe7a590f",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Jankx\\Fields\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Puleeno Nguyen",
+                    "email": "puleeno@gmail.com"
+                }
+            ],
+            "description": "Jankx Fields is a simple framework used to create meta box, settings, form, etc",
+            "time": "2019-06-16T06:07:59+00:00"
+        },
+        {
+            "name": "jankx/human-number",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jankx/human-number.git",
+                "reference": "fd96cd982d798c758737a85738864386c031afdc"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jankx/human-number/zipball/fd96cd982d798c758737a85738864386c031afdc",
+                "reference": "fd96cd982d798c758737a85738864386c031afdc",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Jankx\\HumanNumber\\": "src/"
+                },
+                "files": [
+                    "helpers.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Puleeno Nguyen",
+                    "email": "puleeno@gmail.com"
+                }
+            ],
+            "description": "Friendly number for human can read easiler.",
+            "time": "2019-06-16T06:08:40+00:00"
+        },
+        {
+            "name": "jankx/options",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jankx/options.git",
+                "reference": "0097edbebd5047df169391394dc29250bf8584a1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jankx/options/zipball/0097edbebd5047df169391394dc29250bf8584a1",
+                "reference": "0097edbebd5047df169391394dc29250bf8584a1",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Jankx\\Options\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Puleeno Nguyen",
+                    "email": "puleeno@gmail.com"
+                }
+            ],
+            "description": "Jankx options usable to create the theme, add-on options integrate with your loved option frameworks",
+            "time": "2019-06-16T05:44:09+00:00"
+        },
+        {
+            "name": "jankx/template",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jankx/template.git",
+                "reference": "5f41462e94cad06cfaca94e6cd6e4fcd44384d12"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jankx/template/zipball/5f41462e94cad06cfaca94e6cd6e4fcd44384d12",
+                "reference": "5f41462e94cad06cfaca94e6cd6e4fcd44384d12",
+                "shasum": ""
+            },
+            "require": {
+                "jankx/ui-framework": "dev-master"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Jankx\\Template\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Puleeno Nguyen",
+                    "email": "puleeno@gmail.com"
+                }
+            ],
+            "description": "Jankx template manager usable to load template with support override, caching",
+            "time": "2019-07-06T03:54:35+00:00"
+        },
+        {
+            "name": "jankx/ui-framework",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jankx/ui-framework.git",
+                "reference": "bacd232cb7680e7804c94fa954f4f64244ee6671"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jankx/ui-framework/zipball/bacd232cb7680e7804c94fa954f4f64244ee6671",
+                "reference": "bacd232cb7680e7804c94fa954f4f64244ee6671",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Jankx\\UI\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Puleeno Nguyen",
+                    "email": "puleeno@gmail.com"
+                }
+            ],
+            "description": "Jankx UI framework integrate with popular CSS frameworks",
+            "time": "2019-07-01T07:37:33+00:00"
+        },
+        {
+            "name": "mck89/peast",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mck89/peast.git",
+                "reference": "ab2aa747e1f6b2a66d16caa5c933af5687435e8b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mck89/peast/zipball/ab2aa747e1f6b2a66d16caa5c933af5687435e8b",
+                "reference": "ab2aa747e1f6b2a66d16caa5c933af5687435e8b",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^4.0|^5.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.9.2-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Peast\\": "lib/Peast/",
+                    "Peast\\test\\": "test/Peast/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Marco Marchiò",
+                    "email": "marco.mm89@gmail.com"
+                }
+            ],
+            "description": "Peast is PHP library that generates AST for JavaScript code",
+            "time": "2019-05-24T17:16:07+00:00"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "dev",
+    "stability-flags": {
+        "jankx/admin": 20,
+        "jankx/fields": 20,
+        "jankx/options": 20,
+        "jankx/assets": 20,
+        "jankx/template": 20,
+        "jankx/ui-framework": 20,
+        "jankx/data-types": 20,
+        "jankx/human-number": 20
+    },
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": []
+}
