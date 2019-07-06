@@ -12,6 +12,8 @@ if (!defined('ABSPATH')) {
     exit('Cheatin huh?');
 }
 
+define('JANKX_FRAMEWORK_FILE_LOADER', __FILE__);
+
 if (!function_exists('jankx')) {
     function jankx()
     {
