@@ -30,6 +30,16 @@ class Jankx
 
     public function __construct()
     {
+        $relativeJankPath = str_replace(
+            ABSPATH,
+            '',
+            realpath(dirname(__FILE__) . str_repeat('/..', 2))
+        );
+
+        $this->vendorUrl = function() use ($relativeJankPath) {
+            return site_url($relativeJankPath);
+        };
+
         $this->includes();
         $this->initHooks();
     }
