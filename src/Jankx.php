@@ -12,6 +12,8 @@
  * @link     https://github.com/jankx/core
  */
 
+use Jankx\Theme;
+
 /**
  * This class is middle-class interaction between developer and other classes
  * phpcs:ignoreFile
@@ -76,7 +78,9 @@ class Jankx
 
     public function setup()
     {
-        $this->theme = \Jankx\Theme::getInstance();
+        $this->theme = function() {
+            return Theme::instance();
+        };
 
         /**
          * Setup Jankx environment via action hooks

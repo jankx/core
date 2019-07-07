@@ -6,7 +6,7 @@ class Theme
     protected static $instance;
     protected $theme;
 
-    public static function getInstance()
+    public static function instance()
     {
         if (is_null(self::$instance)) {
             self::$instance = new self();
@@ -19,28 +19,17 @@ class Theme
         $this->theme = wp_get_theme(get_stylesheet());
     }
 
-    public function template()
-    {
-        if (is_child_theme()) {
-            $stylesheet = basename(get_template_directory());
-        } else {
-            $stylesheet = get_stylesheet();
-        }
-        $this->template = wp_get_theme($stylesheet);
-        return $this;
-    }
-
     public function __get($name)
     {
         $value = call_user_func(
             array(
-                isset($this->template) ? $this->template : $this->theme,
+                isset($this->originalTemplate) ? $this->originalTemplate : $this->theme,
                 'get'
             ),
             ucfirst($name)
         );
-        if (isset($this->template)) {
-            unset($this->template);
+        if (isset($this->originalTemplate)) {
+            unset($this->originalTemplate);
         }
         return $value;
     }
@@ -49,14 +38,31 @@ class Theme
     {
         $value = call_user_func(
             array(
-                isset($this->template) ? $this->template : $this->theme,
+                isset($this->originalTemplate) ? $this->originalTemplate : $this->theme,
                 'get'
             ),
             ucfirst($name)
         );
-        if (isset($this->template)) {
-            unset($this->template);
+        if (isset($this->originalTemplate)) {
+            unset($this->originalTemplate);
         }
         return $value;
+    }
+
+
+    public function getTemplate()
+    {
+        if (is_child_theme()) {
+            $stylesheet = basename(get_template_directory());
+        } else {
+            $stylesheet = get_stylesheet();
+        }
+        $this->originalTemplate = wp_get_theme($stylesheet);
+        return $this;
+    }
+
+    public function getInstance()
+    {
+        return isset($this->originalTemplate) ? $this->originalTemplate : $this->theme;
     }
 }
