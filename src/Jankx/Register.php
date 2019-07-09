@@ -48,7 +48,7 @@ class Register
         }
         if ($maxSidebars > 1) {
             self::registerSidebar(
-                'sidebar-alt',
+                'alternative',
                 apply_filters(
                     'jankx_sidebar_alt_args',
                     array(
