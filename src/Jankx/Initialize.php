@@ -1,18 +1,24 @@
 <?php
 namespace Jankx;
 
-use Jankx\SiteLayouts\Layout as SiteLayout;
-use Jankx\UI\Framework as UIFramework;
 use Jankx\Asset\Manager as AssetManager;
 use Jankx\PostLayouts\Manager as PostLayoutManager;
 use Jankx\Register;
+use Jankx\SiteLayouts\Layout as SiteLayout;
+use Jankx\UI\Framework as UIFramework;
 
 class Initialize
 {
     public static function init()
     {
+        /**
+         * Adding WordPress native theme supports
+         */
         self::themeSupports();
 
+        /**
+         * Setup Jankx features
+         */
         if (class_exists(SiteLayout::class)) {
             $GLOBALS['site_layout'] = SiteLayout::instance();
         }
