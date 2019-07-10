@@ -18,8 +18,7 @@
     "jankx/template": "dev-master",
     "jankx/ui-framework": "dev-master",
     "jankx/data-types": "dev-master",
-    "jankx/human-number": "dev-master",
-    "mck89/peast": "^1.9.2"
+    "jankx/human-number": "dev-master"
   },
   "autoload": {
     "psr-4": {
