@@ -13,7 +13,7 @@ class Register
             apply_filters(
                 'jankx_sidebar_args',
                 array(
-                    'before_widget' => '<div id="%1%s" class="widget %2$s">',
+                    'before_widget' => '<div id="%1$s" class="widget %2$s">',
                     'after_widget'  => '</div>',
                     'before_title'  => '<h4 class="wtitle widget-title"><span>',
                     'after_title'   => '</span></h4>',
