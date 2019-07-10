@@ -1,6 +1,8 @@
 <?php
 namespace Jankx;
 
+use Jankx;
+
 class Register
 {
     private static function registerSidebar($id, $args)
@@ -60,6 +62,7 @@ class Register
 
         $additionSidebars = apply_filters('jankx_addition_sidebars', array());
         if (empty($additionSidebars)) {
+            self::registerFooterWidgets($sidebarArgs);
             return;
         }
         foreach ($additionSidebars as $additionSidebar => $sidebarArgs) {
@@ -71,9 +74,29 @@ class Register
                 )
             );
         }
+        self::registerFooterWidgets($sidebarArgs);
     }
 
-    public function footerWidgets()
+    public static function getFooterWigetColumns()
     {
+        return apply_filters('jankx_footer_widget_columns', 4);
+    }
+    public static function getFooterWidgetPrefix()
+    {
+        return apply_filters('jankx_footer_widget_prefix', 'footer-');
+    }
+
+    public static function registerFooterWidgets($sidebarArgs = array())
+    {
+        $numOfFooterWidgets = self::getFooterWigetColumns();
+        $footerWidgetPrefix = self::getFooterWidgetPrefix();
+        for ($i = 1; $i<= $numOfFooterWidgets; $i++) {
+            $sidebarArgs['name'] = sprintf(__('Footer %d', 'jankx'), $i);
+
+            self::registerSidebar(
+                sprintf('%s-%s', $footerWidgetPrefix, $i),
+                apply_filters("jankx_sidebar_{$footerWidgetPrefix}_{$i}_args", $sidebarArgs)
+            );
+        }
     }
 }
