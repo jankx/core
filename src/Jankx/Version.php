@@ -23,11 +23,11 @@ class Version
      */
     public static function template()
     {
-        return jankx()->theme->template()->version();
+        return Jankx::theme()->getTemplate()->version();
     }
 
     public static function theme()
     {
-        return jankx()->theme->version();
+        return Jankx::theme()->version();
     }
 }
