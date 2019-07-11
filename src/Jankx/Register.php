@@ -27,8 +27,10 @@ class Register
     public static function menus()
     {
         $supportMenus = apply_filters('jankx_support_menus', array(
-            'primary' => __('Primary Menu', 'jankx'),
+            'primary'   => __('Primary Menu', 'jankx'),
+            'secondary' => __('Secondary Menu', 'jankx'),
         ));
+
         foreach ($supportMenus as $location => $description) {
             register_nav_menu($location, $description);
         }
