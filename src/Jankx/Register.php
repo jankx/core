@@ -64,20 +64,18 @@ class Register
         }
 
         $additionSidebars = apply_filters('jankx_addition_sidebars', array());
-        if (empty($additionSidebars)) {
-            self::registerFooterWidgets($sidebarArgs);
-            return;
+        if (count($additionSidebars) > 0) {
+            foreach ($additionSidebars as $additionSidebar => $sidebarArgs) {
+                self::registerSidebar(
+                    $additionSidebar,
+                    apply_filters(
+                        "jankx_sidebar_{$additionSidebar}_args",
+                        $sidebarArgs
+                    )
+                );
+            }
         }
-        foreach ($additionSidebars as $additionSidebar => $sidebarArgs) {
-            self::registerSidebar(
-                $additionSidebar,
-                apply_filters(
-                    "jankx_sidebar_{$additionSidebar}_args",
-                    $sidebarArgs
-                )
-            );
-        }
-        self::registerFooterWidgets($sidebarArgs);
+        self::registerFooterWidgets();
     }
 
     public static function registerFooterWidgets($sidebarArgs = array())
