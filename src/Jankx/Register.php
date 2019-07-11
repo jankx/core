@@ -82,6 +82,11 @@ class Register
     {
         $numOfFooterWidgets = FooterWidget::getFooterWigetColumns();
         $footerWidgetPrefix = FooterWidget::getFooterWidgetPrefix();
+
+        if ($numOfFooterWidgets < 1) {
+            return;
+        }
+
         for ($i = 1; $i<= $numOfFooterWidgets; $i++) {
             $sidebarArgs['name'] = sprintf(__('Footer %d', 'jankx'), $i);
 
