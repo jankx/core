@@ -12,12 +12,12 @@
   ],
   "require": {
     "jankx/admin": "dev-master",
-    "jankx/fields": "dev-master",
-    "jankx/options": "dev-master",
-    "jankx/assets": "dev-master",
+    "jankx/field": "dev-master",
+    "jankx/option": "dev-master",
+    "jankx/asset": "dev-master",
     "jankx/template": "dev-master",
     "jankx/ui-framework": "dev-master",
-    "jankx/data-types": "dev-master",
+    "jankx/data-type": "dev-master",
     "jankx/human-number": "dev-master"
   },
   "autoload": {
