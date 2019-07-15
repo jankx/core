@@ -1,6 +1,8 @@
 <?php
 namespace Jankx;
 
+use Jankx;
+
 class Theme
 {
     protected static $instance;
@@ -17,6 +19,20 @@ class Theme
     public function __construct()
     {
         $this->theme = wp_get_theme(get_stylesheet());
+        add_action('wp_prepare_themes_for_js', function ($prepared_themes) {
+            if (apply_filters('jankx_custom_theme', false)) {
+                foreach ($prepared_themes as $index => $prepared_theme) {
+                    if ($prepared_theme['name'] !== Jankx::FRAMEWORK_NAME) {
+                        continue;
+                    }
+                    $prepared_themes[$index] = apply_filters(
+                        "jankx_custom_theme_info",
+                        $prepared_theme
+                    );
+                }
+            }
+            return $prepared_themes;
+        });
     }
 
     public function __get($name)
@@ -52,12 +68,7 @@ class Theme
 
     public function getTemplate()
     {
-        if (is_child_theme()) {
-            $stylesheet = basename(get_template_directory());
-        } else {
-            $stylesheet = get_stylesheet();
-        }
-        $this->originalTemplate = wp_get_theme($stylesheet);
+        $this->originalTemplate = $this->theme->parent;
         return $this;
     }
 
