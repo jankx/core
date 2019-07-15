@@ -2,9 +2,9 @@
 namespace Jankx;
 
 use Jankx\Asset\Manager as AssetManager;
-use Jankx\PostLayouts\Manager as PostLayoutManager;
+use Jankx\PostLayout\Manager as PostLayoutManager;
 use Jankx\Register;
-use Jankx\SiteLayouts\Layout as SiteLayout;
+use Jankx\SiteLayout\Layout as SiteLayout;
 use Jankx\UI\Framework as UIFramework;
 
 class Initialize
