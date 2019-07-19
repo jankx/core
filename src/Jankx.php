@@ -12,6 +12,9 @@
  * @link     https://github.com/jankx/core
  */
 
+use Jankx\Admin\Admin;
+use Jankx\Initialize;
+use Jankx\Template\Initialize as Template;
 use Jankx\Theme;
 
 /**
@@ -62,20 +65,20 @@ class Jankx
 
     public function includes()
     {
-        if (self::isRequest('admin') && class_exists('\Jankx\Admin\Admin')) {
-            new \Jankx\Admin\Admin();
+        if (self::isRequest('admin') && class_exists(Admin::class)) {
+            new Admin();
         }
     }
 
     public function initHooks()
     {
-        add_action('after_setup_theme', array('\Jankx\Initialize', 'init'));
+        add_action('after_setup_theme', array(Initialize::class, 'init'));
         add_action('init', array($this, 'setup'));
 
         /**
          * Setup template for frontend page
          */
-        add_action('jankx_setup_environment', array('\Jankx\Template\Initialize', 'loadTemplateFunctions'));
+        add_action('jankx_setup_environment', array(Template::class, 'loadTemplateFunctions'));
     }
 
     public function setup()
