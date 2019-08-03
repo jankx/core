@@ -65,6 +65,8 @@ class Jankx
 
     public function includes()
     {
+        define( 'JANKX_FRAMEWORK_LOADED', true );
+
         if (self::isRequest('admin') && class_exists(Admin::class)) {
             new Admin();
         }
