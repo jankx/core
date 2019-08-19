@@ -8,7 +8,7 @@
  * @category Jankx
  * @package  Core
  * @author   Puleeno Nguyen <puleeno@gmail.com>
- * @license  MIT (https://opensource.org/licenses/MIT)
+ * @license  MIT (https:///opensource.org/licenses/MIT)
  * @link     https://github.com/jankx/core
  */
 
@@ -38,11 +38,11 @@ class Jankx
     public function __construct()
     {
         $relativeJankPath = str_replace(
-            ABSPATH,
+            str_replace('/', DIRECTORY_SEPARATOR, ABSPATH),
             '',
             realpath(dirname(__FILE__) . str_repeat('/..', 2))
         );
-
+        $relativeJankPath = str_replace(DIRECTORY_SEPARATOR, '/', $relativeJankPath);
         $this->vendorUrl = function() use ($relativeJankPath) {
             return site_url($relativeJankPath);
         };
