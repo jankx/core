@@ -68,7 +68,7 @@ class Theme
 
     public function getTemplate()
     {
-        $this->originalTemplate = $this->theme->parent;
+        $this->originalTemplate = $this->theme->parent();
         return $this;
     }
 
