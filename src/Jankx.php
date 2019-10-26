@@ -23,7 +23,7 @@ use Jankx\Theme;
  */
 class Jankx
 {
-	const FRAMEWORK_NAME = 'Jankx Framework';
+    const FRAMEWORK_NAME = 'Jankx Framework';
 
     protected static $instance;
 
