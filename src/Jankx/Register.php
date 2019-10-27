@@ -75,11 +75,11 @@ class Register
                 );
             }
         }
-        self::registerFooterWidgets();
     }
 
-    public static function registerFooterWidgets($sidebarArgs = array())
+    public static function registerFooterWidgets()
     {
+		$sidebarArgs = array();
         $numOfFooterWidgets = FooterWidget::getFooterWigetColumns();
         $footerWidgetPrefix = FooterWidget::getFooterWidgetPrefix();
 
