@@ -39,8 +39,8 @@ class Initialize
          * Register WordPress native features
          */
         add_action('init', array(Register::class, 'menus'));
-		add_action('widgets_init', array(Register::class, 'sidebars'));
-		add_action('widgets_init', array(Register::class, 'registerFooterWidgets'), 20);
+        add_action('widgets_init', array(Register::class, 'sidebars'));
+        add_action('widgets_init', array(Register::class, 'registerFooterWidgets'), 20);
     }
 
     /**

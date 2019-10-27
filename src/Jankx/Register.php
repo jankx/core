@@ -79,7 +79,7 @@ class Register
 
     public static function registerFooterWidgets()
     {
-		$sidebarArgs = array();
+        $sidebarArgs = array();
         $numOfFooterWidgets = FooterWidget::getFooterWigetColumns();
         $footerWidgetPrefix = FooterWidget::getFooterWidgetPrefix();
 
