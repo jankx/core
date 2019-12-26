@@ -81,6 +81,7 @@ class Jankx
          * Setup template for frontend page
          */
         add_action('jankx_setup_environment', array(Template::class, 'loadTemplateFunctions'));
+        add_action('jankx_setup_environment', array(RegisterCustomizeMenu::class, 'register'));
     }
 
     public function setup()
