@@ -5,7 +5,6 @@ use Jankx\Asset\Manager as AssetManager;
 use Jankx\PostLayout\Manager as PostLayoutManager;
 use Jankx\Register;
 use Jankx\SiteLayout\Layout as SiteLayout;
-use Jankx\UI\Framework as UIFramework;
 
 class Initialize
 {
@@ -27,10 +26,6 @@ class Initialize
             $GLOBALS['asset_manager'] = AssetManager::instance();
         }
 
-        if (\Jankx::isRequest('frontend')) {
-            $GLOBALS['ui_framework'] = UIFramework::instance();
-        }
-
         if (class_exists(PostLayoutManager::class)) {
             $GLOBALS['post_layout'] = PostLayoutManager::instance();
         }
@@ -40,7 +35,6 @@ class Initialize
          */
         add_action('init', array(Register::class, 'menus'));
         add_action('widgets_init', array(Register::class, 'sidebars'));
-        add_action('widgets_init', array(Register::class, 'registerFooterWidgets'), 20);
     }
 
     /**

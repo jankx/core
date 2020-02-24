@@ -14,9 +14,7 @@
 
 use Jankx\Admin\Admin;
 use Jankx\Initialize;
-use Jankx\Template\Initialize as Template;
 use Jankx\Theme;
-use Jankx\UI\Customize\Registry as Customize;
 
 /**
  * This class is middle-class interaction between developer and other classes
@@ -77,12 +75,6 @@ class Jankx
     {
         add_action('after_setup_theme', array(Initialize::class, 'init'));
         add_action('init', array($this, 'setup'));
-
-        /**
-         * Setup template for frontend page
-         */
-        add_action('jankx_setup_environment', array(Template::class, 'loadTemplateFunctions'));
-        add_action('jankx_setup_environment', array(Customize::class, 'register'));
     }
 
     public function setup()

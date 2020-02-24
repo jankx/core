@@ -2,7 +2,6 @@
 namespace Jankx;
 
 use Jankx;
-use Jankx\Template\UI\FooterWidget;
 
 class Register
 {
@@ -74,26 +73,6 @@ class Register
                     )
                 );
             }
-        }
-    }
-
-    public static function registerFooterWidgets()
-    {
-        $sidebarArgs = array();
-        $numOfFooterWidgets = FooterWidget::getFooterWigetColumns();
-        $footerWidgetPrefix = FooterWidget::getFooterWidgetPrefix();
-
-        if ($numOfFooterWidgets < 1) {
-            return;
-        }
-
-        for ($i = 1; $i<= $numOfFooterWidgets; $i++) {
-            $sidebarArgs['name'] = sprintf(__('Footer %d', 'jankx'), $i);
-
-            self::registerSidebar(
-                sprintf('%s-%s', $footerWidgetPrefix, $i),
-                apply_filters("jankx_sidebar_{$footerWidgetPrefix}_{$i}_args", $sidebarArgs)
-            );
         }
     }
 }
