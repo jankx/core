@@ -23,12 +23,6 @@
   "autoload": {
     "psr-4": {
       "": "src/"
-    },
-    "files": [
-      "framework.php",
-      "helpers/array.php",
-      "helpers/wordpress.php",
-      "helpers/jankx.php"
-    ]
+    }
   }
 }
