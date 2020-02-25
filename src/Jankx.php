@@ -12,43 +12,14 @@
  * @link     https://github.com/jankx/core
  */
 
-use Jankx\Admin\Admin;
-use Jankx\Initialize;
-use Jankx\Theme;
-
 /**
  * This class is middle-class interaction between developer and other classes
- * phpcs:ignoreFile
  */
 class Jankx
 {
     const FRAMEWORK_NAME = 'Jankx Framework';
 
     protected static $instance;
-
-    public static function instance()
-    {
-        if (is_null(self::$instance)) {
-            self::$instance = new self();
-        }
-        return self::$instance;
-    }
-
-    public function __construct()
-    {
-        $relativeJankPath = str_replace(
-            str_replace('/', DIRECTORY_SEPARATOR, ABSPATH),
-            '',
-            realpath(dirname(__FILE__) . str_repeat('/..', 2))
-        );
-        $relativeJankPath = str_replace(DIRECTORY_SEPARATOR, '/', $relativeJankPath);
-        $this->vendorUrl = function() use ($relativeJankPath) {
-            return site_url($relativeJankPath);
-        };
-
-        $this->includes();
-        $this->initHooks();
-    }
 
     public static function __callStatic($name, $args)
     {
@@ -62,34 +33,15 @@ class Jankx
         }
     }
 
-    public function includes()
+    public static function instance()
     {
-        define( 'JANKX_FRAMEWORK_LOADED', true );
-
-        if (self::isRequest('admin') && class_exists(Admin::class)) {
-            new Admin();
+        if (is_null(self::$instance)) {
+            self::$instance = new self();
         }
+        return self::$instance;
     }
 
-    public function initHooks()
-    {
-        add_action('after_setup_theme', array(Initialize::class, 'init'));
-        add_action('init', array($this, 'setup'));
-    }
-
-    public function setup()
-    {
-        $this->theme = function() {
-            return Theme::instance();
-        };
-
-        /**
-         * Setup Jankx environment via action hooks
-         */
-        do_action('jankx_setup_environment', $this);
-    }
-
-    public static function isRequest($type)
+    private static function isRequest($type)
     {
         switch ($type) {
             case 'admin':
@@ -103,31 +55,8 @@ class Jankx
         }
     }
 
-    /**
-     * Check current request is API request
-     *
-     * @return boolean Is API request or not
-     */
-    public static function isApiRequest()
+    public function init()
     {
-        if (empty($_SERVER['REQUEST_URI'])) {
-            return false;
-        }
-        $rest_prefix         = trailingslashit(rest_get_url_prefix());
-        $is_rest_api_request = ( false !== strpos($_SERVER['REQUEST_URI'], $rest_prefix) );
-        return apply_filters('woocommerce_is_rest_api_request', $is_rest_api_request);
-    }
-
-    /**
-     * Get location use to search template for theme
-     * When you want to custom or create a new template for your theme
-     * you can use hook `jankx_template_directory` to change template directory
-     * It will help you avoid modify Jankx templates and conflict when upgrate framework.
-     *
-     * @return string The template location
-     */
-    public static function templateDirectory()
-    {
-        return apply_filters('jankx_template_directory', 'templates');
+        define('JANKX_FRAMEWORK_LOADED', true);
     }
 }
