@@ -12,6 +12,8 @@
  * @link     https://github.com/jankx/core
  */
 
+use Jankx\Template\Template;
+
 /**
  * This class is middle-class interaction between developer and other classes
  */
@@ -51,12 +53,21 @@ class Jankx
             case 'cron':
                 return defined('DOING_CRON');
             case 'frontend':
-                return ( ! is_admin() || defined('DOING_AJAX') ) && ! defined('DOING_CRON') && ! self::isApiRequest();
+                return ( ! is_admin() || defined('DOING_AJAX') ) && ! defined('DOING_CRON');
         }
     }
 
     public function init()
     {
+        do_action('jankx_init');
+        /**
+         * Load Jankx templates
+         */
+        $template = new Template();
+        $GLOBALS['jankx_template'] = $template;
+        $template->load();
+
         define('JANKX_FRAMEWORK_LOADED', true);
+        do_action('jankx_loaded');
     }
 }
