@@ -18,7 +18,8 @@
     "jankx/template": "dev-master",
     "jankx/ui-framework": "dev-master",
     "jankx/data-type": "dev-master",
-    "jankx/human-number": "dev-master"
+    "jankx/human-number": "dev-master",
+    "jankx/helpers": "dev-master"
   },
   "autoload": {
     "psr-4": {
