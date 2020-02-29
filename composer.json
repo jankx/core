@@ -24,6 +24,9 @@
   "autoload": {
     "psr-4": {
       "": "src/"
-    }
+    },
+    "files": [
+      "framework.php"
+    ]
   }
 }

@@ -22,6 +22,7 @@ class Jankx
     const FRAMEWORK_NAME = 'Jankx Framework';
 
     protected static $instance;
+    protected $defaultTemplateDir;
 
     public static function __callStatic($name, $args)
     {
@@ -41,6 +42,18 @@ class Jankx
             self::$instance = new self();
         }
         return self::$instance;
+    }
+
+    public function __construct()
+    {
+        $this->defaultTemplateDir = sprintf(
+            '%s/template/default',
+            realpath(dirname(JANKX_FRAMEWORK_FILE_LOADER))
+        );
+
+        debug_print_backtrace();
+
+        die($this->defaultTemplateDir);
     }
 
     private static function isRequest($type)
@@ -63,11 +76,12 @@ class Jankx
         /**
          * Load Jankx templates
          */
-        $template = new Template();
+        $template = Template::getInstance();
         $GLOBALS['jankx_template'] = $template;
         $template->load();
 
         define('JANKX_FRAMEWORK_LOADED', true);
+
         do_action('jankx_loaded');
     }
 }
