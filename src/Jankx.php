@@ -50,6 +50,7 @@ class Jankx
             '%s/template/default',
             realpath(dirname(JANKX_FRAMEWORK_FILE_LOADER) . '/..')
         );
+        define('JANKX_THEME_DEFAULT_ENGINE', $this->defaultTemplateDir);
     }
 
     private static function isRequest($type)
@@ -84,7 +85,7 @@ class Jankx
             ),
         );
         $template = new Template();
-        $template->load($this->defaultTemplateDir);
+        $template->load();
 
         $this->templateLoader = function () use ($templateLoader) {
             return $templateLoader;
