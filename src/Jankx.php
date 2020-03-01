@@ -48,12 +48,8 @@ class Jankx
     {
         $this->defaultTemplateDir = sprintf(
             '%s/template/default',
-            realpath(dirname(JANKX_FRAMEWORK_FILE_LOADER))
+            realpath(dirname(JANKX_FRAMEWORK_FILE_LOADER) . '/..')
         );
-
-        debug_print_backtrace();
-
-        die($this->defaultTemplateDir);
     }
 
     private static function isRequest($type)
@@ -76,11 +72,26 @@ class Jankx
         /**
          * Load Jankx templates
          */
-        $template = Template::getInstance();
-        $GLOBALS['jankx_template'] = $template;
-        $template->load();
+        $templateLoader = Template::getInstance(
+            $this->defaultTemplateDir,
+            'templates',
+            apply_filters_ref_array(
+                'jankx_theme_template_engine',
+                [
+                    'wordpress',
+                    &$this
+                ]
+            ),
+        );
+        $template = new Template();
+        $template->load($this->defaultTemplateDir);
+
+        $this->templateLoader = function () use ($templateLoader) {
+            return $templateLoader;
+        };
 
         define('JANKX_FRAMEWORK_LOADED', true);
+        $GLOBALS['jankx_template'] = $template;
 
         do_action('jankx_loaded');
     }

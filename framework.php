@@ -11,7 +11,6 @@
 if (!defined('ABSPATH')) {
     exit('Cheatin huh?');
 }
-
 define('JANKX_FRAMEWORK_FILE_LOADER', __FILE__);
 
 if (!function_exists('jankx')) {
@@ -22,5 +21,8 @@ if (!function_exists('jankx')) {
 }
 
 if (empty($GLOBALS['jankx'])) {
-    $GLOBALS['jankx'] = jankx();
+    $jankx = jankx();
+    add_action('after_setup_theme', array($jankx, 'init'));
+
+    $GLOBALS['jankx'] = $jankx;
 }
