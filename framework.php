@@ -13,16 +13,9 @@ if (!defined('ABSPATH')) {
 }
 define('JANKX_FRAMEWORK_FILE_LOADER', __FILE__);
 
-if (!function_exists('jankx')) {
-    function jankx()
-    {
-        return Jankx::instance();
-    }
-}
-
 if (empty($GLOBALS['jankx'])) {
-    $jankx = jankx();
-    add_action('after_setup_theme', array($jankx, 'init'));
-
+    $jankx = Jankx::instance();
     $GLOBALS['jankx'] = $jankx;
+
+    add_action('after_setup_theme', array($jankx, 'init'));
 }
