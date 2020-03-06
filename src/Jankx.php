@@ -13,6 +13,7 @@
  */
 
 use Jankx\Template\Template;
+use Jankx\Asset\AssetManager;
 
 /**
  * This class is middle-class interaction between developer and other classes
@@ -90,6 +91,8 @@ class Jankx
         $this->templateLoader = function () use ($templateLoader) {
             return $templateLoader;
         };
+
+        $GLOBALS['assets'] = AssetManager::instance();
 
         define('JANKX_FRAMEWORK_LOADED', true);
         $GLOBALS['jankx_template'] = $template;
