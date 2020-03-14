@@ -13,10 +13,7 @@
   "require": {
     "jankx/admin": "dev-master",
     "jankx/asset": "dev-master",
-    "jankx/data-type": "dev-master",
-    "jankx/field": "dev-master",
     "jankx/helpers": "dev-master",
-    "jankx/human-number": "dev-master",
     "jankx/option": "dev-master",
     "jankx/template": "dev-master",
     "jankx/ui-framework": "dev-master"
