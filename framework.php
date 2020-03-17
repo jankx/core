@@ -17,5 +17,5 @@ if (empty($GLOBALS['jankx'])) {
     $jankx = Jankx::instance();
     $GLOBALS['jankx'] = $jankx;
 
-    add_action('init', array($jankx, 'init'));
+    add_action('after_setup_theme', array($jankx, 'init'));
 }
