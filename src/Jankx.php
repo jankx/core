@@ -68,7 +68,7 @@ class Jankx
         }
     }
 
-    public function init()
+    public function setup()
     {
         do_action('jankx_init');
         /**
@@ -97,6 +97,13 @@ class Jankx
         define('JANKX_FRAMEWORK_LOADED', true);
         $GLOBALS['jankx_template'] = $template;
 
+        add_action('init', array($this, 'init'));
+
         do_action('jankx_loaded');
+    }
+
+    public function init()
+    {
+        add_theme_support('post-thumbnails');
     }
 }
