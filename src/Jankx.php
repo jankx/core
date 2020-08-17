@@ -83,7 +83,7 @@ class Jankx
                     'wordpress',
                     &$this
                 ]
-            ),
+            )
         );
         $template = new Template();
         $template->load();
