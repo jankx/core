@@ -76,7 +76,7 @@ class Jankx
          */
         $templateLoader = Template::getInstance(
             $this->defaultTemplateDir,
-            'templates',
+            apply_filters('jankx_theme_template_directory_name', 'templates'),
             apply_filters_ref_array(
                 'jankx_theme_template_engine',
                 [
