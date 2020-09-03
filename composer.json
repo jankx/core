@@ -16,6 +16,7 @@
     "jankx/helpers": "dev-master",
     "jankx/option": "dev-master",
     "jankx/template": "dev-master",
+    "jankx/component": "dev-master",
     "jankx/ui-framework": "dev-master"
   },
   "autoload": {
