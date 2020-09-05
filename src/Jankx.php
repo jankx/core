@@ -20,7 +20,8 @@ use Jankx\Asset\AssetManager;
  */
 class Jankx
 {
-    const FRAMEWORK_NAME = 'Jankx Framework';
+    const FRAMEWORK_NAME    = 'Jankx Framework';
+    const FRAMEWORK_VERSION = '1.0.0';
 
     protected static $instance;
     protected $defaultTemplateDir;
@@ -93,13 +94,13 @@ class Jankx
         };
 
         $GLOBALS['assets'] = AssetManager::instance();
-
-        define('JANKX_FRAMEWORK_LOADED', true);
         $GLOBALS['jankx_template'] = $template;
 
-        add_action('init', array($this, 'init'));
+        define('JANKX_FRAMEWORK_LOADED', true);
 
         do_action('jankx_loaded');
+
+        add_action('init', array($this, 'init'));
     }
 
     public function init()
