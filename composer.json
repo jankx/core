@@ -17,7 +17,8 @@
     "jankx/option": "dev-master",
     "jankx/template": "dev-master",
     "jankx/component": "dev-master",
-    "jankx/ui-framework": "dev-master"
+    "jankx/ui-framework": "dev-master",
+    "symfony/yaml": "3.4.44"
   },
   "autoload": {
     "psr-4": {
