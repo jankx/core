@@ -14,6 +14,7 @@
 
 use Jankx\Template\Template;
 use Jankx\Asset\AssetManager;
+use Jankx\Template\Engine\EngineManager;
 use Jankx\SiteLayout\SiteLayout;
 
 /**
@@ -26,8 +27,6 @@ class Jankx
 
     protected static $instance;
     protected $defaultTemplateDir;
-
-    public $siteLayout;
 
     public static function __callStatic($name, $args)
     {
@@ -116,14 +115,20 @@ class Jankx
             return $templateLoader;
         };
 
-        $GLOBALS['assets'] = AssetManager::instance();
-        $GLOBALS['jankx_template'] = $template;
-
         add_action('init', array($this, 'init'));
     }
 
     public function init()
     {
         add_theme_support('post-thumbnails');
+
+        if (apply_filters('jankx_is_support_site_layout', true)) {
+            $siteLayout = SiteLayout::getInstance();
+            $siteLayout->buildLayout(
+                EngineManager::getEngine(
+                    Template::getDefaultLoader()
+                )
+            );
+        }
     }
 }
