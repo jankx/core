@@ -124,7 +124,7 @@ class Jankx
         if (is_admin()) {
             add_action('current_screen', array($this, 'extraFeatures'));
         } else {
-            add_action('wp_loaded', array($this, 'extraFeatures'));
+            add_action('template_redirect', array($this, 'extraFeatures'));
         }
     }
 
