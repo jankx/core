@@ -14,6 +14,7 @@
 
 use Jankx\Template\Template;
 use Jankx\Asset\AssetManager;
+use Jankx\SiteLayout\SiteLayout;
 
 /**
  * This class is middle-class interaction between developer and other classes
@@ -25,6 +26,8 @@ class Jankx
 
     protected static $instance;
     protected $defaultTemplateDir;
+
+    public $siteLayout;
 
     public static function __callStatic($name, $args)
     {
@@ -46,7 +49,7 @@ class Jankx
         return self::$instance;
     }
 
-    public function __construct()
+    private function __construct()
     {
         $this->defaultTemplateDir = sprintf(
             '%s/template/default',
@@ -71,7 +74,27 @@ class Jankx
 
     public function setup()
     {
+        if (did_action('init')) {
+            if (!function_exists('jankx')) {
+                function jankx()
+                {
+                    _e('The init hook is called. Please try implement the Jankx framework in another place.', 'jankx');
+                }
+            }
+            return;
+        }
+
         do_action('jankx_init');
+
+        $this->initCoreFramework();
+
+        do_action('jankx_loaded');
+
+        define('JANKX_FRAMEWORK_LOADED', true);
+    }
+
+    private function initCoreFramework()
+    {
         /**
          * Load Jankx templates
          */
@@ -95,10 +118,6 @@ class Jankx
 
         $GLOBALS['assets'] = AssetManager::instance();
         $GLOBALS['jankx_template'] = $template;
-
-        define('JANKX_FRAMEWORK_LOADED', true);
-
-        do_action('jankx_loaded');
 
         add_action('init', array($this, 'init'));
     }
