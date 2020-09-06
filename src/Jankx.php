@@ -121,7 +121,15 @@ class Jankx
     public function init()
     {
         add_theme_support('post-thumbnails');
+        if (is_admin()) {
+            add_action('current_screen', array($this, 'extraFeatures'));
+        } else {
+            add_action('wp_loaded', array($this, 'extraFeatures'));
+        }
+    }
 
+    public function extraFeatures()
+    {
         if (apply_filters('jankx_is_support_site_layout', true)) {
             $siteLayout = SiteLayout::getInstance();
             $siteLayout->buildLayout(
