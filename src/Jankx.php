@@ -100,7 +100,8 @@ class Jankx
      *
      * @return void
      */
-    private function includes() {
+    private function includes()
+    {
         $jankxVendor = realpath(dirname(JANKX_FRAMEWORK_FILE_LOADER) . '/..');
         $fileNames = array('component/component.php');
         foreach ($fileNames as $fileName) {
