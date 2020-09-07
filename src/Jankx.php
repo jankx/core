@@ -12,10 +12,11 @@
  * @link     https://github.com/jankx/core
  */
 
-use Jankx\Template\Template;
 use Jankx\Asset\AssetManager;
-use Jankx\Template\Engine\EngineManager;
+use Jankx\Component\Registry;
 use Jankx\SiteLayout\SiteLayout;
+use Jankx\Template\Template;
+use Jankx\Template\Engine\EngineManager;
 
 /**
  * This class is middle-class interaction between developer and other classes
@@ -116,11 +117,16 @@ class Jankx
         };
 
         add_action('init', array($this, 'init'));
+        add_action('init', array(
+            Registry::class,
+            'registerComponents'
+        ));
     }
 
     public function init()
     {
         add_theme_support('post-thumbnails');
+
         if (is_admin()) {
             add_action('current_screen', array($this, 'extraFeatures'));
         } else {
