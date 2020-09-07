@@ -11,15 +11,14 @@
     }
   ],
   "require": {
+    "symfony/yaml": "3.4.44",
     "jankx/admin": "dev-master",
     "jankx/asset": "dev-master",
     "jankx/helpers": "dev-master",
     "jankx/option": "dev-master",
     "jankx/template": "dev-master",
     "jankx/component": "dev-master",
-    "jankx/ui-framework": "dev-master",
-    "jankx/site-layout": "dev-master",
-    "symfony/yaml": "3.4.44"
+    "jankx/site-layout": "dev-master"
   },
   "autoload": {
     "psr-4": {
