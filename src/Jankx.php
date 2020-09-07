@@ -29,6 +29,7 @@ class Jankx
     protected $defaultTemplateDir;
 
     public $siteLayout;
+    public $assetManager;
 
     public static function __callStatic($name, $args)
     {
@@ -100,8 +101,7 @@ class Jankx
      *
      * @return void
      */
-    private function includes()
-    {
+    private function includes() {
         $jankxVendor = realpath(dirname(JANKX_FRAMEWORK_FILE_LOADER) . '/..');
         $fileNames = array('component/component.php');
         foreach ($fileNames as $fileName) {
@@ -135,7 +135,8 @@ class Jankx
             return $templateLoader;
         };
 
-        $this->siteLayout = SiteLayout::getInstance();
+        $this->siteLayout   = SiteLayout::getInstance();
+        $this->assetManager = AssetManager::instance();
 
         add_action('init', array($this, 'init'));
         add_action('init', array(
