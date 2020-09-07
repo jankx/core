@@ -29,6 +29,8 @@ class Jankx
     protected static $instance;
     protected $defaultTemplateDir;
 
+    public $siteLayout;
+
     public static function __callStatic($name, $args)
     {
         $instance = self::instance();
@@ -86,11 +88,28 @@ class Jankx
 
         do_action('jankx_init');
 
+        $this->includes();
         $this->initCoreFramework();
 
         do_action('jankx_loaded');
 
         define('JANKX_FRAMEWORK_LOADED', true);
+    }
+
+    /**
+     * Load the Jankx dependences
+     *
+     * @return void
+     */
+    private function includes() {
+        $jankxVendor = realpath(dirname(JANKX_FRAMEWORK_FILE_LOADER) . '/..');
+        $fileNames = array('component/component.php');
+        foreach ($fileNames as $fileName) {
+            $file = sprintf('%s/%s', $jankxVendor, $fileName);
+            if (file_exists($file)) {
+                require_once $file;
+            }
+        }
     }
 
     private function initCoreFramework()
@@ -116,10 +135,16 @@ class Jankx
             return $templateLoader;
         };
 
+        $this->siteLayout = SiteLayout::getInstance();
+
         add_action('init', array($this, 'init'));
         add_action('init', array(
             Registry::class,
             'registerComponents'
+        ));
+        add_action('widgets_init', array(
+            $this->siteLayout,
+            'registerSidebars'
         ));
     }
 
@@ -137,8 +162,7 @@ class Jankx
     public function extraFeatures()
     {
         if (apply_filters('jankx_is_support_site_layout', true)) {
-            $siteLayout = SiteLayout::getInstance();
-            $siteLayout->buildLayout(
+            $this->siteLayout->buildLayout(
                 EngineManager::getEngine(
                     Template::getDefaultLoader()
                 )
