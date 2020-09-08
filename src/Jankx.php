@@ -117,7 +117,7 @@ class Jankx
         /**
          * Load Jankx templates
          */
-        $templateLoader = Template::getInstance(
+        $templateLoader = Template::getLoader(
             $this->defaultTemplateDir,
             apply_filters('jankx_theme_template_directory_name', 'templates'),
             apply_filters_ref_array(
@@ -128,8 +128,7 @@ class Jankx
                 ]
             )
         );
-        $template = new Template();
-        $template->load();
+        $templateLoader->load();
 
         $this->templateLoader = function () use ($templateLoader) {
             return $templateLoader;
