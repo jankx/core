@@ -137,14 +137,11 @@ class Jankx
         $this->siteLayout   = SiteLayout::getInstance();
         $this->assetManager = AssetManager::instance();
 
+        add_action('widgets_init', array($this->siteLayout, 'registerSidebars'), 5);
         add_action('init', array($this, 'init'));
         add_action('init', array(
             Registry::class,
             'registerComponents'
-        ));
-        add_action('widgets_init', array(
-            $this->siteLayout,
-            'registerSidebars'
         ));
     }
 
