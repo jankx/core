@@ -14,11 +14,12 @@
     "symfony/yaml": "3.4.44",
     "jankx/admin": "dev-master",
     "jankx/asset": "dev-master",
-    "jankx/helpers": "dev-master",
-    "jankx/option": "dev-master",
-    "jankx/template": "dev-master",
     "jankx/component": "dev-master",
-    "jankx/site-layout": "dev-master"
+    "jankx/helpers": "dev-master",
+    "jankx/languges": "dev-master",
+    "jankx/option": "dev-master",
+    "jankx/site-layout": "dev-master",
+    "jankx/template": "dev-master"
   },
   "autoload": {
     "psr-4": {
