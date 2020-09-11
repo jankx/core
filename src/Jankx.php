@@ -17,6 +17,7 @@ use Jankx\Component\Registry;
 use Jankx\SiteLayout\SiteLayout;
 use Jankx\Template\Template;
 use Jankx\Integrate\Integrator;
+use Jankx\Option\Framework as OptionFramework;
 
 /**
  * This class is middle-class interaction between developer and other classes
@@ -28,8 +29,6 @@ class Jankx
 
     protected static $instance;
     protected $defaultTemplateDir;
-
-    public $assetManager;
 
     public static function __callStatic($name, $args)
     {
@@ -129,15 +128,27 @@ class Jankx
                 ]
             )
         );
-        $templateLoader->load();
-
         $this->templateLoader = function () use ($templateLoader) {
             return $templateLoader;
         };
+        // Load template via loader
+        static::templateLoader()->load();
 
-        $this->assetManager = AssetManager::instance();
+        // Create Asset clousure for Jankx
+        $assetManager = AssetManager::instance();
+        $this->asset  = function () use ($assetManager) {
+            return $assetManager;
+        };
 
+        // Create option framework clousure
+        $optionFramework = OptionFramework::getInstance();
+        $this->optionFramework = function () use ($optionFramework) {
+            return $optionFramework;
+        };
+
+        add_action('after_setup_theme', array($this, 'setupOptionFramework'), 5);
         add_action('after_setup_theme', array($this, 'integrations'));
+
         add_action('widgets_init', array($this, 'setupSidebar'), 5);
         add_action('init', array($this, 'init'));
     }
@@ -160,5 +171,19 @@ class Jankx
     {
         $integrator = Integrator::getInstance();
         $integrator->integrate();
+    }
+
+    public function setupOptionFramework()
+    {
+        $optionFramework = static::optionFramework();
+
+        /**
+         * Default mode is `auto` and Jankx auto search Option framework to use
+         *
+         * Hook `jankx_option_framework_mode`: You set the option framework via this hook
+         */
+        $optionMode = apply_filters('jankx_option_framework_mode', 'auto');
+        $optionFramework->setMode($optionMode);
+        $optionFramework->loadFramework();
     }
 }
