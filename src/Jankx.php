@@ -16,6 +16,7 @@ use Jankx\Asset\AssetManager;
 use Jankx\Component\Registry;
 use Jankx\SiteLayout\SiteLayout;
 use Jankx\Template\Template;
+use Jankx\Integrate\Integrator;
 
 /**
  * This class is middle-class interaction between developer and other classes
@@ -28,7 +29,6 @@ class Jankx
     protected static $instance;
     protected $defaultTemplateDir;
 
-    public $siteLayout;
     public $assetManager;
 
     public static function __callStatic($name, $args)
@@ -101,7 +101,8 @@ class Jankx
      *
      * @return void
      */
-    private function includes() {
+    private function includes()
+    {
         $jankxVendor = realpath(dirname(JANKX_FRAMEWORK_FILE_LOADER) . '/..');
         $fileNames = array('component/component.php');
         foreach ($fileNames as $fileName) {
@@ -134,19 +135,30 @@ class Jankx
             return $templateLoader;
         };
 
-        $this->siteLayout   = SiteLayout::getInstance();
         $this->assetManager = AssetManager::instance();
 
-        add_action('widgets_init', array($this->siteLayout, 'registerSidebars'), 5);
+        add_action('after_setup_theme', array($this, 'integrations'));
+        add_action('widgets_init', array($this, 'setupSidebar'), 5);
         add_action('init', array($this, 'init'));
-        add_action('init', array(
-            Registry::class,
-            'registerComponents'
-        ));
     }
 
     public function init()
     {
         add_theme_support('post-thumbnails');
+
+        // Load Jankx components
+        Registry::registerComponents();
+    }
+
+    public function setupSidebar()
+    {
+        $siteLayout = SiteLayout::getInstance();
+        $siteLayout->registerSidebars();
+    }
+
+    public function integrations()
+    {
+        $integrator = Integrator::getInstance();
+        $integrator->integrate();
     }
 }
