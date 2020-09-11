@@ -1,6 +1,7 @@
 <?php
 namespace Jankx\Integrate\Elementor;
 
+use ReflectionClass;
 use Jankx\Integrate\Constract;
 
 class Elementor extends Constract
@@ -10,8 +11,11 @@ class Elementor extends Constract
         add_action('elementor/controls/controls_registered', array($this, 'registerCustomControlsf'));
         add_action('elementor/widgets/widgets_registered', array($this, 'registerCustomControls'));
 
+        if (apply_filters('jankx_ecommerce_elementor_active_woocommerce_tab', true)) {
+            add_action('elementor/elements/categories_registered', array($this, 'customWidgetCategories'));
+        }
         if (apply_filters('jankx_plugin_elementor_silent_mode', false)) {
-            add_filter('elementor/editor/localize_settings', array( $this, 'removeElementPromtionWidgets' ));
+            add_filter('elementor/editor/localize_settings', array( $this, 'removeElementPromtionWidgets'));
         }
     }
 
@@ -31,5 +35,21 @@ class Elementor extends Constract
         }
 
         return $config;
+    }
+
+    public function customWidgetCategories($elementManager)
+    {
+        $reflectElementManager = new ReflectionClass($elementManager);
+        $widgetCategoryRefProp = $reflectElementManager->getProperty('categories');
+        $widgetCategoryRefProp->setAccessible(true);
+
+        $widgetCategory = $widgetCategoryRefProp->getValue($elementManager);
+
+        do_action(
+            'jankx_integrate_elementor_custom_widget_category',
+            $widgetCategoryRefProp,
+            $widgetCategory,
+            $elementManager
+        );
     }
 }
