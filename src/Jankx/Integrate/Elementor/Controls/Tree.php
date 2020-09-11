@@ -1,5 +1,5 @@
 <?php
-namespace Jankx\Integrate\Elementor\Control;
+namespace Jankx\Integrate\Elementor\Controls;
 
 use Elementor\Base_Control;
 
