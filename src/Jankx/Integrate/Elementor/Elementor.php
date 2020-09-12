@@ -8,8 +8,8 @@ class Elementor extends Constract
 {
     public function integrate()
     {
-        add_action('elementor/controls/controls_registered', array($this, 'registerCustomControlsf'));
-        add_action('elementor/widgets/widgets_registered', array($this, 'registerCustomControls'));
+        add_action('elementor/controls/controls_registered', array($this, 'registerJankxControls'));
+        add_action('elementor/widgets/widgets_registered', array($this, 'registerJankxWidgets'));
 
         if (apply_filters('jankx_ecommerce_elementor_active_woocommerce_tab', true)) {
             add_action('elementor/elements/categories_registered', array($this, 'customWidgetCategories'));
