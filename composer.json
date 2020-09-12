@@ -19,7 +19,9 @@
     "jankx/languages": "dev-master",
     "jankx/option": "dev-master",
     "jankx/site-layout": "dev-master",
-    "jankx/template": "dev-master"
+    "jankx/post-layout": "dev-master",
+    "jankx/template": "dev-master",
+    "jankx/widget": "dev-master"
   },
   "autoload": {
     "psr-4": {
