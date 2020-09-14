@@ -155,6 +155,9 @@ class Jankx
 
     public function init()
     {
+        // Run hook jankx init via components
+        do_action('jankx_init_features');
+
         add_theme_support('post-thumbnails');
 
         // Load Jankx components

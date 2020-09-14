@@ -130,6 +130,18 @@ class Posts extends Widget_Base
             ]
         );
 
+        $this->add_control(
+            'limit',
+            [
+                'label' => __('Number of Posts', 'jankx'),
+                'type' => Controls_Manager::NUMBER,
+                'min' => 0,
+                'max' => 100,
+                'step' => 1,
+                'default' => 5,
+            ]
+        );
+
         $this->end_controls_section();
     }
 
@@ -143,6 +155,7 @@ class Posts extends Widget_Base
             'tags' => $settings['post_tags'],
             'header_text' => $settings['widget_title'],
             'layout' => array_get($settings, 'post_layout', PostLayoutManager::LIST),
+            'limit' => $settings['limit'],
         ));
         echo $postsRenderer->render();
     }
