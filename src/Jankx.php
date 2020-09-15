@@ -146,10 +146,14 @@ class Jankx
             return $optionFramework;
         };
 
+        $siteLayout = SiteLayout::getInstance();
+        $this->siteLayout = function () use ($siteLayout) {
+            return $siteLayout;
+        };
+
         add_action('after_setup_theme', array($this, 'setupOptionFramework'), 5);
         add_action('after_setup_theme', array($this, 'integrations'));
 
-        add_action('widgets_init', array($this, 'setupSidebar'), 5);
         add_action('init', array($this, 'init'));
     }
 
@@ -162,12 +166,6 @@ class Jankx
 
         // Load Jankx components
         Registry::registerComponents();
-    }
-
-    public function setupSidebar()
-    {
-        $siteLayout = SiteLayout::getInstance();
-        $siteLayout->registerSidebars();
     }
 
     public function integrations()
