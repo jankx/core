@@ -18,6 +18,7 @@ use Jankx\SiteLayout\SiteLayout;
 use Jankx\Template\Template;
 use Jankx\Integrate\Integrator;
 use Jankx\Option\Framework as OptionFramework;
+use Jankx\UX\UserExperience;
 
 /**
  * This class is middle-class interaction between developer and other classes
@@ -151,8 +152,14 @@ class Jankx
             return $siteLayout;
         };
 
+        $userExperience = UserExperience::getInstance();
+        $this->ux = function () use ($userExperience) {
+            return $userExperience;
+        };
+
         add_action('after_setup_theme', array($this, 'setupOptionFramework'), 5);
         add_action('after_setup_theme', array($this, 'integrations'));
+        add_action('after_setup_theme', array($this, 'improveUserExperience'));
 
         add_action('init', array($this, 'init'));
     }
@@ -186,5 +193,11 @@ class Jankx
         $optionMode = apply_filters('jankx_option_framework_mode', 'auto');
         $optionFramework->setMode($optionMode);
         $optionFramework->loadFramework();
+    }
+
+    // Improve UX
+    public function improveUserExperience()
+    {
+        static::ux()->optimize();
     }
 }
