@@ -19,6 +19,7 @@ use Jankx\Template\Template;
 use Jankx\Integrate\Integrator;
 use Jankx\Option\Framework as OptionFramework;
 use Jankx\UX\UserExperience;
+use Jankx\PostLayout\PostLayoutManager;
 
 /**
  * This class is middle-class interaction between developer and other classes
@@ -173,6 +174,9 @@ class Jankx
 
         // Load Jankx components
         Registry::registerComponents();
+
+        // Setup post layout
+        PostLayoutManager::getInstance();
     }
 
     public function integrations()
