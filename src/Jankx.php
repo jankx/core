@@ -20,6 +20,7 @@ use Jankx\Integrate\Integrator;
 use Jankx\Option\Framework as OptionFramework;
 use Jankx\UX\UserExperience;
 use Jankx\PostLayout\PostLayoutManager;
+use Jankx\Widget\WidgetManager;
 
 /**
  * This class is middle-class interaction between developer and other classes
@@ -158,11 +159,19 @@ class Jankx
             return $userExperience;
         };
 
+        $widgets = WidgetManager::getInstance();
+        $this->widgets = function () use ($widgets) {
+            return $widgets;
+        };
+
         add_action('after_setup_theme', array($this, 'setupOptionFramework'), 5);
         add_action('after_setup_theme', array($this, 'integrations'));
         add_action('after_setup_theme', array($this, 'improveUserExperience'));
 
         add_action('init', array($this, 'init'));
+
+        // Register widgets
+        add_action('widgets_init', array(static::widgets(), 'registerWidgets'));
     }
 
     public function init()
