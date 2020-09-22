@@ -29,6 +29,7 @@ class Elementor extends Constract
             add_action('jankx_template_before_open_container', array($this, 'openElementorSelectionClass'));
             add_action('jankx_template_after_close_container', array($this, 'closeElementorSelectionClass'));
 
+            add_filter('jankx_template_disable_base_css', '__return_true');
             add_filter('jankx_template_the_container_classes', array($this, 'addElementorContainerClass'));
         }
     }
