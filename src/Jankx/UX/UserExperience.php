@@ -6,6 +6,7 @@ class UserExperience
     protected static $instance;
 
     public $audit;
+    protected $customize;
 
     public static function getInstance()
     {
@@ -18,10 +19,12 @@ class UserExperience
     private function __construct()
     {
         $this->audit = new Audit();
+        $this->customize = new Customize();
     }
 
     public function optimize()
     {
-        $this->audit->firstContentfulPaint();
+        $this->customize->showLoading();
+        $this->customize->loadPresetPalettes();
     }
 }
