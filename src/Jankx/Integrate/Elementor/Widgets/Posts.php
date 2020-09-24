@@ -149,7 +149,7 @@ class Posts extends Widget_Base
     {
         $settings = $this->get_settings_for_display();
         $postsRenderer = PostsRenderer::prepare(array(
-            'show_image' => $settings['show_post_thumbnail'],
+            'show_thumbnail' => $settings['show_post_thumbnail'],
             'show_expert' => $settings['show_post_excerpt'],
             'categories' => $settings['post_categories'],
             'tags' => $settings['post_tags'],
@@ -157,6 +157,8 @@ class Posts extends Widget_Base
             'layout' => array_get($settings, 'post_layout', PostLayoutManager::LIST),
             'limit' => $settings['limit'],
         ));
+
+        // var_dump($postsRenderer);die;
         echo $postsRenderer->render();
     }
 
