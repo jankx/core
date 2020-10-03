@@ -25,7 +25,8 @@
   },
   "autoload": {
     "psr-4": {
-      "": "src/"
+      "": "./src/",
+      "AdvancedElementor\\Controls\\": "./src/Jankx/Integrate/Elementor/Controls/"
     },
     "files": [
       "framework.php"

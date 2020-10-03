@@ -1,8 +1,8 @@
 <?php
-namespace Jankx\Integrate\Elementor\Controls;
+namespace AdvancedElementor\Controls;
 
 use Elementor\Base_Control;
 
-class ImageChoose extends Base_Control
+class ImageChoosen extends Base_Control
 {
 }

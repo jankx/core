@@ -1,9 +1,9 @@
 <?php
-namespace Jankx\Integrate\Elementor\Controls;
+namespace AdvancedElementor\Controls;
 
 use Elementor\Base_Control;
 
-class Tree extends Base_Control
+class TreeCheckbox extends Base_Control
 {
     public function get_type()
     {
