@@ -6,11 +6,6 @@ use Jankx\SiteLayout\SiteLayout;
 
 class Layout
 {
-    public function __construct()
-    {
-        add_action('template_redirect', array($this, 'customTemplates'));
-    }
-
     public function customTemplates()
     {
         add_filter('jankx_template_pre_get_current_site_layout', array($this, 'makeFullwidthLayout'));
