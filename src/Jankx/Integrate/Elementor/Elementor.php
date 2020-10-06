@@ -9,6 +9,9 @@ class Elementor extends Constract
 {
     public function integrate()
     {
+        $layout = new Layout();
+        add_action('template_redirect', array($layout, 'customTemplates'));
+
         add_action('elementor/elements/categories_registered', array($this, 'registerJankxCategory'));
         add_action('elementor/controls/controls_registered', array($this, 'registerJankxControls'));
         add_action('elementor/widgets/widgets_registered', array($this, 'registerJankxWidgets'));
@@ -25,7 +28,8 @@ class Elementor extends Constract
 
     public function integrateTemplateClasses()
     {
-        if (is_singular() && \Elementor\Plugin::instance()->db->is_built_with_elementor(get_the_ID())) {
+        $enable = apply_filters('jankx_template_enable_compatible_elementor_container', true);
+        if ($enable  && is_singular() && \Elementor\Plugin::instance()->db->is_built_with_elementor(get_the_ID())) {
             add_action('jankx_template_before_open_container', array($this, 'openElementorSelectionClass'));
             add_action('jankx_template_after_close_container', array($this, 'closeElementorSelectionClass'));
 
