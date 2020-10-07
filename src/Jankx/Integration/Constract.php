@@ -1,5 +1,5 @@
 <?php
-namespace Jankx\Integrate;
+namespace Jankx\Integration;
 
 abstract class Constract
 {

@@ -1,9 +1,9 @@
 <?php
-namespace Jankx\Integrate\Elementor;
+namespace Jankx\Integration\Elementor;
 
 use ReflectionClass;
-use Jankx\Integrate\Constract;
-use Jankx\Integrate\Elementor\Widgets\Posts;
+use Jankx\Integration\Constract;
+use Jankx\Integration\Elementor\Widgets\Posts;
 
 class Elementor extends Constract
 {

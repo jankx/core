@@ -1,5 +1,5 @@
 <?php
-namespace Jankx\Integrate;
+namespace Jankx\Integration;
 
 class CompatibleObject
 {
@@ -18,7 +18,7 @@ class CompatibleObject
      * Set compatible type
      *
      * @param string $type Kind of object, default support `plugin` and `theme`
-     * @return \Jankx\Integrate\CompatibleObject
+     * @return \Jankx\Integration\CompatibleObject
      */
     public function setType($type = 'plugin')
     {
@@ -30,7 +30,7 @@ class CompatibleObject
      * Set the path of object
      *
      * @param string $path The path of object
-     * @return \Jankx\Integrate\CompatibleObject
+     * @return \Jankx\Integration\CompatibleObject
      */
     public function setPath($path = '')
     {
@@ -42,7 +42,7 @@ class CompatibleObject
      * Set integrator class
      *
      * @param string $integrator
-     * @return \Jankx\Integrate\CompatibleObject
+     * @return \Jankx\Integration\CompatibleObject
      */
     public function setIntegrator($integrator)
     {

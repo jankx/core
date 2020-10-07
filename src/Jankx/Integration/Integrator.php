@@ -7,11 +7,11 @@
  * @author Puleeno Nguyen <puleeno@gmail.com>
  * @since 1.0.0
  */
-namespace Jankx\Integrate;
+namespace Jankx\Integration;
 
-use Jankx\Integrate\CompatibleObject;
-use Jankx\Integrate\Elementor\Elementor;
-use Jankx\Integrate\Constract;
+use Jankx\Integration\CompatibleObject;
+use Jankx\Integration\Elementor\Elementor;
+use Jankx\Integration\Constract;
 
 class Integrator implements \Iterator
 {

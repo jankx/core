@@ -1,5 +1,5 @@
 <?php
-namespace Jankx\Integrate\Elementor\Widgets;
+namespace Jankx\Integration\Elementor\Widgets;
 
 use Elementor\Widget_Base;
 use Elementor\Controls_Manager;

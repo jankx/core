@@ -1,5 +1,5 @@
 <?php
-namespace Jankx\Integrate\Elementor;
+namespace Jankx\Integration\Elementor;
 
 use Jankx\Template\Page;
 use Jankx\SiteLayout\SiteLayout;

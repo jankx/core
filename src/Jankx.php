@@ -16,7 +16,7 @@ use Jankx\Asset\AssetManager;
 use Jankx\Component\Registry;
 use Jankx\SiteLayout\SiteLayout;
 use Jankx\Template\Template;
-use Jankx\Integrate\Integrator;
+use Jankx\Integration\Integrator;
 use Jankx\Option\Framework as OptionFramework;
 use Jankx\UX\UserExperience;
 use Jankx\PostLayout\PostLayoutManager;
