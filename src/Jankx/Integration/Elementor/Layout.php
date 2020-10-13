@@ -43,4 +43,18 @@ class Layout
         remove_action('jankx_template_after_header', array($this, 'openJankxSidebarContentContainer'), 20);
         remove_action('jankx_template_before_footer', array($this, 'closeJankxSidebarContentContainer'), 4);
     }
+
+    public function openElementorSelectionClass() {
+        echo '<div class="elementor-section elementor-section-boxed jankx-elementor">';
+    }
+
+    public function closeElementorSelectionClass() {
+        echo '</div><!-- End elementor-section by Jankx framework -->';
+    }
+
+    public function addElementorContainerClass($classes) {
+        $classes[] = 'elementor-container';
+
+        return $classes;
+    }
 }
