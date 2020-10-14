@@ -164,11 +164,8 @@ class Jankx
             return $widgets;
         };
 
-        // Init Mobile Detect Library 2.8.34
-        $detector = new Mobile_Detect();
-        $this->device = function () use ($detector) {
-            return $detector;
-        };
+        // Setup Jankx::device() method
+        add_action('after_setup_theme', 'jankx_get_device_detector');
 
         add_action('after_setup_theme', array($this, 'setupOptionFramework'), 5);
         add_action('after_setup_theme', array($this, 'integrations'));
