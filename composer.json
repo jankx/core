@@ -14,6 +14,7 @@
     "symfony/yaml": "3.4.44",
     "jankx/admin": "dev-master",
     "jankx/asset": "dev-master",
+    "jankx/breadcrumb": "dev-master",
     "jankx/component": "dev-master",
     "jankx/helpers": "dev-master",
     "jankx/languages": "dev-master",
