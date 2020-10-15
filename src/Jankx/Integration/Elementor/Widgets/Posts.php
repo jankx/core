@@ -87,7 +87,7 @@ class Posts extends Widget_Base
             [
                 'label' => __('Layout', 'jankx'),
                 'type' => Controls_Manager::SELECT,
-                'default' => PostLayoutManager::LIST,
+                'default' => PostLayoutManager::LIST_LAYOUT,
                 'options' => $postLayout->getLayouts(array(
                     'type' => 'names'
                 )),
@@ -154,7 +154,7 @@ class Posts extends Widget_Base
             'categories' => $settings['post_categories'],
             'tags' => $settings['post_tags'],
             'header_text' => $settings['widget_title'],
-            'layout' => array_get($settings, 'post_layout', PostLayoutManager::LIST),
+            'layout' => array_get($settings, 'post_layout', PostLayoutManager::LIST_LAYOUT),
             'limit' => $settings['limit'],
         ));
 
