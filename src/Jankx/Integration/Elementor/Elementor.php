@@ -78,25 +78,4 @@ class Elementor extends Constract
         $widgetCategories = array_merge($highPriorityCategories, $widgetCategories);
         $widgetCategoryRefProp->setValue($elementManager, $widgetCategories);
     }
-
-    public function openElementorSelectionClass()
-    {
-        echo '<div class="elementor-section elementor-section-boxed">';
-    }
-
-    public function closeElementorSelectionClass()
-    {
-        echo '</div>';
-    }
-
-    public function addElementorContainerClass($classes)
-    {
-        if (is_string($classes)) {
-            $classes = array($classes);
-        }
-        // Added elementor container class to theme
-        $classes[] = 'elementor-container';
-
-        return $classes;
-    }
 }
