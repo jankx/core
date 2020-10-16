@@ -22,7 +22,8 @@
     "jankx/site-layout": "dev-master",
     "jankx/post-layout": "dev-master",
     "jankx/template": "dev-master",
-    "jankx/widget": "dev-master"
+    "jankx/widget": "dev-master",
+    "jankx/pagination": "dev-master"
   },
   "autoload": {
     "psr-4": {
