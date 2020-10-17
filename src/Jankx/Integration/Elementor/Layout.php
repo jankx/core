@@ -35,6 +35,8 @@ class Layout
                 add_filter('jankx_template_disable_base_css', '__return_true');
                 add_filter('jankx_template_the_container_classes', array($this, 'addElementorContainerClass'));
             }
+
+            add_action('init', array($this, 'buildContainerStylesheet'));
         }
     }
 
@@ -59,5 +61,9 @@ class Layout
         $classes[] = 'elementor-container';
 
         return $classes;
+    }
+
+
+    public function buildContainerStylesheet() {
     }
 }

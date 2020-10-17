@@ -95,6 +95,15 @@ class Posts extends Widget_Base
         );
 
         $this->add_control(
+            'show_view_all_link',
+            [
+                'label' => __('View All URL', 'jankx'),
+                'type' => Controls_Manager::URL,
+                'default' => '',
+            ]
+        );
+
+        $this->add_control(
             'show_post_thumbnail',
             [
                 'label' => __('Show Thumbnail', 'jankx'),
@@ -110,18 +119,6 @@ class Posts extends Widget_Base
             'show_post_excerpt',
             [
                 'label' => __('Show Excerpt', 'jankx'),
-                'type' => Controls_Manager::SWITCHER,
-                'label_on' => __('Show', 'jankx'),
-                'label_off' => __('Hide', 'jankx'),
-                'return_value' => 'yes',
-                'default' => 'yes',
-            ]
-        );
-
-        $this->add_control(
-            'show_view_all_link',
-            [
-                'label' => __('Show View All', 'jankx'),
                 'type' => Controls_Manager::SWITCHER,
                 'label_on' => __('Show', 'jankx'),
                 'label_off' => __('Hide', 'jankx'),
@@ -154,11 +151,11 @@ class Posts extends Widget_Base
             'categories' => $settings['post_categories'],
             'tags' => $settings['post_tags'],
             'header_text' => $settings['widget_title'],
+            'view_all_url' => $settings['show_view_all_link'],
             'layout' => array_get($settings, 'post_layout', PostLayoutManager::LIST_LAYOUT),
             'limit' => $settings['limit'],
         ));
 
-        // var_dump($postsRenderer);die;
         echo $postsRenderer->render();
     }
 
