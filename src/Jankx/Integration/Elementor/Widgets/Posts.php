@@ -99,7 +99,7 @@ class Posts extends Widget_Base
             [
                 'label' => __('View All URL', 'jankx'),
                 'type' => Controls_Manager::URL,
-                'default' => '',
+                'default' => array(),
             ]
         );
 
