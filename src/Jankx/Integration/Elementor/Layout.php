@@ -118,7 +118,7 @@ class Layout
             'xxl' => 1600,
         ));
 
-        jankx_template('layout/wrapper', array(
+        jankx_template('layout/elementor-wrapper', array(
             'desktop' => $container_width,
             'tablet' => $container_width_tablet,
             'mobile' => $container_width_mobile,
