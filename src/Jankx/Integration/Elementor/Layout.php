@@ -38,7 +38,7 @@ class Layout
                 add_filter('jankx_template_the_container_classes', array($this, 'addElementorContainerClass'));
             }
         }
-        add_action('wp_head', array($this, 'cloneContainerStylesheets'));
+        add_action('wp_head', array($this, 'cloneContainerStylesheets'), 9);
     }
 
     public function removeContentSidebarContainer()
