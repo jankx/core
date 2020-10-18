@@ -3,6 +3,8 @@ namespace Jankx\Integration\Elementor;
 
 use Jankx\Template\Page;
 use Jankx\SiteLayout\SiteLayout;
+use Elementor\Core\Settings\Manager;
+use Elementor\Core\Responsive\Responsive;
 
 class Layout
 {
@@ -35,9 +37,8 @@ class Layout
                 add_filter('jankx_template_disable_base_css', '__return_true');
                 add_filter('jankx_template_the_container_classes', array($this, 'addElementorContainerClass'));
             }
-
-            add_action('init', array($this, 'buildContainerStylesheet'));
         }
+        add_action('wp_head', array($this, 'cloneContainerStylesheets'));
     }
 
     public function removeContentSidebarContainer()
@@ -63,7 +64,65 @@ class Layout
         return $classes;
     }
 
+    public function cloneContainerStylesheets() {
+        $elementor_kit = get_option('elementor_active_kit');
+        if (!$elementor_kit) {
+            return;
+        }
 
-    public function buildContainerStylesheet() {
+        $page = Manager::get_settings_managers( 'page' )->get_model( $elementor_kit );
+        $page_settings = $page->get_data( 'settings' );
+
+        $container_width = array(
+            'width' => 1140,
+            'unit' => 'px'
+        );
+        if (isset($page_settings['container_width'])) {
+            $settings = $page_settings['container_width'];
+            $container_width = array(
+                'width'=>array_get($settings, 'size', 1410),
+                'unit' =>array_get($settings, 'unit', 'px'),
+            );
+        }
+
+        $container_width_tablet = array(
+            'width' => 1025,
+            'unit' => 'px'
+        );
+        if (isset($page_settings['container_width_tablet'])) {
+            $settings = $page_settings['container_width_tablet'];
+            $container_width_tablet = array(
+                'width'=>array_get($settings, 'size', 1025),
+                'unit' =>array_get($settings, 'unit', 'px'),
+            );
+        }
+
+        $container_width_mobile = array(
+            'width' => 768,
+            'unit' => 'px'
+        );
+        if (isset($page_settings['container_width_mobile'])) {
+            $settings = $page_settings['container_width_mobile'];
+            $container_width_mobile = array(
+                'width'=>array_get($settings, 'size', 768),
+                'unit' =>array_get($settings, 'unit', 'px'),
+            );
+        }
+
+        $break_points = wp_parse_args(Responsive::get_breakpoints(), array(
+            'xs' => 0,
+            'sm' => 480,
+            'md' => 768,
+            'lg' => 1025,
+            'xl' => 1440,
+            'xxl' => 1600,
+        ));
+
+        jankx_template('layout/wrapper', array(
+            'desktop' => $container_width,
+            'tablet' => $container_width_tablet,
+            'mobile' => $container_width_mobile,
+            'breakpoints' => $break_points,
+        ));
     }
 }
