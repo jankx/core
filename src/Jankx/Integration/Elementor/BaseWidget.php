@@ -3,6 +3,7 @@ namespace Jankx\Integration\Elementor;
 
 use Elementor\Widget_Base;
 use Elementor\Controls_Manager;
+use Jankx\PostLayout\PostLayoutManager;
 
 abstract class BaseWidget extends Widget_Base {
     protected function getImageSizeName($sizeName) {
@@ -89,7 +90,7 @@ abstract class BaseWidget extends Widget_Base {
                 'step' =>5,
                 'default' => 320,
                 'condition' => array(
-                    'thumbnail_size' => 'custom'
+                    'thumbnail_size' => 'custom',
                 )
             ]
         );

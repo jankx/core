@@ -47,6 +47,14 @@ class Posts extends BaseWidget
         return $postTags;
     }
 
+    public function getImagePositions() {
+        return array(
+            'left' => __('Left'),
+            'right' => __('Right'),
+        );
+    }
+
+
     protected function _register_controls()
     {
         $postLayout = PostLayoutManager::getInstance();
@@ -131,6 +139,20 @@ class Posts extends BaseWidget
         );
 
         $this->addThumbnailControls();
+
+        $this->add_control(
+            'thumbnail_position',
+            [
+                'label' => __('Thumbnail position', 'jankx'),
+                'type' => Controls_Manager::SELECT,
+                'options' => $this->getImagePositions(),
+                'default' => 'left',
+                'condition' => array(
+                    'show_post_thumbnail' => 'yes',
+                    'layout' => array(PostLayoutManager::LIST_LAYOUT),
+                )
+            ]
+        );
 
         $this->add_control(
             'show_post_excerpt',
