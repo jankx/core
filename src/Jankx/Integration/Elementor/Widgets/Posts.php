@@ -1,12 +1,12 @@
 <?php
 namespace Jankx\Integration\Elementor\Widgets;
 
-use Elementor\Widget_Base;
 use Elementor\Controls_Manager;
 use Jankx\PostLayout\PostLayoutManager;
 use Jankx\Widget\Renderers\PostsRenderer;
+use Jankx\Integration\Elementor\BaseWidget;
 
-class Posts extends Widget_Base
+class Posts extends BaseWidget
 {
     public function get_name()
     {
@@ -28,6 +28,25 @@ class Posts extends Widget_Base
         return array('theme-elements', 'jankx');
     }
 
+    public function getPostCategories() {
+        $taxQuery = array('taxonomy' => 'category', 'fields' => 'id=>name', 'hide_empty' => false);
+        $postCats = version_compare($GLOBALS['wp_version'], '4.5.0') >= 0
+            ? get_terms($taxQuery)
+            : get_terms($taxQuery['taxonomy'], $taxQuery);
+
+        return $postCats;
+    }
+
+
+    public function getPostTags() {
+        $taxQuery = array('taxonomy' => 'post_tag', 'fields' => 'id=>name', 'hide_empty' => false);
+        $postTags = version_compare($GLOBALS['wp_version'], '4.5.0') >= 0
+            ? get_terms($taxQuery)
+            : get_terms($taxQuery['taxonomy'], $taxQuery);
+
+        return $postTags;
+    }
+
     protected function _register_controls()
     {
         $postLayout = PostLayoutManager::getInstance();
@@ -44,7 +63,7 @@ class Posts extends Widget_Base
             'widget_title',
             [
                 'label' => __('Title', 'jankx'),
-                'type' => Controls_Manager::TEXT,
+                'type' => Controls_Manager::TEXTAREA,
                 'default' => __('Recent Posts', 'jankx'),
                 'placeholder' => __('Input widget title', 'jankx'),
             ]
@@ -60,10 +79,6 @@ class Posts extends Widget_Base
             ]
         );
 
-        $taxQuery = array('taxonomy' => 'category', 'fields' => 'id=>name', 'hide_empty' => false);
-        $postCats = version_compare($GLOBALS['wp_version'], '4.5.0') >= 0
-            ? get_terms($taxQuery)
-            : get_terms($taxQuery['taxonomy'], $taxQuery);
 
         $this->add_control(
             'post_categories',
@@ -71,15 +86,10 @@ class Posts extends Widget_Base
                 'label' => __('Post Categories', 'jankx'),
                 'type' => Controls_Manager::SELECT2,
                 'multiple' => true,
-                'options' => $postCats,
+                'options' => $this->getPostCategories(),
                 'default' => '',
             ]
         );
-
-        $taxQuery = array('taxonomy' => 'post_tag', 'fields' => 'id=>name', 'hide_empty' => false);
-        $postTags = version_compare($GLOBALS['wp_version'], '4.5.0') >= 0
-            ? get_terms($taxQuery)
-            : get_terms($taxQuery['taxonomy'], $taxQuery);
 
         $this->add_control(
             'post_tags',
@@ -87,7 +97,7 @@ class Posts extends Widget_Base
                 'label' => __('Post Tags', 'jankx'),
                 'type' => Controls_Manager::SELECT2,
                 'multiple' => true,
-                'options' => $postTags,
+                'options' => $this->getPostTags(),
                 'default' => 'none',
             ]
         );
@@ -120,17 +130,7 @@ class Posts extends Widget_Base
             ]
         );
 
-        $this->add_control(
-            'show_post_thumbnail',
-            [
-                'label' => __('Show Thumbnail', 'jankx'),
-                'type' => Controls_Manager::SWITCHER,
-                'label_on' => __('Show', 'jankx'),
-                'label_off' => __('Hide', 'jankx'),
-                'return_value' => 'yes',
-                'default' => 'yes',
-            ]
-        );
+        $this->addThumbnailControls();
 
         $this->add_control(
             'show_post_excerpt',
