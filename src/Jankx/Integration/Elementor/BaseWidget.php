@@ -94,4 +94,15 @@ abstract class BaseWidget extends Widget_Base {
             ]
         );
     }
+
+    public function getImageSizeFromSettings($settings) {
+        $imageSize = array_get($settings, 'thumbnail_size', 'thumbnail');
+        if ($imageSize === 'custom') {
+            $imageSize = array(
+                array_get($settings, 'image_width', 150),
+                array_get($settings, 'image_height', 150)
+            );
+        }
+        return $imageSize;
+    }
 }

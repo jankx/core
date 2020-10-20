@@ -163,14 +163,15 @@ class Posts extends BaseWidget
     {
         $settings = $this->get_settings_for_display();
         $postsRenderer = PostsRenderer::prepare(array(
-            'show_thumbnail' => $settings['show_post_thumbnail'],
             'show_expert' => $settings['show_post_excerpt'],
             'categories' => $settings['post_categories'],
             'tags' => $settings['post_tags'],
             'header_text' => $settings['widget_title'],
             'view_all_url' => $settings['show_view_all_link'],
-            'layout' => array_get($settings, 'post_layout', PostLayoutManager::LIST_LAYOUT),
             'posts_per_page' => $settings['posts_per_page'],
+            'show_thumbnail' => $settings['show_post_thumbnail'],
+            'thumbnail_size' => $this->getImageSizeFromSettings($settings),
+            'layout' => array_get($settings, 'post_layout', PostLayoutManager::LIST_LAYOUT),
         ));
 
         echo $postsRenderer->render();
