@@ -9,6 +9,10 @@ abstract class BaseWidget extends Widget_Base {
         switch ($sizeName) {
             case 'thumbnail':
                 return __('Thumbnail');
+            case 'medium':
+                return __('Medium');
+            case 'large':
+                return __('Large');
             default:
                 return preg_replace_callback(array(
                     '/^(\w)/',
@@ -26,6 +30,11 @@ abstract class BaseWidget extends Widget_Base {
     protected function getImageSizes() {
         $ret = array();
         foreach(get_intermediate_image_sizes() as $imageSize) {
+            if (apply_filters('jankx_image_size_ignore_medium_large_size', true)) {
+                if ($imageSize === 'medium_large') {
+                    continue;
+                }
+            }
             $ret[$imageSize] = $this->getImageSizeName($imageSize);
         }
         $ret['full'] = __('Full size', 'jankx');
@@ -53,7 +62,7 @@ abstract class BaseWidget extends Widget_Base {
                 'label' => __('Image size', 'jankx'),
                 'type' => Controls_Manager::SELECT,
                 'options' => $this->getImageSizes(),
-                'default' => 'thumbnail',
+                'default' => 'medium',
             ]
         );
 
