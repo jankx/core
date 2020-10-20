@@ -50,6 +50,16 @@ class Posts extends Widget_Base
             ]
         );
 
+
+        $this->add_control(
+            'show_view_all_link',
+            [
+                'label' => __('View All URL', 'jankx'),
+                'type' => Controls_Manager::URL,
+                'default' => array(),
+            ]
+        );
+
         $taxQuery = array('taxonomy' => 'category', 'fields' => 'id=>name', 'hide_empty' => false);
         $postCats = version_compare($GLOBALS['wp_version'], '4.5.0') >= 0
             ? get_terms($taxQuery)
@@ -95,11 +105,18 @@ class Posts extends Widget_Base
         );
 
         $this->add_control(
-            'show_view_all_link',
+            'limit',
             [
-                'label' => __('View All URL', 'jankx'),
-                'type' => Controls_Manager::URL,
-                'default' => array(),
+                'label' => __('Columns', 'jankx'),
+                'type' => Controls_Manager::NUMBER,
+                'min' => 1,
+                'max' => 10,
+                'step' => 1,
+                'default' => 4,
+                'of_type' => 'post_layout',
+                'condition' => array(
+                    'post_layout' => array(PostLayoutManager::CARD)
+                )
             ]
         );
 
@@ -128,7 +145,7 @@ class Posts extends Widget_Base
         );
 
         $this->add_control(
-            'limit',
+            'posts_per_page',
             [
                 'label' => __('Number of Posts', 'jankx'),
                 'type' => Controls_Manager::NUMBER,
@@ -153,7 +170,7 @@ class Posts extends Widget_Base
             'header_text' => $settings['widget_title'],
             'view_all_url' => $settings['show_view_all_link'],
             'layout' => array_get($settings, 'post_layout', PostLayoutManager::LIST_LAYOUT),
-            'limit' => $settings['limit'],
+            'posts_per_page' => $settings['posts_per_page'],
         ));
 
         echo $postsRenderer->render();
