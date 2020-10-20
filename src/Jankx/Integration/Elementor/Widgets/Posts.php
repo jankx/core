@@ -115,7 +115,7 @@ class Posts extends BaseWidget
         );
 
         $this->add_control(
-            'limit',
+            'columns',
             [
                 'label' => __('Columns', 'jankx'),
                 'type' => Controls_Manager::NUMBER,
@@ -169,6 +169,7 @@ class Posts extends BaseWidget
             'header_text' => $settings['widget_title'],
             'view_all_url' => $settings['show_view_all_link'],
             'posts_per_page' => $settings['posts_per_page'],
+            'columns' => $settings['columns'],
             'show_thumbnail' => $settings['show_post_thumbnail'],
             'thumbnail_size' => $this->getImageSizeFromSettings($settings),
             'layout' => array_get($settings, 'post_layout', PostLayoutManager::LIST_LAYOUT),
