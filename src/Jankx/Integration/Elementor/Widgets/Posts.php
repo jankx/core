@@ -231,4 +231,8 @@ class Posts extends BaseWidget
     protected function _content_template()
     {
     }
+
+    public function get_script_depends() {
+        return array('splide');
+    }
 }
