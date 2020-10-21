@@ -199,7 +199,7 @@ class Posts extends BaseWidget
                 'min' => 0,
                 'max' => 100,
                 'step' => 1,
-                'default' => 10,
+                'default' => 15,
                 'condition' => array(
                     'show_post_excerpt' => 'yes'
                 )
