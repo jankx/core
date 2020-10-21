@@ -189,7 +189,7 @@ class Posts extends BaseWidget
                 'label_on' => __('Show', 'jankx'),
                 'label_off' => __('Hide', 'jankx'),
                 'return_value' => 'yes',
-                'default' => 'yes',
+                'default' => 'no',
             ]
         );
 
@@ -212,7 +212,7 @@ class Posts extends BaseWidget
     {
         $settings = $this->get_settings_for_display();
         $postsRenderer = PostsRenderer::prepare(array(
-            'show_expert' => array_get($settings, 'show_post_excerpt', 'yes') === 'yes',
+            'show_excerpt' => array_get($settings, 'show_post_excerpt', 'no') === 'yes',
             'categories' => array_get($settings, 'post_categories'),
             'tags' => array_get($settings, 'post_tags'),
             'header_text' => array_get($settings, 'widget_title'),
