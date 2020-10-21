@@ -153,6 +153,18 @@ class Posts extends BaseWidget
             ]
         );
 
+        $this->add_control(
+            'show_post_title',
+            [
+                'label' => __('Show Post Title', 'jankx'),
+                'type' => Controls_Manager::SWITCHER,
+                'label_on' => __('Show', 'jankx'),
+                'label_off' => __('Hide', 'jankx'),
+                'return_value' => 'yes',
+                'default' => 'yes',
+            ]
+        );
+
         $this->addThumbnailControls();
 
         $this->add_control(
@@ -207,7 +219,8 @@ class Posts extends BaseWidget
             'view_all_url' => $settings['show_view_all_link'],
             'posts_per_page' => $settings['posts_per_page'],
             'columns' => $settings['columns'],
-            'show_thumbnail' => $settings['show_post_thumbnail'],
+            'show_title' => $settings['show_post_title'] === 'yes',
+            'show_thumbnail' => $settings['show_post_thumbnail'] === 'yes',
             'thumbnail_size' => $this->getImageSizeFromSettings($settings),
             'layout' => array_get($settings, 'post_layout', PostLayoutManager::LIST_LAYOUT),
         ));
