@@ -60,8 +60,6 @@ class Posts extends BaseWidget
     protected function _register_controls()
     {
         $postLayout = PostLayoutManager::getInstance();
-        $settings = $this->get_settings_for_display();
-
         $this->start_controls_section(
             'content_section',
             [
@@ -176,15 +174,9 @@ class Posts extends BaseWidget
                 'label' => __('Thumbnail position', 'jankx'),
                 'type' => Controls_Manager::SELECT,
                 'options' => $this->getImagePositions(),
-                'default' => in_array($settings['post_layout'], array(
-                        PostLayoutManager::CAROUSEL,
-                    )) ? 'top' : 'left',
+                'default' => 'left',
                 'condition' => array(
-                    'show_post_thumbnail' => 'yes',
-                    'layout' => array(
-                        PostLayoutManager::LIST_LAYOUT,
-                        PostLayoutManager::CAROUSEL
-                    ),
+                    'show_post_thumbnail' => 'yes'
                 )
             ]
         );
