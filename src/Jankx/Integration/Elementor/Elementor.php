@@ -2,13 +2,21 @@
 namespace Jankx\Integration\Elementor;
 
 use ReflectionClass;
+use Elementor\Controls_Manager;
 use Jankx\Integration\Constract;
 use Jankx\Integration\Elementor\Widgets\Posts;
 
 class Elementor extends Constract
 {
+    const POST_META_TAB = 'post_meta_tab';
+
     public function integrate()
     {
+        Controls_Manager::add_tab(
+            'post_meta',
+            __( 'Post Meta', 'jankx' )
+        );
+
         $layout = new Layout();
         add_action('template_redirect', array($layout, 'customTemplates'));
 
