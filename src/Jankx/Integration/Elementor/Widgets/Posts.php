@@ -219,6 +219,7 @@ class Posts extends BaseWidget
             'view_all_url' => $settings['show_view_all_link'],
             'posts_per_page' => $settings['posts_per_page'],
             'columns' => $settings['columns'],
+            'rows' => $settings['rows'],
             'show_title' => $settings['show_post_title'] === 'yes',
             'show_thumbnail' => $settings['show_post_thumbnail'] === 'yes',
             'thumbnail_size' => $this->getImageSizeFromSettings($settings),
@@ -233,6 +234,10 @@ class Posts extends BaseWidget
     }
 
     public function get_script_depends() {
+        return array('splide');
+    }
+
+    public function get_style_depends() {
         return array('splide');
     }
 }
