@@ -191,6 +191,20 @@ class Posts extends BaseWidget
                 'default' => 'no',
             ]
         );
+        $this->add_control(
+            'excerpt_length',
+            [
+                'label' => __('Excerpt length', 'jankx'),
+                'type' => Controls_Manager::NUMBER,
+                'min' => 0,
+                'max' => 100,
+                'step' => 1,
+                'default' => 10,
+                'condition' => array(
+                    'show_post_excerpt' => 'yes'
+                )
+            ]
+        );
 
         $this->add_control(
             'posts_per_page',
@@ -280,6 +294,9 @@ class Posts extends BaseWidget
             'show_post_excerpt' => array(
                 'map_to' => 'show_excerpt',
                 'value_type' => 'boolean'
+            ),
+            'excerpt_length' => array(
+                'map_to' => 'excerpt_length',
             ),
             'post_categories' => array(
                 'map_to' => 'categories',
