@@ -56,7 +56,6 @@ class Posts extends BaseWidget
         );
     }
 
-
     protected function _register_controls()
     {
         $postLayout = PostLayoutManager::getInstance();
@@ -196,6 +195,7 @@ class Posts extends BaseWidget
         $this->add_control(
             'posts_per_page',
             [
+
                 'label' => __('Number of Posts', 'jankx'),
                 'type' => Controls_Manager::NUMBER,
                 'min' => 0,
@@ -206,26 +206,52 @@ class Posts extends BaseWidget
         );
 
         $this->end_controls_section();
+
+
+    // Post metas section
+        $this->start_controls_section(
+			'post_meta_section',
+			[
+				'label' => __('Meta Appearance', 'plugin-name' ),
+				'tab' => 'post_meta',
+			]
+        );
+
+        $this->add_control(
+            'show_post_date',
+            [
+                'label' => __('Show Post Date', 'jankx'),
+                'type' => Controls_Manager::SWITCHER,
+                'label_on' => __('Show', 'jankx'),
+                'label_off' => __('Hide', 'jankx'),
+                'return_value' => 'yes',
+                'default' => 'no',
+            ]
+        );
+
+		$this->end_controls_section();
     }
 
     protected function render()
     {
         $settings = $this->get_settings_for_display();
-        $postsRenderer = PostsRenderer::prepare(array(
-            'show_excerpt' => array_get($settings, 'show_post_excerpt', 'no') === 'yes',
-            'categories' => array_get($settings, 'post_categories'),
-            'tags' => array_get($settings, 'post_tags'),
-            'header_text' => array_get($settings, 'widget_title'),
-            'view_all_url' => array_get($settings, 'show_view_all_link', array()),
-            'posts_per_page' => array_get($settings, 'posts_per_page', 5),
-            'columns' => array_get($settings, 'columns', 1),
-            'rows' => array_get($settings, 'rows', 1),
-            'show_title' => array_get($settings, 'show_post_title', 'yes') === 'yes',
-            'show_thumbnail' => array_get($settings, 'show_post_thumbnail', 'yes') === 'yes',
-            'thumbnail_position' => array_get($settings, 'thumbnail_position', 'left'),
-            'thumbnail_size' => $this->getImageSizeFromSettings($settings),
-            'layout' => array_get($settings, 'post_layout', PostLayoutManager::LIST_LAYOUT),
-        ));
+        $rendererArgs = array();
+        foreach($this->mappingRenderFields() as $field => $rules) {
+            if (empty($rules['map_to'])) {
+                continue;
+            }
+
+            if (!isset($settings[$field])) {
+                if (!isset($rules['default'])) {
+                    continue;
+                }
+                $settings[$field] = $rules['default'];
+            }
+            $rendererArgs[$rules['map_to']] = isset($rules['value_type'])
+                ? $this->parseValue($settings[$field], $rules['value_type'])
+                : $settings[$field];
+        }
+        $postsRenderer = PostsRenderer::prepare($rendererArgs);
 
         echo $postsRenderer->render();
     }
@@ -240,6 +266,58 @@ class Posts extends BaseWidget
 
     public function get_style_depends() {
         return array('splide');
+    }
+
+    protected function parseValue($value, $type) {
+        if (in_array($type, array('boolean', 'bool'))) {
+            return $value === 'yes'; // This is value of Elementor
+        }
+        return $value;
+    }
+
+    protected function mappingRenderFields() {
+        return array(
+            'show_post_excerpt' => array(
+                'map_to' => 'show_excerpt',
+                'value_type' => 'boolean'
+            ),
+            'post_categories' => array(
+                'map_to' => 'categories',
+            ),
+            'post_tags' => array(
+                'map_to' => 'tags',
+            ),
+            'widget_title' => array(
+                'map_to' => 'header_text',
+            ),
+            'show_view_all_link' => array(
+                'map_to' => 'view_all_url',
+            ),
+            'posts_per_page' => array(
+                'map_to' => 'posts_per_page',
+            ),
+            'columns' => array(
+                'map_to' => 'columns',
+            ),
+            'rows' => array(
+                'map_to' => 'rows',
+            ),
+            'show_post_title' => array(
+                'map_to' => 'show_title',
+                'value_type' => 'boolean'
+            ),
+            'show_post_thumbnail' => array(
+                'map_to' => 'show_thumbnail',
+                'value_type' => 'boolean'
+            ),
+            'thumbnail_position' => array(
+                'map_to' => 'thumbnail_position',
+            ),
+            'post_layout' => array(
+                'map_to' => 'layout',
+                'default' => PostLayoutManager::LIST_LAYOUT
+            ),
+        );
     }
 }
 
