@@ -133,7 +133,22 @@ class Posts extends BaseWidget
                 'default' => 4,
                 'of_type' => 'post_layout',
                 'condition' => array(
-                    'post_layout' => array(PostLayoutManager::CARD)
+                    'post_layout' => array(PostLayoutManager::CARD, PostLayoutManager::CAROUSEL)
+                )
+            ]
+        );
+        $this->add_control(
+            'rows',
+            [
+                'label' => __('Rows', 'jankx'),
+                'type' => Controls_Manager::NUMBER,
+                'min' => 1,
+                'max' => 10,
+                'step' => 1,
+                'default' => 1,
+                'of_type' => 'post_layout',
+                'condition' => array(
+                    'post_layout' => array(PostLayoutManager::CAROUSEL)
                 )
             ]
         );
