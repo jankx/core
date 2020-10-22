@@ -232,7 +232,7 @@ class Posts extends BaseWidget
         );
 
         $this->add_control(
-            'show_post_date',
+            'show_postdate',
             [
                 'label' => __('Show Post Date', 'jankx'),
                 'type' => Controls_Manager::SWITCHER,
@@ -295,6 +295,9 @@ class Posts extends BaseWidget
                 'map_to' => 'show_excerpt',
                 'value_type' => 'boolean'
             ),
+            'show_postdate' => array(
+                'map_to' => 'show_postdate',
+            ),
             'excerpt_length' => array(
                 'map_to' => 'excerpt_length',
             ),
@@ -333,7 +336,7 @@ class Posts extends BaseWidget
             'post_layout' => array(
                 'map_to' => 'layout',
                 'default' => PostLayoutManager::LIST_LAYOUT
-            ),
+            )
         );
     }
 }
