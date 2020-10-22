@@ -8,6 +8,8 @@ use Jankx\Integration\Elementor\BaseWidget;
 
 class Posts extends BaseWidget
 {
+    protected static $customFields = array();
+
     public function get_name()
     {
         return 'jankx_posts';
@@ -243,6 +245,8 @@ class Posts extends BaseWidget
             ]
         );
 
+        do_action('jankx_integration_elementor_posts_widget_metas', $this);
+
 		$this->end_controls_section();
     }
 
@@ -290,7 +294,7 @@ class Posts extends BaseWidget
     }
 
     protected function mappingRenderFields() {
-        return array(
+        $default = array(
             'show_post_excerpt' => array(
                 'map_to' => 'show_excerpt',
                 'value_type' => 'boolean'
@@ -339,6 +343,21 @@ class Posts extends BaseWidget
                 'default' => PostLayoutManager::LIST_LAYOUT
             )
         );
+
+        return array_merge(
+            $default,
+            static::$customFields
+        );
+    }
+
+    public static function addCustomField($fieldName, $args = null) {
+        if (empty($args)) {
+            static::$customFields[$fieldName] = array(
+                'map_to' => $fieldName
+            );
+        } else {
+            static::$customFields[$fieldName] = $args;
+        }
     }
 }
 
