@@ -297,6 +297,7 @@ class Posts extends BaseWidget
             ),
             'show_postdate' => array(
                 'map_to' => 'show_postdate',
+                'value_type' => 'boolean'
             ),
             'excerpt_length' => array(
                 'map_to' => 'excerpt_length',
