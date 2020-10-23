@@ -14,7 +14,7 @@ class Elementor extends Constract
     {
         Controls_Manager::add_tab(
             'post_meta',
-            __( 'Post Meta', 'jankx' )
+            __('Post Meta', 'jankx')
         );
 
         $layout = new Layout();

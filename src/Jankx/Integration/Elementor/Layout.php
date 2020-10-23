@@ -67,14 +67,15 @@ class Layout
         return $classes;
     }
 
-    public function cloneContainerStylesheets() {
+    public function cloneContainerStylesheets()
+    {
         $elementor_kit = get_option('elementor_active_kit');
         if (!$elementor_kit) {
             return;
         }
 
-        $page = Manager::get_settings_managers( 'page' )->get_model( $elementor_kit );
-        $page_settings = $page->get_data( 'settings' );
+        $page = Manager::get_settings_managers('page')->get_model($elementor_kit);
+        $page_settings = $page->get_data('settings');
 
         $container_width = array(
             'width' => 1140,

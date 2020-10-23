@@ -5,8 +5,10 @@ use Elementor\Widget_Base;
 use Elementor\Controls_Manager;
 use Jankx\PostLayout\PostLayoutManager;
 
-abstract class BaseWidget extends Widget_Base {
-    protected function getImageSizeName($sizeName) {
+abstract class BaseWidget extends Widget_Base
+{
+    protected function getImageSizeName($sizeName)
+    {
         switch ($sizeName) {
             case 'thumbnail':
                 return __('Thumbnail');
@@ -18,19 +20,20 @@ abstract class BaseWidget extends Widget_Base {
                 return preg_replace_callback(array(
                     '/^(\w)/',
                     '/(\w)([\-|_]{1,})/'
-                ), function($matches){
+                ), function ($matches) {
                     if (isset($matches[2])) {
                         return sprintf('%s ', $matches[1]) ;
-                    } elseif(isset($matches[1])) {
+                    } elseif (isset($matches[1])) {
                         return strtoupper($matches[1]);
                     }
                 }, $sizeName);
         }
     }
 
-    protected function getImageSizes() {
+    protected function getImageSizes()
+    {
         $ret = array();
-        foreach(get_intermediate_image_sizes() as $imageSize) {
+        foreach (get_intermediate_image_sizes() as $imageSize) {
             if (apply_filters('jankx_image_size_ignore_medium_large_size', true)) {
                 if ($imageSize === 'medium_large') {
                     continue;
@@ -44,7 +47,8 @@ abstract class BaseWidget extends Widget_Base {
         return $ret;
     }
 
-    public function addThumbnailControls() {
+    public function addThumbnailControls()
+    {
         $this->add_control(
             'show_post_thumbnail',
             [
@@ -96,7 +100,8 @@ abstract class BaseWidget extends Widget_Base {
         );
     }
 
-    public function getImageSizeFromSettings($settings) {
+    public function getImageSizeFromSettings($settings)
+    {
         $imageSize = array_get($settings, 'thumbnail_size', 'thumbnail');
         if ($imageSize === 'custom') {
             $imageSize = array(
