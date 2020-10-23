@@ -13,7 +13,6 @@
   "require": {
     "jankx/admin": "dev-master",
     "jankx/asset": "dev-master",
-    "jankx/breadcrumb": "dev-master",
     "jankx/component": "dev-master",
     "jankx/helpers": "dev-master",
     "jankx/languages": "dev-master",
