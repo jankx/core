@@ -30,7 +30,8 @@ class Posts extends BaseWidget
         return array('theme-elements', 'jankx');
     }
 
-    public function getPostCategories() {
+    public function getPostCategories()
+    {
         $taxQuery = array('taxonomy' => 'category', 'fields' => 'id=>name', 'hide_empty' => false);
         $postCats = version_compare($GLOBALS['wp_version'], '4.5.0') >= 0
             ? get_terms($taxQuery)
@@ -40,7 +41,8 @@ class Posts extends BaseWidget
     }
 
 
-    public function getPostTags() {
+    public function getPostTags()
+    {
         $taxQuery = array('taxonomy' => 'post_tag', 'fields' => 'id=>name', 'hide_empty' => false);
         $postTags = version_compare($GLOBALS['wp_version'], '4.5.0') >= 0
             ? get_terms($taxQuery)
@@ -49,13 +51,27 @@ class Posts extends BaseWidget
         return $postTags;
     }
 
-    public function getImagePositions() {
+    public function getImagePositions()
+    {
         return array(
             'left' => __('Left'),
             'right' => __('Right'),
             'top' => __('Top'),
             'bottom' => __('Bottom'),
         );
+    }
+
+    public function getPostTypes()
+    {
+        $postTypes = array();
+
+        $postTypeObjects = get_post_types(array(
+            'public' => true,
+        ), 'objects');
+        foreach ($postTypeObjects as $postType => $object) {
+            $postTypes[$postType] = $object->label;
+        }
+        return $postTypes;
     }
 
     protected function _register_controls()
@@ -109,6 +125,16 @@ class Posts extends BaseWidget
                 'multiple' => true,
                 'options' => $this->getPostTags(),
                 'default' => 'none',
+            ]
+        );
+
+        $this->add_control(
+            'post_type',
+            [
+                'label' => __('Layout', 'jankx'),
+                'type' => Controls_Manager::SELECT,
+                'default' => 'post',
+                'options' => $this->getPostTypes(),
             ]
         );
 
@@ -226,11 +252,11 @@ class Posts extends BaseWidget
 
     // Post metas section
         $this->start_controls_section(
-			'post_meta_section',
-			[
-				'label' => __('Meta Appearance', 'plugin-name' ),
-				'tab' => 'post_meta',
-			]
+            'post_meta_section',
+            [
+                'label' => __('Meta Appearance', 'plugin-name'),
+                'tab' => 'post_meta',
+            ]
         );
 
         $this->add_control(
@@ -247,14 +273,14 @@ class Posts extends BaseWidget
 
         do_action('jankx_integration_elementor_posts_widget_metas', $this);
 
-		$this->end_controls_section();
+        $this->end_controls_section();
     }
 
     protected function render()
     {
         $settings = $this->get_settings_for_display();
         $rendererArgs = array();
-        foreach($this->mappingRenderFields() as $field => $rules) {
+        foreach ($this->mappingRenderFields() as $field => $rules) {
             if (empty($rules['map_to'])) {
                 continue;
             }
@@ -278,22 +304,26 @@ class Posts extends BaseWidget
     {
     }
 
-    public function get_script_depends() {
+    public function get_script_depends()
+    {
         return array('splide');
     }
 
-    public function get_style_depends() {
+    public function get_style_depends()
+    {
         return array('splide');
     }
 
-    protected function parseValue($value, $type) {
+    protected function parseValue($value, $type)
+    {
         if (in_array($type, array('boolean', 'bool'))) {
             return $value === 'yes'; // This is value of Elementor
         }
         return $value;
     }
 
-    protected function mappingRenderFields() {
+    protected function mappingRenderFields()
+    {
         $default = array(
             'show_post_excerpt' => array(
                 'map_to' => 'show_excerpt',
@@ -341,6 +371,10 @@ class Posts extends BaseWidget
             'post_layout' => array(
                 'map_to' => 'layout',
                 'default' => PostLayoutManager::LIST_LAYOUT
+            ),
+            'post_type' => array(
+                'map_to' => 'post_type',
+                'default' => 'post',
             )
         );
 
@@ -350,7 +384,8 @@ class Posts extends BaseWidget
         );
     }
 
-    public static function addCustomField($fieldName, $args = null) {
+    public static function addCustomField($fieldName, $args = null)
+    {
         if (empty($args)) {
             static::$customFields[$fieldName] = array(
                 'map_to' => $fieldName
@@ -360,4 +395,3 @@ class Posts extends BaseWidget
         }
     }
 }
-
