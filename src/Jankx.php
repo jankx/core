@@ -33,6 +33,8 @@ class Jankx
     protected static $instance;
     protected $defaultTemplateDir;
 
+    public static $theme;
+
     public static function __callStatic($name, $args)
     {
         $instance = self::instance();
@@ -59,6 +61,7 @@ class Jankx
             '%s/template/default',
             realpath(dirname(JANKX_FRAMEWORK_FILE_LOADER) . '/..')
         );
+        static::$theme = wp_get_theme();
         define('JANKX_THEME_DEFAULT_ENGINE', $this->defaultTemplateDir);
     }
 
