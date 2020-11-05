@@ -131,7 +131,7 @@ class Posts extends BaseWidget
         $this->add_control(
             'post_type',
             [
-                'label' => __('Layout', 'jankx'),
+                'label' => __('Post Type', 'jankx'),
                 'type' => Controls_Manager::SELECT,
                 'default' => 'post',
                 'options' => $this->getPostTypes(),
@@ -147,37 +147,6 @@ class Posts extends BaseWidget
                 'options' => $postLayout->getLayouts(array(
                     'type' => 'names'
                 )),
-            ]
-        );
-
-        $this->add_control(
-            'columns',
-            [
-                'label' => __('Columns', 'jankx'),
-                'type' => Controls_Manager::NUMBER,
-                'min' => 1,
-                'max' => 10,
-                'step' => 1,
-                'default' => 4,
-                'of_type' => 'post_layout',
-                'condition' => array(
-                    'post_layout' => array(PostLayoutManager::CARD, PostLayoutManager::CAROUSEL)
-                )
-            ]
-        );
-        $this->add_control(
-            'rows',
-            [
-                'label' => __('Rows', 'jankx'),
-                'type' => Controls_Manager::NUMBER,
-                'min' => 1,
-                'max' => 10,
-                'step' => 1,
-                'default' => 1,
-                'of_type' => 'post_layout',
-                'condition' => array(
-                    'post_layout' => array(PostLayoutManager::CAROUSEL)
-                )
             ]
         );
 
@@ -219,6 +188,7 @@ class Posts extends BaseWidget
                 'default' => 'no',
             ]
         );
+
         $this->add_control(
             'excerpt_length',
             [
@@ -230,6 +200,38 @@ class Posts extends BaseWidget
                 'default' => 15,
                 'condition' => array(
                     'show_post_excerpt' => 'yes'
+                )
+            ]
+        );
+
+        $this->add_control(
+            'columns',
+            [
+                'label' => __('Columns', 'jankx'),
+                'type' => Controls_Manager::NUMBER,
+                'min' => 1,
+                'max' => 10,
+                'step' => 1,
+                'default' => 4,
+                'of_type' => 'post_layout',
+                'condition' => array(
+                    'post_layout' => array(PostLayoutManager::CARD, PostLayoutManager::CAROUSEL)
+                )
+            ]
+        );
+
+        $this->add_control(
+            'rows',
+            [
+                'label' => __('Rows', 'jankx'),
+                'type' => Controls_Manager::NUMBER,
+                'min' => 1,
+                'max' => 10,
+                'step' => 1,
+                'default' => 1,
+                'of_type' => 'post_layout',
+                'condition' => array(
+                    'post_layout' => array(PostLayoutManager::CAROUSEL)
                 )
             ]
         );
