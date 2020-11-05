@@ -375,6 +375,10 @@ class Posts extends BaseWidget
             'post_type' => array(
                 'map_to' => 'post_type',
                 'default' => 'post',
+            ),
+            'thumbnail_size' => array(
+                'map_to' => 'thumbnail_size',
+                'default' => 'thumbnail'
             )
         );
 
