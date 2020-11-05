@@ -22,7 +22,7 @@
     "jankx/template": "dev-master",
     "jankx/widget": "dev-master",
     "jankx/pagination": "dev-master",
-    "jankx/yaml": "1.0.0"
+    "jankx/yaml": "dev-master"
   },
   "autoload": {
     "psr-4": {
