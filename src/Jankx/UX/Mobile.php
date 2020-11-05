@@ -11,9 +11,12 @@ class Mobile
     public function changeSizeIfIsSmall($width)
     {
         if ($width < 520) {
-            $newValue = 520;
+            $newValue = get_option('medium_large_size_w', 520);
             add_filter("option_medium_size_h", function ($height) use ($width, $newValue) {
-                return ($newValue * $height) / $width;
+                return get_option(
+                    'medium_large_size_h',
+                    ($newValue * $height) / $width
+                );
             });
             return $newValue;
         }
