@@ -20,11 +20,16 @@ class UserExperience
     {
         $this->audit = new Audit();
         $this->customize = new Customize();
+        $this->mobile = new Mobile();
     }
 
     public function optimize()
     {
         $this->customize->showLoading();
         $this->customize->loadPresetPalettes();
+
+        if (jankx_is_mobile()) {
+            $this->mobile->makeImageLookGood();
+        }
     }
 }
