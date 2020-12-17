@@ -21,6 +21,7 @@ use Jankx\Option\Framework as OptionFramework;
 use Jankx\UX\UserExperience;
 use Jankx\PostLayout\PostLayoutManager;
 use Jankx\Widget\WidgetManager;
+use Jankx\Guarder;
 
 /**
  * This class is middle-class interaction between developer and other classes
@@ -166,6 +167,9 @@ class Jankx
         $this->widgets = function () use ($widgets) {
             return $widgets;
         };
+
+        $guarder = Guarder::getInstance();
+        $guarder->watch();
 
         // Setup Jankx::device() method
         add_action('after_setup_theme', 'jankx_get_device_detector');
