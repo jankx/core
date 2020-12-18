@@ -22,6 +22,7 @@ use Jankx\UX\UserExperience;
 use Jankx\PostLayout\PostLayoutManager;
 use Jankx\Widget\WidgetManager;
 use Jankx\Guarder;
+use Jankx\Command\CLI;
 
 /**
  * This class is middle-class interaction between developer and other classes
@@ -170,6 +171,10 @@ class Jankx
 
         $guarder = Guarder::getInstance();
         $guarder->watch();
+
+        if (class_exists(WP_CLI::class)) {
+            CLI::getInstance();
+        }
 
         // Setup Jankx::device() method
         add_action('after_setup_theme', 'jankx_get_device_detector');
