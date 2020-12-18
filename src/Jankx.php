@@ -65,6 +65,7 @@ class Jankx
         );
         static::$theme = wp_get_theme();
         define('JANKX_THEME_DEFAULT_ENGINE', $this->defaultTemplateDir);
+        define('JANKX_CACHE_DIR', sprintf('%s/jankx/caches/', WP_CONTENT_DIR));
     }
 
     private static function isRequest($type)
