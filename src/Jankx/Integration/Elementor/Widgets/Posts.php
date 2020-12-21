@@ -190,6 +190,18 @@ class Posts extends BaseWidget
         );
 
         $this->add_control(
+            'show_pagination',
+            [
+                'label' => __('Show Pagination', 'jankx'),
+                'type' => Controls_Manager::SWITCHER,
+                'label_on' => __('Show', 'jankx'),
+                'label_off' => __('Hide', 'jankx'),
+                'return_value' => 'yes',
+                'default' => 'no',
+            ]
+        );
+
+        $this->add_control(
             'excerpt_length',
             [
                 'label' => __('Excerpt length', 'jankx'),
@@ -365,6 +377,10 @@ class Posts extends BaseWidget
             ),
             'show_post_thumbnail' => array(
                 'map_to' => 'show_thumbnail',
+                'value_type' => 'boolean'
+            ),
+            'show_pagination' => array(
+                'map_to' => 'show_pagination',
                 'value_type' => 'boolean'
             ),
             'thumbnail_position' => array(
