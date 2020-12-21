@@ -162,6 +162,19 @@ class Posts extends BaseWidget
             ]
         );
 
+        $this->add_control(
+            'show_pagination',
+            [
+                'label' => __('Show Pagination', 'jankx'),
+                'type' => Controls_Manager::SWITCHER,
+                'label_on' => __('Show', 'jankx'),
+                'label_off' => __('Hide', 'jankx'),
+                'return_value' => 'yes',
+                'default' => 'no',
+            ]
+        );
+
+
         $this->addThumbnailControls();
 
         $this->add_control(
@@ -181,18 +194,6 @@ class Posts extends BaseWidget
             'show_post_excerpt',
             [
                 'label' => __('Show Excerpt', 'jankx'),
-                'type' => Controls_Manager::SWITCHER,
-                'label_on' => __('Show', 'jankx'),
-                'label_off' => __('Hide', 'jankx'),
-                'return_value' => 'yes',
-                'default' => 'no',
-            ]
-        );
-
-        $this->add_control(
-            'show_pagination',
-            [
-                'label' => __('Show Pagination', 'jankx'),
                 'type' => Controls_Manager::SWITCHER,
                 'label_on' => __('Show', 'jankx'),
                 'label_off' => __('Hide', 'jankx'),
