@@ -4,7 +4,9 @@ namespace Jankx\Integration\Elementor;
 use ReflectionClass;
 use Elementor\Controls_Manager;
 use Jankx\Integration\Constract;
+
 use Jankx\Integration\Elementor\Widgets\Posts;
+use Jankx\Integration\Elementor\Widgets\PostsTabs;
 
 class Elementor extends Constract
 {
@@ -50,6 +52,8 @@ class Elementor extends Constract
     public function registerJankxWidgets($widgetsManager)
     {
         $widgetsManager->register_widget_type(new Posts());
+        $widgetsManager->register_widget_type(new PostsTabs());
+
     }
 
     public function removeElementPromtionWidgets($config)
