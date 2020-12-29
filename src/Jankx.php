@@ -112,7 +112,7 @@ class Jankx
     private function includes()
     {
         $jankxVendor = realpath(dirname(JANKX_FRAMEWORK_FILE_LOADER) . '/..');
-        $fileNames = array('component/component.php');
+        $fileNames = array('component/component.php', 'core/functions.php');
         foreach ($fileNames as $fileName) {
             $file = sprintf('%s/%s', $jankxVendor, $fileName);
             if (file_exists($file)) {
