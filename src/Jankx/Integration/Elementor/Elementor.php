@@ -53,7 +53,6 @@ class Elementor extends Constract
     {
         $widgetsManager->register_widget_type(new Posts());
         $widgetsManager->register_widget_type(new PostsTabs());
-
     }
 
     public function removeElementPromtionWidgets($config)
