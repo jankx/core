@@ -23,6 +23,7 @@ use Jankx\PostLayout\PostLayoutManager;
 use Jankx\Widget\WidgetManager;
 use Jankx\Guarder;
 use Jankx\Command\CLI;
+use Jankx\Comments;
 
 /**
  * This class is middle-class interaction between developer and other classes
@@ -211,6 +212,9 @@ class Jankx
 
         // Setup post layout
         PostLayoutManager::getInstance();
+
+        // Init the comments system
+        Comments::init();
     }
 
     public function integrations()
