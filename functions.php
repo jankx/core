@@ -48,6 +48,6 @@ function jankx_get_related_query($args = array(), $post_id = null)
         apply_filters(
             'jankx_related_query_args',
             $args
-        ),
+        )
     );
 }
