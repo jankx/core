@@ -7,9 +7,9 @@ namespace Jankx;
 class GlobalVariables
 {
     protected static $vars;
+    protected static $locked_vars;
 
-
-    public static function set($var, $value)
+    public static function set($var, $value, $lock_it = false)
     {
         static::$vars[$var] = $value;
 
