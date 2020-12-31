@@ -229,7 +229,7 @@ class Jankx
         // Init the comments system
         Comments::init();
 
-        if (GlobalVariables::get('config.socials.sharing', false)) {
+        if (apply_filters('jankx_social_sharing_enable', GlobalVariables::get('config.socials.sharing', false))) {
             // Init socials sharing
             Sharing::get_instance();
         }
