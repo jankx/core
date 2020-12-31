@@ -24,6 +24,9 @@ use Jankx\Widget\WidgetManager;
 use Jankx\Guarder;
 use Jankx\Command\CLI;
 use Jankx\Comments;
+use Jankx\ConfigurationReader;
+use Jankx\GlobalVariables;
+use Jankx\Social\Sharing;
 
 /**
  * This class is middle-class interaction between developer and other classes
@@ -125,6 +128,16 @@ class Jankx
     private function initCoreFramework()
     {
         /**
+         * The config reader will read config file and set the value into GlobalVariables with prefix `config.*`
+         * Example get the config value: \Jankx\GlobalVariables::get('config.theme.version')
+         */
+        $configReader = new ConfigurationReader();
+        $configReader->read(apply_filters(
+            'jankx_theme_configuration_file',
+            '.theme.yml'
+        ));
+
+        /**
          * Load Jankx templates
          */
         $templateLoader = Template::getLoader(
@@ -215,6 +228,11 @@ class Jankx
 
         // Init the comments system
         Comments::init();
+
+        if (GlobalVariables::get('config.socials.sharing', false)) {
+            // Init socials sharing
+            Sharing::get_instance();
+        }
     }
 
     public function integrations()
