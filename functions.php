@@ -51,3 +51,17 @@ function jankx_get_related_query($args = array(), $post_id = null)
         )
     );
 }
+
+function jankx_is_comment_by_post_author($comment = null)
+{
+
+    if (is_object($comment) && $comment->user_id > 0) {
+        $user = get_userdata($comment->user_id);
+        $post = get_post($comment->comment_post_ID);
+
+        if (! empty($user) && ! empty($post)) {
+            return $comment->user_id === $post->post_author;
+        }
+    }
+    return false;
+}
