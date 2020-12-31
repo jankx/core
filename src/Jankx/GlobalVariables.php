@@ -1,17 +1,17 @@
 <?php
 namespace Jankx;
 
+/**
+ * Jankx\GlobalVariables class
+ */
 class GlobalVariables
 {
     protected static $vars;
 
+
     public static function set($var, $value)
     {
-        static::$vars[$var] = apply_filters(
-            'jankx_global_set_variable',
-            $value,
-            $var
-        );
+        static::$vars[$var] = $value;
 
         return true;
     }
