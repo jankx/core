@@ -9,7 +9,7 @@ namespace Jankx;
  */
 class ConfigurationReader
 {
-    public function reader($config_file = '.theme.yml')
+    public function read($config_file = '.theme.yml')
     {
     }
 }
