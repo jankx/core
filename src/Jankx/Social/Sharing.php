@@ -4,6 +4,7 @@ namespace Jankx\Social;
 final class Sharing
 {
     protected static $_instance;
+    protected static $initialized;
 
     public static function get_instance()
     {
@@ -25,6 +26,7 @@ final class Sharing
 
     public function init_sharing_info()
     {
+        static::$initialized = true;
     }
 
     protected function enabled_socials()
@@ -33,6 +35,11 @@ final class Sharing
 
     public function share_buttons($socials = null)
     {
+        // When social sharing is not initialized log the error
+        if (!static::$initialized) {
+            return error_log(__('Jankx social sharing is not initialized yet', 'jankx'));
+        }
+
         if (is_null($socials)) {
             $socials = $this->enabled_socials();
         }
