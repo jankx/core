@@ -9,6 +9,7 @@ function jankx_get_related_query($args = array(), $post_id = null)
         $args,
         array(
             'post_type' => 'post',
+            'post__not_in' => array($post_id)
         )
     );
     $tax_query = array();
