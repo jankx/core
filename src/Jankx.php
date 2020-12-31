@@ -200,6 +200,11 @@ class Jankx
 
         add_action('init', array($this, 'init'));
 
+        // Init socials sharing
+        if (apply_filters('jankx_socials_sharing_enable', GlobalVariables::get('config.socials.sharing', false))) {
+            add_action('after_setup_theme', array(Sharing::class, 'get_instance'));
+        }
+
         // Register widgets
         add_action('widgets_init', array(static::widgets(), 'registerWidgets'));
     }
@@ -228,11 +233,6 @@ class Jankx
 
         // Init the comments system
         Comments::init();
-
-        if (apply_filters('jankx_social_sharing_enable', GlobalVariables::get('config.socials.sharing', false))) {
-            // Init socials sharing
-            Sharing::get_instance();
-        }
     }
 
     public function integrations()
