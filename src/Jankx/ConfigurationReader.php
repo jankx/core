@@ -9,16 +9,20 @@ namespace Jankx;
  */
 class ConfigurationReader
 {
-    public function __construct($config_file = '.theme.yml') {
+    public function __construct($config_file = '.theme.yml')
+    {
     }
 
-    protected function read_child_configs() {
+    protected function read_child_configs()
+    {
     }
 
-    protected function read_template_configs() {
+    protected function read_template_configs()
+    {
     }
 
-    protected function combine_configs($template_configs, $child_configs) {
+    protected function combine_configs($template_configs, $child_configs)
+    {
     }
 
     public function read()
