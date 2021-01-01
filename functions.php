@@ -68,7 +68,18 @@ function jankx_is_comment_by_post_author($comment = null)
 }
 
 
-function jankx_social_share_buttons($socials = null) {
+function jankx_social_share_buttons($socials = null)
+{
     $socialSharing = \Jankx\Social\Sharing::get_instance();
     return $socialSharing->share_buttons();
+}
+
+
+function jankx_template_directory_uri($path = '')
+{
+    return sprintf(
+        '%s/%s',
+        get_template_directory_uri(),
+        $path
+    );
 }
