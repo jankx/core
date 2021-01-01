@@ -126,6 +126,8 @@ final class Sharing
                 'facebook_app_id' => Option::get('facebook_app_id'),
             ));
         }
+
+        $sharing_metas = apply_filters('jankx_socials_sharing_metas', $sharing_metas, $this);
         if (empty($sharing_metas)) {
             return;
         }
