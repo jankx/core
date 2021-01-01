@@ -7,6 +7,8 @@ final class Sharing
 {
     protected static $_instance;
     protected static $initialized;
+    protected static $enabled_socials = array();
+    protected static $agruments = array();
 
     protected static $social_mappings = array(
         'fbFeed' => 'fbFeed',
@@ -146,8 +148,6 @@ final class Sharing
         ),
     );
 
-    protected static $enabled_socials = array();
-
     public static function get_instance()
     {
         if (is_null(static::$_instance)) {
@@ -270,6 +270,21 @@ final class Sharing
         return false;
     }
 
+    protected function createAgrument($type, $variable_name)
+    {
+        if (!isset(static::$social_meta_mapping[$type])) {
+            return;
+        }
+
+        $agrument = '{';
+        foreach (static::$social_meta_mapping[$type] as $key => $mapto) {
+            $agrument .= sprintf('%s: jankx_socials_sharing_metas.%s,' . PHP_EOL, $key, $mapto);
+        }
+        $agrument .= '}';
+
+        static::$agruments[$variable_name] = $agrument;
+    }
+
     public function render_social_share_buttons($socials = null)
     {
         if (is_null($socials)) {
@@ -290,20 +305,25 @@ final class Sharing
             if (!$shareAPIKey) {
                 continue;
             }
+            $this->createAgrument($shareAPIKey, sprintf('%s_agrument', $social));
             if (empty($social_name)) {
                 $social_name = isset(static::$default_social_names[$shareAPIKey])
                     ? static::$default_social_names[$shareAPIKey]
                     : ucfirst(preg_replace('/_|-/', ' ', $social));
             }
             ?>
-            <div class="social-sharing-button" data-type="<?php echo $shareAPIKey; ?>">
-                <?php jankx_template(array(
-                    'socials/sharing/' . $social . '-button',
-                    'socials/sharing/default-button',
-                ), array(
-                                                          'name' => $social_name,
-                                                          'type' => $social,
-                )); ?>
+            <div class="social-sharing-button" data-type="<?php echo $shareAPIKey; ?>" data-agrument="<?php echo $social; ?>_agrument">
+                <?php
+                jankx_template(
+                    array(
+                        'socials/sharing/' . $social . '-button',
+                        'socials/sharing/default-button',
+                    ),
+                    array(
+                        'name' => $social_name,
+                        'type' => $social,
+                    )
+                ); ?>
             </div>
             <?php
         }
@@ -337,17 +357,33 @@ final class Sharing
         ob_start();
         ?>
         <script>
-            var socials_sharing_buttons = document.querySelectorAll('.social-sharing-button');
-            if (socials_sharing_buttons.length > 0) {
-                for (i = 0; i < socials_sharing_buttons.length; i++) {
-                    social_sharing_button = socials_sharing_buttons[i];
-                    if (!social_sharing_button.dataset.type) {
-                        continue;
-                    }
-                    api = social_sharing_button.dataset.type;
-                    VanillaSharing[api]
+            function jankx_socials_sharing_find_button_from_target(ele) {
+                if (!ele.dataset.type) {
+                    return jankx_socials_sharing_find_button_from_target(ele.parentElement);
                 }
+                return ele;
             }
+
+            <?php foreach (static::$agruments as $variable_name => $agrument) : ?>
+                var <?php echo $variable_name; ?> = <?php echo $agrument; ?>;
+            <?php endforeach; ?>
+
+            jankx_socials_sharing.on('open', function() {
+                var socials_sharing_buttons = document.querySelectorAll('.drop-content .social-sharing-button');
+                if (socials_sharing_buttons.length > 0) {
+                    for (i = 0; i < socials_sharing_buttons.length; i++) {
+                        if (!socials_sharing_buttons[i].dataset.type) {
+                            continue;
+                        }
+                        socials_sharing_buttons[i].addEventListener('click', function(e) {
+                            button = jankx_socials_sharing_find_button_from_target(e.target);
+                            VanillaSharing[button.dataset.type](
+                                window[button.dataset.agrument]
+                            );
+                        });
+                    }
+                }
+            })
         </script>
         <?php
         execute_script(ob_get_clean());
