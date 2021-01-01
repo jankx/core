@@ -65,15 +65,14 @@ final class Sharing
     {
     }
 
+    public function render_social_share_buttons($socials = null) {
+    }
+
     public function share_buttons($socials = null)
     {
         // When social sharing is not initialized log the error
         if (!static::$initialized) {
             return error_log(__('Jankx social sharing is not initialized yet', 'jankx'));
-        }
-
-        if (is_null($socials)) {
-            $socials = $this->enabled_socials();
         }
         ?>
         <div class="jankx-socials-sharing drop-styles">
@@ -81,22 +80,16 @@ final class Sharing
                 <?php jankx_template('socials/sharing-button'); ?>
             </div>
             <div id="jankx-sharing-content" class="sharing-content">
-                <?php jankx_template('socials/sharing', array(
-                    'socials' => $socials,
-                )); ?>
+                <?php $this->render_social_share_buttons($socials); ?>
             </div>
         </div>
+
         <?php
-        execute_script("var share_content = document.getElementById('jankx-sharing-content');
-            if (share_content) {
-                var jankx_socials_sharing = new Drop({
-                target: document.querySelector('.jankx-socials-sharing .jankx-sharing-button'),
-                content: share_content.innerHTML,
-                classes: 'drop-theme-arrows',
-                constrainToWindow: true,
-                position: 'bottom center',
-                openOn: 'click'
-            })
-        }", true);
+        execute_script(jankx_template(
+            'socials/sharing-script',
+            array(),
+            null,
+            false
+        ));
     }
 }
