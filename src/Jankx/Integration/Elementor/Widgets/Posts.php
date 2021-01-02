@@ -326,7 +326,7 @@ class Posts extends BaseWidget
 
     public function get_style_depends()
     {
-        return array('splide');
+        return array('splide-theme');
     }
 
     protected function parseValue($value, $type)
