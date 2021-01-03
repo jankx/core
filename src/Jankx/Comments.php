@@ -40,7 +40,8 @@ class Comments
         }
     }
 
-    public static function show_comment_author_avatar($comment, $args) {
+    public static function show_comment_author_avatar($comment, $args)
+    {
         $comment_author_url = get_comment_author_url($comment);
         $avatar             = get_avatar($comment, $args['avatar_size']);
 
