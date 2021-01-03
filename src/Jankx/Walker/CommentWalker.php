@@ -41,6 +41,7 @@ class CommentWalker extends Walker_Comment
 
         $comment_author     = get_comment_author($comment);
         $comment_timestamp  = sprintf(__('%1$s at %2$s', 'jankx'), get_comment_date('', $comment), get_comment_time());
+        $comment_date       = sprintf(__('%1$s', 'jankx'), get_comment_date('', $comment));
         $comment_reply_link = get_comment_reply_link(
             array_merge(
                 $args,
@@ -66,6 +67,7 @@ class CommentWalker extends Walker_Comment
                     'depth',
                     'comment_author',
                     'comment_timestamp',
+                    'comment_date',
                     'comment_reply_link',
                     'by_post_author'
                 )
