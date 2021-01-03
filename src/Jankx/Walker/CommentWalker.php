@@ -39,9 +39,7 @@ class CommentWalker extends Walker_Comment
             )
         );
 
-        $comment_author_url = get_comment_author_url($comment);
         $comment_author     = get_comment_author($comment);
-        $avatar             = get_avatar($comment, $args['avatar_size']);
         $comment_timestamp  = sprintf(__('%1$s at %2$s', 'jankx'), get_comment_date('', $comment), get_comment_time());
         $comment_reply_link = get_comment_reply_link(
             array_merge(
@@ -66,9 +64,7 @@ class CommentWalker extends Walker_Comment
                     'args',
                     'comment',
                     'depth',
-                    'comment_author_url',
                     'comment_author',
-                    'avatar',
                     'comment_timestamp',
                     'comment_reply_link',
                     'by_post_author'

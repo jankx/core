@@ -7,6 +7,7 @@ class Comments
     {
         add_action('jankx_template_after_content', array(__CLASS__, 'show_comments'));
         add_action('jankx_template_after_list_comments', array(__CLASS__, 'show_comment_form'));
+        add_action('jankx_template_comment_before_bobdy', array(__CLASS__, 'show_comment_author_avatar'), 10, 2);
     }
 
     public static function show_comments()
@@ -37,5 +38,15 @@ class Comments
             }
             jankx_template('comment/closed-comment');
         }
+    }
+
+    public static function show_comment_author_avatar($comment, $args) {
+        $comment_author_url = get_comment_author_url($comment);
+        $avatar             = get_avatar($comment, $args['avatar_size']);
+
+        jankx_template('comment/avatar', array(
+            'avatar' => $avatar,
+            'comment_author_url' => $comment_author_url,
+        ));
     }
 }
