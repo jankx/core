@@ -7,7 +7,7 @@ use Walker_Comment;
  * CUSTOM COMMENT WALKER
  * A custom walker for comments, based on the walker in Twenty Nineteen.
  */
-class Comment extends Walker_Comment
+class CommentWalker extends Walker_Comment
 {
     /**
      * Outputs a comment in the HTML5 format.
