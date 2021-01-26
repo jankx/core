@@ -23,7 +23,8 @@
     "jankx/template": "dev-master",
     "jankx/widget": "dev-master",
     "jankx/pagination": "dev-master",
-    "jankx/yaml": "dev-master"
+    "jankx/yaml": "dev-master",
+    "phpseclib/phpseclib": "~3.0"
   },
   "autoload": {
     "psr-4": {
