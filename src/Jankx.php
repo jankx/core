@@ -27,6 +27,7 @@ use Jankx\Comments;
 use Jankx\ConfigurationReader;
 use Jankx\GlobalVariables;
 use Jankx\Social\Sharing;
+use Jankx\TemplateLoader;
 
 /**
  * This class is middle-class interaction between developer and other classes
@@ -116,7 +117,11 @@ class Jankx
     private function includes()
     {
         $jankxVendor = realpath(dirname(JANKX_FRAMEWORK_FILE_LOADER) . '/..');
-        $fileNames = array('component/component.php', 'core/functions.php');
+        $fileNames = array(
+            'component/component.php',
+            'core/functions.php',
+            'template/functions.php',
+        );
         foreach ($fileNames as $fileName) {
             $file = sprintf('%s/%s', $jankxVendor, $fileName);
             if (file_exists($file)) {
@@ -140,7 +145,7 @@ class Jankx
         /**
          * Load Jankx templates
          */
-        $templateLoader = Template::getLoader(
+        Template::getLoader(
             $this->defaultTemplateDir,
             apply_filters('jankx_theme_template_directory_name', 'templates'),
             apply_filters_ref_array(
@@ -151,11 +156,11 @@ class Jankx
                 ]
             )
         );
-        $this->templateLoader = function () use ($templateLoader) {
-            return $templateLoader;
-        };
-        // Load template via loader
-        static::templateLoader()->load();
+
+        $templateLoader = new TemplateLoader();
+        $templateLoader->load();
+
+
 
         // Create Asset clousure for Jankx
         $assetManager = AssetManager::instance();
