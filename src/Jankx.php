@@ -13,21 +13,21 @@
  */
 
 use Jankx\Asset\AssetManager;
-use Jankx\Component\Registry;
-use Jankx\SiteLayout\SiteLayout;
-use Jankx\Template\Template;
-use Jankx\Integration\Integrator;
-use Jankx\Option\Framework as OptionFramework;
-use Jankx\UX\UserExperience;
-use Jankx\PostLayout\PostLayoutManager;
-use Jankx\Widget\WidgetManager;
-use Jankx\Guarder;
 use Jankx\Command\CLI;
 use Jankx\Comments;
+use Jankx\Component\Registry;
 use Jankx\ConfigurationReader;
 use Jankx\GlobalVariables;
+use Jankx\Guarder;
+use Jankx\Integration\Integrator;
+use Jankx\Option\Framework as OptionFramework;
+use Jankx\PostLayout\PostLayoutManager;
+use Jankx\SiteLayout\SiteLayout;
 use Jankx\Social\Sharing;
+use Jankx\Template\Template;
 use Jankx\TemplateLoader;
+use Jankx\UX\UserExperience;
+use Jankx\Widget\WidgetManager;
 
 /**
  * This class is middle-class interaction between developer and other classes
@@ -145,21 +145,8 @@ class Jankx
         /**
          * Load Jankx templates
          */
-        Template::getLoader(
-            $this->defaultTemplateDir,
-            apply_filters('jankx_theme_template_directory_name', 'templates'),
-            apply_filters_ref_array(
-                'jankx_theme_template_engine',
-                [
-                    'wordpress',
-                    &$this
-                ]
-            )
-        );
-
         $templateLoader = new TemplateLoader();
-        $templateLoader->load();
-
+        $templateLoader->load($this->defaultTemplateDir);
 
 
         // Create Asset clousure for Jankx

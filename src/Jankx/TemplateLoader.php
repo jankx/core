@@ -8,19 +8,25 @@ class TemplateLoader
 {
     protected static $templateLoaded;
 
-    public function load()
+    public function load($templateDir)
     {
-        if (!static::$templateLoaded) {
-            /**
-             * Create a flag to check Jankx template library is loaded
-             */
-            static::$templateLoaded = true;
+        Template::getLoader(
+            $templateDir,
+            apply_filters('jankx_theme_template_directory_name', 'templates'),
+            apply_filters_ref_array(
+                'jankx_theme_template_engine',
+                [
+                    'wordpress',
+                    &$this
+                ]
+            )
+        );
 
-            $pageTemplate = Page::getInstance();
+        $pageTemplate = Page::getInstance();
 
             // Call the Jankx Page
-            add_filter('template_include', array($pageTemplate, 'callTemplate'), 99);
-        }
+        add_filter('template_include', array($pageTemplate, 'callTemplate'), 99);
+
         Template::setDefautLoader();
     }
 }
