@@ -14,7 +14,6 @@ class TemplateLoader
     public function __construct()
     {
         $this->page     = Page::getInstance();
-        $this->pageType = $this->loadPageType();
     }
 
     protected function loadPageType()
@@ -45,7 +44,7 @@ class TemplateLoader
         );
         foreach ($tag_templates as $tag_template) {
             if (call_user_func($tag_template)) {
-                return = str_replace('is_', '', $tag_template);
+                return str_replace('is_', '', $tag_template);
             }
         }
     }
@@ -74,11 +73,23 @@ class TemplateLoader
         include $template;
     }
 
+    public function generate_home_templates()
+    {
+        return 'home';
+    }
+
     public function generateSearchFiles()
     {
+        $this->pageType = $this->loadPageType();
         if (!wp_using_themes()) {
             $this->initJankxThemeSystem();
         }
+
+        $method = sprintf('generate_%s_tempates', $this->pageType);
+        $callback = apply_filters('jankx_generate_templates_callback', array($this, $method), $this->pageType);
+        $templates = is_callable($callback) ? call_user_func(is_callable($callback)) : $this->generate_home_templates();
+
+        return jankx_template($templates);
     }
 
     public function load($templateDir)
