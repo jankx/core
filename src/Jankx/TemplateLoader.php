@@ -8,14 +8,8 @@ class TemplateLoader
 {
     protected static $templateLoaded;
 
-    protected $page;
     protected $pageType;
-    protected $templates;
-
-    public function __construct()
-    {
-        $this->page = Page::getInstance();
-    }
+    protected $template;
 
     protected function loadPageType()
     {
@@ -67,12 +61,7 @@ class TemplateLoader
          *
          * @param string $template The path of the template to include.
          */
-        $template = apply_filters('template_include', null);
-
-        if (!$template) {
-            return jankx();
-        }
-        include $template;
+        $this->template = apply_filters('template_include', false);
     }
 
     public function generate_templates($type)
@@ -98,12 +87,14 @@ class TemplateLoader
             ? call_user_func(is_callable($callback))
             : $this->generate_templates($this->pageType);
 
-        $this->page->setContext($this->pageType);
-    }
+        $page = Page::getInstance();
+        $page->setContext($this->pageType);
 
-    public function render($template)
-    {
-        return $template;
+        if ($this->template === false) {
+            return jankx();
+        } elseif (!is_null($this->template)) {
+            include $this->template;
+        }
     }
 
     public function load($templateDir)
@@ -122,7 +113,6 @@ class TemplateLoader
 
         // Call the Jankx Page
         add_action('wp', array($this, 'generateSearchFiles'), 30);
-        add_filter('template_include', array($this, 'render'));
 
         Template::setDefautLoader();
     }
