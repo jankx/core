@@ -86,8 +86,14 @@ class TemplateLoader
         }
 
         $method = sprintf('generate_%s_tempates', $this->pageType);
-        $callback = apply_filters('jankx_generate_templates_callback', array($this, $method), $this->pageType);
-        $templates = is_callable($callback) ? call_user_func(is_callable($callback)) : $this->generate_home_templates();
+        $callback = apply_filters(
+            'jankx_generate_templates_callback',
+            array($this, $method),
+            $this->pageType
+        );
+        $templates = is_callable($callback)
+            ? call_user_func(is_callable($callback))
+            : $this->generate_home_templates();
 
         return jankx_template($templates);
     }
@@ -105,7 +111,6 @@ class TemplateLoader
                 ]
             )
         );
-
 
         // Call the Jankx Page
         add_action('wp', array($this, 'generateSearchFiles'));

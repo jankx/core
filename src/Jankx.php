@@ -145,9 +145,10 @@ class Jankx
         /**
          * Load Jankx templates
          */
-        $templateLoader = new TemplateLoader();
-        $templateLoader->load($this->defaultTemplateDir);
-
+        if (wp_is_request('frontend')) {
+            $templateLoader = new TemplateLoader();
+            $templateLoader->load($this->defaultTemplateDir);
+        }
 
         // Create Asset clousure for Jankx
         $assetManager = AssetManager::instance();
