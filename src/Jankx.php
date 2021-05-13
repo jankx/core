@@ -19,7 +19,6 @@ use Jankx\Component\Registry;
 use Jankx\ConfigurationReader;
 use Jankx\GlobalVariables;
 use Jankx\Guarder;
-use Jankx\Integration\Integrator;
 use Jankx\Option\Framework as OptionFramework;
 use Jankx\PostLayout\PostLayoutManager;
 use Jankx\SiteLayout\SiteLayout;
@@ -188,7 +187,6 @@ class Jankx
         add_action('after_setup_theme', 'jankx_get_device_detector');
 
         add_action('after_setup_theme', array($this, 'setupOptionFramework'), 5);
-        add_action('after_setup_theme', array($this, 'integrations'));
         add_action('after_setup_theme', array($this, 'improveUserExperience'));
 
         add_action('init', array($this, 'init'));
@@ -226,12 +224,6 @@ class Jankx
 
         // Init the comments system
         add_action('wp', array(Comments::class, 'init'));
-    }
-
-    public function integrations()
-    {
-        $integrator = Integrator::getInstance();
-        $integrator->integrate();
     }
 
     public function setupOptionFramework()
