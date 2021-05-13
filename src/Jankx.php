@@ -225,7 +225,7 @@ class Jankx
         PostLayoutManager::getInstance();
 
         // Init the comments system
-        Comments::init();
+        add_action('wp', array(Comments::class, 'init'));
     }
 
     public function integrations()
