@@ -10,10 +10,11 @@ class TemplateLoader
 
     protected $page;
     protected $pageType;
+    protected $templates;
 
     public function __construct()
     {
-        $this->page     = Page::getInstance();
+        $this->page = Page::getInstance();
     }
 
     protected function loadPageType()
@@ -25,8 +26,8 @@ class TemplateLoader
                     'is_embed',
                     'is_404',
                     'is_search',
-                    'is_front_page',
                     'is_home',
+                    'is_front_page',
                     'is_privacy_policy',
                     'is_post_type_archive',
                     'is_tax',
@@ -42,6 +43,7 @@ class TemplateLoader
                 )
             )
         );
+
         foreach ($tag_templates as $tag_template) {
             if (call_user_func($tag_template)) {
                 return str_replace('is_', '', $tag_template);
@@ -73,9 +75,9 @@ class TemplateLoader
         include $template;
     }
 
-    public function generate_home_templates()
+    public function generate_templates($type)
     {
-        return 'home';
+        return $type;
     }
 
     public function generateSearchFiles()
@@ -85,17 +87,23 @@ class TemplateLoader
             $this->initJankxThemeSystem();
         }
 
-        $method = sprintf('generate_%s_tempates', $this->pageType);
+        $method = sprintf('generate_%s_templates', $this->pageType);
         $callback = apply_filters(
             'jankx_generate_templates_callback',
             array($this, $method),
             $this->pageType
         );
-        $templates = is_callable($callback)
-            ? call_user_func(is_callable($callback))
-            : $this->generate_home_templates();
 
-        return jankx_template($templates);
+        $this->templates = is_callable($callback)
+            ? call_user_func(is_callable($callback))
+            : $this->generate_templates($this->pageType);
+
+        $this->page->setContext($this->pageType);
+    }
+
+    public function render($template)
+    {
+        return $template;
     }
 
     public function load($templateDir)
@@ -113,7 +121,8 @@ class TemplateLoader
         );
 
         // Call the Jankx Page
-        add_action('wp', array($this, 'generateSearchFiles'));
+        add_action('wp', array($this, 'generateSearchFiles'), 30);
+        add_filter('template_include', array($this, 'render'));
 
         Template::setDefautLoader();
     }
