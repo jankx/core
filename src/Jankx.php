@@ -118,8 +118,7 @@ class Jankx
         $jankxVendor = realpath(dirname(JANKX_FRAMEWORK_FILE_LOADER) . '/..');
         $fileNames = array(
             'component/component.php',
-            'core/functions.php',
-            'template/functions.php',
+            'core/functions.php'
         );
         foreach ($fileNames as $fileName) {
             $file = sprintf('%s/%s', $jankxVendor, $fileName);
