@@ -35,6 +35,7 @@ class Jankx
 {
     const FRAMEWORK_NAME    = 'Jankx Framework';
     const FRAMEWORK_VERSION = '1.0.0';
+    const ENGINE_ID         = 'jankx';
 
     protected static $instance;
     protected $defaultTemplateDir;
@@ -70,20 +71,6 @@ class Jankx
         static::$theme = wp_get_theme();
         define('JANKX_THEME_DEFAULT_ENGINE', $this->defaultTemplateDir);
         define('JANKX_CACHE_DIR', sprintf('%s/jankx/caches/', WP_CONTENT_DIR));
-    }
-
-    private static function isRequest($type)
-    {
-        switch ($type) {
-            case 'admin':
-                return is_admin();
-            case 'ajax':
-                return defined('DOING_AJAX');
-            case 'cron':
-                return defined('DOING_CRON');
-            case 'frontend':
-                return ( ! is_admin() || defined('DOING_AJAX') ) && ! defined('DOING_CRON');
-        }
     }
 
     public function setup()
@@ -191,7 +178,7 @@ class Jankx
         add_action('init', array($this, 'init'));
 
         // Init socials sharing
-        if (apply_filters('jankx_socials_sharing_enable', GlobalVariables::get('config.socials.sharing', false))) {
+        if (apply_filters('jankx_socials_sharing_enable', GlobalVariables::get('socials.sharing', false))) {
             add_action('after_setup_theme', array(Sharing::class, 'get_instance'));
         }
 
