@@ -19,9 +19,8 @@ if (! function_exists('jankx')) {
 if (! function_exists('jankx_template')) {
     function jankx_template($templates, $data = array(), $echo = true)
     {
-        if (is_null($templateEngine)) {
-            $templateEngine = Template::getEngine(Jankx::ENGINE_ID);
-        }
+        $templateEngine = Template::getEngine(Jankx::ENGINE_ID);
+
         if (! ( $templateEngine instanceof Engine )) {
             throw new \Exception(
                 sprintf('The template engine must be is instance of %s', Engine::class)
