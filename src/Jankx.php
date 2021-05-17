@@ -27,6 +27,7 @@ use Jankx\Template\Template;
 use Jankx\TemplateLoader;
 use Jankx\UX\UserExperience;
 use Jankx\Widget\WidgetManager;
+use Jankx\TemplateEngine\Engines\Plates;
 
 /**
  * This class is middle-class interaction between developer and other classes
@@ -64,12 +65,6 @@ class Jankx
 
     private function __construct()
     {
-        $this->defaultTemplateDir = sprintf(
-            '%s/template/default',
-            realpath(dirname(JANKX_FRAMEWORK_FILE_LOADER) . '/..')
-        );
-        static::$theme = wp_get_theme();
-        define('JANKX_THEME_DEFAULT_ENGINE', $this->defaultTemplateDir);
         define('JANKX_CACHE_DIR', sprintf('%s/jankx/caches/', WP_CONTENT_DIR));
     }
 
@@ -132,7 +127,7 @@ class Jankx
          */
         if (wp_is_request('frontend')) {
             $templateLoader = new TemplateLoader();
-            $templateLoader->load($this->defaultTemplateDir);
+            $templateLoader->load();
         }
 
         // Create Asset clousure for Jankx
@@ -233,5 +228,13 @@ class Jankx
     public function improveUserExperience()
     {
         static::ux()->optimize();
+    }
+
+    public static function getActiveTemplateEngine()
+    {
+        return apply_filters(
+            'jankx_theme_template_engine',
+            Plates::ENGINE_NAME
+        );
     }
 }

@@ -1,6 +1,7 @@
 <?php
 namespace Jankx;
 
+use Jankx;
 use Jankx\Template\Page;
 use Jankx\Template\Template;
 
@@ -97,11 +98,15 @@ class TemplateLoader
         }
     }
 
-    public function load($templateDir)
+    public function load()
     {
-        Template::getLoader(
-            $templateDir,
+        Template::createEngine(
+            Jankx::ENGINE_ID,
             apply_filters('jankx_theme_template_directory_name', 'templates'),
+            sprintf(
+                '%s/templates',
+                dirname(JANKX_FRAMEWORK_FILE_LOADER)
+            ),
             apply_filters_ref_array(
                 'jankx_theme_template_engine',
                 [
@@ -113,7 +118,5 @@ class TemplateLoader
 
         // Call the Jankx Page
         add_action('wp', array($this, 'generateSearchFiles'), 30);
-
-        Template::setDefautLoader();
     }
 }
