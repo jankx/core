@@ -1,5 +1,5 @@
 <?php
-use Jankx\Template\Loader;
+use Jankx\TemplateEngine\Engine;
 use Jankx\Template\Page;
 use Jankx\Template\Template;
 
@@ -17,27 +17,27 @@ if (! function_exists('jankx')) {
 }
 
 if (! function_exists('jankx_template')) {
-    function jankx_template($templates, $data = array(), $context = '', $echo = true, $templateLoader = null)
+    function jankx_template($templates, $data = array(), $echo = true)
     {
-        if (is_null($templateLoader)) {
-            $templateLoader = Template::getLoader();
+        if (is_null($templateEngine)) {
+            $templateEngine = Template::getEngine(Jankx::ENGINE_ID);
         }
-        if (! ( $templateLoader instanceof Loader )) {
+        if (! ( $templateEngine instanceof Engine )) {
             throw new \Exception(
-                sprintf('The template loader must be is instance of %s', Loader::class)
+                sprintf('The template engine must be is instance of %s', Engine::class)
             );
         }
 
-        return $templateLoader->render(
+        return $templateEngine->render(
             $templates,
             $data,
-            $context,
             $echo
         );
     }
 }
 
-function jankx_container_css_class($custom_classes) {
+function jankx_container_css_class($custom_classes)
+{
     $css_class = array(
         'jankx-container',
         'container',
@@ -56,7 +56,8 @@ function jankx_container_css_class($custom_classes) {
 }
 
 if (!function_exists('jankx_open_container')) {
-    function jankx_open_container($custom_classes = '', $context = null) {
+    function jankx_open_container($custom_classes = '', $context = null)
+    {
         do_action('jankx_template_before_open_container');
 
         $open_html = apply_filters('jankx_template_pre_open_container', null, $context);
@@ -77,7 +78,8 @@ if (!function_exists('jankx_open_container')) {
 }
 
 if (!function_exists('jankx_close_container')) {
-    function jankx_close_container($context = null) {
+    function jankx_close_container($context = null)
+    {
         if ($context) {
             do_action("jankx_template_closing_{$context}_container");
         }
