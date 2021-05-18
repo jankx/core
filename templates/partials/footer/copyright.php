@@ -2,7 +2,7 @@
     <?php jankx_open_container(); ?>
         <div class="text">
             <?php echo $copyright; ?>
-            <?php echo $jankx_credit; ?>
+            <?php echo $credit_message; ?>
         </div>
     <?php jankx_close_container(); ?>
 </div>
