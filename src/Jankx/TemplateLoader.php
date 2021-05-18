@@ -4,6 +4,7 @@ namespace Jankx;
 use Jankx;
 use Jankx\Template\Page;
 use Jankx\Template\Template;
+use Jankx\TemplateEngine\Data;
 
 class TemplateLoader
 {
@@ -116,7 +117,14 @@ class TemplateLoader
             )
         );
 
+        add_action('template_redirect', array($this, 'initSharingData'));
+
         // Call the Jankx Page
         add_action('wp', array($this, 'generateSearchFiles'), 30);
+    }
+
+    public function initSharingData() {
+        Data::share('site_name', get_bloginfo('name'));
+        Data::share('site_url', site_url());
     }
 }
