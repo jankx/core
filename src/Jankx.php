@@ -41,7 +41,7 @@ class Jankx
     protected static $instance;
     protected $defaultTemplateDir;
 
-    public static $theme;
+    protected $theme;
 
     public static function __callStatic($name, $args)
     {
@@ -112,6 +112,12 @@ class Jankx
 
     private function initCoreFramework()
     {
+
+        $theme = wp_get_theme();
+        $this->theme = function () use ($theme) {
+            return $theme;
+        };
+    
         /**
          * The config reader will read config file and set the value into GlobalVariables with prefix `config.*`
          * Example get the config value: \Jankx\GlobalVariables::get('config.theme.version')

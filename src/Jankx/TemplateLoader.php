@@ -124,6 +124,7 @@ class TemplateLoader
         add_action('jankx_prepare_render_template', array($this, 'initSharingData'));
     }
 
-    public function initSharingData() {
+    public function initSharingData()
+    {
     }
 }
