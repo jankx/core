@@ -99,7 +99,7 @@ class TemplateLoader
         }
     }
 
-    public function load()
+    public function createTemplateEngine()
     {
         Template::createEngine(
             Jankx::ENGINE_ID,
@@ -116,6 +116,11 @@ class TemplateLoader
                 ]
             )
         );
+    }
+
+    public function load()
+    {
+        add_action('after_setup_theme', array($this, 'createTemplateEngine'), 15);
 
         // Call the Jankx Page
         add_action('wp', array($this, 'generateSearchFiles'), 30);
