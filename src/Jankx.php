@@ -117,7 +117,7 @@ class Jankx
         $this->theme = function () use ($theme) {
             return $theme;
         };
-    
+
         /**
          * The config reader will read config file and set the value into GlobalVariables with prefix `config.*`
          * Example get the config value: \Jankx\GlobalVariables::get('config.theme.version')
@@ -242,5 +242,15 @@ class Jankx
             'jankx_theme_template_engine',
             Plates::ENGINE_NAME
         );
+    }
+
+    public static function render($templates, $data = array(), $echo = true)
+    {
+        $engine = Template::getEngine(static::ENGINE_ID);
+        if (empty($engine)) {
+            throw \Exception('The Jankx template engine is not initialized');
+        }
+
+        return $engine->render($templates, $data, $echo);
     }
 }
