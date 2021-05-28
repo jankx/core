@@ -4,7 +4,8 @@ namespace Jankx;
 use Jankx;
 use Jankx\Template\Page;
 use Jankx\Template\Template;
-use Jankx\TemplateEngine\Data;
+use Jankx\TemplateEngine\Context;
+use Jankx\TemplateEngine\FunctionWrapper;
 
 class TemplateLoader
 {
@@ -131,5 +132,9 @@ class TemplateLoader
 
     public function initSharingData()
     {
+        Context::shares(array(
+            'open_container' => new FunctionWrapper('jankx_open_container', array(), true),
+            'close_container' => new FunctionWrapper('jankx_close_container', array(), true),
+        ));
     }
 }
