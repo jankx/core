@@ -133,8 +133,8 @@ class TemplateLoader
     public function initSharingData()
     {
         Context::shares(array(
-            'open_container' => new FunctionWrapper('jankx_open_container', array(), true),
-            'close_container' => new FunctionWrapper('jankx_close_container', array(), true),
+            'open_container' => new FunctionWrapper('jankx_open_container'),
+            'close_container' => new FunctionWrapper('jankx_close_container'),
         ));
     }
 }

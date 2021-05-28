@@ -61,18 +61,13 @@ if (!function_exists('jankx_open_container')) {
 
         $open_html = apply_filters('jankx_template_pre_open_container', null, $context);
         if (is_null($open_html)) {
-            $open_html = apply_filters(
-                'jankx_template_open_container',
-                jankx_template('common/container-open', array(
-                    'css_classes' => implode(' ', jankx_container_css_class($custom_classes))
-                ), null, false)
+            $open_html = sprintf(
+                '<div class="%s">',
+                implode(' ', jankx_container_css_class($custom_classes))
             );
         }
-        echo $open_html;
 
-        if ($context) {
-            do_action("jankx_template_opened_{$context}_container");
-        }
+        echo $open_html;
     }
 }
 
@@ -85,13 +80,10 @@ if (!function_exists('jankx_close_container')) {
 
         $close_html = apply_filters('jankx_template_pre_close_container', null, $context);
         if (is_null($close_html)) {
-            $close_html = apply_filters(
-                'jankx_template_close_container',
-                jankx_template('common/container-close', array(), null, false)
-            );
+            $close_html = '</div>';
         }
+
         echo $close_html;
-        do_action('jankx_template_after_close_container');
     }
 }
 
