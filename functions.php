@@ -35,7 +35,7 @@ if (! function_exists('jankx_template')) {
     }
 }
 
-function jankx_container_css_class($custom_classes)
+function jankx_container_css_class($custom_classes = '')
 {
     $css_class = array(
         'jankx-container',
@@ -50,7 +50,6 @@ function jankx_container_css_class($custom_classes)
         'jankx_template_the_container_classes',
         array_merge($css_class, (array)$custom_classes)
     );
-
     return array_unique($css_class, SORT_STRING);
 }
 
@@ -63,7 +62,7 @@ if (!function_exists('jankx_open_container')) {
         if (is_null($open_html)) {
             $open_html = sprintf(
                 '<div class="%s">',
-                implode(' ', jankx_container_css_class($custom_classes))
+                implode(' ', jankx_container_css_class())
             );
         }
 
