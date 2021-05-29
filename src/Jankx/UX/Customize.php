@@ -25,6 +25,9 @@ class Customize
 
     public function renderLoadingCSS()
     {
+        if (Cache::globalCssIsExists()) {
+            return;
+        }
         $css = CssItem::loadCustomize('loading.php');
         Cache::addGlobalCss($css);
     }
