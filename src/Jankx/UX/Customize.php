@@ -1,6 +1,9 @@
 <?php
 namespace Jankx\UX;
 
+use Jankx\Asset\CssItem;
+use Jankx\Asset\Cache;
+
 class Customize
 {
     public function loadPresetPalettes()
@@ -9,8 +12,8 @@ class Customize
 
     public function showLoading()
     {
-        add_action('wp_head', array($this, 'renderLoadingCSS'));
         add_action('wp_body_open', array($this, 'renderLoading'));
+        add_action('init', array($this, 'renderLoadingCSS'));
     }
 
     public function renderLoading()
@@ -22,6 +25,7 @@ class Customize
 
     public function renderLoadingCSS()
     {
-        jankx_template('common/loading-css');
+        $css = CssItem::loadCustomize('loading.php');
+        Cache::addGlobalCss($css);
     }
 }

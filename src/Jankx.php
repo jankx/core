@@ -24,10 +24,10 @@ use Jankx\PostLayout\PostLayoutManager;
 use Jankx\SiteLayout\SiteLayout;
 use Jankx\Social\Sharing;
 use Jankx\Template\Template;
+use Jankx\TemplateEngine\Engines\Plates;
 use Jankx\TemplateLoader;
 use Jankx\UX\UserExperience;
 use Jankx\Widget\WidgetManager;
-use Jankx\TemplateEngine\Engines\Plates;
 
 /**
  * This class is middle-class interaction between developer and other classes
@@ -66,6 +66,7 @@ class Jankx
     private function __construct()
     {
         define('JANKX_CACHE_DIR', sprintf('%s/jankx/caches/', WP_CONTENT_DIR));
+        define('JANKX_CACHE_DIR_URL', content_url('jankx/caches'));
     }
 
     public function setup()

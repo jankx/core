@@ -1,5 +1,4 @@
-<style>
-    .sk-circle {
+.sk-circle {
     margin: 100px auto;
     width: 40px;
     height: 40px;
@@ -119,5 +118,4 @@
         -webkit-transform: scale(1);
                 transform: scale(1);
     }
-    }
-</style>
+}
