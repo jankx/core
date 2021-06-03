@@ -6,6 +6,7 @@ use Jankx\Template\Page;
 use Jankx\Template\Template;
 use Jankx\TemplateEngine\Context;
 use Jankx\TemplateEngine\FunctionWrapper;
+use Jankx\TemplateEngine\Engines\WordPress;
 
 class TemplateLoader
 {
@@ -112,7 +113,7 @@ class TemplateLoader
             apply_filters_ref_array(
                 'jankx_theme_template_engine',
                 [
-                    'wordpress',
+                    WordPress::ENGINE_NAME,
                     &$this
                 ]
             )
