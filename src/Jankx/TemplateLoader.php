@@ -128,15 +128,6 @@ class TemplateLoader
         add_action('wp', array($this, 'generateSearchFiles'), 30);
 
         // Sharing data
-        add_action('jankx_prepare_render_template', array($this, 'initSharingData'));
-    }
-
-    public function initSharingData()
-    {
-        Context::shares(array(
-            'body_class' => new FunctionWrapper('get_body_class', array('join' => ' ')),
-            'open_container' => new FunctionWrapper('jankx_open_container'),
-            'close_container' => new FunctionWrapper('jankx_close_container'),
-        ));
+        add_action('jankx_prepare_render_template', array(Context::class, 'init'));
     }
 }
