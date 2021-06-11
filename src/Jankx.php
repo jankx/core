@@ -39,9 +39,11 @@ class Jankx
     const ENGINE_ID         = 'jankx';
 
     protected static $instance;
-    protected $defaultTemplateDir;
 
+    protected $templateName;
+    protected $templateStylesheet;
     protected $theme;
+
 
     public static function __callStatic($name, $args)
     {
@@ -114,9 +116,20 @@ class Jankx
     private function initCoreFramework()
     {
 
-        $theme = wp_get_theme();
+        $theme       = wp_get_theme();
+        $themeParent = $theme->parent();
+        if (!$themeParent) {
+            $themeParent = $theme;
+        }
+
         $this->theme = function () use ($theme) {
             return $theme;
+        };
+        $this->templateName = function () use ($themeParent) {
+            return $themeParent->get('Name');
+        };
+        $this->templateStylesheet = function () use ($themeParent) {
+            return $themeParent->stylesheet;
         };
 
         /**

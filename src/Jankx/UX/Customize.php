@@ -3,6 +3,7 @@ namespace Jankx\UX;
 
 use Jankx\Asset\CssItem;
 use Jankx\Asset\Cache;
+use Jankx\GlobalVariables;
 
 class Customize
 {
@@ -30,5 +31,15 @@ class Customize
         }
         $css = CssItem::loadCustomize('loading.php');
         Cache::addGlobalCss($css);
+    }
+
+    public function footerWidgets($numberOfAreas)
+    {
+        $widget_areas = GlobalVariables::get('configs.footer.widget_areas');
+        // var_dump($widget_areas);die;
+        if ($widget_areas > 0) {
+            return $widget_areas;
+        }
+        return $numberOfAreas;
     }
 }

@@ -31,5 +31,10 @@ class UserExperience
         if (jankx_is_mobile()) {
             $this->mobile->makeImageLookGood();
         }
+
+        add_filter(
+            'jankx_template_num_of_footer_widgets',
+            array($this->customize, 'footerWidgets')
+        );
     }
 }
