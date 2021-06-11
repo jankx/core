@@ -31,7 +31,9 @@ switch ($numOfFooterWidgets) {
             .footer-widgets-area .jankx-footer-widget.widget-area-2, .footer-widgets-area .jankx-footer-widget.widget-area-3 {
                 width: 25%;
             }
-            $styles['(min-width: 1200px)'][] = '.footer-widgets-area .jankx-footer-widget.widget-area-1 {
+        }
+        @media (min-width: 1200px) {
+            .footer-widgets-area .jankx-footer-widget.widget-area-1 {
                 width: 45%;
             }
             .footer-widgets-area .jankx-footer-widget.widget-area-2, .footer-widgets-area .jankx-footer-widget.widget-area-3 {
