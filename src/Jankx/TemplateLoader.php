@@ -47,6 +47,7 @@ class TemplateLoader
                 return str_replace('is_', '', $tag_template);
             }
         }
+        return 'home';
     }
 
     public function initJankxThemeSystem()
@@ -68,9 +69,29 @@ class TemplateLoader
         $this->template = apply_filters('template_include', false);
     }
 
-    public function generate_templates($type)
+    public function get_single_templates()
     {
-        return $type;
+        $object = get_queried_object();
+        $templates = array();
+
+        if (! empty($object->post_type)) {
+            $template = get_page_template_slug($object);
+            if ($template && 0 === validate_file($template)) {
+                $templates[] = $template;
+            }
+
+            $name_decoded = urldecode($object->post_name);
+            if ($name_decoded !== $object->post_name) {
+                $templates[] = "single-{$object->post_type}-{$name_decoded}";
+            }
+
+            $templates[] = "single-{$object->post_type}-{$object->post_name}";
+            $templates[] = "single-{$object->post_type}";
+        }
+
+        $templates[] = 'single';
+
+        return $templates;
     }
 
     public function generateSearchFiles()
@@ -80,23 +101,24 @@ class TemplateLoader
             $this->initJankxThemeSystem();
         }
 
-        $method = sprintf('generate_%s_templates', $this->pageType);
-        $callback = apply_filters(
-            'jankx_generate_templates_callback',
-            array($this, $method),
-            $this->pageType
-        );
-
-        $this->templates = is_callable($callback)
-            ? call_user_func(is_callable($callback))
-            : $this->generate_templates($this->pageType);
-
         $page = Page::getInstance();
         $page->setContext($this->pageType);
 
+        $callback = apply_filters(
+            'jankx_generate_templates_callback',
+            array($this, sprintf('get_%s_templates', $this->pageType)),
+            $this->pageType
+        );
+
+        if (is_callable($callback)) {
+            $page->setTemplates(call_user_func($callback));
+        }
+
         if ($this->template === false) {
             return jankx();
-        } elseif (!is_null($this->template)) {
+        }
+
+        if (!is_null($this->template)) {
             include $this->template;
         }
     }
