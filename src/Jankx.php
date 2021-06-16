@@ -126,7 +126,10 @@ class Jankx
             return $theme;
         };
         $this->templateName = function () use ($themeParent) {
-            return $themeParent->get('Name');
+            return GlobalVariables::get(
+                'theme.short_name',
+                $themeParent->get('Name')
+            );
         };
         $this->templateStylesheet = function () use ($themeParent) {
             return $themeParent->stylesheet;

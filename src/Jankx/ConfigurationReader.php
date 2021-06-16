@@ -27,11 +27,5 @@ class ConfigurationReader
 
     public function read()
     {
-        $child_configs = $this->read_child_configs();
-        $template_configs = $this->read_template_configs();
-        $configs = $this->combine_configs($template_configs, $child_configs);
-
-        // Set config to global variables and lock down it. Do not allow change configs
-        GlobalVariables::set('config', $configs, true);
     }
 }

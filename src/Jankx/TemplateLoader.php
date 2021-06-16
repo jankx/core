@@ -94,6 +94,12 @@ class TemplateLoader
         return $templates;
     }
 
+    public function get_front_page_templates() {
+        return array(
+            'front-page'
+        );
+    }
+
     public function generateSearchFiles()
     {
         $this->pageType = $this->loadPageType();
