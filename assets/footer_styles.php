@@ -39,7 +39,7 @@ switch ($numOfFooterWidgets) {
             .footer-widgets-area .jankx-footer-widget.widget-area-2, .footer-widgets-area .jankx-footer-widget.widget-area-3 {
                 width: 27.5%;
             }
-        }';
+        }
         <?php
         break;
     case 4:
@@ -53,7 +53,7 @@ switch ($numOfFooterWidgets) {
             .footer-widgets-area .jankx-footer-widget {
                 width: 25%;
             }
-        }';
+        }
         <?php
         break;
     default:
