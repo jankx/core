@@ -150,7 +150,8 @@ class TemplateLoader
             &$this->templateEngine,
             $this
         ));
-        if ($this->template === false) {
+
+        if ($this->template === false || apply_filters('alway_use_jankx_template_engine_system', false)) {
             return jankx();
         }
 
