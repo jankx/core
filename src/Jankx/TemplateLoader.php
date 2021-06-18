@@ -14,6 +14,7 @@ class TemplateLoader
 
     protected $pageType;
     protected $template;
+    protected $templateEngine;
 
     protected function loadPageType()
     {
@@ -94,13 +95,36 @@ class TemplateLoader
         return $templates;
     }
 
-    public function get_front_page_templates() {
+    public function get_tax_templates()
+    {
+        $term = get_queried_object();
+
+        $templates = array();
+
+        if (! empty($term->slug)) {
+            $taxonomy = $term->taxonomy;
+
+            $slug_decoded = urldecode($term->slug);
+            if ($slug_decoded !== $term->slug) {
+                $templates[] = "taxonomy-$taxonomy-{$slug_decoded}";
+            }
+
+            $templates[] = "taxonomy-$taxonomy-{$term->slug}";
+            $templates[] = "taxonomy-$taxonomy";
+        }
+        $templates[] = 'taxonomy';
+
+        return $templates;
+    }
+
+    public function get_front_page_templates()
+    {
         return array(
             'front-page'
         );
     }
 
-    public function generateSearchFiles()
+    public function include()
     {
         $this->pageType = $this->loadPageType();
         if (!wp_using_themes()) {
@@ -120,6 +144,12 @@ class TemplateLoader
             $page->setTemplates(call_user_func($callback));
         }
 
+
+        do_action_ref_array('jankx_prepare_render_template', array(
+            &$page,
+            &$this->templateEngine,
+            $this
+        ));
         if ($this->template === false) {
             return jankx();
         }
@@ -131,7 +161,7 @@ class TemplateLoader
 
     public function createTemplateEngine()
     {
-        Template::createEngine(
+        $this->templateEngine = Template::createEngine(
             Jankx::ENGINE_ID,
             apply_filters('jankx_theme_template_directory_name', 'templates'),
             sprintf(
@@ -153,7 +183,7 @@ class TemplateLoader
         add_action('after_setup_theme', array($this, 'createTemplateEngine'), 15);
 
         // Call the Jankx Page
-        add_action('wp', array($this, 'generateSearchFiles'), 30);
+        add_action('wp', array($this, 'include'), 30);
 
         // Sharing data
         add_action('jankx_prepare_render_template', array(Context::class, 'init'));
