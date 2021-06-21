@@ -149,7 +149,10 @@ class Jankx
          * Load Jankx templates
          */
         $templateLoader = new TemplateLoader();
-        $templateLoader->load();
+        add_action('after_setup_theme', array($templateLoader, 'createTemplateEngine'), 15);
+        if (wp_is_request('frontend')) {
+            $templateLoader->load();
+        }
 
         // Create Asset clousure for Jankx
         $assetManager = AssetManager::instance();
