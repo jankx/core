@@ -28,7 +28,7 @@ use Jankx\TemplateEngine\Engines\Plates;
 use Jankx\TemplateLoader;
 use Jankx\UX\UserExperience;
 use Jankx\Widget\WidgetManager;
-use Jankx\MegaMenu\MegaMenu;
+use Jankx\Megu\Megu as MegaMenu;
 
 /**
  * This class is middle-class interaction between developer and other classes
