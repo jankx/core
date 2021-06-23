@@ -28,6 +28,7 @@ use Jankx\TemplateEngine\Engines\Plates;
 use Jankx\TemplateLoader;
 use Jankx\UX\UserExperience;
 use Jankx\Widget\WidgetManager;
+use Jankx\MegaMenu\MegaMenu;
 
 /**
  * This class is middle-class interaction between developer and other classes
@@ -180,6 +181,11 @@ class Jankx
         $this->widgets = function () use ($widgets) {
             return $widgets;
         };
+
+        // Support Mega Menu
+        if (class_exists(MegaMenu::class)) {
+            MegaMenu::getInstance();
+        }
 
         $guarder = Guarder::getInstance();
         $guarder->watch();
