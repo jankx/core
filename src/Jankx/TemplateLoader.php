@@ -170,7 +170,7 @@ class TemplateLoader
                 dirname(JANKX_FRAMEWORK_FILE_LOADER)
             ),
             apply_filters_ref_array(
-                'jankx_theme_template_engine',
+                'jankx/template/engine/apply',
                 [
                     WordPress::ENGINE_NAME,
                     &$this

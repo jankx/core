@@ -214,7 +214,7 @@ class Jankx
     public function init()
     {
         // Run hook jankx init via components
-        do_action('jankx_init_features');
+        do_action('jankx/init');
 
         add_theme_support('html5');
         add_theme_support('post-thumbnails');
@@ -263,7 +263,7 @@ class Jankx
     public static function getActiveTemplateEngine()
     {
         return apply_filters(
-            'jankx_theme_template_engine',
+            'jankx/template/engine/apply',
             Plates::ENGINE_NAME
         );
     }

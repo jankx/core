@@ -1,7 +1,7 @@
 <?php
 namespace Jankx\UX;
 
-use Jankx\Asset\CssItem;
+use Jankx\Asset\CustomizableAsset;
 use Jankx\Asset\Cache;
 use Jankx\GlobalVariables;
 
@@ -29,7 +29,7 @@ class Customize
         if (Cache::globalCssIsExists()) {
             return;
         }
-        $css = CssItem::loadCustomize('loading.php');
+        $css = CustomizableAsset::loadCustomize('loading.php');
         Cache::addGlobalCss($css);
     }
 
