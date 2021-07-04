@@ -19,6 +19,7 @@ use Jankx\Component\Registry;
 use Jankx\ConfigurationReader;
 use Jankx\GlobalVariables;
 use Jankx\Guarder;
+use Jankx\ScriptLoader;
 use Jankx\Option\Framework as OptionFramework;
 use Jankx\PostLayout\PostLayoutManager;
 use Jankx\SiteLayout\SiteLayout;
@@ -190,12 +191,16 @@ class Jankx
         $guarder = Guarder::getInstance();
         $guarder->watch();
 
+        // Call theme assets
+        $scriptLoader = new ScriptLoader();
+        $scriptLoader->load();
+
         if (class_exists(WP_CLI::class)) {
             CLI::getInstance();
         }
 
         // Setup Jankx::device() method
-        add_action('after_setup_theme', 'jankx_get_device_detector');
+        add_action('after_setup_theme', 'jankx_get_device_detector', 5);
 
         add_action('after_setup_theme', array($this, 'setupOptionFramework'), 5);
         add_action('after_setup_theme', array($this, 'improveUserExperience'));
