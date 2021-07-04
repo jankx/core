@@ -170,3 +170,10 @@ function jankx_template_directory_uri($path = '')
         $path
     );
 }
+
+function jankx_core_asset_url($path) {
+    if (!isset($GLOBALS['core_assets_dir'])) {
+        $GLOBALS['core_assets_dir'] = jankx_get_path_url(dirname(JANKX_FRAMEWORK_FILE_LOADER));
+    }
+    return sprintf('%s/assets/%s', $GLOBALS['core_assets_dir'], $path);
+}
