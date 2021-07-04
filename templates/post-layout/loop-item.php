@@ -1,4 +1,6 @@
 <div <?php post_class('loop-item'); ?>>
+    <?php do_action('jankx_post_layout_before_loop_item', $post); ?>
+
     <?php if ($show_thumbnail) : ?>
     <div class="post-thumbnail">
         <a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>">
@@ -33,4 +35,6 @@
             </ul>
         <?php endif; ?>
     </div>
+
+    <?php do_action('jankx_post_layout_after_loop_item', $post); ?>
 </div>
