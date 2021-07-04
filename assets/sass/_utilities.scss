@@ -1,0 +1,22 @@
+@media (min-width: 768px) {
+    .mobile-only {
+        display: none;
+    }
+}
+
+// Only for tablet
+@media (min-width: 768px) and (max-width: 991px) {
+}
+
+@media (min-width: 992px) {
+    .hide-desktop {
+        display: none;
+    }
+}
+
+@media (min-width: 1200px) {
+}
+
+// Only for mobile
+@media(max-width: 767px) {
+}

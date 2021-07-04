@@ -1,0 +1,148 @@
+.jankx-posts {
+    &[class*="columns-"] {
+        display: flex;
+        flex-wrap: wrap;
+
+        .loop-item {
+            width: 100%;
+        }
+    }
+    .loop-item {
+        margin-bottom: 20px;
+    }
+}
+
+.loop-item {
+    ul.post-metas {
+        margin-top: 10px;
+    }
+}
+
+@media (min-width: 768px) {
+    .loop-item {
+        ul.post-metas {
+            display: flex;
+
+            li {
+                &+li {
+                    margin-left: 10px;
+                }
+            }
+        }
+    }
+
+    .jankx-posts {
+        margin-left: -10px;
+        margin-right: -10px;
+
+        .loop-item {
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+
+        &.columns- {
+            &4 {
+                .loop-item {
+                    width: 50%;
+                }
+            }
+            &3 {
+                .loop-item {
+                    width: 50%;
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: 992px) {
+    .jankx-posts {
+        &.columns- {
+            &4 {
+                .loop-item {
+                    width: 25%;
+                }
+            }
+            &3 {
+                .loop-item {
+                    width: percentage(1/3);
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: 1200px) {
+}
+
+
+// Old structure will be refactor
+.jankx-posts-layout {
+    .loop-item {
+        .post-title {
+            font-size: 0.9rem;
+        }
+    }
+    .post-thumbnail {
+        max-height: 300px;
+        overflow: hidden;
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+}
+
+.jankx-posts {
+    &.left-thumbnail {
+        .post {
+            display: flex;
+        }
+    }
+
+    .loop-item {
+        &.thumbnail-left {
+            display: flex;
+            margin-left: -5px;
+            margin-right: -5px;
+
+            .post-thumbnail {
+                width: 120px;
+                padding: 5px;
+            }
+
+            .post-infos {
+                flex: 1;
+                padding: 5px;
+            }
+        }
+    }
+}
+
+@media(min-width: 992px) {
+    .jankx-posts-layout {
+        &.left-post {
+            .jankx-posts-layout-inner {
+                display: flex;
+                flex-wrap: wrap;
+            }
+            .post-large-image {
+                flex: 65%;
+            }
+            .jankx-posts {
+                flex:35%;
+            }
+        }
+    }
+}
+
+@media(max-width: 767px) {
+    .jankx-posts-layout {
+        &.left-post {
+            .post-large-image {
+                margin-bottom: 20px;
+            }
+        }
+    }
+}

@@ -1,0 +1,169 @@
+@media(min-width: 768px) {
+    #mobile-menu {
+        position: relative;
+        background-color: #fff;
+        z-index: 99;
+    }
+
+    .default-navigation {
+        .navigation {
+            width: 100%;
+        }
+
+        .menu-item-type-jankx-search-form {
+            flex: 1;
+        }
+
+        :not(.widget_nav_menu) > div >ul.menu, .navigation > div.menu >ul {
+            display: flex;
+            align-items: center;
+            > li {
+                position: relative;
+                padding: 5px 5px;
+                &:hover {
+                    .sub-menu {
+                        visibility: visible;
+                        opacity: 1;
+                    }
+                }
+                &.center {
+                    flex: 1;
+                    display: flex;
+                    justify-content: center;
+                }
+                &.strong {
+                    background-color: rgba(0, 0, 0, 0.2);
+                }
+                &.right {
+                    flex: 1;
+                    width: 100%;
+                    text-align: right;
+                }
+
+                &:not(.right) {
+                    .sub-menu {
+                        left: 0%;
+                    }
+                }
+                &.right {
+                    .sub-menu {
+                        right: 0%;
+                    }
+                }
+            }
+
+            .sub-menu {
+                visibility: hidden;
+                opacity: 0;
+                transition: visibility 0s, opacity 0.5s linear;
+
+                position: absolute;
+                top: 100%;
+                z-index: 10;
+                background: #fff;
+
+                >li {
+                    position: relative;
+                    display: block;
+                    white-space: nowrap;
+                    &:hover{
+                        .sub-menu {
+                            visibility: visible;
+                            opacity: 1;
+                        }
+                    }
+
+                    >.sub-menu {
+                        visibility: hidden;
+                        opacity: 0;
+                        transition: visibility 0s, opacity 0.5s linear;
+
+                        position: absolute;
+                        top: 0;
+                        left: 100%;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+@media (min-width: 768px) and (max-width: 991px) {
+    .default-navigation {
+        :not(.widget_nav_menu) > div >ul.menu, .navigation > div.menu >ul {
+            li {
+                &.hide-tablet {
+                    display: none;
+                }
+                &.mobile-only {
+                    display: none;
+                }
+                &.desktop-only {
+                    display: none;
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: 992px) {
+    .default-navigation {
+        :not(.widget_nav_menu) > div >ul.menu, .navigation > div.menu >ul {
+            li {
+                &.hide-desktop {
+                    display: none;
+                }
+                &.mobile-only {
+                    display: none;
+                }
+                &.tablet-only {
+                    display: none;
+                }
+            }
+        }
+    }
+}
+
+@media(max-width: 767px) {
+    .default-navigation {
+        :not(.widget_nav_menu) > div >ul.menu, .navigation > div.menu >ul {
+            li {
+                &.hide-mobile {
+                    display: none;
+                }
+                &.desktop-only {
+                    display: none;
+                }
+                &.tablet-only {
+                    display: none;
+                }
+
+
+                /*******************************
+                 * Work with menu-icons plugins
+                 ******************************/
+                &.mobile-hide-text {
+                    span {
+                        display: none;
+                    }
+                }
+                &.mobile-hide-icon {
+                    ._mi {
+                        display: none;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media(min-width: 1200px) {
+    .default-navigation {
+        :not(.widget_nav_menu) > div >ul.menu, .navigation > div.menu >ul {
+            li {
+                padding: 5px 10px;
+            }
+        }
+    }
+}

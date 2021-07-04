@@ -1,0 +1,124 @@
+.clearfix, .jankx-clearfix {
+    clear: both;
+}
+
+.jankx-loading {
+    display: none;
+}
+
+.jankx-logo {
+    &.image {
+        a {
+            display: block;
+            background-repeat: no-repeat;
+            background-position: left center;
+            height: 60px;
+            width: 180px;
+            text-indent: -9999px;
+        }
+    }
+}
+
+
+#jankx-main-content {
+    line-height: 180%;
+    position: relative;
+
+    >.post {
+        text-align: justify;
+    }
+}
+
+.jankx-footer-widgets-area {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.jankx-copyright {
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
+
+
+/** Component */
+.jankx-tabs {
+    display: flex;
+}
+
+article {
+    .post-content {
+        margin-top: 10px;
+        img {
+            max-width: 100%;
+        }
+
+        ul {
+            list-style: disc;
+            margin-left: 20px;
+            margin-top: 20px;
+
+            ul {
+                list-style: circle;
+                ul {
+                    list-style: square;
+                }
+            }
+        }
+        ol {
+            list-style: decimal;
+        }
+    }
+}
+
+table {
+    margin-top: 20px;
+
+    thead th, td.heading {
+        font-weight: bold;
+        background: #e5e5e5;
+    }
+    &:not(.no-border) {
+        th, td {
+            border: 1px solid #ddd;
+            border-collapse: collapse;
+            padding: 5px;
+        }
+    }
+}
+
+@media(min-width: 767px) {
+    .jankx-site-header {
+        &.sticky-header {
+            &.sticky {
+                position: fixed;
+                top: 0;
+                width: 100%
+            }
+        }
+    }
+
+    .jankx-ui {
+        &.navigation {
+            .jankx-subtitle {
+                &.position-bottom, &.position-top {
+                    display: block;
+                }
+                &.position-top {
+                    margin-bottom: 2px;
+                }
+                &.position-bottom {
+                    margin-top: 2px;
+                }
+                font-size: 88%;
+            }
+        }
+    }
+}
+
+@media(max-width: 767px) {
+    .jankx-container {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+}

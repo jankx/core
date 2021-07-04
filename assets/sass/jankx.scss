@@ -1,0 +1,24 @@
+/**!
+ * Module Name: Jankx CSS
+ * Author: Puleeno Nguyen
+ * Author URI: https://puleeno.com
+ * Description: This module is create the basic structure for Jankx theme. Other stylesheet will be defined in the theme
+ * Version: 1.0.0.0
+ */
+
+@import "reset";
+@import "tags";
+@import "slideout";
+@import "wordpress";
+@import "wordpress_elements";
+@import "comments";
+@import "jankx_elements";
+@import "layout";
+@import "navigation";
+@import "post_layout";
+@import "base";
+@import "footer_widgets";
+@import "pagebuilders";
+@import "socials";
+@import "utilities";
+@import "page_not_found";

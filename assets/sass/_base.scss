@@ -1,0 +1,35 @@
+/**
+ * Reset IOS input styles
+ */
+input[type=text], input[type=button], input[type=submit], input[type=reset] {
+    -webkit-appearance: none;
+    -webkit-border-radius: 0;
+}
+
+.jankx-base {
+    .jankx-container {
+        margin-right: auto;
+        margin-left: auto;
+        position: relative;
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+}
+
+.screen-reader-text {
+    position: absolute;
+    top: -10000em;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    border: 0;
+}
+
+@media(max-width:1024px) {
+}
+
+@media(max-width:767px) {
+}
