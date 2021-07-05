@@ -3,9 +3,11 @@
 
     <?php if ($show_thumbnail) : ?>
     <div class="post-thumbnail">
+        <?php do_action('jankx_post_layout_before_loop_post_thumbnail', $post); ?>
         <a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>">
             <?php jankx_the_post_thumbnail($thumbnail_size); ?>
         </a>
+        <?php do_action('jankx_post_layout_after_loop_post_thumbnail', $post); ?>
     </div>
     <?php endif; ?>
 
