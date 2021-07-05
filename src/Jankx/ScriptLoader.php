@@ -10,6 +10,17 @@ class ScriptLoader
     protected $mainJs;
     protected $mainStylesheet;
 
+    protected $revisionVersion;
+
+    public function __construct()
+    {
+        $jankxCssVer = fileatime(sprintf(
+            '%s/assets/css/jankx.css',
+            dirname(JANKX_FRAMEWORK_FILE_LOADER)
+        ));
+        $this->revisionVersion = substr(md5($jankxCssVer), 0, 6);
+    }
+
     public function appendDefaultJS($scripts)
     {
         return array_merge(
@@ -18,6 +29,10 @@ class ScriptLoader
                 'modernizr' => array(
                     'url' => jankx_core_asset_url('libs/modernizr-3.7.1.min.js'),
                     'version' => '3.7.1',
+                ),
+                'jankx-core' => array(
+                    'url' => jankx_core_asset_url('js/core.js'),
+                    'version' => $this->revisionVersion,
                 ),
                 'scroll-to-smooth' => array(
                     'url' => jankx_core_asset_url('libs/scrollToSmooth/scrolltosmooth.min.js'),
@@ -50,6 +65,10 @@ class ScriptLoader
                 'sharing' => array(
                     'url' => jankx_core_asset_url('libs/vanilla-sharing/vanilla-sharing.umd.js'),
                     'version' => '6.0.5',
+                ),
+                'tim' => array(
+                    'url' => jankx_core_asset_url('libs/tim/tinytim.js'),
+                    'version' => '1.0.0'
                 )
             )
         );
@@ -67,7 +86,7 @@ class ScriptLoader
             array(
                 'jankx-base' => array(
                     'url' => jankx_core_asset_url('css/jankx.css'),
-                    'version' => substr(md5($jankxCssVer), 0, 8),
+                    'version' => $this->revisionVersion,
                 ),
                 'hover' => array(
                     'url' => jankx_core_asset_url('libs/hover/css/hover.css'),
@@ -148,7 +167,7 @@ class ScriptLoader
             js(
                 $appJsName,
                 str_replace($abspath, site_url('/'), $appjs),
-                apply_filters('jankx_asset_js_dependences', array('scroll-to-smooth')),
+                apply_filters('jankx_asset_js_dependences', array('jankx-core', 'scroll-to-smooth')),
                 $appJsVer,
                 true
             );
