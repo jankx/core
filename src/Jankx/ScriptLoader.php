@@ -38,8 +38,8 @@ class ScriptLoader
                     'url' => jankx_core_asset_url('libs/scrollToSmooth/scrolltosmooth.min.js'),
                     'version' => '2.2.1',
                 ),
-                'poperjs' => array(
-                    'url' => jankx_core_asset_url('libs/poperjs/poperjs.js'),
+                'popperjs' => array(
+                    'url' => jankx_core_asset_url('libs/popperjs/popper.js'),
                     'version' => '2.9.1',
                 ),
                 'slideout' => array(
