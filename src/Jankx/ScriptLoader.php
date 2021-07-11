@@ -88,10 +88,6 @@ class ScriptLoader
                     'url' => jankx_core_asset_url('css/jankx.css'),
                     'version' => $this->revisionVersion,
                 ),
-                'hover' => array(
-                    'url' => jankx_core_asset_url('libs/hover/css/hover.css'),
-                    'version' => '2.3.2',
-                ),
                 'choices' => array(
                     'url' => jankx_core_asset_url('libs/Choices/styles/base.css'),
                     'version' => '9.0.1',
@@ -111,7 +107,7 @@ class ScriptLoader
 
     public function load()
     {
-        add_action('wp_enqueue_scripts', array($this, 'registerThemeAssets'));
+        add_action('wp_enqueue_scripts', array($this, 'registerThemeAssets'), 15);
         add_action('wp_enqueue_scripts', array($this, 'callDefaultAssets'), 35);
 
         add_filter('jankx_default_css_resources', array($this, 'appendDefaultCSS'));
@@ -147,16 +143,18 @@ class ScriptLoader
             );
         }
 
-            css(
-                $stylesheetName,
-                get_stylesheet_uri(),
-                apply_filters('jankx_asset_css_dependences', $jankxCssDeps, $stylesheetName),
-                Jankx::theme()->version
-            );
+        css(
+            $stylesheetName,
+            get_stylesheet_uri(),
+            apply_filters('jankx_asset_css_dependences', $jankxCssDeps, $stylesheetName),
+            Jankx::theme()->version
+        );
 
-            $assetDirectory = sprintf('%s/assets', realpath(dirname(JANKX_FRAMEWORK_FILE_LOADER) . '/../../..'));
-            $appJsVer = Jankx::theme()->version;
-            $appJsName = '';
+        $assetDirectory = sprintf('%s/assets', realpath(dirname(JANKX_FRAMEWORK_FILE_LOADER) . '/../../..'));
+        $appJsVer = Jankx::theme()->version;
+        $appJsName = '';
+
+
         if (file_exists($appjs = sprintf('%s/js/app.js', $assetDirectory))) {
             $appJsName = 'app';
             $abspath = constant('ABSPATH');
