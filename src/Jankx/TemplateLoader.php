@@ -10,11 +10,24 @@ use Jankx\TemplateEngine\Engines\WordPress;
 
 class TemplateLoader
 {
+    protected static $instance;
     protected static $templateLoaded;
 
     protected $pageType;
     protected $template;
     protected $templateEngine;
+
+    public static function get_instance() {
+        if (is_null(static::$instance)) {
+            static::$instance = new static();
+        }
+
+        return static::$instance;
+    }
+
+    private function __construct() {
+
+    }
 
     protected function loadPageType()
     {
@@ -177,6 +190,7 @@ class TemplateLoader
                 ]
             )
         );
+        static::$templateLoaded = true;
     }
 
     public function load()
@@ -186,5 +200,13 @@ class TemplateLoader
 
         // Sharing data
         add_action('jankx_prepare_render_template', array(Context::class, 'init'));
+    }
+
+    public static function getTemplateEngine() {
+        if (static::$templateLoaded) {
+            $instance = static::get_instance();
+
+            return $instance->templateEngine;
+        }
     }
 }

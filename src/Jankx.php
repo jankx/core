@@ -150,7 +150,7 @@ class Jankx
         /**
          * Load Jankx templates
          */
-        $templateLoader = new TemplateLoader();
+        $templateLoader = TemplateLoader::get_instance();
         add_action('after_setup_theme', array($templateLoader, 'createTemplateEngine'), 15);
         if (wp_is_request('frontend')) {
             $templateLoader->load();
@@ -236,7 +236,9 @@ class Jankx
         Registry::registerComponents();
 
         // Setup post layout
-        PostLayoutManager::getInstance();
+        PostLayoutManager::createInstance(
+            TemplateLoader::getTemplateEngine()
+        );
 
         // Init the comments system
         add_action('wp', array(Comments::class, 'init'));
