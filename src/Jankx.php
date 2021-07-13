@@ -27,6 +27,7 @@ use Jankx\Social\Sharing;
 use Jankx\Template\Template;
 use Jankx\TemplateEngine\Engines\Plates;
 use Jankx\TemplateLoader;
+use Jankx\PostTemplateLoader;
 use Jankx\UX\UserExperience;
 use Jankx\Widget\WidgetManager;
 use Jankx\Megu\Megu as MegaMenu;
@@ -155,6 +156,10 @@ class Jankx
         if (wp_is_request('frontend')) {
             $templateLoader->load();
         }
+
+        // Load post layout templates
+        $templateLoader = new PostTemplateLoader();
+        add_action('template_redirect', array($templateLoader, 'load'));
 
         // Create Asset clousure for Jankx
         $assetManager = AssetManager::instance();
