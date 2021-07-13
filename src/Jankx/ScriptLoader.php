@@ -46,10 +46,6 @@ class ScriptLoader
                     'url' => jankx_core_asset_url('libs/slideout/slideout.js'),
                     'version' => '1.0.1',
                 ),
-                'splide' => array(
-                    'url' => jankx_core_asset_url('libs/splide/js/splide.js'),
-                    'version' => '2.4.12',
-                ),
                 'micromodal' => array(
                     'url' => jankx_core_asset_url('libs/micromodal/micromodal.js'),
                     'version' => '0.4.6',
@@ -91,15 +87,6 @@ class ScriptLoader
                 'choices' => array(
                     'url' => jankx_core_asset_url('libs/Choices/styles/base.css'),
                     'version' => '9.0.1',
-                ),
-                'splide' => array(
-                    'url' => jankx_core_asset_url('libs/splide/css/splide-core.min.css'),
-                    'version' => '2.4.12',
-                ),
-                'splide-theme' => array(
-                    'url' => jankx_core_asset_url('libs/splide/css/themes/splide-default.min.css'),
-                    'dependences' => array('splide'),
-                    'version' => '2.4.12',
                 )
             )
         );
