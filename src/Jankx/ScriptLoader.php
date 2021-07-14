@@ -30,10 +30,6 @@ class ScriptLoader
                     'url' => jankx_core_asset_url('libs/modernizr-3.7.1.min.js'),
                     'version' => '3.7.1',
                 ),
-                'jankx-core' => array(
-                    'url' => jankx_core_asset_url('js/core.js'),
-                    'version' => $this->revisionVersion,
-                ),
                 'scroll-to-smooth' => array(
                     'url' => jankx_core_asset_url('libs/scrollToSmooth/scrolltosmooth.min.js'),
                     'version' => '2.2.1',
@@ -152,7 +148,7 @@ class ScriptLoader
             js(
                 $appJsName,
                 str_replace($abspath, site_url('/'), $appjs),
-                apply_filters('jankx_asset_js_dependences', array('jankx-core', 'scroll-to-smooth')),
+                apply_filters('jankx_asset_js_dependences', array('jankx-common', 'scroll-to-smooth')),
                 $appJsVer,
                 true
             );
