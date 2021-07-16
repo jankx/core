@@ -11,20 +11,20 @@
     }
   ],
   "require": {
-    "jankx/admin": "dev-master",
+    "jankx/admin": "*",
     "jankx/asset": "*",
-    "jankx/command": "dev-master",
-    "jankx/component": "dev-master",
+    "jankx/command": "*",
+    "jankx/component": "*",
     "jankx/helpers": "*",
-    "jankx/languages": "dev-master",
-    "jankx/option": "dev-master",
-    "jankx/site-layout": "dev-master",
-    "jankx/post-layout": "dev-master",
+    "jankx/languages": "*",
+    "jankx/option": "*",
+    "jankx/site-layout": "*",
+    "jankx/post-layout": "*",
     "jankx/template": "*",
-    "jankx/widget": "dev-master",
-    "jankx/pagination": "dev-master",
-    "jankx/yaml": "dev-master",
-    "jankx/seo": "dev-master"
+    "jankx/widget": "*",
+    "jankx/pagination": "*",
+    "jankx/yaml": "*",
+    "jankx/seo": "*"
   },
   "autoload": {
     "psr-4": {
