@@ -10,7 +10,6 @@ class PostTemplateLoader
 {
     public function load()
     {
-        add_action('jankx_template_page_index_content', array($this, 'render'));
         add_action('jankx_template_page_archive_content', array($this, 'render'));
         add_action('jankx_template_before_post_content', array($this, 'renderPostMetas'));
     }
