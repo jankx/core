@@ -1,3 +1,6 @@
 .DS_Storage
 /vendor
 .DS_Store
+node_modules
+package-lock.json
+assets/main.js

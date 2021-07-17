@@ -1,11 +1,11 @@
 {
-  "name": "@jankx/asset",
+  "name": "@jankx/core",
   "version": "1.0.5",
   "description": "Jankx Assets is used to manage CSS, JS, libraries with beautiful syntax.",
   "main": "js/index.js",
   "scripts": {
-    "build:dev": "webpack",
-    "build:production": "cross-env NODE_ENV=production webpack",
+    "dev": "webpack",
+    "prod": "cross-env NODE_ENV=production webpack",
     "watch": "webpack --watch"
   },
   "repository": {

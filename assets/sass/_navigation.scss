@@ -26,29 +26,16 @@
                         opacity: 1;
                     }
                 }
-                &.center {
+                &.jkxp-center {
                     flex: 1;
                     display: flex;
                     justify-content: center;
                 }
+                &.jkxw-stretch {
+                    flex: 1;
+                }
                 &.strong {
                     background-color: rgba(0, 0, 0, 0.2);
-                }
-                &.right {
-                    flex: 1;
-                    width: 100%;
-                    text-align: right;
-                }
-
-                &:not(.right) {
-                    .sub-menu {
-                        left: 0%;
-                    }
-                }
-                &.right {
-                    .sub-menu {
-                        right: 0%;
-                    }
                 }
             }
 

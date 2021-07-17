@@ -3,7 +3,7 @@
  * Author: Puleeno Nguyen
  * Author URI: https://puleeno.com
  * Description: This module is create the basic structure for Jankx theme. Other stylesheet will be defined in the theme
- * Version: 1.0.0.1
+ * Version: 1.0.0.3
  */
 /* http://meyerweb.com/eric/tools/css/reset/
    v5.0.1 | 20191019
@@ -552,24 +552,16 @@ table:not(.no-border) th, table:not(.no-border) td {
     visibility: visible;
     opacity: 1;
   }
-  .default-navigation :not(.widget_nav_menu) > div > ul.menu > li.center, .default-navigation .navigation > div.menu > ul > li.center {
+  .default-navigation :not(.widget_nav_menu) > div > ul.menu > li.jkxp-center, .default-navigation .navigation > div.menu > ul > li.jkxp-center {
     flex: 1;
     display: flex;
     justify-content: center;
   }
+  .default-navigation :not(.widget_nav_menu) > div > ul.menu > li.jkxw-stretch, .default-navigation .navigation > div.menu > ul > li.jkxw-stretch {
+    flex: 1;
+  }
   .default-navigation :not(.widget_nav_menu) > div > ul.menu > li.strong, .default-navigation .navigation > div.menu > ul > li.strong {
     background-color: rgba(0, 0, 0, 0.2);
-  }
-  .default-navigation :not(.widget_nav_menu) > div > ul.menu > li.right, .default-navigation .navigation > div.menu > ul > li.right {
-    flex: 1;
-    width: 100%;
-    text-align: right;
-  }
-  .default-navigation :not(.widget_nav_menu) > div > ul.menu > li:not(.right) .sub-menu, .default-navigation .navigation > div.menu > ul > li:not(.right) .sub-menu {
-    left: 0%;
-  }
-  .default-navigation :not(.widget_nav_menu) > div > ul.menu > li.right .sub-menu, .default-navigation .navigation > div.menu > ul > li.right .sub-menu {
-    right: 0%;
   }
   .default-navigation :not(.widget_nav_menu) > div > ul.menu .sub-menu, .default-navigation .navigation > div.menu > ul .sub-menu {
     visibility: hidden;
@@ -645,99 +637,6 @@ table:not(.no-border) th, table:not(.no-border) td {
 @media (min-width: 1200px) {
   .default-navigation :not(.widget_nav_menu) > div > ul.menu li, .default-navigation .navigation > div.menu > ul li {
     padding: 5px 10px;
-  }
-}
-.jankx-posts[class*=columns-] {
-  display: flex;
-  flex-wrap: wrap;
-}
-.jankx-posts[class*=columns-] .loop-item {
-  width: 100%;
-}
-.jankx-posts .loop-item {
-  margin-bottom: 20px;
-}
-
-.loop-item ul.post-metas {
-  margin-top: 10px;
-}
-
-@media (min-width: 768px) {
-  .loop-item ul.post-metas {
-    display: flex;
-  }
-  .loop-item ul.post-metas li + li {
-    margin-left: 10px;
-  }
-
-  .jankx-posts {
-    margin-left: -10px;
-    margin-right: -10px;
-  }
-  .jankx-posts .loop-item {
-    padding-left: 10px;
-    padding-right: 10px;
-  }
-  .jankx-posts.columns-4 .loop-item {
-    width: 50%;
-  }
-  .jankx-posts.columns-3 .loop-item {
-    width: 50%;
-  }
-}
-@media (min-width: 992px) {
-  .jankx-posts.columns-4 .loop-item {
-    width: 25%;
-  }
-  .jankx-posts.columns-3 .loop-item {
-    width: 33.3333333333%;
-  }
-}
-.jankx-posts-layout .loop-item .post-title {
-  font-size: 0.9rem;
-}
-.jankx-posts-layout .post-thumbnail {
-  max-height: 300px;
-  overflow: hidden;
-}
-.jankx-posts-layout .post-thumbnail img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.jankx-posts.left-thumbnail .post {
-  display: flex;
-}
-.jankx-posts .loop-item.thumbnail-left {
-  display: flex;
-  margin-left: -5px;
-  margin-right: -5px;
-}
-.jankx-posts .loop-item.thumbnail-left .post-thumbnail {
-  width: 120px;
-  padding: 5px;
-}
-.jankx-posts .loop-item.thumbnail-left .post-infos {
-  flex: 1;
-  padding: 5px;
-}
-
-@media (min-width: 992px) {
-  .jankx-posts-layout.left-post .jankx-posts-layout-inner {
-    display: flex;
-    flex-wrap: wrap;
-  }
-  .jankx-posts-layout.left-post .post-large-image {
-    flex: 65%;
-  }
-  .jankx-posts-layout.left-post .jankx-posts {
-    flex: 35%;
-  }
-}
-@media (max-width: 767px) {
-  .jankx-posts-layout.left-post .post-large-image {
-    margin-bottom: 20px;
   }
 }
 /**
