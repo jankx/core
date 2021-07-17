@@ -133,7 +133,8 @@ class TemplateLoader
     public function get_front_page_templates()
     {
         return array(
-            'front-page'
+            'front-page',
+            'page'
         );
     }
 
@@ -156,7 +157,6 @@ class TemplateLoader
         if (is_callable($callback)) {
             $page->setTemplates(call_user_func($callback));
         }
-
 
         do_action_ref_array('jankx_prepare_render_template', array(
             &$page,
