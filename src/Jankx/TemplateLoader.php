@@ -17,7 +17,8 @@ class TemplateLoader
     protected $template;
     protected $templateEngine;
 
-    public static function get_instance() {
+    public static function get_instance()
+    {
         if (is_null(static::$instance)) {
             static::$instance = new static();
         }
@@ -25,8 +26,8 @@ class TemplateLoader
         return static::$instance;
     }
 
-    private function __construct() {
-
+    private function __construct()
+    {
     }
 
     protected function loadPageType()
@@ -202,7 +203,8 @@ class TemplateLoader
         add_action('jankx_prepare_render_template', array(Context::class, 'init'));
     }
 
-    public static function getTemplateEngine() {
+    public static function getTemplateEngine()
+    {
         if (static::$templateLoaded) {
             $instance = static::get_instance();
 

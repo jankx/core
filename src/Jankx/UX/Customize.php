@@ -35,7 +35,7 @@ class Customize
 
     public function footerWidgets($numberOfAreas)
     {
-        $widget_areas = GlobalVariables::get('configs.footer.widget_areas');
+        $widget_areas = GlobalVariables::get('layout.footer_sidebars');
         if ($widget_areas > 0) {
             return $widget_areas;
         }
