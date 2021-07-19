@@ -41,20 +41,17 @@ class IconFonts
             $font_family = $font_name;
         }
 
-        if (!isset($instance->fonts[$font_name])) {
-            $instance->fonts[$font_name] = array(
+        $font_handle = $font_name . '-font';
+        if (!isset($instance->fonts[$font_handle])) {
+            $instance->fonts[$font_handle] = array(
                 'path' => $font_css_path,
                 'version' => $version,
                 'name' => $display_name,
             );
 
-            do_action(
+            do_action_ref_array(
                 'jankx/icon/fonts/new',
-                $font_name . '-font',
-                $font_css_path,
-                $display_name,
-                $font_family,
-                $version
+                array( $font_name, $font_css_path, $display_name, $font_family, $version )
             );
         }
     }
