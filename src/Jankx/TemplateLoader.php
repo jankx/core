@@ -141,6 +141,10 @@ class TemplateLoader
 
     public function include()
     {
+        if (!constant('WP_USE_THEMES')) {
+            return;
+        }
+
         $this->pageType = $this->loadPageType();
         if (!wp_using_themes()) {
             $this->initJankxThemeSystem();
