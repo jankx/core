@@ -90,8 +90,8 @@ class ScriptLoader
 
     public function load()
     {
-        add_action('wp_enqueue_scripts', array($this, 'registerThemeAssets'), 15);
-        add_action('wp_enqueue_scripts', array($this, 'callDefaultAssets'), 35);
+        add_action('wp_enqueue_scripts', array($this, 'registerThemeAssets'), 30);
+        add_action('wp_enqueue_scripts', array($this, 'callDefaultAssets'), 50);
 
         add_filter('jankx_default_css_resources', array($this, 'appendDefaultCSS'));
         add_filter('jankx_default_js_resources', array($this, 'appendDefaultJS'));

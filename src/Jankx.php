@@ -31,6 +31,7 @@ use Jankx\PostTemplateLoader;
 use Jankx\UX\UserExperience;
 use Jankx\Widget\WidgetManager;
 use Jankx\Megu\Megu as MegaMenu;
+use Jankx\IconFonts;
 
 /**
  * This class is middle-class interaction between developer and other classes
@@ -247,6 +248,10 @@ class Jankx
 
         // Init the comments system
         add_action('wp', array(Comments::class, 'init'));
+
+        // Load icon fonts
+        $iconFonts = IconFonts::getInstance();
+        add_action( 'wp_enqueue_scripts', array( $iconFonts, 'register_scripts' )) ;
     }
 
     public function setupOptionFramework()
