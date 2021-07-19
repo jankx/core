@@ -251,7 +251,7 @@ class Jankx
 
         // Load icon fonts
         $iconFonts = IconFonts::getInstance();
-        add_action( 'wp_enqueue_scripts', array( $iconFonts, 'register_scripts' )) ;
+        add_action('wp_enqueue_scripts', array($iconFonts, 'register_scripts'));
     }
 
     public function setupOptionFramework()
