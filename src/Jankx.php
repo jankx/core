@@ -32,6 +32,7 @@ use Jankx\UX\UserExperience;
 use Jankx\Widget\WidgetManager;
 use Jankx\Megu\Megu as MegaMenu;
 use Jankx\IconFonts;
+use Jankx\Admin\Admin;
 
 /**
  * This class is middle-class interaction between developer and other classes
@@ -47,7 +48,7 @@ class Jankx
     protected $templateName;
     protected $templateStylesheet;
     protected $theme;
-
+    protected $admin;
 
     public static function __callStatic($name, $args)
     {
@@ -137,6 +138,12 @@ class Jankx
         };
         $this->templateStylesheet = function () use ($themeParent) {
             return $themeParent->stylesheet;
+        };
+
+        // Create Jankx admin instance;
+        $admin = is_admin() ? new Admin() : null;
+        $this->admin = function () use ($admin) {
+            return $admin;
         };
 
         /**
