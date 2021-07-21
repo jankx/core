@@ -2,7 +2,7 @@
 /**
  * Content page index
  */
-use Jankx\PostLayout\PostLayoutManager;
+use Jankx\PostLayout\Layout\Card;
 use Jankx\Widget\Renderers\PostsRenderer;
 
 /**
@@ -37,7 +37,7 @@ if (has_action($template_hook)) {
             'thumbnail_size' => 'medium'
         )
     );
-    $postRenderer->setLayout(PostLayoutManager::CARD);
+    $postRenderer->setLayout(Card::LAYOUT_NAME);
 
     echo $postRenderer->render();
 }

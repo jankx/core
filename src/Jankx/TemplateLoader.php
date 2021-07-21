@@ -68,6 +68,13 @@ class TemplateLoader
         return 'home';
     }
 
+    public function setTemplateFile($templateFile)
+    {
+        if (file_exists($templateFile)) {
+            $this->templateFile = $templateFile;
+        }
+    }
+
     public function initJankxThemeSystem()
     {
         /**
@@ -84,7 +91,7 @@ class TemplateLoader
          *
          * @param string $template The path of the template to include.
          */
-        $this->template = apply_filters('template_include', false);
+        $this->templateFile = apply_filters('template_include', false);
     }
 
     public function get_single_templates()
@@ -145,6 +152,8 @@ class TemplateLoader
             $templates[] = "archive-{$post_type}";
         }
         $templates[] = 'archive';
+
+        return $templates;
     }
 
     public function get_post_type_archive_templates()
@@ -200,12 +209,12 @@ class TemplateLoader
             $this
         ));
 
-        if ($this->template === false || apply_filters('alway_use_jankx_template_engine_system', false)) {
+        if ($this->templateFile === false || apply_filters('alway_use_jankx_template_engine_system', false)) {
             return jankx();
         }
 
-        if (!is_null($this->template)) {
-            include $this->template;
+        if (!is_null($this->templateFile)) {
+            include $this->templateFile;
         }
     }
 
