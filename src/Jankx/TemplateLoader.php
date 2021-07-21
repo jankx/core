@@ -70,9 +70,7 @@ class TemplateLoader
 
     public function setTemplateFile($templateFile)
     {
-        if (file_exists($templateFile)) {
-            $this->templateFile = $templateFile;
-        }
+        $this->templateFile = $templateFile;
     }
 
     public function initJankxThemeSystem()
@@ -169,6 +167,11 @@ class TemplateLoader
         }
 
         return $this->get_archive_templates();
+    }
+
+    public function get_page_templates()
+    {
+        return 'page';
     }
 
     public function get_front_page_templates()
