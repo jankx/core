@@ -1,6 +1,7 @@
 <?php
 namespace Jankx;
 
+use WP_Post_Type;
 use Jankx;
 use Jankx\Template\Page;
 use Jankx\Template\Template;
@@ -32,6 +33,8 @@ class TemplateLoader
 
     protected function loadPageType()
     {
+        do_action('jankx_template_loader_page_type', $this);
+
         $tag_templates = array_unique(
             array_merge(
                 apply_filters('jankx_custom_template_tags', array()),
@@ -129,6 +132,34 @@ class TemplateLoader
         $templates[] = 'taxonomy';
 
         return $templates;
+    }
+
+    public function get_archive_templates()
+    {
+        $post_types = array_filter((array) get_query_var('post_type'));
+
+        $templates = array();
+
+        if (count($post_types) == 1) {
+            $post_type   = reset($post_types);
+            $templates[] = "archive-{$post_type}";
+        }
+        $templates[] = 'archive';
+    }
+
+    public function get_post_type_archive_templates()
+    {
+        $post_type = get_query_var('post_type');
+        if (is_array($post_type)) {
+            $post_type = reset($post_type);
+        }
+
+        $obj = get_post_type_object($post_type);
+        if (! ( $obj instanceof WP_Post_Type ) || ! $obj->has_archive) {
+            return '';
+        }
+
+        return $this->get_archive_templates();
     }
 
     public function get_front_page_templates()
