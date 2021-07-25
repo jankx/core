@@ -1,7 +1,7 @@
 <ul class="jankx-tabs post-layout-tabs">
     <?php foreach($tabs as $tab): ?>
         <?php if ($tab->isValid()): ?>
-        <li class="the-tab<?php echo ($first_tab->type_name == $tab->type_name && $first_tab->object_id == $tab->object_id) ? 'active' : '' ?> "
+        <li class="the-tab<?php echo ($first_tab->type_name == $tab->type_name && $first_tab->object_id == $tab->object_id) ? ' active' : '' ?> "
             data-type="<?php echo $tab->type; ?>"
             data-type-name="<?php echo $tab->type_name; ?>"
             data-object-id="<?php echo $tab->object_id; ?>"
