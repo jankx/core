@@ -1,6 +1,6 @@
 <?php
 use Jankx\Widget\Renderers\PostsRenderer;
-use Jankx\PostLayout\PostLayoutManager;
+use Jankx\PostLayout\Layout\Card;
 ?>
 <div class="seach-results-main">
     <?php jankx_open_container(); ?>
@@ -15,7 +15,7 @@ use Jankx\PostLayout\PostLayoutManager;
         <?php
             $layoutStyle   = apply_filters(
                 "jankx_search_results_layout_style",
-                PostLayoutManager::CARD
+                Card::LAYOUT_NAME
             );
             $postRenderer = PostsRenderer::prepare(
                 array(
