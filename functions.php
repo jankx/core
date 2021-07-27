@@ -62,7 +62,7 @@ if (!function_exists('jankx_open_container')) {
         if (is_null($open_html)) {
             $open_html = sprintf(
                 '<div class="%s">',
-                implode(' ', jankx_container_css_class())
+                implode(' ', jankx_container_css_class($custom_classes))
             );
         }
 
@@ -171,7 +171,8 @@ function jankx_template_directory_uri($path = '')
     );
 }
 
-function jankx_core_asset_url($path) {
+function jankx_core_asset_url($path)
+{
     if (!isset($GLOBALS['core_assets_dir'])) {
         $GLOBALS['core_assets_dir'] = jankx_get_path_url(dirname(JANKX_FRAMEWORK_FILE_LOADER));
     }
