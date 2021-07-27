@@ -33,6 +33,7 @@ use Jankx\Widget\WidgetManager;
 use Jankx\Megu\Megu as MegaMenu;
 use Jankx\IconFonts;
 use Jankx\Admin\Admin;
+use Jankx\CSS\GlobalVariables as GlobalCSSVariables;
 
 /**
  * This class is middle-class interaction between developer and other classes
@@ -255,6 +256,9 @@ class Jankx
 
         // Init the comments system
         add_action('wp', array(Comments::class, 'init'));
+
+        // Init Global CSS Variables
+        add_action('wp', array(GlobalCSSVariables::class, 'init'));
 
         // Load icon fonts
         $iconFonts = IconFonts::getInstance();
