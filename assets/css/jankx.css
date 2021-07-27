@@ -3,7 +3,7 @@
  * Author: Puleeno Nguyen
  * Author URI: https://puleeno.com
  * Description: This module is create the basic structure for Jankx theme. Other stylesheet will be defined in the theme
- * Version: 1.0.0.3
+ * Version: 1.0.0.4
  */
 /* http://meyerweb.com/eric/tools/css/reset/
    v5.0.1 | 20191019
@@ -536,9 +536,6 @@ table:not(.no-border) th, table:not(.no-border) td {
 
   .default-navigation .navigation {
     width: 100%;
-  }
-  .default-navigation .menu-item-type-jankx-search-form {
-    flex: 1;
   }
   .default-navigation :not(.widget_nav_menu) > div > ul.menu, .default-navigation .navigation > div.menu > ul {
     display: flex;
