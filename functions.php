@@ -56,7 +56,7 @@ function jankx_container_css_class($custom_classes = '')
 if (!function_exists('jankx_open_container')) {
     function jankx_open_container($custom_classes = '', $context = null)
     {
-        do_action('jankx_template_before_open_container');
+        do_action('jankx_template_before_open_container', $context);
 
         $open_html = apply_filters('jankx_template_pre_open_container', null, $context);
         if (is_null($open_html)) {
@@ -73,9 +73,7 @@ if (!function_exists('jankx_open_container')) {
 if (!function_exists('jankx_close_container')) {
     function jankx_close_container($context = null)
     {
-        if ($context) {
-            do_action("jankx_template_closing_{$context}_container");
-        }
+        do_action("jankx_template_after_close_container", $context);
 
         $close_html = apply_filters('jankx_template_pre_close_container', null, $context);
         if (is_null($close_html)) {
