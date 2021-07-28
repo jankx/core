@@ -8,7 +8,13 @@ class GlobalVariables
     protected static function getDefaultVariables()
     {
         return array(
-            'body-font' => 'Montserrat, san-serif',
+            'typography-primary-font' => "'Montserrat', sans-serif",
+            'typography-secondary-font' => "'Montserrat', sans-serif",
+            'typography-text-font' => "'Montserrat', sans-serif",
+            'typography-accent-font' => "'Montserrat', sans-serif",
+            'typography-menu-font' => "'Montserrat', sans-serif",
+            'typography-default-font' => "'Montserrat', sans-serif",
+            'placeholder-text-color' => '#767676'
         );
     }
 
