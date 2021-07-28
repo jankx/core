@@ -17,11 +17,7 @@ class IconFonts
 
     private function __construct()
     {
-        if (is_admin()) {
-            add_action('admin_enqueue_scripts', array($this, 'register_admin_fonts'));
-        } else {
-            add_action('jankx_asset_css_dependences', array($this, 'addIconFontAsDeps'));
-        }
+        add_action('init', array($this, 'loadFontFeatures'), 30);
     }
 
     /**
@@ -96,6 +92,19 @@ class IconFonts
                 array(),
                 $args['version']
             );
+        }
+    }
+
+
+    public function loadFontFeatures()
+    {
+        if (!empty($this->fonts)) {
+            if (is_admin()) {
+                add_action('admin_enqueue_scripts', array($this, 'register_admin_fonts'));
+            } else {
+                add_action('jankx_asset_css_dependences', array($this, 'addIconFontAsDeps'));
+            }
+            do_action('jankx/icons/feature/init', $this->fonts);
         }
     }
 }
