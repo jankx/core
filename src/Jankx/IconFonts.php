@@ -41,6 +41,7 @@ class IconFonts
         if (!isset($instance->fonts[$font_handle])) {
             $instance->fonts[$font_handle] = array(
                 'path' => $font_css_path,
+                'font-family' => $font_family,
                 'version' => $version,
                 'name' => $display_name,
             );
@@ -52,7 +53,7 @@ class IconFonts
         }
     }
 
-    public function get_fonts()
+    public function getFonts()
     {
         return apply_filters(
             'jankx/icon/fonts',
@@ -64,13 +65,13 @@ class IconFonts
     {
         return array_merge(
             $deps,
-            array_keys($this->get_fonts())
+            array_keys($this->getFonts())
         );
     }
 
     public function register_admin_fonts()
     {
-        foreach ($this->get_fonts() as $font_handle => $args) {
+        foreach ($this->getFonts() as $font_handle => $args) {
             wp_register_style(
                 $font_handle,
                 jankx_get_path_url($args['path']),
@@ -85,7 +86,7 @@ class IconFonts
 
     public function register_scripts()
     {
-        foreach ($this->get_fonts() as $css_handle => $args) {
+        foreach ($this->getFonts() as $css_handle => $args) {
             css(
                 $css_handle,
                 jankx_get_path_url($args['path']),

@@ -8,6 +8,7 @@ class Fontastic extends FontIconGenerator
     protected $fontPath;
     protected $fontName;
     protected $content;
+    protected $prefix;
 
     public function isMatched()
     {
@@ -46,6 +47,7 @@ class Fontastic extends FontIconGenerator
     public function getGlyphMaps()
     {
         $prefix = $this->detectPrefix();
+        $this->prefix = $prefix;
         if ($prefix) {
             if (preg_match_all(
                 '/\.(atz-[^\:]+)\:before ?\{\s{1,}content\:\s?\"\\\\([^\"]+)/',
@@ -58,5 +60,10 @@ class Fontastic extends FontIconGenerator
             }
         }
         return array();
+    }
+
+    public function getDisplayPrefix()
+    {
+        return $this->prefix;
     }
 }
