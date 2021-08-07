@@ -1,4 +1,4 @@
-<div <?php post_class('loop-item'); ?>>
+<div <?php post_class($post_classes); ?>>
     <?php do_action('jankx_post_layout_before_loop_item', $post); ?>
 
     <?php if ($show_thumbnail) : ?>
