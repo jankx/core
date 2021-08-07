@@ -6,11 +6,7 @@
             data-type-name="<?php echo $tab->type_name; ?>"
             data-object-id="<?php echo $tab->object_id; ?>"
         >
-            <?php if ($tab->url) : ?>
-                <a href="<?php echo $tab->url; ?>" title="<?php echo $tab->title; ?>"><?php echo $tab->title; ?></a>
-            <?php else : ?>
-                <?php echo $tab->title; ?>
-            <?php endif; ?>
+            <a href="<?php echo $tab->url ? $tab->url : '#'; ?>" title="<?php echo $tab->title; ?>"><?php echo $tab->title; ?></a>
         </li>
         <?php endif; ?>
     <?php endforeach; ?>
