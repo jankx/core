@@ -81,7 +81,7 @@ class ScriptLoader
                     'version' => $this->revisionVersion,
                 ),
                 'choices' => array(
-                    'url' => jankx_core_asset_url('libs/Choices/styles/base.css'),
+                    'url' => jankx_core_asset_url('libs/Choices/styles/choices.css'),
                     'version' => '9.0.1',
                 )
             )
