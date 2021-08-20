@@ -5,7 +5,7 @@
 
     <?php do_action('jankx_template_before_post_content'); ?>
 
-    <div class="post-content">
+    <div class="post-content entry-content">
         <?php the_content(); ?>
     </div>
 
