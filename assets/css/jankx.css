@@ -3,7 +3,7 @@
  * Author: Puleeno Nguyen
  * Author URI: https://puleeno.com
  * Description: This module is create the basic structure for Jankx theme. Other stylesheet will be defined in the theme
- * Version: 1.0.0.4
+ * Version: 1.0.0.7
  */
 /* http://meyerweb.com/eric/tools/css/reset/
    v5.0.1 | 20191019
@@ -66,6 +66,32 @@ q:before, q:after {
 table {
   border-collapse: collapse;
   border-spacing: 0;
+}
+
+.choices__inner {
+  margin: 0;
+  min-height: initial;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 5px;
+  padding-right: 10px;
+}
+
+.choices[data-type*=select-one]::after {
+  border-top-color: #ddd;
+}
+.choices[data-type*=select-one].is-open::after {
+  border-top-color: transparent;
+  border-bottom-color: #ddd;
+}
+.choices[data-type*=select-one] .choices__inner {
+  padding-bottom: 0;
+}
+.choices[data-type*=select-one] .choices__list--dropdown .choices__item--selectable {
+  padding-right: 0;
+}
+.choices[data-type*=select-one] .choices__list--dropdown .choices__item--selectable:after {
+  content: none;
 }
 
 small {
@@ -634,11 +660,6 @@ table:not(.no-border) th, table:not(.no-border) td {
 @media (min-width: 1200px) {
   .default-navigation :not(.widget_nav_menu) > div > ul.menu li, .default-navigation .navigation > div.menu > ul li {
     padding: 5px 10px;
-  }
-}
-@media (max-width: 767px) {
-  #mobile-menu {
-    display: none !important;
   }
 }
 /**

@@ -3,10 +3,11 @@
  * Author: Puleeno Nguyen
  * Author URI: https://puleeno.com
  * Description: This module is create the basic structure for Jankx theme. Other stylesheet will be defined in the theme
- * Version: 1.0.0.4
+ * Version: 1.0.0.7
  */
 
 @import "reset";
+@import "thirdparty/choices";
 @import "tags";
 @import "slideout";
 @import "wordpress";
