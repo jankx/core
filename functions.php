@@ -2,6 +2,7 @@
 use Jankx\TemplateEngine\Engine;
 use Jankx\Template\Page;
 use Jankx\Template\Template;
+use Jankx\TemplateEngine\Context;
 
 /**
  * The Jankx render helper
@@ -29,7 +30,7 @@ if (! function_exists('jankx_template')) {
 
         return $templateEngine->render(
             $templates,
-            $data,
+            array_merge(Context::get(), $data),
             $echo
         );
     }
