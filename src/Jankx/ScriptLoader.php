@@ -50,10 +50,6 @@ class ScriptLoader
                     'url' => jankx_core_asset_url('libs/Choices/scripts/choices.js'),
                     'version' => '9.0.1',
                 ),
-                'fslightbox-basic' => array(
-                    'url' => jankx_core_asset_url('libs/fslightbox-basic/fslightbox.js'),
-                    'version' => '3.2.3',
-                ),
                 'sharing' => array(
                     'url' => jankx_core_asset_url('libs/vanilla-sharing/vanilla-sharing.umd.js'),
                     'version' => '6.0.5',
