@@ -15,6 +15,10 @@ class GlobalVariables
             'typography-menu-font' => "'Montserrat', sans-serif",
             'typography-default-font' => "'Montserrat', sans-serif",
             'placeholder-text-color' => '#767676',
+            'primary-color' => '#0C101B',
+            'secondary-color' => '#464646',
+            'border-color' => '#dddddd',
+            'text-color' => '#464646',
             'text-success-color' => '#155724',
             'bg-success-color' => '#d4edda',
         );
