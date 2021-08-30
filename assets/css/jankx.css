@@ -449,7 +449,7 @@ table:not(.no-border) th, table:not(.no-border) td {
     margin-left: -10px;
     margin-right: -10px;
   }
-  body:not(.jankx-fw) #jankx-main-content, body:not(.jankx-fw) #jankx-primary-sidebar, body:not(.jankx-fw) #jankx-secondary-sidebar {
+  body:not(.jankx-fw) #jankx-main-content, body:not(.jankx-fw) #jankx-main-content ~ .sidebar, body:not(.jankx-fw) #jankx-secondary-sidebar {
     padding-left: 10px;
     padding-right: 10px;
   }
@@ -660,6 +660,11 @@ table:not(.no-border) th, table:not(.no-border) td {
 @media (min-width: 1200px) {
   .default-navigation :not(.widget_nav_menu) > div > ul.menu li, .default-navigation .navigation > div.menu > ul li {
     padding: 5px 10px;
+  }
+}
+@media (max-width: 767px) {
+  #mobile-menu {
+    display: none !important;
   }
 }
 /**
