@@ -662,11 +662,6 @@ table:not(.no-border) th, table:not(.no-border) td {
     padding: 5px 10px;
   }
 }
-@media (max-width: 767px) {
-  #mobile-menu {
-    display: none !important;
-  }
-}
 /**
  * Reset IOS input styles
  */
