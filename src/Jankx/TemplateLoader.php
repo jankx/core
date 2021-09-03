@@ -225,7 +225,7 @@ class TemplateLoader
     {
         $this->templateEngine = Template::createEngine(
             Jankx::ENGINE_ID,
-            apply_filters('jankx_theme_template_directory_name', 'templates'),
+            apply_filters('jankx/theme/template/directory', 'templates'),
             sprintf(
                 '%s/templates',
                 dirname(JANKX_FRAMEWORK_FILE_LOADER)
