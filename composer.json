@@ -24,7 +24,8 @@
     "jankx/widget": "*",
     "jankx/pagination": "*",
     "jankx/yaml": "*",
-    "jankx/seo": "*"
+    "jankx/seo": "*",
+    "jankx/wordpress-specs": "*"
   },
   "autoload": {
     "psr-4": {
