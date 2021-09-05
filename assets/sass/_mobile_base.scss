@@ -16,6 +16,24 @@
     }
 }
 
+.toggle-button {
+    background: none;
+    outline: 0;
+    border: none;
+}
+
+html.menu-collapsed {
+    .jankx-site-header {
+        &.show {
+            .header-collapse {
+                max-height: calc(100% - 155px);
+                width: 100%;
+                overflow-y: scroll;
+            }
+        }
+    }
+}
+
 .menu-style-slideout {
     .element-hamburger {
         left: 10px;
@@ -37,8 +55,39 @@
     .mobile-header {
         display: block;
     }
+    .menu-style-collapse {
+        .jankx-site-header {
+            .header-collapse {
+                background-color: #fff;
+                display: none;
+                z-index: 99;
+            }
+
+            &.show {
+                .header-collapse {
+                    display: block;
+                }
+            }
+        }
+    }
 }
 
 html.jankx-mobile .mobile-header {
     display: block;
+}
+
+html.jankx-mobile {
+    .menu-style-collapse {
+        .jankx-site-header {
+            .header-collapse {
+                display: none;
+            }
+
+            &.show {
+                .header-collapse {
+                    display: block;
+                }
+            }
+        }
+    }
 }
