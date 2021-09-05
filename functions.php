@@ -180,7 +180,7 @@ function jankx_core_asset_url($path)
 
 function jankx_get_logo_image($props) {
     echo jankx_component('logo', array(
-        'text' => $item->post_title
+        'text' => get_bloginfo('name'),
     ));
 }
 
