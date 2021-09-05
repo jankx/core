@@ -1,4 +1,31 @@
 @media(max-width: 767px) {
-    #mobile-menu {
+    .menu-style-collapse {
+        .jankx-site-header {
+            .jankx-elementor, .navigation {
+                display: none;
+            }
+
+            &.show {
+                .jankx-elementor, .navigation {
+                    display: block;
+                }
+            }
+        }
+    }
+}
+
+html.jankx-mobile {
+    .menu-style-collapse {
+        .jankx-site-header {
+            .jankx-elementor, .navigation {
+                display: none;
+            }
+
+            &.show {
+                .jankx-elementor, .navigation {
+                    display: block;
+                }
+            }
+        }
     }
 }

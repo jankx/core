@@ -3,24 +3,27 @@
     position: relative;
 
     .mobile-header-element {
+        &.element-hamburger {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+        }
         &.element-logo {
-            order: 2;
             flex: 1;
             display: flex;
             justify-content: center;
-        }
-        &.element-hamburger {
-            order: 1;
         }
     }
 }
 
 .menu-style-slideout {
     .element-hamburger {
-        position: absolute;
         left: 10px;
-        top: 50%;
-        transform: translateY(-50%);
+    }
+}
+.menu-style-collapse {
+    .element-hamburger {
+        right: 10px;
     }
 }
 
