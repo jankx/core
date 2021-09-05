@@ -177,3 +177,13 @@ function jankx_core_asset_url($path)
     }
     return sprintf('%s/assets/%s', $GLOBALS['core_assets_dir'], $path);
 }
+
+function jankx_get_logo_image($props) {
+    echo jankx_component('logo', array(
+        'text' => $item->post_title
+    ));
+}
+
+function jankx_get_toggle_hamburger_menu($props) {
+    jankx_template('common/hamburger-menu');
+}

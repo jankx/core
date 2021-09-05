@@ -3,7 +3,7 @@
  * Author: Puleeno Nguyen
  * Author URI: https://puleeno.com
  * Description: This module is create the basic structure for Jankx theme. Other stylesheet will be defined in the theme
- * Version: 1.0.0.7
+ * Version: 1.0.0.8
  */
 /* http://meyerweb.com/eric/tools/css/reset/
    v5.0.1 | 20191019
@@ -145,10 +145,6 @@ h5, h6 {
   }
 }
 @media (max-width: 767px) {
-  .admin-bar .slideout-menu {
-    padding-top: 46px;
-  }
-
   body {
     width: 100%;
     height: 100%;
@@ -160,21 +156,10 @@ h5, h6 {
     bottom: 0;
     width: 256px;
     min-height: 100vh;
-    overflow-y: auto;
+    overflow-y: scroll;
     -webkit-overflow-scrolling: touch;
     z-index: 0;
     display: none;
-  }
-
-  .slideout-panel {
-    position: relative;
-    z-index: 1;
-    will-change: transform;
-    /* A background-color is required */
-    min-height: 100vh;
-  }
-  .slideout-panel .toggle-button {
-    display: block;
   }
 
   .slideout-menu-left {
@@ -183,6 +168,15 @@ h5, h6 {
 
   .slideout-menu-right {
     right: 0;
+  }
+
+  .slideout-panel {
+    position: relative;
+    z-index: 1;
+    will-change: transform;
+    background-color: #FFF;
+    /* A background-color is required */
+    min-height: 100vh;
   }
 
   .slideout-open,
@@ -662,6 +656,41 @@ table:not(.no-border) th, table:not(.no-border) td {
     padding: 5px 10px;
   }
 }
+.mobile-header-elements {
+  display: flex;
+  position: relative;
+}
+.mobile-header-elements .mobile-header-element.element-logo {
+  order: 2;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+.mobile-header-elements .mobile-header-element.element-hamburger {
+  order: 1;
+}
+
+.menu-style-slideout .element-hamburger {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+@media (min-width: 768px) {
+  .mobile-header {
+    display: none;
+  }
+}
+@media (max-width: 767px) {
+  .mobile-header {
+    display: block;
+  }
+}
+html.jankx-mobile .mobile-header {
+  display: block;
+}
+
 /**
  * Reset IOS input styles
  */
