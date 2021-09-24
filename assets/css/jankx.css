@@ -3,7 +3,7 @@
  * Author: Puleeno Nguyen
  * Author URI: https://puleeno.com
  * Description: This module is create the basic structure for Jankx theme. Other stylesheet will be defined in the theme
- * Version: 1.0.0.9
+ * Version: 1.0.0
  */
 /* http://meyerweb.com/eric/tools/css/reset/
    v5.0.1 | 20191019
@@ -714,6 +714,9 @@ html.jankx-mobile .mobile-header {
   display: block;
 }
 
+html.jankx-mobile {
+  overflow: hidden;
+}
 html.jankx-mobile .menu-style-collapse .jankx-site-header .header-collapse {
   display: none;
 }
