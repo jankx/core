@@ -715,7 +715,7 @@ html.jankx-mobile .mobile-header {
 }
 
 html.jankx-mobile {
-  overflow: hidden;
+  overflow-x: hidden;
 }
 html.jankx-mobile .menu-style-collapse .jankx-site-header .header-collapse {
   display: none;
