@@ -159,6 +159,8 @@
 @media (min-width: 1201px) {
 }
 
-@media (max-width: 768px) {
-
+@media (max-width: 767px) {
+    #jankx-main-content, .sidebar{
+        width: 100%;
+    }
 }

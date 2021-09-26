@@ -547,6 +547,11 @@ table:not(.no-border) th, table:not(.no-border) td {
     width: 27.5%;
   }
 }
+@media (max-width: 767px) {
+  #jankx-main-content, .sidebar {
+    width: 100%;
+  }
+}
 @media (min-width: 768px) {
   #mobile-menu {
     position: relative;
