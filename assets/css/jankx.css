@@ -433,12 +433,12 @@ table:not(.no-border) th, table:not(.no-border) td {
   width: 100%;
 }
 
-@media (min-width: 767px) {
-  .main-content-sidebar-inner {
-    display: flex;
-    flex-wrap: wrap;
-  }
+.main-content-sidebar-inner {
+  display: flex;
+  flex-wrap: wrap;
+}
 
+@media (min-width: 767px) {
   body:not(.jankx-fw) .main-content-sidebar-inner {
     margin-left: -10px;
     margin-right: -10px;

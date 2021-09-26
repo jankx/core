@@ -23,11 +23,12 @@
     width: 100%;
 }
 
+.main-content-sidebar-inner {
+    display: flex;
+    flex-wrap: wrap;
+}
+
 @media(min-width: 767px) {
-    .main-content-sidebar-inner {
-        display: flex;
-        flex-wrap: wrap;
-    }
     body:not(.jankx-fw) {
         .main-content-sidebar-inner {
             margin-left: -10px;
