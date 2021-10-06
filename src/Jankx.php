@@ -34,7 +34,6 @@ use Jankx\Megu\Megu as MegaMenu;
 use Jankx\IconFonts;
 use Jankx\Admin\Admin;
 use Jankx\CSS\GlobalVariables as GlobalCSSVariables;
-use Jankx\Filter\FilterManager;
 
 /**
  * This class is middle-class interaction between developer and other classes
@@ -310,11 +309,6 @@ class Jankx
         // Support Mega Menu
         if (class_exists(MegaMenu::class)) {
             MegaMenu::getInstance();
-        }
-
-        // Support Global Filter
-        if (class_exists(FilterManager::class)) {
-            FilterManager::getInstance();
         }
     }
 }
