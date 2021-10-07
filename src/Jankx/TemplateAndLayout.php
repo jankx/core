@@ -2,11 +2,11 @@
 namespace Jankx;
 
 use WP_Post_Type;
+use WP_User;
 use Jankx;
 use Jankx\Template\Page;
 use Jankx\Template\Template;
 use Jankx\TemplateEngine\Context;
-use Jankx\TemplateEngine\FunctionWrapper;
 use Jankx\TemplateEngine\Engines\WordPress;
 use Jankx\PostLayout\PostLayoutManager;
 
@@ -170,9 +170,146 @@ class TemplateAndLayout
         return $this->get_archive_templates();
     }
 
+    function get_category_templates()
+    {
+        $category = get_queried_object();
+
+        $templates = array();
+
+        if (! empty($category->slug)) {
+            $slug_decoded = urldecode($category->slug);
+            if ($slug_decoded !== $category->slug) {
+                $templates[] = "category-{$slug_decoded}";
+            }
+
+            $templates[] = "category-{$category->slug}";
+            $templates[] = "category-{$category->term_id}";
+        }
+        $templates[] = 'category';
+        $templates[] = 'archive';
+
+        return $templates;
+    }
+
+    function get_tag_template()
+    {
+        $tag = get_queried_object();
+
+        $templates = array();
+
+        if (! empty($tag->slug)) {
+            $slug_decoded = urldecode($tag->slug);
+            if ($slug_decoded !== $tag->slug) {
+                $templates[] = "tag-{$slug_decoded}";
+            }
+
+            $templates[] = "tag-{$tag->slug}";
+            $templates[] = "tag-{$tag->term_id}";
+        }
+        $templates[] = 'tag';
+        $templates[] = 'archive';
+
+        return $templates;
+    }
+
+    public function get_404_templates()
+    {
+        return array(
+            'not_found',
+            '404'
+        );
+    }
+
+    function get_attachment_templates()
+    {
+        $attachment = get_queried_object();
+
+        $templates = array();
+
+        if ($attachment) {
+            if (false !== strpos($attachment->post_mime_type, '/')) {
+                list( $type, $subtype ) = explode('/', $attachment->post_mime_type);
+            } else {
+                list( $type, $subtype ) = array( $attachment->post_mime_type, '' );
+            }
+
+            if (! empty($subtype)) {
+                $templates[] = "{$type}-{$subtype}";
+                $templates[] = "{$subtype}";
+            }
+            $templates[] = "{$type}";
+        }
+        $templates[] = 'attachment';
+
+        return $templates;
+    }
+
     public function get_page_templates()
     {
-        return 'page';
+        $id       = get_queried_object_id();
+        $template = get_page_template_slug();
+        $pagename = get_query_var('pagename');
+
+        if (! $pagename && $id) {
+            // If a static page is set as the front page, $pagename will not be set.
+            // Retrieve it from the queried object.
+            $post = get_queried_object();
+            if ($post) {
+                $pagename = $post->post_name;
+            }
+        }
+
+        $templates = array();
+        if ($template && 0 === validate_file($template)) {
+            $templates[] = $template;
+        }
+        if ($pagename) {
+            $pagename_decoded = urldecode($pagename);
+            if ($pagename_decoded !== $pagename) {
+                $templates[] = "page-{$pagename_decoded}";
+            }
+            $templates[] = "page-{$pagename}";
+        }
+        if ($id) {
+            $templates[] = "page-{$id}";
+        }
+        $templates[] = 'page';
+
+        return $templates;
+    }
+
+    function get_embed_templates()
+    {
+        $object = get_queried_object();
+
+        $templates = array();
+
+        if (! empty($object->post_type)) {
+            $post_format = get_post_format($object);
+            if ($post_format) {
+                $templates[] = "embed-{$object->post_type}-{$post_format}";
+            }
+            $templates[] = "embed-{$object->post_type}";
+        }
+
+        $templates[] = 'embed';
+
+        return $templates;
+    }
+
+    function get_author_template()
+    {
+        $author = get_queried_object();
+
+        $templates = array();
+
+        if ($author instanceof WP_User) {
+            $templates[] = "author-{$author->user_nicename}";
+            $templates[] = "author-{$author->ID}";
+        }
+        $templates[] = 'author';
+
+        return $templates;
     }
 
     public function get_front_page_templates()
@@ -260,10 +397,11 @@ class TemplateAndLayout
         }
     }
 
-    public static function getPostLayoutManager() {
+    public static function getPostLayoutManager()
+    {
         if (static::$templateLoaded) {
             $instance = static::get_instance();
-            
+
             return PostLayoutManager::getInstance(
                 $instance->templateEngine
             );
