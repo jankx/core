@@ -9,7 +9,7 @@ use Jankx\TemplateEngine\Context;
 use Jankx\TemplateEngine\FunctionWrapper;
 use Jankx\TemplateEngine\Engines\WordPress;
 
-class TemplateLoader
+class TemplateAndLayout
 {
     protected static $instance;
     protected static $templateLoaded;

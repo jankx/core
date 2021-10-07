@@ -1,7 +1,7 @@
 <?php
 namespace Jankx;
 
-use Jankx\TemplateLoader;
+use Jankx\TemplateAndLayout;
 use Jankx\PostLayout\Constracts\PostLayout;
 use Jankx\PostLayout\PostLayoutManager;
 use Jankx\PostLayout\Layout\ListLayout;
@@ -17,7 +17,7 @@ class PostTemplateLoader
     public function render($page = 'home')
     {
         $layoutManager = PostLayoutManager::getInstance(
-            TemplateLoader::getTemplateEngine()->getId()
+            TemplateAndLayout::getTemplateEngine()->getId()
         );
         $layoutStyle   = apply_filters(
             "jankx_post_layout_page_{$page}_style",

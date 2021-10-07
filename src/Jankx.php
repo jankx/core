@@ -26,7 +26,7 @@ use Jankx\SiteLayout\SiteLayout;
 use Jankx\Social\Sharing;
 use Jankx\Template\Template;
 use Jankx\TemplateEngine\Engines\Plates;
-use Jankx\TemplateLoader;
+use Jankx\TemplateAndLayout;
 use Jankx\PostTemplateLoader;
 use Jankx\UX\UserExperience;
 use Jankx\Widget\WidgetManager;
@@ -161,7 +161,7 @@ class Jankx
         /**
          * Load Jankx templates
          */
-        $templateLoader = TemplateLoader::get_instance();
+        $templateLoader = TemplateAndLayout::get_instance();
         add_action('after_setup_theme', array($templateLoader, 'createTemplateEngine'), 15);
         if (wp_is_request('frontend')) {
             $templateLoader->load();
@@ -247,7 +247,7 @@ class Jankx
 
         // Setup post layout
         PostLayoutManager::createInstance(
-            TemplateLoader::getTemplateEngine()
+            TemplateAndLayout::getTemplateEngine()
         );
 
         // Init the comments system
