@@ -8,6 +8,7 @@ use Jankx\Template\Template;
 use Jankx\TemplateEngine\Context;
 use Jankx\TemplateEngine\FunctionWrapper;
 use Jankx\TemplateEngine\Engines\WordPress;
+use Jankx\PostLayout\PostLayoutManager;
 
 class TemplateAndLayout
 {
@@ -256,6 +257,16 @@ class TemplateAndLayout
             $instance = static::get_instance();
 
             return $instance->templateEngine;
+        }
+    }
+
+    public static function getPostLayoutManager() {
+        if (static::$templateLoaded) {
+            $instance = static::get_instance();
+            
+            return PostLayoutManager::getInstance(
+                $instance->templateEngine
+            );
         }
     }
 }
