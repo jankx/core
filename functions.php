@@ -170,12 +170,18 @@ function jankx_template_directory_uri($path = '')
     );
 }
 
-function jankx_core_asset_url($path)
-{
+function jankx_core_asset_directory() {
     if (!isset($GLOBALS['core_assets_dir'])) {
         $GLOBALS['core_assets_dir'] = jankx_get_path_url(dirname(JANKX_FRAMEWORK_FILE_LOADER));
     }
-    return sprintf('%s/assets/%s', $GLOBALS['core_assets_dir'], $path);
+    return $GLOBALS['core_assets_dir'];
+}
+
+
+function jankx_core_asset_url($path)
+{
+    $core_assets_dir = jankx_core_asset_directory();
+    return sprintf('%s/assets/%s', $core_assets_dir, $path);
 }
 
 function jankx_get_logo_image($props) {
@@ -187,3 +193,4 @@ function jankx_get_logo_image($props) {
 function jankx_get_toggle_hamburger_menu($props) {
     jankx_template('common/hamburger-menu');
 }
+
