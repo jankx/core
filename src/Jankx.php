@@ -275,7 +275,11 @@ class Jankx
             get_option('jankx_option_framework', 'auto')
         );
         $optionFramework->setMode($optionMode);
-        $optionFramework->loadFramework();
+        try {
+            $optionFramework->loadFramework();
+        } catch(\Exception $e) {
+            error_log($e->getMessage());
+        }
     }
 
     // Improve UX
