@@ -436,6 +436,7 @@ table:not(.no-border) th, table:not(.no-border) td {
 .main-content-sidebar-inner {
   display: flex;
   flex-wrap: wrap;
+  width: 100%;
 }
 
 @media (min-width: 767px) {
