@@ -277,7 +277,7 @@ class Jankx
         $optionFramework->setMode($optionMode);
         try {
             $optionFramework->loadFramework();
-        } catch(\Exception $e) {
+        } catch (\Exception $e) {
             error_log($e->getMessage());
         }
     }
