@@ -218,7 +218,7 @@ class Jankx
         add_action('init', array($this, 'init'));
 
         // Init socials sharing
-        if (apply_filters('jankx_socials_sharing_enable', GlobalVariables::get('socials.sharing', false))) {
+        if (apply_filters('jankx_socials_sharing_enable', GlobalVariables::get('socials.sharing', true))) {
             add_action('after_setup_theme', array(Sharing::class, 'get_instance'));
         }
 

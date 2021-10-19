@@ -1,7 +1,7 @@
 <?php
 namespace Jankx\Social;
 
-use Jankx\Option\Option;
+use Jankx\Option;
 
 final class Sharing
 {
@@ -178,23 +178,19 @@ final class Sharing
 
     protected function current_page_is_enabled_social_share()
     {
-        if (is_single()) {
-            global $post;
+        $allowe_post_types = apply_filters(
+            'jankx_socials_sharing_allowed_post_types',
+            array('post', 'page')
+        );
 
-            $allowe_post_types = apply_filters(
-                'jankx_socials_sharing_allowed_post_types',
-                array('post')
-            );
-            if (in_array($post->post_type, $allowe_post_types)) {
-                return true;
-            }
+        if (is_singular($allowe_post_types)) {
+            return true;
         }
         return false;
     }
 
     public function load_social_share_js_deps($deps)
     {
-        array_push($deps, 'tether-drop');
         array_push($deps, 'sharing');
 
         return $deps;
@@ -202,7 +198,6 @@ final class Sharing
 
     public function load_social_share_css_deps($deps)
     {
-        array_push($deps, 'tether-drop');
         return $deps;
     }
 
@@ -333,27 +328,15 @@ final class Sharing
     {
         // When social sharing is not initialized log the error
         if (!static::$initialized) {
-            return error_log(__('Jankx social sharing is not initialized yet', 'jankx'));
+            error_log(__('Jankx social sharing is not initialized yet', 'jankx'));
+            return 0;
         }
         ?>
         <div class="jankx-socials-sharing drop-styles">
-            <div class="jankx-sharing-button">
-                <?php jankx_template('socials/sharing-button'); ?>
-            </div>
-            <div id="jankx-sharing-content" class="sharing-content">
-                <div class="social-buttons">
-                    <?php $this->render_social_share_buttons($socials); ?>
-                </div>
-            </div>
+            <?php $this->render_social_share_buttons($socials); ?>
         </div>
 
         <?php
-        execute_script(jankx_template(
-            'socials/sharing-script',
-            array(),
-            null,
-            false
-        ));
         ob_start();
         ?>
         <script>
@@ -368,8 +351,7 @@ final class Sharing
                 var <?php echo $variable_name; ?> = <?php echo $agrument; ?>;
             <?php endforeach; ?>
 
-            jankx_socials_sharing.on('open', function() {
-                var socials_sharing_buttons = document.querySelectorAll('.drop-content .social-sharing-button');
+            var socials_sharing_buttons = document.querySelectorAll('.jankx-socials-sharing .social-sharing-button');
                 if (socials_sharing_buttons.length > 0) {
                     for (i = 0; i < socials_sharing_buttons.length; i++) {
                         if (!socials_sharing_buttons[i].dataset.type) {
@@ -383,7 +365,6 @@ final class Sharing
                         });
                     }
                 }
-            })
         </script>
         <?php
         execute_script(ob_get_clean());

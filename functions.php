@@ -157,7 +157,7 @@ function jankx_is_comment_by_post_author($comment = null)
 function jankx_social_share_buttons($socials = null)
 {
     $socialSharing = \Jankx\Social\Sharing::get_instance();
-    return $socialSharing->share_buttons();
+    return $socialSharing->share_buttons($socials);
 }
 
 
