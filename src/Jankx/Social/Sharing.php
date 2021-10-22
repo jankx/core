@@ -1,6 +1,8 @@
 <?php
 namespace Jankx\Social;
 
+use WP_Post;
+use WP_Term;
 use Jankx\Option;
 
 final class Sharing
@@ -178,15 +180,7 @@ final class Sharing
 
     protected function current_page_is_enabled_social_share()
     {
-        $allowe_post_types = apply_filters(
-            'jankx_socials_sharing_allowed_post_types',
-            array('post', 'page')
-        );
-
-        if (is_singular($allowe_post_types)) {
-            return true;
-        }
-        return false;
+        return ! apply_filters('jankx/socials/sharing/disable', false);
     }
 
     public function load_social_share_js_deps($deps)
@@ -212,18 +206,29 @@ final class Sharing
 
     public function render_global_metas()
     {
-        $sharing_metas = array();
-        if (is_singular()) {
-            global $post;
-            $thumbnail_id = get_post_thumbnail_id($post->ID);
+        $sharing_metas = array(
+            'facebook_app_id' => Option::get('facebook_app_id'),
+        );
+        $queried_object = get_queried_object();
+        if (is_a($queried_object, WP_Post::class)) {
+            $thumbnail_id = get_post_thumbnail_id($queried_object->ID);
             $sharing_metas = array_merge($sharing_metas, array(
-                'url' => get_permalink($post),
-                'title' => get_the_title($post),
+                'url' => get_permalink($queried_object),
+                'title' => get_the_title($queried_object),
                 'image' => $thumbnail_id ? wp_get_attachment_url($thumbnail_id) : '',
-                'description' => get_the_excerpt($post),
+                'description' => get_the_excerpt($queried_object),
                 'hashtag' => array(),
                 'tags' => array(),
-                'facebook_app_id' => Option::get('facebook_app_id'),
+            ));
+        } elseif (is_a($queried_object, WP_Term::class)) {
+            $thumbnail_id = get_term_meta($queried_object->ID, '_thumbnail_id', true);
+            $sharing_metas = array_merge($sharing_metas, array(
+                'url' => get_term_link($queried_object),
+                'title' => apply_filters('single_term_title', $queried_object->name),
+                'image' => $thumbnail_id ? wp_get_attachment_url($thumbnail_id) : '',
+                'description' => apply_filters('the_content', $queried_object->description),
+                'hashtag' => array(),
+                'tags' => array(),
             ));
         }
 
