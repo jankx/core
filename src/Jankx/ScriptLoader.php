@@ -57,6 +57,10 @@ class ScriptLoader
                 'tim' => array(
                     'url' => jankx_core_asset_url('libs/tim/tinytim.js'),
                     'version' => '1.0.0'
+                ),
+                'ispin' => array(
+                    'url' => jankx_core_asset_url('libs/ispinjs-2.0.1/js/ispin.js'),
+                    'version' => '2.0.1'
                 )
             )
         );
@@ -79,6 +83,10 @@ class ScriptLoader
                 'choices' => array(
                     'url' => jankx_core_asset_url('libs/Choices/styles/choices.css'),
                     'version' => '9.0.1',
+                ),
+                'ispin' => array(
+                    'url' => jankx_core_asset_url('libs/ispinjs-2.0.1/css/ispin.css'),
+                    'version' => '2.0.1'
                 )
             )
         );
