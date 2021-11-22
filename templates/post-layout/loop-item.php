@@ -13,9 +13,9 @@
 
     <div class="post-infos">
         <?php if ($show_title) : ?>
-        <h2 class="post-title">
+        <h3 class="post-title">
             <a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php the_title(); ?></a>
-        </h2>
+        </h3>
         <?php endif; ?>
 
         <?php if ($show_excerpt) : ?>
