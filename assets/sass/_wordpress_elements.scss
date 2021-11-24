@@ -1,9 +1,14 @@
 .widget {
-    &+.widget {
-        margin-top: 20px;
-    }
     .widget-title {
         font-size: 125%;
+    }
+}
+
+.sidebar {
+    .widget {
+        &+.widget {
+            margin-top: 20px;
+        }
     }
 }
 

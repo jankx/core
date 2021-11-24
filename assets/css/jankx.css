@@ -200,6 +200,7 @@ img.alignnone {
   margin-bottom: 1.5em;
   text-align: center;
   padding-top: 5px;
+  max-width: 100%;
 }
 
 .wp-caption img {
@@ -235,11 +236,12 @@ blockquote.right {
   float: right;
 }
 
-.widget + .widget {
-  margin-top: 20px;
-}
 .widget .widget-title {
   font-size: 125%;
+}
+
+.sidebar .widget + .widget {
+  margin-top: 20px;
 }
 
 .quick-search-form {
