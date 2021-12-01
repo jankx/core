@@ -322,7 +322,7 @@ class TemplateAndLayout
 
     public function include()
     {
-        if (!constant('WP_USE_THEMES') || is_robots()) {
+        if (!constant('WP_USE_THEMES') || is_robots() || is_feed() || is_trackback() || is_favicon()) {
             return;
         }
 
