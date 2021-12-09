@@ -167,6 +167,13 @@ h5, h6 {
 .entry-content img {
   margin: 10px 0 15px 0;
 }
+.entry-content iframe {
+  max-width: 100%;
+  min-height: 220px;
+  height: auto;
+  display: block;
+  margin: 10px auto 20px;
+}
 
 .alignleft,
 img.alignleft {
@@ -236,6 +243,11 @@ blockquote.right {
   float: right;
 }
 
+@media (min-width: 678px) {
+  .entry-content iframe {
+    min-height: 360px;
+  }
+}
 .widget .widget-title {
   font-size: 125%;
 }
