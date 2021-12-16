@@ -241,6 +241,7 @@ class Jankx
             'header-text' => array( 'site-title', 'site-description' ),
             'unlink-homepage-logo' => true,
         ));
+        add_theme_support('automatic-feed-links');
 
         // Load Jankx components
         Registry::registerComponents();
