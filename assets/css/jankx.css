@@ -1067,3 +1067,7 @@ body.error404 {
   margin-bottom: 0.3em;
   margin-top: 0.3em;
 }
+
+.elementor-section .elementor-container.main-content-sidebar-wrapper {
+  display: block;
+}
