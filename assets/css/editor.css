@@ -1,23 +1,23 @@
 /* == WordPress WYSIWYG Editor Styles == */
 .wp-editor h1, .wp-editor h2, .wp-editor h3, .wp-editor h4, .wp-editor h5, .wp-editor h6 {
-  margin-top: 0.8rem;
-  margin-bottom: 0.5rem;
-  line-height: 1.2;
+  margin-top: 0.4rem;
+  margin-bottom: 0.2rem;
+  line-height: 1.1;
 }
 .wp-editor h1 {
-  font-size: 2.5rem;
-}
-.wp-editor h2 {
   font-size: 2rem;
 }
-.wp-editor h3 {
-  font-size: 1.75rem;
+.wp-editor h2 {
+  font-size: 1.8rem;
 }
-.wp-editor h4 {
+.wp-editor h3 {
   font-size: 1.5rem;
 }
-.wp-editor h5 {
+.wp-editor h4 {
   font-size: 1.25rem;
+}
+.wp-editor h5 {
+  font-size: 1.1rem;
 }
 .wp-editor h6 {
   font-size: 1rem;

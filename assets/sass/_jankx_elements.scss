@@ -24,10 +24,6 @@
 #jankx-main-content {
     line-height: 180%;
     position: relative;
-
-    >.post {
-        text-align: justify;
-    }
 }
 
 .jankx-footer-widgets-area {
@@ -44,6 +40,10 @@
 .main-content {
     .entry-content {
         @import "content_style";
+
+        p {
+            text-align: justify;
+        }
     }
     .post-content {
         margin-top: 10px;
