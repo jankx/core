@@ -34,6 +34,7 @@ use Jankx\Megu\Megu as MegaMenu;
 use Jankx\IconFonts;
 use Jankx\Admin\Admin;
 use Jankx\CSS\GlobalVariables as GlobalCSSVariables;
+use Jankx\Interfaces\Filter;
 
 /**
  * This class is middle-class interaction between developer and other classes
@@ -50,6 +51,7 @@ class Jankx
     protected $templateStylesheet;
     protected $theme;
     protected $admin;
+    protected $filters = [];
 
     public static function __callStatic($name, $args)
     {
@@ -257,9 +259,13 @@ class Jankx
         // Init Global CSS Variables
         add_action('wp', array(GlobalCSSVariables::class, 'init'));
 
-        // Load icon fonts
-        $iconFonts = IconFonts::getInstance();
-        add_action('wp_enqueue_scripts', array($iconFonts, 'register_scripts'));
+        if (wp_is_request('frontend')) {
+            // Load icon fonts
+            $iconFonts = IconFonts::getInstance();
+            add_action('wp_enqueue_scripts', array($iconFonts, 'register_scripts'));
+        } elseif (is_admin()) {
+            add_action('admin_enqueue_scripts', array($this, 'registerAdminScripts'));
+        }
     }
 
     public function setupOptionFramework()
@@ -301,7 +307,7 @@ class Jankx
     {
         $engine = Template::getEngine(static::ENGINE_ID);
         if (empty($engine)) {
-            throw \Exception('The Jankx template engine is not initialized');
+            throw new \Exception('The Jankx template engine is not initialized');
         }
 
         return $engine->render($templates, $data, $echo);
@@ -314,6 +320,33 @@ class Jankx
         // Support Mega Menu
         if (class_exists(MegaMenu::class)) {
             MegaMenu::getInstance();
+        }
+    }
+
+    public function registerAdminScripts()
+    {
+        add_editor_style(jankx_core_asset_url('css/editor.css'));
+    }
+
+    /**
+     * @param \Jankx\Filter $filterObject
+     */
+    public static function addFilter($filterObject)
+    {
+        if (!is_a($filterObject, Filter::class, true)) {
+            return;
+        }
+        if (is_string($filterObject)) {
+            $filterObject = new $filterObject();
+        }
+
+        foreach($filterObject->getHooks() as $hook) {
+            add_filter(
+                $hook,
+                [$filterObject, $filterObject->getExecutor()],
+                $filterObject->getPriority(),
+                $filterObject->getArgsCounter()
+            );
         }
     }
 }
