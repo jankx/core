@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /**!
  * Module Name: Jankx CSS
  * Author: Puleeno Nguyen
@@ -164,15 +165,51 @@ h5, h6 {
   }
 }
 /* == WordPress WYSIWYG Editor Styles == */
-.entry-content img {
-  margin: 10px 0 15px 0;
+.wp-editor h1, .wp-editor h2, .wp-editor h3, .wp-editor h4, .wp-editor h5, .wp-editor h6 {
+  margin-top: 0.8rem;
+  margin-bottom: 0.5rem;
+  line-height: 1.2;
 }
-.entry-content iframe {
-  max-width: 100%;
-  min-height: 220px;
-  height: auto;
-  display: block;
-  margin: 10px auto 20px;
+.wp-editor h1 {
+  font-size: 2.5rem;
+}
+.wp-editor h2 {
+  font-size: 2rem;
+}
+.wp-editor h3 {
+  font-size: 1.75rem;
+}
+.wp-editor h4 {
+  font-size: 1.5rem;
+}
+.wp-editor h5 {
+  font-size: 1.25rem;
+}
+.wp-editor h6 {
+  font-size: 1rem;
+}
+.wp-editor ul, .wp-editor ol {
+  margin-left: 25px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+.wp-editor ul {
+  list-style: disc;
+}
+.wp-editor ul ul {
+  list-style: circle;
+}
+.wp-editor ul ul ul {
+  list-style: square;
+}
+.wp-editor ol {
+  list-style: decimal;
+}
+.wp-editor i, .wp-editor em {
+  font-style: italic;
+}
+.wp-editor strong {
+  font-weight: 700;
 }
 
 .alignleft,
@@ -227,6 +264,27 @@ img.alignnone {
   max-height: 1em;
 }
 
+blockquote {
+  margin: 20px 0;
+  padding: 30px;
+  background: #e8f8ff;
+  border-left: 5px solid #123c4d;
+  position: relative;
+}
+blockquote:before {
+  content: "❝";
+  font-size: 30px;
+  position: absolute;
+  left: 10px;
+  top: 10px;
+}
+blockquote:after {
+  content: "❞";
+  font-size: 30px;
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+}
 blockquote.left {
   margin-right: 20px;
   text-align: right;
@@ -234,7 +292,6 @@ blockquote.left {
   width: 33%;
   float: left;
 }
-
 blockquote.right {
   margin-left: 20px;
   text-align: left;
@@ -243,11 +300,6 @@ blockquote.right {
   float: right;
 }
 
-@media (min-width: 678px) {
-  .entry-content iframe {
-    min-height: 360px;
-  }
-}
 .widget .widget-title {
   font-size: 125%;
 }
@@ -339,25 +391,57 @@ blockquote.right {
   padding-bottom: 40px;
 }
 
-article .post-content {
-  margin-top: 10px;
+.main-content .entry-content h1, .main-content .entry-content h2, .main-content .entry-content h3, .main-content .entry-content h4, .main-content .entry-content h5, .main-content .entry-content h6 {
+  margin-top: 0.8rem;
+  margin-bottom: 0.5rem;
+  line-height: 1.2;
 }
-article .post-content img {
-  max-width: 100%;
+.main-content .entry-content h1 {
+  font-size: 2.5rem;
 }
-article .post-content ul {
+.main-content .entry-content h2 {
+  font-size: 2rem;
+}
+.main-content .entry-content h3 {
+  font-size: 1.75rem;
+}
+.main-content .entry-content h4 {
+  font-size: 1.5rem;
+}
+.main-content .entry-content h5 {
+  font-size: 1.25rem;
+}
+.main-content .entry-content h6 {
+  font-size: 1rem;
+}
+.main-content .entry-content ul, .main-content .entry-content ol {
+  margin-left: 25px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+.main-content .entry-content ul {
   list-style: disc;
-  margin-left: 20px;
-  margin-top: 20px;
 }
-article .post-content ul ul {
+.main-content .entry-content ul ul {
   list-style: circle;
 }
-article .post-content ul ul ul {
+.main-content .entry-content ul ul ul {
   list-style: square;
 }
-article .post-content ol {
+.main-content .entry-content ol {
   list-style: decimal;
+}
+.main-content .entry-content i, .main-content .entry-content em {
+  font-style: italic;
+}
+.main-content .entry-content strong {
+  font-weight: 700;
+}
+.main-content .post-content {
+  margin-top: 10px;
+}
+.main-content img {
+  max-width: 100%;
 }
 
 table {
@@ -373,6 +457,22 @@ table:not(.no-border) th, table:not(.no-border) td {
   padding: 5px;
 }
 
+.entry-content img {
+  margin: 10px 0 15px 0;
+}
+.entry-content iframe {
+  max-width: 100%;
+  min-height: 220px;
+  height: auto;
+  display: block;
+  margin: 10px auto 20px;
+}
+
+@media (min-width: 678px) {
+  .entry-content iframe {
+    min-height: 360px;
+  }
+}
 @media (min-width: 767px) {
   .jankx-site-header.sticky-header.sticky {
     position: fixed;

@@ -41,28 +41,15 @@
 }
 
 
-article {
+.main-content {
+    .entry-content {
+        @import "content_style";
+    }
     .post-content {
         margin-top: 10px;
-        img {
-            max-width: 100%;
-        }
-
-        ul {
-            list-style: disc;
-            margin-left: 20px;
-            margin-top: 20px;
-
-            ul {
-                list-style: circle;
-                ul {
-                    list-style: square;
-                }
-            }
-        }
-        ol {
-            list-style: decimal;
-        }
+    }
+    img {
+        max-width: 100%;
     }
 }
 
@@ -78,6 +65,27 @@ table {
             border: 1px solid #ddd;
             border-collapse: collapse;
             padding: 5px;
+        }
+    }
+}
+
+.entry-content {
+    img {
+        margin: 10px 0 15px 0;
+    }
+    iframe {
+        max-width: 100%;
+        min-height: 220px;
+        height: auto;
+        display: block;
+        margin: 10px auto 20px;
+    }
+}
+
+@media (min-width: 678px) {
+    .entry-content {
+        iframe {
+            min-height: 360px;
         }
     }
 }

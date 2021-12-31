@@ -1,0 +1,51 @@
+h1, h2, h3, h4, h5, h6 {
+    margin-top: 0.8rem;
+    margin-bottom: 0.5rem;
+    line-height: 1.2;
+}
+h1 {
+    font-size: 2.5rem;
+}
+h2 {
+    font-size: 2rem;
+}
+h3 {
+    font-size: 1.75rem;
+}
+h4 {
+    font-size: 1.5rem;
+}
+h5 {
+    font-size: 1.25rem;
+}
+h6 {
+    font-size: 1rem;
+}
+
+ul, ol {
+    margin-left: 25px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+ul {
+    list-style: disc;
+    ul {
+        list-style: circle;
+        ul {
+            list-style: square;
+        }
+    }
+}
+
+ol {
+    list-style: decimal;
+}
+
+i, em {
+    font-style: italic;
+}
+
+strong {
+    font-weight: 700;
+}

@@ -2,7 +2,7 @@ const path = require("path");
 
 module.exports = {
   mode: process.env.NODE_ENV === 'production' ? 'production' : 'development',
-  entry: [__dirname + "/assets/sass/jankx.scss"],
+  entry: [__dirname + "/assets/sass/jankx.scss", __dirname + "/assets/sass/editor.scss"],
   output: {
     path: path.resolve(__dirname, "assets"),
   },
