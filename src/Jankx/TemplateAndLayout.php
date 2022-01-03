@@ -327,6 +327,7 @@ class TemplateAndLayout
         }
 
         $this->pageType = $this->loadPageType();
+        $templates = array();
         if (!wp_using_themes()) {
             $this->initJankxThemeSystem();
         }
@@ -341,12 +342,14 @@ class TemplateAndLayout
         );
 
         if (is_callable($callback)) {
-            $page->setTemplates(call_user_func($callback));
+            $templates = call_user_func($callback);
+            $page->setTemplates($templates);
         }
 
         do_action_ref_array('jankx_prepare_render_template', array(
             &$page,
             &$this->templateEngine,
+            &$templates,
             $this
         ));
 
