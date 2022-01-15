@@ -40,10 +40,14 @@ img.alignnone {
     margin: 0;
 }
 
+:not(.wp-caption) {
+    > img {
+        margin: 10px 0 15px 0;
+    }
+}
+
 .wp-caption p.wp-caption-text {
     line-height: 1.5;
-    font-size: 10px;
-    margin: 0;
 }
 
 .wp-smiley {

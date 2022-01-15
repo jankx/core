@@ -40,10 +40,6 @@
 .main-content {
     .entry-content {
         @import "content_style";
-
-        p {
-            text-align: justify;
-        }
     }
     .post-content {
         margin-top: 10px;
@@ -70,9 +66,6 @@ table {
 }
 
 .entry-content {
-    img {
-        margin: 10px 0 15px 0;
-    }
     iframe {
         max-width: 100%;
         min-height: 220px;

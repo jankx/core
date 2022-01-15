@@ -211,6 +211,106 @@ h5, h6 {
 .wp-editor strong {
   font-weight: 700;
 }
+.wp-editor .alignleft,
+.wp-editor img.alignleft {
+  margin-right: 1.5em;
+  display: block;
+  float: left;
+}
+.wp-editor .alignright,
+.wp-editor img.alignright {
+  margin-left: 1.5em;
+  display: block;
+  float: right;
+}
+.wp-editor .aligncenter,
+.wp-editor img.aligncenter {
+  margin-right: auto;
+  margin-left: auto;
+  display: block;
+  clear: both;
+  margin-bottom: 10px;
+}
+.wp-editor .alignnone,
+.wp-editor img.alignnone {
+  /* not sure about this one */
+}
+.wp-editor .wp-caption {
+  margin-bottom: 1.5em;
+  text-align: center;
+  padding-top: 5px;
+  max-width: 100%;
+}
+.wp-editor .wp-caption img {
+  border: 0 none;
+  padding: 0;
+  margin: 0;
+}
+.wp-editor :not(.wp-caption) > img {
+  margin: 10px 0 15px 0;
+}
+.wp-editor .wp-caption p.wp-caption-text {
+  line-height: 1.5;
+}
+.wp-editor .wp-smiley {
+  margin: 0 !important;
+  max-height: 1em;
+}
+.wp-editor blockquote {
+  margin: 20px 0;
+  padding: 30px;
+  background: #e8f8ff;
+  border-left: 5px solid #123c4d;
+  position: relative;
+}
+.wp-editor blockquote:before {
+  content: "❝";
+  font-size: 30px;
+  position: absolute;
+  left: 10px;
+  top: 10px;
+}
+.wp-editor blockquote:after {
+  content: "❞";
+  font-size: 30px;
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+}
+.wp-editor blockquote.left {
+  margin-right: 20px;
+  text-align: right;
+  margin-left: 0;
+  width: 33%;
+  float: left;
+}
+.wp-editor blockquote.right {
+  margin-left: 20px;
+  text-align: left;
+  margin-right: 0;
+  width: 33%;
+  float: right;
+}
+.wp-editor .widget .widget-title {
+  font-size: 125%;
+}
+.wp-editor .sidebar .widget + .widget {
+  margin-top: 20px;
+}
+.wp-editor .quick-search-form {
+  display: flex;
+}
+.wp-editor .quick-search-form .text-wrap {
+  flex: 1;
+}
+.wp-editor .quick-search-form .text-wrap input {
+  width: 100%;
+  border: none;
+  padding: 2px 5px;
+}
+.wp-editor .quick-search-form .search-button {
+  border: none;
+}
 
 .alignleft,
 img.alignleft {
@@ -253,10 +353,12 @@ img.alignnone {
   margin: 0;
 }
 
+:not(.wp-caption) > img {
+  margin: 10px 0 15px 0;
+}
+
 .wp-caption p.wp-caption-text {
   line-height: 1.5;
-  font-size: 10px;
-  margin: 0;
 }
 
 .wp-smiley {
@@ -434,9 +536,6 @@ blockquote.right {
 .main-content .entry-content strong {
   font-weight: 700;
 }
-.main-content .entry-content p {
-  text-align: justify;
-}
 .main-content .post-content {
   margin-top: 10px;
 }
@@ -457,9 +556,6 @@ table:not(.no-border) th, table:not(.no-border) td {
   padding: 5px;
 }
 
-.entry-content img {
-  margin: 10px 0 15px 0;
-}
 .entry-content iframe {
   max-width: 100%;
   min-height: 220px;
