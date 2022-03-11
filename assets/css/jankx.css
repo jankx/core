@@ -164,267 +164,6 @@ h5, h6 {
     display: block;
   }
 }
-/* == WordPress WYSIWYG Editor Styles == */
-.wp-editor h1, .wp-editor h2, .wp-editor h3, .wp-editor h4, .wp-editor h5, .wp-editor h6 {
-  margin-top: 0.4rem;
-  margin-bottom: 0.2rem;
-  line-height: 1.1;
-}
-.wp-editor h1 {
-  font-size: 2rem;
-}
-.wp-editor h2 {
-  font-size: 1.8rem;
-}
-.wp-editor h3 {
-  font-size: 1.5rem;
-}
-.wp-editor h4 {
-  font-size: 1.25rem;
-}
-.wp-editor h5 {
-  font-size: 1.1rem;
-}
-.wp-editor h6 {
-  font-size: 1rem;
-}
-.wp-editor ul, .wp-editor ol {
-  margin-left: 25px;
-  margin-top: 15px;
-  margin-bottom: 15px;
-}
-.wp-editor ul {
-  list-style: disc;
-}
-.wp-editor ul ul {
-  list-style: circle;
-}
-.wp-editor ul ul ul {
-  list-style: square;
-}
-.wp-editor ol {
-  list-style: decimal;
-}
-.wp-editor i, .wp-editor em {
-  font-style: italic;
-}
-.wp-editor strong {
-  font-weight: 700;
-}
-.wp-editor .alignleft,
-.wp-editor img.alignleft {
-  margin-right: 1.5em;
-  display: block;
-  float: left;
-}
-.wp-editor .alignright,
-.wp-editor img.alignright {
-  margin-left: 1.5em;
-  display: block;
-  float: right;
-}
-.wp-editor .aligncenter,
-.wp-editor img.aligncenter {
-  margin-right: auto;
-  margin-left: auto;
-  display: block;
-  clear: both;
-  margin-bottom: 10px;
-}
-.wp-editor .alignnone,
-.wp-editor img.alignnone {
-  /* not sure about this one */
-}
-.wp-editor .wp-caption {
-  margin-bottom: 1.5em;
-  text-align: center;
-  padding-top: 5px;
-  max-width: 100%;
-}
-.wp-editor .wp-caption img {
-  border: 0 none;
-  padding: 0;
-  margin: 0;
-}
-.wp-editor :not(.wp-caption) > img {
-  margin: 10px 0 15px 0;
-}
-.wp-editor .wp-caption p.wp-caption-text {
-  line-height: 1.5;
-}
-.wp-editor .wp-smiley {
-  margin: 0 !important;
-  max-height: 1em;
-}
-.wp-editor blockquote {
-  margin: 20px 0;
-  padding: 30px;
-  background: #e8f8ff;
-  border-left: 5px solid #123c4d;
-  position: relative;
-}
-.wp-editor blockquote:before {
-  content: "❝";
-  font-size: 30px;
-  position: absolute;
-  left: 10px;
-  top: 10px;
-}
-.wp-editor blockquote:after {
-  content: "❞";
-  font-size: 30px;
-  position: absolute;
-  right: 10px;
-  bottom: 10px;
-}
-.wp-editor blockquote.left {
-  margin-right: 20px;
-  text-align: right;
-  margin-left: 0;
-  width: 33%;
-  float: left;
-}
-.wp-editor blockquote.right {
-  margin-left: 20px;
-  text-align: left;
-  margin-right: 0;
-  width: 33%;
-  float: right;
-}
-.wp-editor .widget .widget-title {
-  font-size: 125%;
-}
-.wp-editor .sidebar .widget + .widget {
-  margin-top: 20px;
-}
-.wp-editor .quick-search-form {
-  display: flex;
-}
-.wp-editor .quick-search-form .text-wrap {
-  flex: 1;
-}
-.wp-editor .quick-search-form .text-wrap input {
-  width: 100%;
-  border: none;
-  padding: 2px 5px;
-}
-.wp-editor .quick-search-form .search-button {
-  border: none;
-}
-
-.alignleft,
-img.alignleft {
-  margin-right: 1.5em;
-  display: block;
-  float: left;
-}
-
-.alignright,
-img.alignright {
-  margin-left: 1.5em;
-  display: block;
-  float: right;
-}
-
-.aligncenter,
-img.aligncenter {
-  margin-right: auto;
-  margin-left: auto;
-  display: block;
-  clear: both;
-  margin-bottom: 10px;
-}
-
-.alignnone,
-img.alignnone {
-  /* not sure about this one */
-}
-
-.wp-caption {
-  margin-bottom: 1.5em;
-  text-align: center;
-  padding-top: 5px;
-  max-width: 100%;
-}
-
-.wp-caption img {
-  border: 0 none;
-  padding: 0;
-  margin: 0;
-}
-
-:not(.wp-caption) > img {
-  margin: 10px 0 15px 0;
-}
-
-.wp-caption p.wp-caption-text {
-  line-height: 1.5;
-}
-
-.wp-smiley {
-  margin: 0 !important;
-  max-height: 1em;
-}
-
-blockquote {
-  margin: 20px 0;
-  padding: 30px;
-  background: #e8f8ff;
-  border-left: 5px solid #123c4d;
-  position: relative;
-}
-blockquote:before {
-  content: "❝";
-  font-size: 30px;
-  position: absolute;
-  left: 10px;
-  top: 10px;
-}
-blockquote:after {
-  content: "❞";
-  font-size: 30px;
-  position: absolute;
-  right: 10px;
-  bottom: 10px;
-}
-blockquote.left {
-  margin-right: 20px;
-  text-align: right;
-  margin-left: 0;
-  width: 33%;
-  float: left;
-}
-blockquote.right {
-  margin-left: 20px;
-  text-align: left;
-  margin-right: 0;
-  width: 33%;
-  float: right;
-}
-
-.widget .widget-title {
-  font-size: 125%;
-}
-
-.sidebar .widget + .widget {
-  margin-top: 20px;
-}
-
-.quick-search-form {
-  display: flex;
-}
-.quick-search-form .text-wrap {
-  flex: 1;
-}
-.quick-search-form .text-wrap input {
-  width: 100%;
-  border: none;
-  padding: 2px 5px;
-}
-.quick-search-form .search-button {
-  border: none;
-}
-
 #commentform textarea,
 #commentform input[type=text],
 #commentform input[type=password],
@@ -536,6 +275,106 @@ blockquote.right {
 .main-content .entry-content strong {
   font-weight: 700;
 }
+.main-content .entry-content .alignleft,
+.main-content .entry-content img.alignleft {
+  margin-right: 1.5em;
+  display: block;
+  float: left;
+}
+.main-content .entry-content .alignright,
+.main-content .entry-content img.alignright {
+  margin-left: 1.5em;
+  display: block;
+  float: right;
+}
+.main-content .entry-content .aligncenter,
+.main-content .entry-content img.aligncenter {
+  margin-right: auto;
+  margin-left: auto;
+  display: block;
+  clear: both;
+  margin-bottom: 10px;
+}
+.main-content .entry-content .alignnone,
+.main-content .entry-content img.alignnone {
+  /* not sure about this one */
+}
+.main-content .entry-content .wp-caption {
+  margin-bottom: 1.5em;
+  text-align: center;
+  padding-top: 5px;
+  max-width: 100%;
+}
+.main-content .entry-content .wp-caption img {
+  border: 0 none;
+  padding: 0;
+  margin: 0;
+}
+.main-content .entry-content :not(.wp-caption) > img {
+  margin: 10px 0 15px 0;
+}
+.main-content .entry-content .wp-caption p.wp-caption-text {
+  line-height: 1.5;
+}
+.main-content .entry-content .wp-smiley {
+  margin: 0 !important;
+  max-height: 1em;
+}
+.main-content .entry-content blockquote {
+  margin: 20px 0;
+  padding: 30px;
+  background: #e8f8ff;
+  border-left: 5px solid #123c4d;
+  position: relative;
+}
+.main-content .entry-content blockquote:before {
+  content: "❝";
+  font-size: 30px;
+  position: absolute;
+  left: 10px;
+  top: 10px;
+}
+.main-content .entry-content blockquote:after {
+  content: "❞";
+  font-size: 30px;
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+}
+.main-content .entry-content blockquote.left {
+  margin-right: 20px;
+  text-align: right;
+  margin-left: 0;
+  width: 33%;
+  float: left;
+}
+.main-content .entry-content blockquote.right {
+  margin-left: 20px;
+  text-align: left;
+  margin-right: 0;
+  width: 33%;
+  float: right;
+}
+.main-content .entry-content .widget .widget-title {
+  font-size: 125%;
+}
+.main-content .entry-content .sidebar .widget + .widget {
+  margin-top: 20px;
+}
+.main-content .entry-content .quick-search-form {
+  display: flex;
+}
+.main-content .entry-content .quick-search-form .text-wrap {
+  flex: 1;
+}
+.main-content .entry-content .quick-search-form .text-wrap input {
+  width: 100%;
+  border: none;
+  padding: 2px 5px;
+}
+.main-content .entry-content .quick-search-form .search-button {
+  border: none;
+}
 .main-content .post-content {
   margin-top: 10px;
 }
@@ -562,6 +401,152 @@ table:not(.no-border) th, table:not(.no-border) td {
   height: auto;
   display: block;
   margin: 10px auto 20px;
+}
+.entry-content h1, .entry-content h2, .entry-content h3, .entry-content h4, .entry-content h5, .entry-content h6 {
+  margin-top: 0.4rem;
+  margin-bottom: 0.2rem;
+  line-height: 1.1;
+}
+.entry-content h1 {
+  font-size: 2rem;
+}
+.entry-content h2 {
+  font-size: 1.8rem;
+}
+.entry-content h3 {
+  font-size: 1.5rem;
+}
+.entry-content h4 {
+  font-size: 1.25rem;
+}
+.entry-content h5 {
+  font-size: 1.1rem;
+}
+.entry-content h6 {
+  font-size: 1rem;
+}
+.entry-content ul, .entry-content ol {
+  margin-left: 25px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+.entry-content ul {
+  list-style: disc;
+}
+.entry-content ul ul {
+  list-style: circle;
+}
+.entry-content ul ul ul {
+  list-style: square;
+}
+.entry-content ol {
+  list-style: decimal;
+}
+.entry-content i, .entry-content em {
+  font-style: italic;
+}
+.entry-content strong {
+  font-weight: 700;
+}
+.entry-content .alignleft,
+.entry-content img.alignleft {
+  margin-right: 1.5em;
+  display: block;
+  float: left;
+}
+.entry-content .alignright,
+.entry-content img.alignright {
+  margin-left: 1.5em;
+  display: block;
+  float: right;
+}
+.entry-content .aligncenter,
+.entry-content img.aligncenter {
+  margin-right: auto;
+  margin-left: auto;
+  display: block;
+  clear: both;
+  margin-bottom: 10px;
+}
+.entry-content .alignnone,
+.entry-content img.alignnone {
+  /* not sure about this one */
+}
+.entry-content .wp-caption {
+  margin-bottom: 1.5em;
+  text-align: center;
+  padding-top: 5px;
+  max-width: 100%;
+}
+.entry-content .wp-caption img {
+  border: 0 none;
+  padding: 0;
+  margin: 0;
+}
+.entry-content :not(.wp-caption) > img {
+  margin: 10px 0 15px 0;
+}
+.entry-content .wp-caption p.wp-caption-text {
+  line-height: 1.5;
+}
+.entry-content .wp-smiley {
+  margin: 0 !important;
+  max-height: 1em;
+}
+.entry-content blockquote {
+  margin: 20px 0;
+  padding: 30px;
+  background: #e8f8ff;
+  border-left: 5px solid #123c4d;
+  position: relative;
+}
+.entry-content blockquote:before {
+  content: "❝";
+  font-size: 30px;
+  position: absolute;
+  left: 10px;
+  top: 10px;
+}
+.entry-content blockquote:after {
+  content: "❞";
+  font-size: 30px;
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+}
+.entry-content blockquote.left {
+  margin-right: 20px;
+  text-align: right;
+  margin-left: 0;
+  width: 33%;
+  float: left;
+}
+.entry-content blockquote.right {
+  margin-left: 20px;
+  text-align: left;
+  margin-right: 0;
+  width: 33%;
+  float: right;
+}
+.entry-content .widget .widget-title {
+  font-size: 125%;
+}
+.entry-content .sidebar .widget + .widget {
+  margin-top: 20px;
+}
+.entry-content .quick-search-form {
+  display: flex;
+}
+.entry-content .quick-search-form .text-wrap {
+  flex: 1;
+}
+.entry-content .quick-search-form .text-wrap input {
+  width: 100%;
+  border: none;
+  padding: 2px 5px;
+}
+.entry-content .quick-search-form .search-button {
+  border: none;
 }
 
 @media (min-width: 678px) {
