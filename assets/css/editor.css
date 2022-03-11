@@ -126,23 +126,5 @@
   width: 33%;
   float: right;
 }
-.wp-editor .widget .widget-title {
-  font-size: 125%;
-}
-.wp-editor .sidebar .widget + .widget {
-  margin-top: 20px;
-}
-.wp-editor .quick-search-form {
-  display: flex;
-}
-.wp-editor .quick-search-form .text-wrap {
-  flex: 1;
-}
-.wp-editor .quick-search-form .text-wrap input {
-  width: 100%;
-  border: none;
-  padding: 2px 5px;
-}
-.wp-editor .quick-search-form .search-button {
-  border: none;
-}
+
+/*# sourceMappingURL=editor.css.map */

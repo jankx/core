@@ -29,6 +29,20 @@
     width: 100%;
 }
 
+.widget {
+    .widget-title {
+        font-size: 125%;
+    }
+}
+
+.sidebar {
+    .widget {
+        &+.widget {
+            margin-top: 20px;
+        }
+    }
+}
+
 @media(min-width: 767px) {
     body:not(.jankx-fw) {
         .main-content-sidebar-inner {
