@@ -18,6 +18,7 @@ class TemplateAndLayout
     protected $pageType;
     protected $template;
     protected $templateEngine;
+    protected $templateFile;
 
     public static function get_instance()
     {

@@ -233,7 +233,7 @@ class Jankx
         // Run hook jankx init via components
         do_action('jankx/init');
 
-        add_theme_support('html5');
+        add_theme_support('html5', array('comment-list', 'comment-form', 'search-form', 'gallery', 'caption', 'style', 'script'));
         add_theme_support('post-thumbnails');
         add_theme_support('custom-logo', array(
             'height'      => 100,
