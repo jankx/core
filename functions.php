@@ -1,4 +1,6 @@
 <?php
+
+use Jankx\SiteLayout\SiteLayout;
 use Jankx\TemplateEngine\Engine;
 use Jankx\Template\Page;
 use Jankx\Template\Template;
@@ -194,3 +196,6 @@ function jankx_get_toggle_hamburger_menu($props) {
     jankx_template('common/hamburger-menu');
 }
 
+function jankx_get_site_layout($skipDefault = false) {
+    return SiteLayout::getInstance()->getLayout($skipDefault);
+}

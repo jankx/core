@@ -41,11 +41,13 @@ abstract class Filter implements FilterInterface
         return $this->priority;
     }
 
-    public function getArgsCounter() {
+    public function getArgsCounter()
+    {
         return $this->argsCounter;
     }
 
-    public function getExecutor() {
+    public function getExecutor()
+    {
         return $this->executor;
     }
 }

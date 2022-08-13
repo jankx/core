@@ -340,7 +340,7 @@ class Jankx
             $filterObject = new $filterObject();
         }
 
-        foreach($filterObject->getHooks() as $hook) {
+        foreach ($filterObject->getHooks() as $hook) {
             add_filter(
                 $hook,
                 [$filterObject, $filterObject->getExecutor()],
