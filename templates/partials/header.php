@@ -14,7 +14,7 @@
 
         <?php do_action('jankx_template_before_header'); ?>
             <?php
-            if (jankx_get_site_layout() !== 'jankx-c') {
+            if (jankx_get_site_layout() !== 'jankx-fullpage') {
                 jankx_component(
                     'header',
                     apply_filters('jankx_component_header_props', array(
