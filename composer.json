@@ -23,7 +23,6 @@
     "jankx/template": "*",
     "jankx/widget": "*",
     "jankx/pagination": "*",
-    "jankx/yaml": "*",
     "jankx/seo": "*",
     "jankx/wordpress-specs": "*"
   },
