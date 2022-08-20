@@ -347,8 +347,9 @@ class TemplateAndLayout
             $page->setTemplates($templates);
         }
 
-        do_action_ref_array('jankx_prepare_render_template', array(
+        do_action_ref_array('jankx/template/renderer/pre', array(
             &$page,
+            $this->templateFile,
             &$this->templateEngine,
             &$templates,
             $this
@@ -389,7 +390,7 @@ class TemplateAndLayout
         add_action('wp', array($this, 'include'), 30);
 
         // Sharing data
-        add_action('jankx_prepare_render_template', array(Context::class, 'init'));
+        add_action('jankx/template/renderer/pre', array(Context::class, 'init'));
     }
 
     public static function getTemplateEngine()

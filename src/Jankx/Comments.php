@@ -7,7 +7,7 @@ class Comments
     {
         global $wp_query;
         if ($wp_query->is_singular(apply_filters('jankx_enable_comment_post_types', 'post'))) {
-            add_action('jankx_template_after_content', array(__CLASS__, 'show_comments'));
+            add_action('jankx/template/page/content/after', array(__CLASS__, 'show_comments'));
             add_action('jankx_template_after_list_comments', array(__CLASS__, 'show_comment_form'));
             add_action('jankx_template_comment_before_bobdy', array(__CLASS__, 'show_comment_author_avatar'), 10, 2);
         }
