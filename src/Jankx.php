@@ -151,16 +151,6 @@ class Jankx
         };
 
         /**
-         * The config reader will read config file and set the value into GlobalVariables with prefix `config.*`
-         * Example get the config value: \Jankx\GlobalVariables::get('config.theme.version')
-         */
-        $configReader = new ConfigurationReader(apply_filters(
-            'jankx_theme_configuration_file',
-            '.theme.yml'
-        ));
-        $configReader->read();
-
-        /**
          * Load Jankx templates
          */
         $templateLoader = TemplateAndLayout::get_instance();
