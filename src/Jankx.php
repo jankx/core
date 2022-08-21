@@ -13,10 +13,8 @@
  */
 
 use Jankx\Asset\AssetManager;
-use Jankx\Command\CLI;
 use Jankx\Comments;
 use Jankx\Component\Registry;
-use Jankx\ConfigurationReader;
 use Jankx\GlobalVariables;
 use Jankx\Guarder;
 use Jankx\ScriptLoader;
@@ -33,6 +31,7 @@ use Jankx\Widget\WidgetManager;
 use Jankx\Megu\Megu as MegaMenu;
 use Jankx\IconFonts;
 use Jankx\Admin\Admin;
+use Jankx\Command\CommandManager;
 use Jankx\CSS\GlobalVariables as GlobalCSSVariables;
 use Jankx\Interfaces\Filter;
 
@@ -198,7 +197,7 @@ class Jankx
         $scriptLoader->load();
 
         if (class_exists(WP_CLI::class)) {
-            CLI::getInstance();
+            CommandManager::getInstance();
         }
 
         // Setup Jankx::device() method
