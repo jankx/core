@@ -1,6 +1,10 @@
 <?php
 namespace Jankx;
 
+use Icon_Picker;
+use Icon_Picker_Type_Font;
+use Jankx\IconFonts\IconPickerType;
+
 class IconFonts
 {
     protected static $instance;
@@ -92,7 +96,7 @@ class IconFonts
                 jankx_get_path_url($args['path']),
                 array(),
                 $args['version']
-            );
+            )->enqueue();
         }
     }
 
@@ -109,13 +113,14 @@ class IconFonts
 
             add_action('icon_picker_default_types', [$this, 'integrateWithMenuIcons']);
             add_action('icon_picker_default_types', [$this, 'registerFontIconForIconPicker'], 20);
-            add_action('menu_icons_settings_sections', [$this, 'integrateWithMenuIcons']);
+            // add_action('menu_icons_settings_sections', [$this, 'integrateWithMenuIcons']);
         }
     }
 
-    public function integrateWithMenuIcons($iconsOrSections) {
+    public function integrateWithMenuIcons($iconsOrSections)
+    {
         if (!empty($this->fonts)) {
-            foreach($this->fonts as $font) {
+            foreach ($this->fonts as $font) {
                 $fontId   = array_get($font, 'font-family', 'noname');
                 $fontName = array_get($font, 'name', __('No Name', 'jankx'));
 
@@ -131,10 +136,17 @@ class IconFonts
         return $iconsOrSections;
     }
 
-    public function registerFontIconForIconPicker() {
-        if(file_exists(Icon_Picker_Type_Font::class)) {
-            return;
+    public function registerFontIconForIconPicker($fonts)
+    {
+        if (class_exists(Icon_Picker_Type_Font::class) && !empty($this->fonts)) {
+            foreach ($this->fonts as $font) {
+                $icon_picker = Icon_Picker::instance();
+                $iconPickerType = new IconPickerType();
+                $iconPickerType->set_font_data($font);
+
+                $icon_picker->registry->add($iconPickerType);
+            }
         }
-        // $icon_picker = Icon_Picker::instance();
+        return $fonts;
     }
 }

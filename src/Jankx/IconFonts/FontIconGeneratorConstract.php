@@ -8,5 +8,6 @@ interface FontIconGeneratorConstract
     public function setFontFamily($path);
     public function isMatched();
     public function getGlyphMaps();
+    public function detectPrefix();
     public function getDisplayPrefix();
 }

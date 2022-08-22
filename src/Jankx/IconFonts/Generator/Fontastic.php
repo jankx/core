@@ -9,6 +9,7 @@ class Fontastic extends FontIconGenerator
     protected $fontName;
     protected $content;
     protected $prefix;
+    protected $items = [];
 
     public function isMatched()
     {
@@ -18,12 +19,15 @@ class Fontastic extends FontIconGenerator
         }
     }
 
-    protected function detectPrefix()
+    public function detectPrefix()
     {
-        $this->content = file_get_contents($this->fontPath);
-        if (preg_match('/\[class\^\=\"([^\-]+\-)/', $this->content, $matches)) {
-            return $matches[1];
+        if (is_null($this->content)) {
+            $this->content = file_get_contents($this->fontPath);
         }
+        if (is_null($this->prefix) && preg_match('/\[class\^\=\"([^\-]+\-)/', $this->content, $matches)) {
+            $this->prefix = $matches[1];
+        }
+        return $this->prefix;
     }
 
     public function iconSelector()
@@ -46,24 +50,23 @@ class Fontastic extends FontIconGenerator
 
     public function getGlyphMaps()
     {
-        $prefix = $this->detectPrefix();
-        $this->prefix = $prefix;
-        if ($prefix) {
+        if (is_null($this->prefix)) {
+            $this->prefix = $this->detectPrefix();
+        }
+
+        if ($this->prefix && empty($this->items)) {
             if (preg_match_all(
-                '/\.(atz-[^\:]+)\:before ?\{\s{1,}content\:\s?\"\\\\([^\"]+)/',
+                '/\.('. $this->prefix .'[^\:]+)\:before ?\{\s{1,}content\:\s?\"\\\\([^\"]+)/',
                 $this->content,
                 $matches
             )) {
-                return array_combine(array_map(function ($code) use ($prefix) {
+                $prefix = $this->prefix;
+                unset($this->content);
+                return $this->items = array_combine(array_map(function ($code) use ($prefix) {
                     return sprintf('%s%s', $prefix, $code);
                 }, $matches[2]), $matches[1]);
             }
         }
-        return array();
-    }
-
-    public function getDisplayPrefix()
-    {
-        return $this->prefix;
+        return $this->items;
     }
 }

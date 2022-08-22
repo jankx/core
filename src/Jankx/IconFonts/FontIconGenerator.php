@@ -6,6 +6,7 @@ abstract class FontIconGenerator implements FontIconGeneratorConstract
     protected $fontPath;
     protected $fontName;
     protected $fontFamily;
+    protected $version;
 
     public function setFontName($fontName)
     {
@@ -36,5 +37,20 @@ abstract class FontIconGenerator implements FontIconGeneratorConstract
     public function getFontFamily()
     {
         return $this->fontFamily;
+    }
+
+    public function setVersion($version)
+    {
+        $this->version = $version;
+    }
+
+    public function getVersion()
+    {
+        return $this->version;
+    }
+
+    public function getDisplayPrefix()
+    {
+        return $this->prefix;
     }
 }

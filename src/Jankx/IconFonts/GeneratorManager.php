@@ -29,7 +29,10 @@ class GeneratorManager
         return static::$generators;
     }
 
-    public static function detectGenerator($font_name, $path, $font_family)
+    /**
+     * @return \Jankx\IconFonts\FontIconGenerator|null
+     */
+    public static function detectGenerator($font_name, $path, $font_family, $version = null)
     {
         $generators = static::getGenerators();
 
@@ -37,6 +40,7 @@ class GeneratorManager
             $generator->setFontPath($path);
             $generator->setFontName($font_name);
             $generator->setFontFamily($font_family);
+            $generator->setVersion($version);
 
             if ($generator->isMatched()) {
                 return $generator;
