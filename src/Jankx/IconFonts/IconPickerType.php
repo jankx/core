@@ -2,6 +2,7 @@
 namespace Jankx\IconFonts;
 
 use Icon_Picker_Type_Font;
+use Icon_Picker_Loader;
 
 class IconPickerType extends Icon_Picker_Type_Font
 {
@@ -45,6 +46,9 @@ class IconPickerType extends Icon_Picker_Type_Font
      * @var \Jankx\IconFonts\FontIconGenerator
      */
     protected $fontGenerator;
+
+    public function register_assets(Icon_Picker_Loader $loader) {
+    }
 
 
     public function set_font_data($data)

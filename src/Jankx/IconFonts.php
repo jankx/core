@@ -113,7 +113,6 @@ class IconFonts
 
             add_action('icon_picker_default_types', [$this, 'integrateWithMenuIcons']);
             add_action('icon_picker_default_types', [$this, 'registerFontIconForIconPicker'], 20);
-            // add_action('menu_icons_settings_sections', [$this, 'integrateWithMenuIcons']);
         }
     }
 
