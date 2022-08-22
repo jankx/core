@@ -106,6 +106,35 @@ class IconFonts
                 add_action('jankx_asset_css_dependences', array($this, 'addIconFontAsDeps'));
             }
             do_action('jankx/icons/feature/init', $this->fonts);
+
+            add_action('icon_picker_default_types', [$this, 'integrateWithMenuIcons']);
+            add_action('icon_picker_default_types', [$this, 'registerFontIconForIconPicker'], 20);
+            add_action('menu_icons_settings_sections', [$this, 'integrateWithMenuIcons']);
         }
+    }
+
+    public function integrateWithMenuIcons($iconsOrSections) {
+        if (!empty($this->fonts)) {
+            foreach($this->fonts as $font) {
+                $fontId   = array_get($font, 'font-family', 'noname');
+                $fontName = array_get($font, 'name', __('No Name', 'jankx'));
+
+                // Check is not menu icon picker
+                if (!isset($iconsOrSections['global']['fields'])) {
+                    $iconsOrSections[$fontId] = $fontName;
+                    continue;
+                }
+                $iconsOrSections['global']['fields'][0]['choices'][$fontId] = $fontName;
+            }
+        }
+
+        return $iconsOrSections;
+    }
+
+    public function registerFontIconForIconPicker() {
+        if(file_exists(Icon_Picker_Type_Font::class)) {
+            return;
+        }
+        // $icon_picker = Icon_Picker::instance();
     }
 }
