@@ -49,6 +49,10 @@ function jankx_container_css_class($custom_classes = '')
         $custom_classes = array();
     }
 
+    if (apply_filters('jankx/css/class/container/wrap', true)) {
+        $css_class[] = 'has-wrap';
+    }
+
     $css_class = apply_filters(
         'jankx_template_the_container_classes',
         array_merge($css_class, (array)$custom_classes)
