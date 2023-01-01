@@ -11,9 +11,9 @@
 
     <div class="post-infos">
         <?php if ($show_title) : ?>
-        <h3 class="post-title">
+        <<?php $this->e($post_title_tag); ?> class="post-title">
             <a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php the_title(); ?></a>
-        </h3>
+        </<?php $this->e($post_title_tag); ?>>
         <?php endif; ?>
 
         <?php if (!empty($post_meta_features)) : ?>
