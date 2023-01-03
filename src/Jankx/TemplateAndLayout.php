@@ -355,7 +355,7 @@ class TemplateAndLayout
             $this
         ));
 
-        if ($this->templateFile === false || apply_filters('alway_use_jankx_template_engine_system', false)) {
+        if ($this->templateFile === false || apply_filters('jankx/template/engine/jankx/force-enable', false)) {
             return jankx();
         }
 
