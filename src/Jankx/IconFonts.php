@@ -95,7 +95,9 @@ class IconFonts
                 $css_handle,
                 jankx_get_path_url($args['path']),
                 array(),
-                $args['version']
+                $args['version'],
+                'all',
+                true // Preload webfont
             )->enqueue();
         }
     }
