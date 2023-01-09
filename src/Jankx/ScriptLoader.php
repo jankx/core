@@ -89,24 +89,28 @@ class ScriptLoader
 
     public function appendDefaultCSS($styles)
     {
-        $jankxCssVer = fileatime(sprintf(
-            '%s/assets/css/jankx.css',
-            dirname(JANKX_FRAMEWORK_FILE_LOADER)
-        ));
-
         return array_merge(
             $styles,
             array(
                 'jankx-base' => array(
-                    'url' => jankx_core_asset_url('css/jankx.css'),
+                    'url' => [
+                        'url' => jankx_core_asset_url('css/jankx.css'),
+                        'url.min' => jankx_core_asset_url('css/jankx.min.css')
+                    ],
                     'version' => $this->revisionVersion,
                 ),
                 'choices' => array(
-                    'url' => jankx_core_asset_url('libs/Choices/styles/choices.css'),
+                    'url' => [
+                        'url' => jankx_core_asset_url('libs/Choices/styles/choices.css'),
+                        'url.min' => jankx_core_asset_url('libs/Choices/styles/choices.min.css')
+                    ],
                     'version' => '9.0.1',
                 ),
                 'ispin' => array(
-                    'url' => jankx_core_asset_url('libs/ispinjs-2.0.1/css/ispin.css'),
+                    'url' => [
+                        'url' => jankx_core_asset_url('libs/ispinjs-2.0.1/css/ispin.css'),
+                        'url.min' => jankx_core_asset_url('libs/ispinjs-2.0.1/css/ispin.min.css'),
+                    ],
                     'version' => '2.0.1'
                 )
             )
