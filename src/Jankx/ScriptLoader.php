@@ -35,31 +35,52 @@ class ScriptLoader
                     'version' => '2.2.1',
                 ),
                 'popperjs' => array(
-                    'url' => jankx_core_asset_url('libs/popperjs/popper.js'),
+                    'url' => [
+                        'url' => jankx_core_asset_url('libs/popperjs/popper.js'),
+                        'url.min' => jankx_core_asset_url('libs/popperjs/popper.min.js')
+                    ],
                     'version' => '2.9.1',
                 ),
                 'slideout' => array(
-                    'url' => jankx_core_asset_url('libs/slideout/slideout.js'),
+                    'url' => [
+                        'url' => jankx_core_asset_url('libs/slideout/slideout.js'),
+                        'url.min' => jankx_core_asset_url('libs/slideout/slideout.min.js'),
+                    ],
                     'version' => '1.0.1',
                 ),
                 'micromodal' => array(
-                    'url' => jankx_core_asset_url('libs/micromodal/micromodal.js'),
+                    'url' => [
+                        'url' => jankx_core_asset_url('libs/micromodal/micromodal.js'),
+                        'url.min' => jankx_core_asset_url('libs/micromodal/micromodal.min.js'),
+                    ],
                     'version' => '0.4.6',
                 ),
                 'choices' => array(
-                    'url' => jankx_core_asset_url('libs/Choices/scripts/choices.js'),
+                    'url' => [
+                        'url' => jankx_core_asset_url('libs/Choices/scripts/choices.js'),
+                        'url.min' => jankx_core_asset_url('libs/Choices/scripts/choices.min.js')
+                    ],
                     'version' => '9.0.1',
                 ),
                 'sharing' => array(
-                    'url' => jankx_core_asset_url('libs/vanilla-sharing/vanilla-sharing.umd.js'),
+                    'url' => [
+                        'url' => jankx_core_asset_url('libs/vanilla-sharing/vanilla-sharing.umd.js'),
+                        'url.min' => jankx_core_asset_url('libs/vanilla-sharing/vanilla-sharing.min.js'),
+                    ],
                     'version' => '6.0.5',
                 ),
                 'tim' => array(
-                    'url' => jankx_core_asset_url('libs/tim/tinytim.js'),
+                    'url' => [
+                        'url' => jankx_core_asset_url('libs/tim/tinytim.js'),
+                        'url.min' => jankx_core_asset_url('libs/tim/tinytim.min.js'),
+                    ],
                     'version' => '1.0.0'
                 ),
                 'ispin' => array(
-                    'url' => jankx_core_asset_url('libs/ispinjs-2.0.1/js/ispin.js'),
+                    'url' => [
+                        'url' => jankx_core_asset_url('libs/ispinjs-2.0.1/js/ispin.js'),
+                        'url.min' => jankx_core_asset_url('libs/ispinjs-2.0.1/js/ispin.min.js'),
+                    ],
                     'version' => '2.0.1'
                 )
             )

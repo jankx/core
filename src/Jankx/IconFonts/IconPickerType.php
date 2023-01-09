@@ -47,7 +47,8 @@ class IconPickerType extends Icon_Picker_Type_Font
      */
     protected $fontGenerator;
 
-    public function register_assets(Icon_Picker_Loader $loader) {
+    public function register_assets(Icon_Picker_Loader $loader)
+    {
     }
 
 
