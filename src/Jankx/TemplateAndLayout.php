@@ -359,8 +359,10 @@ class TemplateAndLayout
             return jankx();
         }
 
-        if (!is_null($this->templateFile)) {
+        if (!empty($this->templateFile)) {
             include $this->templateFile;
+        } else {
+            error_log(__('The template not found!', 'jankx'));
         }
     }
 
