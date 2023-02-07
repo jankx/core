@@ -918,11 +918,12 @@ input[type=text], input[type=button], input[type=submit], input[type=reset] {
   margin-right: auto;
   margin-left: auto;
   position: relative;
-  padding-left: 15px;
-  padding-right: 15px;
 }
+
 .jankx-base .jankx-container.has-wrap {
   max-width: 1493px;
+  padding-left: 15px;
+  padding-right: 15px;
 }
 
 .screen-reader-text {
