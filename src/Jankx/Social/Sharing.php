@@ -334,7 +334,7 @@ final class Sharing
         // When social sharing is not initialized log the error
         if (!static::$initialized) {
             error_log(__('Jankx social sharing is not initialized yet', 'jankx'));
-            return 0;
+            return;
         }
         ?>
         <div class="jankx-socials-sharing drop-styles">

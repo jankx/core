@@ -1,6 +1,13 @@
 <div class="social_sidebar_internal">
-    <a href="<?php echo site_url(); ?>" target="_blank"><i class="fab fa-facebook-f"></i></a>
-    <a href="<?php echo site_url(); ?>" target="_blank"><i class="fab fa-twitter"></i></a>
-    <a href="<?php echo site_url(); ?>" target="_blank"><i class="fab fa-pinterest-p"></i></a>
-    <a href="<?php echo site_url(); ?>" target="_blank"><i class="fab fa-youtube"></i></a>
+    <?php if (empty($socials)) : ?>
+        <ul class="jankx-socials">
+            <?php foreach ($socials as $name => $social) : ?>
+                <li <?php echo jankx_generate_html_attributes([
+                    'class' => ['social-item', 'social-' . $name],
+                ]); ?>>
+                    <a href="<?php array_get($social, 'url'); ?>" target="<?php echo array_get($social, 'target'); ?>"><i class="<?php echo array_get($social, 'icon') ?>"></i></a>
+                </li>
+            <?php endforeach; ?>
+        </ul>
+    <?php endif; ?>
 </div>

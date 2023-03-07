@@ -21,7 +21,6 @@
     "jankx/site-layout": "*",
     "jankx/post-layout": "*",
     "jankx/template": "^1.0.0",
-    "jankx/widget": "*",
     "jankx/pagination": "*",
     "jankx/seo": "*",
     "jankx/wordpress-specs": "*"

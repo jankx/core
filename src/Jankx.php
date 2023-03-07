@@ -52,6 +52,13 @@ class Jankx
     protected $admin;
     protected $filters = [];
 
+    protected $asset;
+    protected $optionFramework;
+    protected $siteLayout;
+    protected $ux;
+    protected $widgets;
+    protected $socialConnects;
+
     public static function __callStatic($name, $args)
     {
         $instance = self::instance();
