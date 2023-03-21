@@ -2,9 +2,11 @@
 
 namespace Jankx\Social;
 
-class Connects {
+class Connects
+{
     protected $networks = [];
 
-    public function getNetworks() {
+    public function getNetworks()
+    {
     }
 }
