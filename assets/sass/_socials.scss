@@ -18,3 +18,28 @@
         z-index: 99;
     }
 }
+
+
+/**************************
+ * Social connects
+ **************************/
+.jankx-socials {
+    display: flex;
+    width: 100%;
+
+    .social-item {
+        margin-right: 8px;
+        a {
+            display: flex;
+        }
+        svg, img {
+            width: 40px;
+            width: var(--social-icon-size);
+            height: auto;
+        }
+
+        &+.social-item {
+            margin-top: 0;
+        }
+    }
+}

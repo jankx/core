@@ -919,9 +919,8 @@ input[type=text], input[type=button], input[type=submit], input[type=reset] {
   margin-left: auto;
   position: relative;
 }
-
 .jankx-base .jankx-container.has-wrap {
-  max-width: 1493px;
+  max-width: 1100px;
   padding-left: 15px;
   padding-right: 15px;
 }
@@ -990,6 +989,28 @@ input[type=text], input[type=button], input[type=submit], input[type=reset] {
 
 .drop-element.drop-open {
   z-index: 99;
+}
+
+/**************************
+ * Social connects
+ **************************/
+.jankx-socials {
+  display: flex;
+  width: 100%;
+}
+.jankx-socials .social-item {
+  margin-right: 8px;
+}
+.jankx-socials .social-item a {
+  display: flex;
+}
+.jankx-socials .social-item svg, .jankx-socials .social-item img {
+  width: 40px;
+  width: var(--social-icon-size);
+  height: auto;
+}
+.jankx-socials .social-item + .social-item {
+  margin-top: 0;
 }
 
 @media (min-width: 768px) {

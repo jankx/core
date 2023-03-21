@@ -21,6 +21,7 @@ class GlobalVariables
             'text-color' => '#464646',
             'text-success-color' => '#155724',
             'bg-success-color' => '#d4edda',
+            'social-icon-size' => '36px',
         );
     }
 
