@@ -3,4 +3,4 @@
  * Content page index
  */
 
-echo 'Hello Jankx Framework';
+echo get_the_block_template_html();
