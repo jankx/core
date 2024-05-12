@@ -1,4 +1,5 @@
 <?php
+
 namespace Jankx\Social;
 
 use WP_Post;
@@ -65,7 +66,7 @@ final class Sharing
     );
 
     protected static $social_meta_mapping = array(
-        'fbFeed'=> array(
+        'fbFeed' => array(
             'url' => 'url',
             'redirectUri' => 'url',
             'fbAppId' => 'facebook_app_id'

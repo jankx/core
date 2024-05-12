@@ -1,4 +1,5 @@
 <?php
+
 namespace Jankx\IconFonts;
 
 use Icon_Picker_Type_Font;

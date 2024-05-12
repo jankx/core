@@ -1,4 +1,5 @@
 <?php
+
 namespace Jankx;
 
 use Jankx\Interfaces\Filter as FilterInterface;

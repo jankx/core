@@ -1,4 +1,5 @@
 <?php
+
 namespace Jankx\IconFonts\Generator;
 
 use Jankx\IconFonts\FontIconGenerator;
@@ -55,11 +56,13 @@ class Fontastic extends FontIconGenerator
         }
 
         if ($this->prefix && empty($this->items)) {
-            if (preg_match_all(
-                '/\.('. $this->prefix .'[^\:]+)\:before ?\{\s{1,}content\:\s?\"\\\\([^\"]+)/',
-                $this->content,
-                $matches
-            )) {
+            if (
+                preg_match_all(
+                    '/\.(' . $this->prefix . '[^\:]+)\:before ?\{\s{1,}content\:\s?\"\\\\([^\"]+)/',
+                    $this->content,
+                    $matches
+                )
+            ) {
                 $prefix = $this->prefix;
                 unset($this->content);
                 return $this->items = array_combine(array_map(function ($code) use ($prefix) {

@@ -1,4 +1,5 @@
 <?php
+
 namespace Jankx\UX;
 
 use Jankx\Asset\CustomizableAsset;

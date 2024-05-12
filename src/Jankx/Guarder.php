@@ -1,4 +1,5 @@
 <?php
+
 namespace Jankx;
 
 if (!defined('ABSPATH')) {

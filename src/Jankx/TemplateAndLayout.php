@@ -1,4 +1,5 @@
 <?php
+
 namespace Jankx;
 
 use WP_Post_Type;

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This is the main class or the main gate to a developer
  * can use it to run all features of the framework.

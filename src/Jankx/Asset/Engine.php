@@ -1,4 +1,5 @@
 <?php
+
 namespace Jankx\Asset;
 
 use Jankx\TemplateEngine\Engines\Plates;

@@ -1,4 +1,5 @@
 <?php
+
 namespace Jankx\IconFonts;
 
 use Jankx\IconFonts\Generator\Fontastic;

@@ -1,4 +1,5 @@
 <?php
+
 namespace Jankx\UX;
 
 class Mobile

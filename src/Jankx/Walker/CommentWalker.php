@@ -1,4 +1,5 @@
 <?php
+
 namespace Jankx\Walker;
 
 use Walker_Comment;

@@ -1,4 +1,5 @@
 <?php
+
 namespace Jankx\IconFonts;
 
 abstract class FontIconGenerator implements FontIconGeneratorConstract
