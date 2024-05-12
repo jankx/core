@@ -355,6 +355,10 @@ class TemplateAndLayout
             $this
         ));
 
+        if (function_exists('jankx_is_support_block_template') && jankx_is_support_block_template()) {
+            $this->templateFile = locate_block_template($this->templateFile, $page->getContext(), $page->getTemplates());
+        }
+
         if (empty($this->templateFile) || apply_filters('jankx/template/engine/jankx/force-enable', false)) {
             return jankx();
         }
