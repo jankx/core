@@ -357,7 +357,9 @@ class TemplateAndLayout
         ));
 
         if (function_exists('jankx_is_support_block_template') && jankx_is_support_block_template()) {
-            $this->templateFile = locate_block_template($this->templateFile, $page->getContext(), $page->getTemplates());
+            $this->templateFile = locate_block_template(
+                is_null($this->templateFile) ? $page->getContext() : $this->templateFile, $page->getContext(), $page->getTemplates()
+            );
         }
 
         if (empty($this->templateFile) || apply_filters('jankx/template/engine/jankx/force-enable', false)) {
