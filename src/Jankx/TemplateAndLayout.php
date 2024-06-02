@@ -357,9 +357,20 @@ class TemplateAndLayout
         ));
 
         if (function_exists('jankx_is_support_block_template') && jankx_is_support_block_template()) {
-            $this->templateFile = locate_block_template(
-                is_null($this->templateFile) ? $page->getContext() : $this->templateFile, $page->getContext(), $page->getTemplates()
+            // setup Gutenberg structure
+            locate_block_template(
+                is_null($this->templateFile) ? $page->getContext() : $this->templateFile,
+                $page->getContext(),
+                $page->getTemplates()
             );
+
+            if (defined('JANKX_DEBUG_BLOCKS') && JANKX_DEBUG_BLOCKS) {
+                error_log(sprintf(
+                    'Jankx Blocks has been resolved. The template file is: "%s"(%s)',
+                    var_export($this->templateFile),
+                    gettype($this->templateFile))
+                );
+            }
         }
 
         if (empty($this->templateFile) || apply_filters('jankx/template/engine/jankx/force-enable', false)) {
