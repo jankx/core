@@ -68,7 +68,7 @@ class TemplateAndLayout
                 return str_replace('is_', '', $tag_template);
             }
         }
-        return 'home';
+        return 'index';
     }
 
     public function setTemplateFile($templateFile)
@@ -358,7 +358,6 @@ class TemplateAndLayout
         ));
 
         if (function_exists('jankx_is_support_block_template') && jankx_is_support_block_template()) {
-
             // setup Gutenberg structure
             locate_block_template(
                 is_null($this->templateFile) ? $page->getContext() : $this->templateFile,
