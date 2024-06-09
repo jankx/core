@@ -34,41 +34,43 @@ class TemplateAndLayout
     {
     }
 
-    protected function loadPageType()
+    public function detectCurrentPageType()
     {
-        do_action('jankx_template_loader_page_type', $this);
-
-        $tag_templates = array_unique(
-            array_merge(
-                apply_filters('jankx_custom_template_tags', array()),
-                array(
-                    'is_embed',
-                    'is_404',
-                    'is_search',
-                    'is_home',
-                    'is_front_page',
-                    'is_privacy_policy',
-                    'is_post_type_archive',
-                    'is_tax',
-                    'is_attachment',
-                    'is_single',
-                    'is_page',
-                    'is_singular',
-                    'is_category',
-                    'is_tag',
-                    'is_author',
-                    'is_date',
-                    'is_archive',
+        do_action('jankx_template_loader_page_type', $this->pageType, $this);
+        if (is_null($this->pageType)) {
+            $tag_templates = array_unique(
+                array_merge(
+                    apply_filters('jankx_custom_template_tags', array()),
+                    array(
+                        'is_embed',
+                        'is_404',
+                        'is_search',
+                        'is_home',
+                        'is_front_page',
+                        'is_privacy_policy',
+                        'is_post_type_archive',
+                        'is_tax',
+                        'is_attachment',
+                        'is_single',
+                        'is_page',
+                        'is_singular',
+                        'is_category',
+                        'is_tag',
+                        'is_author',
+                        'is_date',
+                        'is_archive',
+                    )
                 )
-            )
-        );
+            );
 
-        foreach ($tag_templates as $tag_template) {
-            if (call_user_func($tag_template)) {
-                return str_replace('is_', '', $tag_template);
+            foreach ($tag_templates as $tag_template) {
+                if (call_user_func($tag_template)) {
+                    $this->pageType = str_replace('is_', '', $tag_template);
+                    break;
+                }
             }
         }
-        return 'index';
+        return empty($this->pageType) ? 'index' : $this->pageType;
     }
 
     public function setTemplateFile($templateFile)
@@ -329,7 +331,7 @@ class TemplateAndLayout
             return;
         }
 
-        $this->pageType = $this->loadPageType();
+        $this->pageType = $this->detectCurrentPageType();
         $templates = array();
         if (!wp_using_themes()) {
             $this->initJankxThemeSystem();
