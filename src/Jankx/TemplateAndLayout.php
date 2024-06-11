@@ -195,7 +195,7 @@ class TemplateAndLayout
         return $templates;
     }
 
-    function get_tag_template()
+    function get_tag_templates()
     {
         $tag = get_queried_object();
 
@@ -301,7 +301,12 @@ class TemplateAndLayout
         return $templates;
     }
 
-    function get_author_template()
+    public function get_home_templates()
+    {
+        return ['home'];
+    }
+
+    function get_author_templates()
     {
         $author = get_queried_object();
 
