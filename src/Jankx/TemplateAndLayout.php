@@ -65,7 +65,9 @@ class TemplateAndLayout
 
             foreach ($tag_templates as $tag_template) {
                 if (call_user_func($tag_template)) {
-                    $this->pageType = str_replace('is_', '', $tag_template);
+                    $this->pageType = strpos($tag_template, 'archive') !== false
+                        ? 'archive'
+                        : str_replace('is_', '', $tag_template);
                     break;
                 }
             }
@@ -350,6 +352,10 @@ class TemplateAndLayout
             array($this, sprintf('get_%s_templates', $this->pageType)),
             $this->pageType
         );
+
+        // var_dump("{$this->pageType}_template_hierarchy");die;
+
+        // archive_template_hierarchy
 
         if (is_callable($callback)) {
             $templates = call_user_func($callback);
