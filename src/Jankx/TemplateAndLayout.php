@@ -353,7 +353,9 @@ class TemplateAndLayout
 
         if (is_callable($callback)) {
             $templates = call_user_func($callback);
-            $page->setTemplates($templates);
+            $page->setTemplates(
+                apply_filters("{$this->pageType}_template_hierarchy", $templates)
+            );
         }
 
         do_action_ref_array('jankx/template/renderer/pre', array(
