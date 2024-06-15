@@ -35,6 +35,11 @@ use Jankx\Admin\Admin;
 use Jankx\Command\CommandManager;
 use Jankx\CSS\GlobalVariables as GlobalCSSVariables;
 use Jankx\Interfaces\Filter;
+use Jankx\ThemeConfigugrations;
+use Symfony\Component\ClassMetadataFactory;
+use Symfony\Component\ObjectNormalizer;
+use Symfony\Component\Serializer;
+use Symfony\Component\AbstractNormalizer;
 
 /**
  * This class is middle-class interaction between developer and other classes
@@ -84,6 +89,25 @@ class Jankx
     {
         define('JANKX_CACHE_DIR', sprintf('%s/jankx/caches/', WP_CONTENT_DIR));
         define('JANKX_CACHE_DIR_URL', content_url('jankx/caches'));
+
+        $this->parseThemeJson();
+    }
+
+
+    protected function parseThemeJson()
+    {
+        $templateJson = join(DIRECTORY_SEPARATOR, [get_template_directory(), "theme.json"]);
+        $themeJson = join(DIRECTORY_SEPARATOR, [get_stylesheet_directory(), "theme.json"]);
+
+        $classMetadataFactory = new ClassMetadataFactory($loader);
+        $normalizer = new ObjectNormalizer($classMetadataFactory);
+        $serializer = new Serializer($normalizer);
+
+        if (file_exists($templateJson)) {
+            $templateConfigs = $serializer->deserialize(file_get_contents($templateJson), ThemeConfigugrations::class, 'json', [
+                AbstractNormalizer::ALLOW_EXTRA_ATTRIBUTES => false,
+            ]);
+        }
     }
 
     public function setup()

@@ -2,8 +2,6 @@
 
 namespace Jankx;
 
-use Jankx;
-
 class ScriptLoader
 {
     protected $theme;
