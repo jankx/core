@@ -17,7 +17,7 @@ use Jankx\Asset\AssetManager;
 use Jankx\Comments;
 use Jankx\Component\Registry;
 use Jankx\Configs\ThemeConfigurations;
-use Jankx\GlobalVariables;
+use Jankx\Data\CustomPostTypes;
 use Jankx\Guarder;
 use Jankx\ScriptLoader;
 use Jankx\Option\Framework as OptionFramework;
@@ -30,11 +30,12 @@ use Jankx\TemplateAndLayout;
 use Jankx\PostTemplateLoader;
 use Jankx\UX\UserExperience;
 use Jankx\Widget\WidgetManager;
-use Jankx\Megu\Megu as MegaMenu;
 use Jankx\IconFonts;
 use Jankx\Admin\Admin;
 use Jankx\Command\CommandManager;
 use Jankx\CSS\GlobalVariables as GlobalCSSVariables;
+use Jankx\Data\CustomPostTypesRegistry;
+use Jankx\GlobalConfigs;
 use Jankx\Interfaces\Filter;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Encoder\XmlEncoder;
@@ -64,6 +65,8 @@ class Jankx
     protected $ux;
     protected $widgets;
     protected $socialConnects;
+
+    protected $textDomain;
 
     public static function __callStatic($name, $args)
     {
@@ -114,7 +117,7 @@ class Jankx
         $serializer = new Serializer($normalizers, $encoders);
 
         $configs = $serializer->denormalize($templateConfig, ThemeConfigurations::class, 'json');
-        GlobalVariables::parseFromThemeJson($configs);
+        GlobalConfigs::parseFromThemeJson($configs);
     }
 
     public function setup()
@@ -173,7 +176,7 @@ class Jankx
             return $theme;
         };
         $this->templateName = function () use ($themeParent) {
-            return GlobalVariables::get(
+            return GlobalConfigs::get(
                 'theme.short_name',
                 $themeParent->get('Name')
             );
@@ -181,6 +184,8 @@ class Jankx
         $this->templateStylesheet = function () use ($themeParent) {
             return $themeParent->stylesheet;
         };
+
+        $this->textDomain = $themeParent->get('TextDomain');
 
         // Create Jankx admin instance;
         $admin = is_admin() ? new Admin() : null;
@@ -235,7 +240,7 @@ class Jankx
         $scriptLoader = new ScriptLoader();
         $scriptLoader->load();
 
-        if (class_exists(WP_CLI::class)) {
+        if (class_exists('WP_CLI')) {
             CommandManager::getInstance();
         }
 
@@ -247,8 +252,12 @@ class Jankx
 
         add_action('init', array($this, 'init'));
 
+        // Register custom post types
+        $customPostTypesRegistry = new CustomPostTypesRegistry();
+        add_action('init', [$customPostTypesRegistry, 'registerPostTypes']);
+
         // Init socials sharing
-        if (apply_filters('jankx_socials_sharing_enable', GlobalVariables::get('socials.sharing', true))) {
+        if (apply_filters('jankx_socials_sharing_enable', GlobalConfigs::get('socials.sharing', true))) {
             add_action('after_setup_theme', array(Sharing::class, 'get_instance'));
         }
 
@@ -331,6 +340,12 @@ class Jankx
         );
     }
 
+    public static function getTextDomain()
+    {
+        $instance = static::instance();
+        return $instance->textDomain;
+    }
+
     public static function render($templates, $data = array(), $echo = true)
     {
         $engine = Template::getEngine(static::ENGINE_ID);
@@ -346,8 +361,8 @@ class Jankx
         do_action('jankx/load/extra');
 
         // Support Mega Menu
-        if (class_exists(MegaMenu::class)) {
-            MegaMenu::getInstance();
+        if (class_exists('\Jankx\Megu\Megu')) {
+            call_user_func(['\Jankx\Megu\Megu', 'getInstance']);
         }
     }
 

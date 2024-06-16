@@ -4,7 +4,7 @@ namespace Jankx\UX;
 
 use Jankx\Asset\CustomizableAsset;
 use Jankx\Asset\Cache;
-use Jankx\GlobalVariables;
+use Jankx\GlobalConfigs;
 
 class Customize
 {
@@ -36,7 +36,7 @@ class Customize
 
     public function footerWidgets($numberOfAreas)
     {
-        $widget_areas = GlobalVariables::get('site.layout.footer.sidebars');
+        $widget_areas = GlobalConfigs::get('site.layout.footer.sidebars');
         if ($widget_areas > 0) {
             return $widget_areas;
         }

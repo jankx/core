@@ -8,6 +8,10 @@ class ThemeConfigurations
 
     private $layouts = [];
 
+    private $site = [];
+
+    private $customs = [];
+
 
     // Getters
     public function getTemplateName()
@@ -20,12 +24,14 @@ class ThemeConfigurations
         return $this->layouts;
     }
 
-    public function __get($name)
+    public function getSite()
     {
-        $property = str_replace('get', '', $name);
-        $property = preg_replace_callback('/^[\w]/', function ($c) {
-            var_dump($c);
-        }, $property);
+        return $this->site;
+    }
+
+    public function getCustoms()
+    {
+        return $this->customs;
     }
 
     // Setters
@@ -37,5 +43,15 @@ class ThemeConfigurations
     public function setLayouts($layouts)
     {
         $this->layouts = $layouts;
+    }
+
+    public function setSite($site)
+    {
+        $this->site = $site;
+    }
+
+    public function setCustoms($customs)
+    {
+        $this->customs = $customs;
     }
 }
