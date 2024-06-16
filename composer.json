@@ -24,7 +24,8 @@
     "jankx/pagination": "*",
     "jankx/seo": "*",
     "jankx/wordpress-specs": "*",
-    "symfony/serializer": "^5.4"
+    "symfony/serializer": "^5.4",
+    "symfony/property-access": "^5.4"
   },
   "autoload": {
     "psr-4": {
