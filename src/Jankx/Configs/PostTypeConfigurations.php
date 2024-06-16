@@ -73,7 +73,10 @@ class PostTypeConfigurations
             [
                 'public' => true,
                 'slug' => $this->getSlug(),
-                'label' => $this->getName()
+                'label' => $this->getName(),
+                'show_in_rest' => true,
+                'menu_icon' => 'dashicons-buddicons-topics',
+                'menu_position' => 8,
             ],
             $this->options
         );
