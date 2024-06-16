@@ -16,6 +16,7 @@
 use Jankx\Asset\AssetManager;
 use Jankx\Comments;
 use Jankx\Component\Registry;
+use Jankx\Configs\ThemeConfigurations;
 use Jankx\GlobalVariables;
 use Jankx\Guarder;
 use Jankx\ScriptLoader;
@@ -35,11 +36,10 @@ use Jankx\Admin\Admin;
 use Jankx\Command\CommandManager;
 use Jankx\CSS\GlobalVariables as GlobalCSSVariables;
 use Jankx\Interfaces\Filter;
-use Jankx\ThemeConfigugrations;
-use Symfony\Component\ClassMetadataFactory;
-use Symfony\Component\ObjectNormalizer;
-use Symfony\Component\Serializer;
-use Symfony\Component\AbstractNormalizer;
+use Symfony\Component\Serializer\Encoder\JsonEncoder;
+use Symfony\Component\Serializer\Encoder\XmlEncoder;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Symfony\Component\Serializer\Serializer;
 
 /**
  * This class is middle-class interaction between developer and other classes
@@ -96,18 +96,25 @@ class Jankx
 
     protected function parseThemeJson()
     {
-        $templateJson = join(DIRECTORY_SEPARATOR, [get_template_directory(), "theme.json"]);
-        $themeJson = join(DIRECTORY_SEPARATOR, [get_stylesheet_directory(), "theme.json"]);
+        $templateJson   = join(DIRECTORY_SEPARATOR, [get_template_directory(), "theme.json"]);
+        $themeJson      = join(DIRECTORY_SEPARATOR, [get_stylesheet_directory(), "theme.json"]);
+        $templateConfig = file_exists($templateJson) ? json_decode(file_get_contents($templateJson), true) : [];
 
-        $classMetadataFactory = new ClassMetadataFactory($loader);
-        $normalizer = new ObjectNormalizer($classMetadataFactory);
-        $serializer = new Serializer($normalizer);
+        // Create template name from parent theme or template name
+        $templateConfig['template_name'] = array_get($templateConfig, 'name', self::FRAMEWORK_NAME);
 
-        if (file_exists($templateJson)) {
-            $templateConfigs = $serializer->deserialize(file_get_contents($templateJson), ThemeConfigugrations::class, 'json', [
-                AbstractNormalizer::ALLOW_EXTRA_ATTRIBUTES => false,
-            ]);
+        // var_dump($templateConfig);die;
+        if (is_child_theme() && file_exists($themeJson)) {
+            $templateConfig = array_merge_recursive($templateConfig, json_decode(file_get_contents($themeJson), true));
         }
+
+        $encoders = [new XmlEncoder(), new JsonEncoder()];
+        $normalizers = [new ObjectNormalizer()];
+
+        $serializer = new Serializer($normalizers, $encoders);
+
+        $configs = $serializer->denormalize($templateConfig, ThemeConfigurations::class, 'json');
+        GlobalVariables::parseFromThemeJson($configs);
     }
 
     public function setup()

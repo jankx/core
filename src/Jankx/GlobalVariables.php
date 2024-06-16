@@ -2,6 +2,8 @@
 
 namespace Jankx;
 
+use Jankx\Configs\ThemeConfigurations;
+
 /**
  * Jankx\GlobalVariables class
  */
@@ -9,6 +11,11 @@ class GlobalVariables
 {
     protected static $vars = array();
     protected static $locked_vars = array();
+
+    public static function parseFromThemeJson(ThemeConfigurations $themeConfigurations)
+    {
+    }
+
 
     public static function set($name, $value, $lock_it = false)
     {
