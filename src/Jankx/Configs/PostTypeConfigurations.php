@@ -64,13 +64,23 @@ class PostTypeConfigurations
 
     public function getOptions()
     {
-        if (is_array($this->options)) {
+        if (!is_array($this->options)) {
             $this->options = [];
         }
 
-        $this->options['slug']   = $this->getSlug();
-        $this->options['label']  = __($this->getName(), Jankx::getTextDomain());
-        $this->options['labels'] = [
+        // apply with default options
+        $this->options = array_merge(
+            [
+                'public' => true,
+                'slug' => $this->getSlug(),
+                'label' => $this->getName()
+            ],
+            $this->options
+        );
+
+
+        // Setup label
+        $this->options['labels'] = (is_array($this->options['labels']) ? $this->options['labels'] : []) + [
             'name' => __($this->getName(), Jankx::getTextDomain()),
             'singular_name' => __($this->getSingularName(), Jankx::getTextDomain()),
             'add_new' => __('Add New ' . $this->getSingularName(), Jankx::getTextDomain()),
@@ -79,13 +89,7 @@ class PostTypeConfigurations
             'all_items' => __('All ' . $this->getSingularName(), Jankx::getTextDomain()),
         ];
 
-        // apply with default options
-        return array_merge(
-            [
-                'public' => true,
-            ],
-            $this->options
-        );
+        return $this->options;
     }
 
     public function setOptions($options)
