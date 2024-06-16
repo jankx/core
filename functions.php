@@ -11,6 +11,7 @@ use Jankx\TemplateEngine\Context;
  *
  * @return void
  */
+
 if (! function_exists('jankx')) {
     function jankx()
     {
@@ -176,7 +177,8 @@ function jankx_template_directory_uri($path = '')
     );
 }
 
-function jankx_core_asset_directory() {
+function jankx_core_asset_directory()
+{
     if (!isset($GLOBALS['core_assets_dir'])) {
         $GLOBALS['core_assets_dir'] = jankx_get_path_url(dirname(JANKX_FRAMEWORK_FILE_LOADER));
     }
@@ -190,26 +192,30 @@ function jankx_core_asset_url($path)
     return sprintf('%s/assets/%s', $core_assets_dir, $path);
 }
 
-function jankx_get_logo_image($props) {
+function jankx_get_logo_image($props)
+{
     echo jankx_component('logo', array(
         'text' => get_bloginfo('name'),
     ));
 }
 
-function jankx_get_toggle_hamburger_menu($props) {
+function jankx_get_toggle_hamburger_menu($props)
+{
     jankx_template('common/hamburger-menu');
 }
 
-function jankx_get_site_layout($skipDefault = false) {
+function jankx_get_site_layout($skipDefault = false)
+{
     return SiteLayout::getInstance()->getLayout($skipDefault);
 }
 
 if (!function_exists('jankx_is_support_block_template')) {
     function jankx_is_support_block_template()
     {
+        global $_wp_current_template_content;
         return apply_filters(
             'jankx/gutenberg/enabled',
-            get_theme_support('block-templates')
+            get_theme_support('block-templates') && (is_home() || !empty($_wp_current_template_content))
         );
     }
 }
