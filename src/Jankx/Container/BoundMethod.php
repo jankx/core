@@ -63,7 +63,9 @@ class BoundMethod
         }
 
         return static::call(
-            $container, [$container->make($segments[0]), $method], $parameters
+            $container,
+            [$container->make($segments[0]), $method],
+            $parameters
         );
     }
 
@@ -159,9 +161,12 @@ class BoundMethod
      *
      * @throws \Illuminate\Contracts\Container\BindingResolutionException
      */
-    protected static function addDependencyForCallParameter($container, $parameter,
-                                                            array &$parameters, &$dependencies)
-    {
+    protected static function addDependencyForCallParameter(
+        $container,
+        $parameter,
+        array &$parameters,
+        &$dependencies
+    ) {
         if (array_key_exists($paramName = $parameter->getName(), $parameters)) {
             $dependencies[] = $parameters[$paramName];
 

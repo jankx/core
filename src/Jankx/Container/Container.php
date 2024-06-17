@@ -262,7 +262,7 @@ class Container implements ArrayAccess, ContainerContract
         // up inside its own Closure to give us more convenience when extending.
         if (! $concrete instanceof Closure) {
             if (! is_string($concrete)) {
-                throw new TypeError(self::class.'::bind(): Argument #2 ($concrete) must be of type Closure|string|null');
+                throw new TypeError(self::class . '::bind(): Argument #2 ($concrete) must be of type Closure|string|null');
             }
 
             $concrete = $this->getClosure($abstract, $concrete);
@@ -293,7 +293,9 @@ class Container implements ArrayAccess, ContainerContract
             }
 
             return $container->resolve(
-                $concrete, $parameters, $raiseEvents = false
+                $concrete,
+                $parameters,
+                $raiseEvents = false
             );
         };
     }
@@ -330,7 +332,7 @@ class Container implements ArrayAccess, ContainerContract
     protected function parseBindMethod($method)
     {
         if (is_array($method)) {
-            return $method[0].'@'.$method[1];
+            return $method[0] . '@' . $method[1];
         }
 
         return $method;
@@ -896,7 +898,7 @@ class Container implements ArrayAccess, ContainerContract
         if (is_null($constructor)) {
             array_pop($this->buildStack);
 
-            return new $concrete;
+            return new $concrete();
         }
 
         $dependencies = $constructor->getParameters();
@@ -965,7 +967,8 @@ class Container implements ArrayAccess, ContainerContract
     protected function hasParameterOverride($dependency)
     {
         return array_key_exists(
-            $dependency->name, $this->getLastParameterOverride()
+            $dependency->name,
+            $this->getLastParameterOverride()
         );
     }
 
@@ -1000,7 +1003,7 @@ class Container implements ArrayAccess, ContainerContract
      */
     protected function resolvePrimitive(ReflectionParameter $parameter)
     {
-        if (! is_null($concrete = $this->getContextualConcrete('$'.$parameter->getName()))) {
+        if (! is_null($concrete = $this->getContextualConcrete('$' . $parameter->getName()))) {
             return $concrete instanceof Closure ? $concrete($this) : $concrete;
         }
 
@@ -1209,7 +1212,8 @@ class Container implements ArrayAccess, ContainerContract
         $this->fireCallbackArray($object, $this->globalResolvingCallbacks);
 
         $this->fireCallbackArray(
-            $object, $this->getCallbacksForType($abstract, $object, $this->resolvingCallbacks)
+            $object,
+            $this->getCallbacksForType($abstract, $object, $this->resolvingCallbacks)
         );
 
         $this->fireAfterResolvingCallbacks($abstract, $object);
@@ -1227,7 +1231,8 @@ class Container implements ArrayAccess, ContainerContract
         $this->fireCallbackArray($object, $this->globalAfterResolvingCallbacks);
 
         $this->fireCallbackArray(
-            $object, $this->getCallbacksForType($abstract, $object, $this->afterResolvingCallbacks)
+            $object,
+            $this->getCallbacksForType($abstract, $object, $this->afterResolvingCallbacks)
         );
     }
 
@@ -1378,7 +1383,7 @@ class Container implements ArrayAccess, ContainerContract
     public static function getInstance()
     {
         if (is_null(static::$instance)) {
-            static::$instance = new static;
+            static::$instance = new static();
         }
 
         return static::$instance;

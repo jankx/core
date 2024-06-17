@@ -17,11 +17,13 @@ class ThemeConfigurations
 
 
     // Getters
-    public function getName() {
+    public function getName()
+    {
         return $this->name;
     }
 
-    public function getShortName() {
+    public function getShortName()
+    {
         return $this->shortName;
     }
 
@@ -47,11 +49,13 @@ class ThemeConfigurations
     }
 
     // Setters
-    public function setName($name) {
+    public function setName($name)
+    {
         $this->name = $name;
     }
 
-    public function setShortName($shortName) {
+    public function setShortName($shortName)
+    {
         $this->shortName = $shortName;
     }
 

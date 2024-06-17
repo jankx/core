@@ -1,6 +1,8 @@
 <?php
+
 namespace Jankx\Cache;
 
-class CacheManger {
+class CacheManger
+{
     protected static $instance;
 }
