@@ -2,15 +2,17 @@
 
 namespace Jankx;
 
-use Jankx\SiteLayout\SiteLayout;
 use WP_Post_Type;
 use WP_User;
+
 use Jankx;
+use Jankx\PostLayout\PostLayoutManager;
+use Jankx\SiteLayout\SiteLayout;
 use Jankx\Template\Page;
 use Jankx\Template\Template;
 use Jankx\TemplateEngine\Context;
 use Jankx\TemplateEngine\Engines\WordPress;
-use Jankx\PostLayout\PostLayoutManager;
+
 
 class TemplateAndLayout
 {
@@ -306,7 +308,7 @@ class TemplateAndLayout
 
     public function get_home_templates()
     {
-        return ['home'];
+        return ['home', 'index'];
     }
 
     function get_author_templates()
