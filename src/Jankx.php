@@ -17,7 +17,6 @@ use Jankx\Asset\AssetManager;
 use Jankx\Comments;
 use Jankx\Component\Registry;
 use Jankx\Configs\ThemeConfigurations;
-use Jankx\Data\CustomPostTypes;
 use Jankx\Guarder;
 use Jankx\ScriptLoader;
 use Jankx\Option\Framework as OptionFramework;
@@ -303,6 +302,13 @@ class Jankx
         } elseif (is_admin()) {
             add_action('admin_enqueue_scripts', array($this, 'registerAdminScripts'));
         }
+
+        // Setup template engine for Site layout
+        add_action('jankx/template/renderer/pre', function () {
+            $siteLayout = SiteLayout::getInstance();
+            $templateAndLayout = TemplateAndLayout::get_instance();
+            $siteLayout->setTemplateEngine($templateAndLayout);
+        }, 5);
     }
 
     public function setupOptionFramework()

@@ -2,6 +2,7 @@
 
 namespace Jankx;
 
+use Jankx\SiteLayout\SiteLayout;
 use WP_Post_Type;
 use WP_User;
 use Jankx;
@@ -353,15 +354,22 @@ class TemplateAndLayout
             $this->pageType
         );
 
-        // var_dump("{$this->pageType}_template_hierarchy");die;
-
-        // archive_template_hierarchy
-
         if (is_callable($callback)) {
             $templates = call_user_func($callback);
             $page->setTemplates(
                 apply_filters("{$this->pageType}_template_hierarchy", $templates)
             );
+            $siteLayout = SiteLayout::getInstance();
+            $siteLayout->setPageTemplates($page->getTemplates());
+
+            $page = Page::getInstance();
+            $defaultLayout = GlobalConfigs::get(
+                sprintf('layouts.%s.name', $page->getContext()),
+                $defaultLayout = GlobalConfigs::get(
+                    'layouts.default.name',
+                )
+            );
+            $siteLayout->setDefaultLayout($defaultLayout);
         }
 
         do_action_ref_array('jankx/template/renderer/pre', array(

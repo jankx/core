@@ -212,10 +212,9 @@ function jankx_get_site_layout($skipDefault = false)
 if (!function_exists('jankx_is_support_block_template')) {
     function jankx_is_support_block_template()
     {
-        global $_wp_current_template_content;
         return apply_filters(
             'jankx/gutenberg/enabled',
-            get_theme_support('block-templates') && (is_home() || !empty($_wp_current_template_content))
+            get_theme_support('block-templates') && (!empty($_wp_current_template_content) || !is_single())
         );
     }
 }
