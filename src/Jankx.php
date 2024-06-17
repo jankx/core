@@ -34,7 +34,6 @@ use Jankx\IconFonts;
 use Jankx\Admin\Admin;
 use Jankx\Command\CommandManager;
 use Jankx\CSS\GlobalVariables as GlobalCSSVariables;
-use Jankx\Data\CustomPostTypesRegistry;
 use Jankx\GlobalConfigs;
 use Jankx\Interfaces\Filter;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
@@ -253,10 +252,6 @@ class Jankx extends Container
         add_action('after_setup_theme', array($this, 'improveUserExperience'));
 
         add_action('init', array($this, 'init'));
-
-        // Register custom post types
-        $customPostTypesRegistry = new CustomPostTypesRegistry();
-        add_action('init', [$customPostTypesRegistry, 'registerPostTypes']);
 
         // Init socials sharing
         if (apply_filters('jankx_socials_sharing_enable', GlobalConfigs::get('socials.sharing', true))) {

@@ -16,7 +16,8 @@ class GlobalConfigs
     {
         self::set('layouts', $themeConfigurations->getLayouts());
         self::set('site', $themeConfigurations->getSite());
-        self::set('post_types', array_get($themeConfigurations->getCustoms(), 'post_types', []));
+
+        do_action('jankx/configs/parse', $themeConfigurations);
     }
 
     public static function set($name, $value, $lock_it = false)
