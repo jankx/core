@@ -14,7 +14,7 @@ if (!defined('ABSPATH')) {
 define('JANKX_FRAMEWORK_FILE_LOADER', __FILE__);
 
 if (empty($GLOBALS['jankx'])) {
-    $GLOBALS['jankx'] = Jankx::instance();
+    $GLOBALS['jankx'] = Jankx::getInstance();
 
     add_action(
         'after_setup_theme',

@@ -13,6 +13,7 @@
  * @link     https://github.com/jankx/core
  */
 
+use Illuminate\Container\Container;
 use Jankx\Asset\AssetManager;
 use Jankx\Comments;
 use Jankx\Component\Registry;
@@ -44,7 +45,7 @@ use Symfony\Component\Serializer\Serializer;
 /**
  * This class is middle-class interaction between developer and other classes
  */
-class Jankx
+class Jankx extends Container
 {
     const FRAMEWORK_NAME    = 'Jankx Framework';
     const FRAMEWORK_VERSION = '1.0.0';
@@ -69,7 +70,7 @@ class Jankx
 
     public static function __callStatic($name, $args)
     {
-        $instance = self::instance();
+        $instance = self::getInstance();
         if (isset($instance->$name) && is_callable($instance->$name)) {
             return call_user_func_array($instance->$name, $args);
         } else {
@@ -79,7 +80,7 @@ class Jankx
         }
     }
 
-    public static function instance()
+    public static function getInstance()
     {
         if (is_null(self::$instance)) {
             self::$instance = new self();
