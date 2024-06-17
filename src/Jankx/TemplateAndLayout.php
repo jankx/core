@@ -363,12 +363,20 @@ class TemplateAndLayout
             $siteLayout->setPageTemplates($page->getTemplates());
 
             $page = Page::getInstance();
-            $defaultLayout = GlobalConfigs::get(
-                sprintf('layouts.%s.name', $page->getContext()),
+            $defaultLayout = null;
+            foreach ($templates as $template) {
+                $defaultLayout = GlobalConfigs::get(
+                    sprintf('layouts.%s.name', $template)
+                );
+                if (!is_null($defaultLayout)) {
+                    break;
+                }
+            }
+            if (is_null($defaultLayout)) {
                 $defaultLayout = GlobalConfigs::get(
                     'layouts.default.name',
-                )
-            );
+                );
+            }
             $siteLayout->setDefaultLayout($defaultLayout);
         }
 
