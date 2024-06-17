@@ -68,6 +68,8 @@ class Jankx extends Container
 
     protected $textDomain;
 
+    protected static $device;
+
     public static function __callStatic($name, $args)
     {
         $instance = self::getInstance();
@@ -339,6 +341,19 @@ class Jankx extends Container
         static::ux()->optimize();
     }
 
+
+    /**!
+     * Static methods
+     */
+
+    public static function device()
+    {
+        if (is_null(static::$device) && function_exists('jankx_get_device_detector')) {
+            static::$device = jankx_get_device_detector();
+        }
+        return self::$device;
+    }
+
     public static function getActiveTemplateEngine()
     {
         return apply_filters(
@@ -349,7 +364,7 @@ class Jankx extends Container
 
     public static function getTextDomain()
     {
-        $instance = static::instance();
+        $instance = static::getInstance();
         return $instance->textDomain;
     }
 
