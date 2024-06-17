@@ -11,6 +11,7 @@
     }
   ],
   "require": {
+    "psr/container": "^2.0",
     "jankx/admin": "*",
     "jankx/asset": "*",
     "jankx/command": "*",
