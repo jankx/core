@@ -19,7 +19,7 @@ class ThemeConfigurations
         return $this->templateName;
     }
 
-    public function getLayouts($layouts)
+    public function getLayouts()
     {
         return $this->layouts;
     }

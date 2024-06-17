@@ -14,6 +14,7 @@ class GlobalConfigs
 
     public static function parseFromThemeJson(ThemeConfigurations $themeConfigurations)
     {
+        self::set('layouts', $themeConfigurations->getLayouts());
         self::set('site', $themeConfigurations->getSite());
         self::set('post_types', array_get($themeConfigurations->getCustoms(), 'post_types', []));
     }

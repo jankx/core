@@ -24,4 +24,4 @@
                 );
             }
             ?>
-        <?php do_action('jankx_template_after_header'); ?>
+        <?php do_action('jankx/template/header/after'); ?>
