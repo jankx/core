@@ -4,16 +4,28 @@ namespace Jankx\Configs;
 
 class ThemeConfigurations
 {
-    private $templateName;
+    protected $name;
+    protected $shortName;
 
-    private $layouts = [];
+    protected $templateName;
 
-    private $site = [];
+    protected $layouts = [];
 
-    private $customs = [];
+    protected $site = [];
+
+    protected $customs = [];
 
 
     // Getters
+    public function getName() {
+        return $this->name;
+    }
+
+    public function getShortName() {
+        return $this->shortName;
+    }
+
+
     public function getTemplateName()
     {
         return $this->templateName;
@@ -35,6 +47,14 @@ class ThemeConfigurations
     }
 
     // Setters
+    public function setName($name) {
+        $this->name = $name;
+    }
+
+    public function setShortName($shortName) {
+        $this->shortName = $shortName;
+    }
+
     public function setTemplateName($templateName)
     {
         $this->templateName = $templateName;
