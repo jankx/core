@@ -32,7 +32,7 @@
     "psr-4": {
       "": "./src/",
       "AdvancedElementor\\Controls\\": "./src/Jankx/Integration/Elementor/Controls/",
-      "Illuminate\\Contracts\\Container\\": "./src/Jankx/Intefaces/Container/",
+      "Illuminate\\Contracts\\Container\\": "./src/Jankx/Interfaces/Container/",
       "Illuminate\\Container\\": "./src/Jankx/Container/"
     },
     "files": [
