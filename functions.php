@@ -55,7 +55,7 @@ function jankx_container_css_class($custom_classes = '')
     }
 
     $css_class = apply_filters(
-        'jankx_template_the_container_classes',
+        'jankx/template/container/classes',
         array_merge($css_class, (array)$custom_classes)
     );
     return array_unique($css_class, SORT_STRING);
@@ -64,9 +64,9 @@ function jankx_container_css_class($custom_classes = '')
 if (!function_exists('jankx_open_container')) {
     function jankx_open_container($custom_classes = '', $context = null)
     {
-        do_action('jankx_template_before_open_container', $context);
+        do_action('jankx/template/container/open/before', $context);
 
-        $open_html = apply_filters('jankx_template_pre_open_container', null, $context);
+        $open_html = apply_filters('jankx/template/container/open/pre', null, $context);
         if (is_null($open_html)) {
             $open_html = sprintf(
                 '<div class="%s">',
@@ -81,9 +81,9 @@ if (!function_exists('jankx_open_container')) {
 if (!function_exists('jankx_close_container')) {
     function jankx_close_container($context = null)
     {
-        do_action("jankx_template_after_close_container", $context);
+        do_action("jankx/template/container/close/after", $context);
 
-        $close_html = apply_filters('jankx_template_pre_close_container', null, $context);
+        $close_html = apply_filters('jankx/template/container/close/pre', null, $context);
         if (is_null($close_html)) {
             $close_html = '</div>';
         }
