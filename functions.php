@@ -208,13 +208,3 @@ function jankx_get_site_layout($skipDefault = false)
 {
     return SiteLayout::getInstance()->getLayout($skipDefault);
 }
-
-if (!function_exists('jankx_is_support_block_template')) {
-    function jankx_is_support_block_template()
-    {
-        return apply_filters(
-            'jankx/gutenberg/enabled',
-            get_theme_support('block-templates') && (!empty($_wp_current_template_content) || !is_single())
-        );
-    }
-}
