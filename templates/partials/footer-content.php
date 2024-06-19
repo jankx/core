@@ -5,6 +5,6 @@
 
         <?php echo jankx_component('footer'); ?>
 
-    <?php do_action('jankx_template_after_footer_content'); ?>
+    <?php do_action('jankx/template/footer/after_content'); ?>
 
 </footer>
