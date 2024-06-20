@@ -6,13 +6,15 @@
     }
 
     .default-navigation {
-        .navigation {
+        &.navigation {
             width: 100%;
         }
 
         :not(.widget_nav_menu) > div >ul.menu, .navigation > div.menu >ul {
             display: flex;
             align-items: center;
+            margin-left: -5px;
+            margin-right: -5px;
             > li {
                 position: relative;
                 padding: 5px 5px;
@@ -144,6 +146,8 @@
 @media(min-width: 1200px) {
     .default-navigation {
         :not(.widget_nav_menu) > div >ul.menu, .navigation > div.menu >ul {
+            margin-left: -10px;
+            margin-right: -10px;
             li {
                 padding: 5px 10px;
             }

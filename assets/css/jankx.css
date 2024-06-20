@@ -693,12 +693,14 @@ table:not(.no-border) th, table:not(.no-border) td {
     background-color: #fff;
     z-index: 99;
   }
-  .default-navigation .navigation {
+  .default-navigation.navigation {
     width: 100%;
   }
   .default-navigation :not(.widget_nav_menu) > div > ul.menu, .default-navigation .navigation > div.menu > ul {
     display: flex;
     align-items: center;
+    margin-left: -5px;
+    margin-right: -5px;
   }
   .default-navigation :not(.widget_nav_menu) > div > ul.menu > li, .default-navigation .navigation > div.menu > ul > li {
     position: relative;
@@ -791,6 +793,10 @@ table:not(.no-border) th, table:not(.no-border) td {
   }
 }
 @media (min-width: 1200px) {
+  .default-navigation :not(.widget_nav_menu) > div > ul.menu, .default-navigation .navigation > div.menu > ul {
+    margin-left: -10px;
+    margin-right: -10px;
+  }
   .default-navigation :not(.widget_nav_menu) > div > ul.menu li, .default-navigation .navigation > div.menu > ul li {
     padding: 5px 10px;
   }
@@ -1233,5 +1239,3 @@ body.error404 {
 .elementor-section .elementor-container.main-content-sidebar-wrapper {
   display: block;
 }
-
-/*# sourceMappingURL=jankx.css.map */
