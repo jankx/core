@@ -14,6 +14,11 @@ class GlobalConfigs
 
     public static function parseFromThemeJson(ThemeConfigurations $themeConfigurations)
     {
+        self::set('theme', [
+           'name' => $themeConfigurations->getName(),
+           'shortName' => $themeConfigurations->getShortName(),
+           'version' => $themeConfigurations->getVersion()
+        ]);
         self::set('layouts', $themeConfigurations->getLayouts());
         self::set('site', $themeConfigurations->getSite());
 

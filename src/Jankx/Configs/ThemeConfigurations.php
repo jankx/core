@@ -2,10 +2,14 @@
 
 namespace Jankx\Configs;
 
+use Jankx;
+
 class ThemeConfigurations
 {
     protected $name;
     protected $shortName;
+
+    protected $version;
 
     protected $templateName;
 
@@ -14,6 +18,7 @@ class ThemeConfigurations
     protected $site = [];
 
     protected $customs = [];
+
 
 
     // Getters
@@ -25,6 +30,14 @@ class ThemeConfigurations
     public function getShortName()
     {
         return $this->shortName;
+    }
+
+    public function getVersion()
+    {
+        if (is_null($this->version)) {
+            return Jankx::FRAMEWORK_VERSION;
+        }
+        return $this->version;
     }
 
 
@@ -77,5 +90,10 @@ class ThemeConfigurations
     public function setCustoms($customs)
     {
         $this->customs = $customs;
+    }
+
+    public function setVersion($version)
+    {
+        $this->version = $version;
     }
 }

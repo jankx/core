@@ -116,6 +116,8 @@ class Jankx extends Container
         $serializer = new Serializer($normalizers, $encoders);
 
         $configs = $serializer->denormalize($templateConfig, ThemeConfigurations::class, 'json');
+        $this->singleton(ThemeConfigurations::class, $configs);
+
         GlobalConfigs::parseFromThemeJson($configs);
     }
 
