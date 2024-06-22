@@ -11,6 +11,12 @@ abstract class BlockAbstract implements BlockInterface
 
     protected $isServerSideRender = true;
 
+    public function __construct() {
+        do_action_ref_array('jankx/gutenberg/block/' . $this->getType(), [
+            &$this
+        ]);
+    }
+
     public function getType()
     {
         return $this->type;
