@@ -85,6 +85,7 @@ class Jankx extends Container
     {
         if (is_null(self::$instance)) {
             self::$instance = new self();
+            self::$instance->singleton(Container::class, self::class);
         }
         return self::$instance;
     }
