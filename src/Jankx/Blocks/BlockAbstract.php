@@ -11,7 +11,8 @@ abstract class BlockAbstract implements BlockInterface
 
     protected $isServerSideRender = true;
 
-    public function __construct() {
+    public function __construct()
+    {
         do_action_ref_array('jankx/gutenberg/block/' . $this->getType(), [
             &$this
         ]);
@@ -65,7 +66,13 @@ abstract class BlockAbstract implements BlockInterface
         return $this->isServerSideRender;
     }
 
-    public function get_responsive_setting($key, $defaultValue) {
+    public function get_responsive_setting($key, $defaultValue)
+    {
         return $defaultValue;
+    }
+
+    public function isEnabled(): bool
+    {
+        return true;
     }
 }

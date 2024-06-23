@@ -20,5 +20,7 @@ interface BlockInterface
 
     public function render();
 
+    public function isEnabled(): bool;
+
     public function get_responsive_setting($key, $defaultValue);
 }
