@@ -19,4 +19,6 @@ interface BlockInterface
     public function isServerSideRender(): bool;
 
     public function render();
+
+    public function get_responsive_setting($key, $defaultValue);
 }

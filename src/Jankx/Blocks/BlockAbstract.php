@@ -64,4 +64,8 @@ abstract class BlockAbstract implements BlockInterface
     {
         return $this->isServerSideRender;
     }
+
+    public function get_responsive_setting($key, $defaultValue) {
+        return $defaultValue;
+    }
 }
