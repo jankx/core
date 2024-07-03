@@ -49,8 +49,8 @@
     }
 }
 
-body {
-    &:not(.jankx-gutenberg) {
+.main-content {
+    &:not(.list-none-style) {
         .entry-content {
             ul, ol {
                 margin-left: 25px;

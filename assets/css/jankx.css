@@ -336,21 +336,21 @@ h5, h6 {
   max-width: 100%;
 }
 
-body:not(.jankx-gutenberg) .entry-content ul, body:not(.jankx-gutenberg) .entry-content ol {
+.main-content:not(.list-none-style) .entry-content ul, .main-content:not(.list-none-style) .entry-content ol {
   margin-left: 25px;
   margin-top: 15px;
   margin-bottom: 15px;
 }
-body:not(.jankx-gutenberg) .entry-content ul {
+.main-content:not(.list-none-style) .entry-content ul {
   list-style: disc;
 }
-body:not(.jankx-gutenberg) .entry-content ul ul {
+.main-content:not(.list-none-style) .entry-content ul ul {
   list-style: circle;
 }
-body:not(.jankx-gutenberg) .entry-content ul ul ul {
+.main-content:not(.list-none-style) .entry-content ul ul ul {
   list-style: square;
 }
-body:not(.jankx-gutenberg) .entry-content ol {
+.main-content:not(.list-none-style) .entry-content ol {
   list-style: decimal;
 }
 
