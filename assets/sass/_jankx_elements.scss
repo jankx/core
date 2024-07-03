@@ -49,6 +49,32 @@
     }
 }
 
+body {
+    &:not(.jankx-gutenberg) {
+        .entry-content {
+            ul, ol {
+                margin-left: 25px;
+                margin-top: 15px;
+                margin-bottom: 15px;
+            }
+
+            ul {
+                list-style: disc;
+                ul {
+                    list-style: circle;
+                    ul {
+                        list-style: square;
+                    }
+                }
+            }
+
+            ol {
+                list-style: decimal;
+            }
+        }
+    }
+}
+
 table {
     margin-top: 20px;
 

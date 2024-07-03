@@ -23,23 +23,6 @@
 .wp-editor h6 {
   font-size: 1rem;
 }
-.wp-editor ul, .wp-editor ol {
-  margin-left: 25px;
-  margin-top: 15px;
-  margin-bottom: 15px;
-}
-.wp-editor ul {
-  list-style: disc;
-}
-.wp-editor ul ul {
-  list-style: circle;
-}
-.wp-editor ul ul ul {
-  list-style: square;
-}
-.wp-editor ol {
-  list-style: decimal;
-}
 .wp-editor i, .wp-editor em {
   font-style: italic;
 }

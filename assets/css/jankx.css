@@ -4,7 +4,7 @@
  * Author: Puleeno Nguyen
  * Author URI: https://puleeno.com
  * Description: This module is create the basic structure for Jankx theme. Other stylesheet will be defined in the theme
- * Version: 1.0.0
+ * Version: 1.0.0.0
  */
 /* http://meyerweb.com/eric/tools/css/reset/
    v5.0.1 | 20191019
@@ -243,23 +243,6 @@ h5, h6 {
 .main-content .entry-content h6 {
   font-size: 1rem;
 }
-.main-content .entry-content ul, .main-content .entry-content ol {
-  margin-left: 25px;
-  margin-top: 15px;
-  margin-bottom: 15px;
-}
-.main-content .entry-content ul {
-  list-style: disc;
-}
-.main-content .entry-content ul ul {
-  list-style: circle;
-}
-.main-content .entry-content ul ul ul {
-  list-style: square;
-}
-.main-content .entry-content ol {
-  list-style: decimal;
-}
 .main-content .entry-content i, .main-content .entry-content em {
   font-style: italic;
 }
@@ -353,6 +336,24 @@ h5, h6 {
   max-width: 100%;
 }
 
+body:not(.jankx-gutenberg) .entry-content ul, body:not(.jankx-gutenberg) .entry-content ol {
+  margin-left: 25px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+body:not(.jankx-gutenberg) .entry-content ul {
+  list-style: disc;
+}
+body:not(.jankx-gutenberg) .entry-content ul ul {
+  list-style: circle;
+}
+body:not(.jankx-gutenberg) .entry-content ul ul ul {
+  list-style: square;
+}
+body:not(.jankx-gutenberg) .entry-content ol {
+  list-style: decimal;
+}
+
 table {
   margin-top: 20px;
 }
@@ -395,23 +396,6 @@ table:not(.no-border) th, table:not(.no-border) td {
 }
 .entry-content h6 {
   font-size: 1rem;
-}
-.entry-content ul, .entry-content ol {
-  margin-left: 25px;
-  margin-top: 15px;
-  margin-bottom: 15px;
-}
-.entry-content ul {
-  list-style: disc;
-}
-.entry-content ul ul {
-  list-style: circle;
-}
-.entry-content ul ul ul {
-  list-style: square;
-}
-.entry-content ol {
-  list-style: decimal;
 }
 .entry-content i, .entry-content em {
   font-style: italic;

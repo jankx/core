@@ -22,26 +22,6 @@ h6 {
     font-size: 1rem;
 }
 
-ul, ol {
-    margin-left: 25px;
-    margin-top: 15px;
-    margin-bottom: 15px;
-}
-
-ul {
-    list-style: disc;
-    ul {
-        list-style: circle;
-        ul {
-            list-style: square;
-        }
-    }
-}
-
-ol {
-    list-style: decimal;
-}
-
 i, em {
     font-style: italic;
 }

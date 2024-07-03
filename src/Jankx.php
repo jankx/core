@@ -47,7 +47,7 @@ use Symfony\Component\Serializer\Serializer;
 class Jankx extends Container
 {
     const FRAMEWORK_NAME    = 'Jankx Framework';
-    const FRAMEWORK_VERSION = '1.0.0';
+    const FRAMEWORK_VERSION = '1.0.0.0';
     const ENGINE_ID         = 'jankx';
 
     protected static $instance;
