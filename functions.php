@@ -62,7 +62,7 @@ function jankx_container_css_class($custom_classes = '')
 }
 
 if (!function_exists('jankx_open_container')) {
-    function jankx_open_container($custom_classes = '', $context = null)
+    function jankx_open_container($custom_classes = '', $context = null, $echo = true)
     {
         do_action('jankx/template/container/open/before', $context);
 
@@ -74,12 +74,15 @@ if (!function_exists('jankx_open_container')) {
             );
         }
 
+        if (!$echo) {
+            return $open_html;
+        }
         echo $open_html;
     }
 }
 
 if (!function_exists('jankx_close_container')) {
-    function jankx_close_container($context = null)
+    function jankx_close_container($context = null, $echo = true)
     {
         do_action("jankx/template/container/close/after", $context);
 
@@ -88,6 +91,9 @@ if (!function_exists('jankx_close_container')) {
             $close_html = '</div>';
         }
 
+        if (!$echo) {
+            return $close_html;
+        }
         echo $close_html;
     }
 }
