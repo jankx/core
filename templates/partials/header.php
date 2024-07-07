@@ -12,7 +12,7 @@
     <body <?php body_class(); ?>>
         <?php wp_body_open(); ?>
 
-        <?php do_action('jankx_template_before_header'); ?>
+        <?php do_action('jankx/template/header/before'); ?>
             <?php
             if (jankx_get_site_layout() !== 'jankx-fullpage') {
                 jankx_component(
