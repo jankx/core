@@ -14,6 +14,8 @@ class HTML5FixerModule extends BaseModule
     public function execute()
     {
         $html = ob_get_clean();
+        $html = str_replace("as='script' rel='prefetch'", "as='script' rel='preload'", $html);
+
         // Parse the document. $dom is a DOMDocument.
         $html5 = new HTML5();
         $dom = $html5->loadHTML($html);
