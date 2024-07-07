@@ -36,6 +36,8 @@ use Jankx\Command\CommandManager;
 use Jankx\CSS\GlobalVariables as GlobalCSSVariables;
 use Jankx\GlobalConfigs;
 use Jankx\Interfaces\Filter;
+use Jankx\Interfaces\GooglePagespeedModuleInterface;
+use Jankx\PageSpeed\HTML5FixerModule;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Encoder\XmlEncoder;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
@@ -202,6 +204,8 @@ class Jankx extends Container
          */
         $templateLoader = TemplateAndLayout::get_instance();
         add_action('after_setup_theme', array($templateLoader, 'createTemplateEngine'), 15);
+        add_action('after_setup_theme', array($this, 'optimizePageSpeed'));
+
         if (wp_is_request('frontend')) {
             $templateLoader->load();
         }
@@ -384,6 +388,11 @@ class Jankx extends Container
         if (class_exists('\Jankx\Megu\Megu')) {
             call_user_func(['\Jankx\Megu\Megu', 'getInstance']);
         }
+
+        // PageSpeed Insights Optimize
+        $this->instance('pagespeed.modules', apply_filters('jankx/pagespeed/modules', [
+            HTML5FixerModule::class
+        ]));
     }
 
     public function registerAdminScripts()
@@ -410,6 +419,25 @@ class Jankx extends Container
                 $filterObject->getPriority(),
                 $filterObject->getArgsCounter()
             );
+        }
+    }
+
+    public function optimizePageSpeed()
+    {
+        $activeModules = $this->get('pagespeed.modules');
+        if (is_array($activeModules) && count($activeModules) > 0) {
+            foreach ($activeModules as $moduleClass) {
+                if (!is_a($moduleClass, GooglePagespeedModuleInterface::class, true)) {
+                    continue;
+                }
+                $module = new $moduleClass();
+                if ($module->startHook()) {
+                    add_action($module->startHook(), [$module, 'init']);
+                }
+                if ($module->endHook()) {
+                    add_action($module->endHook(), [$module, 'execute']);
+                }
+            }
         }
     }
 }
