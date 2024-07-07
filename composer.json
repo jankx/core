@@ -23,7 +23,6 @@
     "jankx/post-layout": "*",
     "jankx/template": "^1.0.0",
     "jankx/pagination": "*",
-    "jankx/seo": "*",
     "jankx/wordpress-specs": "*",
     "symfony/serializer": "^5.4",
     "symfony/property-access": "^5.4"
