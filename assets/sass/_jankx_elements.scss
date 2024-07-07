@@ -113,10 +113,25 @@ table {
 @media(min-width: 767px) {
     .jankx-site-header {
         &.sticky-header {
+            transition: all 0.5s;
             &.sticky {
                 position: fixed;
                 top: 0;
-                width: 100%
+                width: 100%;
+
+                background-color: #fff;
+            }
+        }
+    }
+
+    html.pin-menu {
+        &.has-admin-bar {
+            .jankx-site-header {
+                &.sticky-header {
+                    &.sticky {
+                        top: 31px;
+                    }
+                }
             }
         }
     }

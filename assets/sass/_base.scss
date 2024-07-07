@@ -32,6 +32,14 @@ input[type=text], input[type=button], input[type=submit], input[type=reset] {
     border: 0;
 }
 
+@media(min-width: 768px) {
+    html.pin-menu {
+        &.has-admin-bar {
+            padding-top: calc(65px);
+        }
+    }
+}
+
 @media(max-width:1024px) {
 }
 

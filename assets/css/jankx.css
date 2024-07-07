@@ -490,10 +490,17 @@ table:not(.no-border) th, table:not(.no-border) td {
   }
 }
 @media (min-width: 767px) {
+  .jankx-site-header.sticky-header {
+    transition: all 0.5s;
+  }
   .jankx-site-header.sticky-header.sticky {
     position: fixed;
     top: 0;
     width: 100%;
+    background-color: #fff;
+  }
+  html.pin-menu.has-admin-bar .jankx-site-header.sticky-header.sticky {
+    top: 31px;
   }
   .jankx-ui.navigation .jankx-subtitle {
     font-size: 88%;
@@ -927,6 +934,11 @@ input[type=text], input[type=button], input[type=submit], input[type=reset] {
   border: 0;
 }
 
+@media (min-width: 768px) {
+  html.pin-menu.has-admin-bar {
+    padding-top: 65px;
+  }
+}
 .widgets-area-inner {
   display: flex;
   flex-wrap: wrap;
