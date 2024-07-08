@@ -1,0 +1,22 @@
+.jankx-site-header {
+    .navigation {
+        #mega-menu-wrap-primary {
+            #mega-menu-primary.mega-menu {
+                &.mega-menu-horizontal {
+                    display: flex;
+                    flex-wrap: wrap;
+                    align-items: center;
+                }
+
+                .menu-item-type-jankx-logo {
+                    margin-right: 10px;
+                }
+                .menu-item {
+                    &+.menu-item-type-jankx-logo {
+                        margin-left: 10px;
+                    }
+                }
+            }
+        }
+    }
+}

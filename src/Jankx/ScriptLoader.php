@@ -2,6 +2,8 @@
 
 namespace Jankx;
 
+use Jankx;
+
 class ScriptLoader
 {
     protected $theme;
@@ -13,11 +15,7 @@ class ScriptLoader
 
     public function __construct()
     {
-        $jankxCssVer = fileatime(sprintf(
-            '%s/assets/css/jankx.css',
-            dirname(JANKX_FRAMEWORK_FILE_LOADER)
-        ));
-        $this->revisionVersion = substr(md5($jankxCssVer), 0, 6);
+        $this->revisionVersion = substr(md5(Jankx::FRAMEWORK_VERSION), 0, 6);
     }
 
     public function appendDefaultJS($scripts)
