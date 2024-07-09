@@ -9,12 +9,14 @@ class GlobalVariables
     protected static function getDefaultVariables()
     {
         return array(
-            'typography-primary-font' => "'Montserrat', sans-serif",
-            'typography-secondary-font' => "'Montserrat', sans-serif",
-            'typography-text-font' => "'Montserrat', sans-serif",
-            'typography-accent-font' => "'Montserrat', sans-serif",
-            'typography-menu-font' => "'Montserrat', sans-serif",
-            'typography-default-font' => "'Montserrat', sans-serif",
+            'typography-primary-font' => "Arial, Verdana, Tahoma, sans-serif",
+            'typography-global-font-size' => "15px",
+            'typography-global-line-height' => "24px",
+            'typography-secondary-font' => "Arial, sans-serif",
+            'typography-text-font' => "Arial, sans-serif",
+            'typography-accent-font' => "Arial, sans-serif",
+            'typography-menu-font' => "Arial, sans-serif",
+            'typography-default-font' => "Arial, sans-serif",
             'placeholder-text-color' => '#767676',
             'primary-color' => '#0C101B',
             'secondary-color' => '#464646',

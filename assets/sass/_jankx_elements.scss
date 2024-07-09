@@ -118,8 +118,15 @@ table {
                 position: fixed;
                 top: 0;
                 width: 100%;
-
+            }
+            &.sticky,&.menu-hover {
                 background-color: #fff;
+            }
+            &:not(.sticky) {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
             }
         }
     }
@@ -139,6 +146,7 @@ table {
     .jankx-ui {
         &.navigation {
             .jankx-subtitle {
+                font-size: 88%;
                 &.position-bottom, &.position-top {
                     display: block;
                 }
@@ -148,7 +156,6 @@ table {
                 &.position-bottom {
                     margin-top: 2px;
                 }
-                font-size: 88%;
             }
         }
     }

@@ -1,3 +1,8 @@
+body {
+    font-family: var(--typography-primary-font);
+    font-size: var(--typography-global-font-size);
+    line-height: var(--typography-global-line-height);
+}
 small {
     font-size: 88%;
 }

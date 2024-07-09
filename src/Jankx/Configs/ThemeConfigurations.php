@@ -19,6 +19,7 @@ class ThemeConfigurations
 
     protected $customs = [];
 
+    protected $store = [];
 
 
     // Getters
@@ -51,6 +52,12 @@ class ThemeConfigurations
         return $this->layouts;
     }
 
+
+    public function getStore()
+    {
+        return $this->store;
+    }
+
     public function getSite()
     {
         return $this->site;
@@ -80,6 +87,11 @@ class ThemeConfigurations
     public function setLayouts($layouts)
     {
         $this->layouts = $layouts;
+    }
+
+    public function setStore($store)
+    {
+        $this->store = $store;
     }
 
     public function setSite($site)

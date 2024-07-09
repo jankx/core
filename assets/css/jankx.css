@@ -69,6 +69,12 @@ table {
   border-spacing: 0;
 }
 
+body {
+  font-family: var(--typography-primary-font);
+  font-size: var(--typography-global-font-size);
+  line-height: var(--typography-global-line-height);
+}
+
 small {
   font-size: 88%;
 }
@@ -497,7 +503,15 @@ table:not(.no-border) th, table:not(.no-border) td {
     position: fixed;
     top: 0;
     width: 100%;
+  }
+  .jankx-site-header.sticky-header.sticky, .jankx-site-header.sticky-header.menu-hover {
     background-color: #fff;
+  }
+  .jankx-site-header.sticky-header:not(.sticky) {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
   }
   html.pin-menu.has-admin-bar .jankx-site-header.sticky-header.sticky {
     top: 31px;

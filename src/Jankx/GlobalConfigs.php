@@ -21,6 +21,7 @@ class GlobalConfigs
         ]);
         self::set('layouts', $themeConfigurations->getLayouts());
         self::set('site', $themeConfigurations->getSite());
+        self::set('store', $themeConfigurations->getStore());
 
         do_action('jankx/configs/parse', $themeConfigurations);
     }
