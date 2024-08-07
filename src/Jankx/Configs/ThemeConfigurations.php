@@ -21,6 +21,8 @@ class ThemeConfigurations
 
     protected $store = [];
 
+    protected $settings = [];
+
 
     // Getters
     public function getName()
@@ -31,6 +33,11 @@ class ThemeConfigurations
     public function getShortName()
     {
         return $this->shortName;
+    }
+
+    public function getSettings()
+    {
+        return $this->settings;
     }
 
     public function getVersion()
@@ -77,6 +84,11 @@ class ThemeConfigurations
     public function setShortName($shortName)
     {
         $this->shortName = $shortName;
+    }
+
+    public function setSettings($settings)
+    {
+        $this->settings = $settings;
     }
 
     public function setTemplateName($templateName)

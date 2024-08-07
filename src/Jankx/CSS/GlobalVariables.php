@@ -2,14 +2,29 @@
 
 namespace Jankx\CSS;
 
+use Jankx\GlobalConfigs;
+
 class GlobalVariables
 {
     protected static $variables;
 
+    protected static function findBodyFontFamily($defaultFont)
+    {
+        $fontFamilies = GlobalConfigs::get('settings.typography.fontFamilies', []);
+        if (count($fontFamilies) > 0) {
+            foreach ($fontFamilies as $fontFamily) {
+                if (array_get($fontFamily, 'slug') === 'body') {
+                    return array_get($fontFamily, 'fontFamily');
+                }
+            }
+        }
+        return $defaultFont;
+    }
+
     protected static function getDefaultVariables()
     {
         return array(
-            'typography-primary-font' => "Arial, Verdana, Tahoma, sans-serif",
+            'typography-primary-font' => self::findBodyFontFamily('Arial, Verdana, Tahoma, sans-serif'),
             'typography-global-font-size' => "15px",
             'typography-global-line-height' => "24px",
             'typography-secondary-font' => "Arial, sans-serif",
