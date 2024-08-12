@@ -4,7 +4,7 @@ namespace Jankx\Customizers;
 
 use Jankx\GlobalConfigs;
 
-class DefaultPostThumbnail extends BaseCustomizer
+class DefaultPostThumbnailCustomizer extends BaseCustomizer
 {
     public function isEnabled(): bool
     {
@@ -19,6 +19,14 @@ class DefaultPostThumbnail extends BaseCustomizer
     public function getExecuteHook(): ?string
     {
         return 'wp';
+    }
+
+    public function allowSvg($mimes)
+    {
+        if (in_array('image/svg+xml', array_values($mimes))) {
+            $mimes['svg'] = 'image/svg+xml';
+        }
+        return $mimes;
     }
 
     public function getDefaultThumbnailId()
@@ -51,6 +59,8 @@ class DefaultPostThumbnail extends BaseCustomizer
             if (!function_exists('wp_read_image_metadata')) {
                 require_once ABSPATH . 'wp-admin/includes/image.php';
             }
+
+            add_filter('upload_mimes', [$this, 'allowSvg']);
             $file = [
                 'name' => basename($filePath),
                 'tmp_name' => $fileMetadata['uri'],
@@ -59,6 +69,8 @@ class DefaultPostThumbnail extends BaseCustomizer
                 'error' => 0
             ];
             $defaultThumbnailId = media_handle_sideload($file);
+
+            remove_filter('upload_mimes', [$this, 'allowSvg']);
         }
 
         update_option($defaultThumbnailOptionKey, $defaultThumbnailId, true);
