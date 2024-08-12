@@ -63,7 +63,7 @@ class Jankx extends Container
     protected $asset;
     protected $optionFramework;
     protected $siteLayout;
-    protected $ux;
+    protected $userExperience;
     protected $widgets;
     protected $socialConnects;
 
@@ -232,9 +232,7 @@ class Jankx extends Container
         };
 
         $userExperience = UserExperience::getInstance();
-        $this->ux = function () use ($userExperience) {
-            return $userExperience;
-        };
+        $this->userExperience = &$userExperience;
 
         $widgets = WidgetManager::getInstance();
         $this->widgets = function () use ($widgets) {
@@ -340,7 +338,7 @@ class Jankx extends Container
     // Improve UX
     public function improveUserExperience()
     {
-        static::ux()->optimize();
+        $this->ux()->optimize();
     }
 
 
@@ -420,6 +418,11 @@ class Jankx extends Container
                 $filterObject->getArgsCounter()
             );
         }
+    }
+
+    public function ux()
+    {
+        return $this->userExperience;
     }
 
     public function optimizePageSpeed()

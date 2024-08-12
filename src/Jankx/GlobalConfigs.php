@@ -23,6 +23,7 @@ class GlobalConfigs
         self::set('site', $themeConfigurations->getSite());
         self::set('store', $themeConfigurations->getStore());
         self::set('settings', $themeConfigurations->getSettings());
+        self::set('customs', $themeConfigurations->getCustoms());
 
         do_action('jankx/configs/parse', $themeConfigurations);
     }

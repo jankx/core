@@ -9,6 +9,8 @@ class UserExperience
     public $audit;
     protected $customize;
 
+    protected $mobile;
+
     public static function getInstance()
     {
         if (is_null(static::$instance)) {
@@ -22,12 +24,16 @@ class UserExperience
         $this->audit = new Audit();
         $this->customize = new Customize();
         $this->mobile = new Mobile();
+
+        // register modules
+        $this->customize->registerCustomizers();
     }
 
     public function optimize()
     {
         $this->customize->showLoading();
         $this->customize->loadPresetPalettes();
+        $this->customize->loadCustomizers();
 
         if (jankx_is_mobile()) {
             $this->mobile->makeImageLookGood();
