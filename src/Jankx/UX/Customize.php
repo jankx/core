@@ -4,7 +4,7 @@ namespace Jankx\UX;
 
 use Jankx\Asset\CustomizableAsset;
 use Jankx\Asset\Cache;
-use Jankx\Customizers\DefaultPostThumbnail;
+use Jankx\Customizers\DefaultPostThumbnailCustomizer;
 use Jankx\GlobalConfigs;
 use Jankx\Interfaces\CustomizerInterface;
 
@@ -60,7 +60,7 @@ class Customize
         $this->customizers =  apply_filters(
             'jankx/ux/customizers',
             [
-                DefaultPostThumbnail::class,
+                DefaultPostThumbnailCustomizer::class,
             ]
         );
     }
