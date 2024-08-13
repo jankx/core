@@ -4,7 +4,7 @@
  * Author: Puleeno Nguyen
  * Author URI: https://puleeno.com
  * Description: This module is create the basic structure for Jankx theme. Other stylesheet will be defined in the theme
- * Version: 1.0.0.0
+ * Version: 1.0.0.1
  */
 /* http://meyerweb.com/eric/tools/css/reset/
    v5.0.1 | 20191019
@@ -497,7 +497,7 @@ table:not(.no-border) th, table:not(.no-border) td {
 }
 @media (min-width: 767px) {
   .jankx-site-header.sticky-header {
-    transition: all 0.5s;
+    transition: all 0.8s;
   }
   .jankx-site-header.sticky-header.sticky {
     position: fixed;
