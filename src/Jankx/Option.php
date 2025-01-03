@@ -2,7 +2,7 @@
 
 namespace Jankx;
 
-use Jankx\Option\Helper;
+use Jankx\Adapter\Options\Helper;
 
 class Option
 {

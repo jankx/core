@@ -20,7 +20,7 @@ use Jankx\Component\Registry;
 use Jankx\Configs\ThemeConfigurations;
 use Jankx\Guarder;
 use Jankx\ScriptLoader;
-use Jankx\Option\Framework as OptionFramework;
+use Jankx\Adapter\Options\Framework as OptionFramework;
 use Jankx\PostLayout\PostLayoutManager;
 use Jankx\SiteLayout\SiteLayout;
 use Jankx\Social\Sharing;
