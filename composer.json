@@ -41,5 +41,9 @@
   },
   "require-dev": {
     "jankx/debugger": "*"
+  },
+  "suggest": {
+    "monolog/monolog": "Allows more advanced logging of the application flow",
+    "jankx/dashboard-framework": "Official option framework for Jankx theme"
   }
 }
