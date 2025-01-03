@@ -18,7 +18,7 @@
     "jankx/component": "*",
     "jankx/helpers": "^1.0.0",
     "jankx/languages": "*",
-    "jankx/option": "*",
+    "jankx/option-adapter": "*",
     "jankx/site-layout": "*",
     "jankx/post-layout": "*",
     "jankx/template": "^1.0.0",
