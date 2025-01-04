@@ -323,9 +323,10 @@ class Jankx extends Container
          *
          * Hook `jankx_option_framework_mode`: You set the option framework via this hook
          */
+        $actMode = get_option('jankx_option_framework', 'auto');
         $optionMode = apply_filters(
             'jankx_option_framework_mode',
-            get_option('jankx_option_framework', 'auto')
+            in_array($actMode, ['auto', 'wordpress']) ? 'auto' : $actMode
         );
         $optionFramework->setMode($optionMode);
         try {

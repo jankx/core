@@ -1,5 +1,7 @@
 <?php
+
 namespace Jankx\Log;
 
-class Logger {
+class Logger
+{
 }
