@@ -3,6 +3,7 @@
 namespace Jankx\Customizers;
 
 use Jankx\GlobalConfigs;
+use WP_Error;
 
 class DefaultPostThumbnailCustomizer extends BaseCustomizer
 {
@@ -39,6 +40,9 @@ class DefaultPostThumbnailCustomizer extends BaseCustomizer
         $defaultThumbnailOptionKey = 'jankx/thumbnail/default/' . $defaultSettingUri;
         $defaultThumbnailId = get_option($defaultThumbnailOptionKey, null);
         if (!is_null($defaultThumbnailId)) {
+            if ($defaultThumbnailId instanceof WP_Error) {
+                return 0;
+            }
             return $defaultThumbnailId;
         }
 
