@@ -269,11 +269,11 @@ h5, h6 {
 }
 .main-content .entry-content .aligncenter,
 .main-content .entry-content img.aligncenter {
-  margin-right: auto;
-  margin-left: auto;
+  margin-right: auto !important;
+  margin-left: auto !important;
   display: block;
   clear: both;
-  margin-bottom: 10px;
+  margin-bottom: 10px !important;
 }
 .main-content .entry-content .alignnone,
 .main-content .entry-content img.alignnone {

@@ -47,11 +47,11 @@ img.alignright {
 
 .aligncenter,
 img.aligncenter {
-    margin-right: auto;
-    margin-left: auto;
+    margin-right: auto !important;
+    margin-left: auto !important;
     display: block;
     clear: both;
-    margin-bottom: 10px;
+    margin-bottom: 10px !important;
 }
 
 .alignnone,
