@@ -93,7 +93,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-  font-size: 1.5rem;
+  font-size: 2.5rem;
 }
 
 h2 {
@@ -238,7 +238,7 @@ h5, h6 {
   font-size: 1.8rem;
 }
 .main-content .entry-content h3 {
-  font-size: 1.5rem;
+  font-size: 2.5rem;
 }
 .main-content .entry-content h4 {
   font-size: 1.25rem;
@@ -392,7 +392,7 @@ table:not(.no-border) th, table:not(.no-border) td {
   font-size: 1.8rem;
 }
 .entry-content h3 {
-  font-size: 1.5rem;
+  font-size: 2.5rem;
 }
 .entry-content h4 {
   font-size: 1.25rem;
