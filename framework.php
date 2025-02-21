@@ -14,11 +14,11 @@ if (!defined('ABSPATH')) {
 define('JANKX_FRAMEWORK_FILE_LOADER', __FILE__);
 
 if (empty($GLOBALS['jankx'])) {
-    $GLOBALS['jankx'] = Jankx::getInstance();
+    $jankxInstance = Jankx::getInstance();
 
     add_action(
         'after_setup_theme',
-        array($GLOBALS['jankx'], 'setup'),
+        array($jankxInstance, 'setup'),
         2
     );
 }
