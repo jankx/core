@@ -35,7 +35,7 @@ class UserExperience
         $this->customize->loadPresetPalettes();
         $this->customize->loadCustomizers();
 
-        if (jankx_is_mobile()) {
+        if (wp_is_request('frontend') && jankx_is_mobile()) {
             $this->mobile->makeImageLookGood();
         }
 
