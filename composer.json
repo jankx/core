@@ -15,7 +15,7 @@
     "jankx/admin": "*",
     "jankx/asset": "*",
     "jankx/command": "*",
-    "jankx/component": "*",
+    "jankx/component": "dev-master",
     "jankx/helpers": "^1.0.0",
     "jankx/languages": "*",
     "jankx/option-adapter": "*",

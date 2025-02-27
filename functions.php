@@ -1,5 +1,7 @@
 <?php
 
+use Jankx\Component\Abstracts\ComponentComposite;
+use Jankx\Component\Registry;
 use Jankx\SiteLayout\SiteLayout;
 use Jankx\TemplateEngine\Engine;
 use Jankx\Template\Page;
@@ -197,6 +199,46 @@ function jankx_core_asset_url($path)
     $core_assets_dir = jankx_core_asset_directory();
     return sprintf('%s/assets/%s', $core_assets_dir, $path);
 }
+
+
+/**
+ * Jankx component
+ *
+ * @param string $name The component name
+ * @param array $props Component property or data
+ * @param array $args The options of component
+ *
+ * @return Jankx\Component\Constracts\Component | null;
+ */
+function jankx_component($name, $props = array(), $echo = false)
+{
+    // Get all components are supported
+    $components = Registry::getComponents();
+
+    if (!isset($components[$name])) {
+        error_log(
+            sprintf(
+                __('The component `%s` is not registered in Jankx system', 'jankx'),
+                $name
+            )
+        );
+        return null;
+    }
+
+    // Create component object
+    $componentClass = array_get($components, $name);
+    $component      = new $componentClass($props);
+
+    if (is_a($component, ComponentComposite::class)) {
+        // The component output
+        if (!$echo) {
+            return $component;
+        }
+        echo $component;
+    }
+    return $component;
+}
+
 
 function jankx_get_logo_image($props)
 {
