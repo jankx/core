@@ -16,7 +16,6 @@
     "jankx/asset": "*",
     "jankx/command": "*",
     "jankx/helpers": "^1.0.0",
-    "jankx/languages": "*",
     "jankx/option-adapter": "*",
     "jankx/site-layout": "*",
     "jankx/post-layout": "*",
