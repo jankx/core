@@ -366,7 +366,7 @@ class TemplateAndLayout
             $defaultLayout = null;
             foreach ($templates as $template) {
                 $defaultLayout = GlobalConfigs::get(
-                    sprintf('layouts.%s.name', $template)
+                    sprintf('customs.layouts.%s.name', $template)
                 );
                 if (!is_null($defaultLayout)) {
                     break;
@@ -374,7 +374,7 @@ class TemplateAndLayout
             }
             if (is_null($defaultLayout)) {
                 $defaultLayout = GlobalConfigs::get(
-                    'layouts.default.name',
+                    'customs.layouts.default.name',
                 );
             }
             $siteLayout->setDefaultLayout($defaultLayout);
