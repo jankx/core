@@ -15,5 +15,9 @@ class SecondaryNavigation
 
     public function loadSecondaryMenu()
     {
+        jankx_component('nav', [
+            'theme_location' => 'secondary',
+            'open_container' => true,
+        ], true);
     }
 }

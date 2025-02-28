@@ -398,7 +398,7 @@ class Jankx extends Container
 
         if (GlobalConfigs::get('customs.layout.menu.secondary.enable', false)) {
             $secondaryNavigation = new SecondaryNavigation();
-            add_action('init', [$secondaryNavigation, 'init']);
+            add_action('wp', [$secondaryNavigation, 'init']);
         }
     }
 
