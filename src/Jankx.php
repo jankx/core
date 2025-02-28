@@ -38,7 +38,6 @@ use Jankx\GlobalConfigs;
 use Jankx\Interfaces\Filter;
 use Jankx\Interfaces\GooglePagespeedModuleInterface;
 use Jankx\PageSpeed\HTML5FixerModule;
-use Jankx\UI\SecondaryNavigation;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Encoder\XmlEncoder;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
@@ -395,11 +394,6 @@ class Jankx extends Container
         $this->instance('pagespeed.modules', apply_filters('jankx/pagespeed/modules', [
             HTML5FixerModule::class
         ]));
-
-        if (GlobalConfigs::get('customs.layout.menu.secondary.enable', false)) {
-            $secondaryNavigation = new SecondaryNavigation();
-            add_action('wp', [$secondaryNavigation, 'init']);
-        }
     }
 
     public function registerAdminScripts()

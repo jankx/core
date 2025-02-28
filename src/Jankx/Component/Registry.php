@@ -3,8 +3,6 @@
 namespace Jankx\Component;
 
 use Jankx;
-use Jankx\Component\Components\Row;
-use Jankx\Component\Components\Column;
 use Jankx\Component\Components\Header;
 use Jankx\Component\Components\Footer;
 use Jankx\Component\Components\HTML;
@@ -13,9 +11,6 @@ use Jankx\Component\Components\Logo;
 use Jankx\Component\Components\Modal;
 use Jankx\Component\Components\SearchForm;
 use Jankx\Component\Components\Link;
-use Jankx\Component\Components\Dropdown;
-use Jankx\Component\Components\DataList;
-use Jankx\Component\Components\BreakingNews;
 use Jankx\Component\Components\Navigation;
 use Jankx\Component\Constracts\ComponentViaActionHook;
 use Jankx\Component\Constracts\ComponentPlatform;
@@ -43,8 +38,6 @@ class Registry
         static::$components = apply_filters(
             'jankx_components',
             array(
-                Row::COMPONENT_NAME          => Row::class,
-                Column::COMPONENT_NAME       => Column::class,
                 Header::COMPONENT_NAME       => Header::class,
                 Footer::COMPONENT_NAME       => Footer::class,
                 HTML::COMPONENT_NAME         => HTML::class,
@@ -53,10 +46,6 @@ class Registry
                 Modal::COMPONENT_NAME        => Modal::class,
                 SearchForm::COMPONENT_NAME   => SearchForm::class,
                 Link::COMPONENT_NAME         => Link::class,
-                Dropdown::COMPONENT_NAME     => Dropdown::class,
-                DataList::COMPONENT_NAME     => DataList::class,
-                'list'                       => DataList::class,
-                BreakingNews::COMPONENT_NAME => BreakingNews::class,
                 Navigation::COMPONENT_NAME   => Navigation::class,
             )
         );
