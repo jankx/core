@@ -1,4 +1,5 @@
 <?php
+
 namespace Jankx\Component;
 
 use Jankx;
@@ -16,7 +17,6 @@ use Jankx\Component\Components\Dropdown;
 use Jankx\Component\Components\DataList;
 use Jankx\Component\Components\BreakingNews;
 use Jankx\Component\Components\Navigation;
-
 use Jankx\Component\Constracts\ComponentViaActionHook;
 use Jankx\Component\Constracts\ComponentPlatform;
 use Jankx\Component\Components\MobileHeader;

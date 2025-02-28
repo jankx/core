@@ -1,4 +1,5 @@
 <?php
+
 namespace Jankx\Component\Components;
 
 use Jankx\Component\Abstracts\Component;
