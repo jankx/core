@@ -1,5 +1,11 @@
 <?php
 switch ($numOfFooterWidgets) {
+    case 1: ?>
+        .footer-widgets-area .jankx-footer-widget {
+                float: none;
+                width: 100%;
+        }
+    <?php
     case 2:
         ?>
         @media(min-width: 767px) {
@@ -54,14 +60,21 @@ switch ($numOfFooterWidgets) {
                 width: 25%;
             }
         }
-        <?php
+    <?php
         break;
-    default:
+        default:
         ?>
-        .footer-widgets-area .jankx-footer-widget {
-            float: none;
-            width: 100%;
-        }
+            @media(min-width: 767px) {
+                .footer-widgets-area .jankx-footer-widget {
+                    width: 50%;
+                }
+            }
+            @media(min-width: 991px) {
+                .footer-widgets-area .jankx-footer-widget {
+                    width: <?php echo (100/$numOfFooterWidgets); ?>%;
+                }
+            }
+        
         <?php
         break;
 }

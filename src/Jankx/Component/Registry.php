@@ -47,6 +47,7 @@ class Registry
                 SearchForm::COMPONENT_NAME   => SearchForm::class,
                 Link::COMPONENT_NAME         => Link::class,
                 Navigation::COMPONENT_NAME   => Navigation::class,
+                'navigation'                 => Navigation::class
             )
         );
 

@@ -1,7 +1,7 @@
 <?php
-if (has_nav_menu($args['theme_location']) || $args['theme_location'] === 'primary') :
+if (has_nav_menu($args['theme_location'])) :
     ?>
-    <nav class="jankx-ui navigation navigation-<?php echo $args['theme_location']; ?>">
+    <nav class="jankx-ui navigation <?php echo implode(' ', $menu_classes); ?>">
     <?php
     if ($args['open_container']) {
         jankx_open_container();
