@@ -340,13 +340,16 @@ class TemplateAndLayout
         }
 
         $this->pageType = $this->detectCurrentPageType();
+        $page = Page::getInstance();
+        $page->setContext($this->pageType);
+
+        // Call Jankx frontend init hooks
+        do_action('jankx/frontend/init', $page, $this->pageType);
+
         $templates = array();
         if (!wp_using_themes()) {
             $this->initJankxThemeSystem();
         }
-
-        $page = Page::getInstance();
-        $page->setContext($this->pageType);
 
         $callback = apply_filters(
             'jankx_generate_templates_callback',
