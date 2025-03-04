@@ -2,13 +2,11 @@
     <?php do_action('jankx_post_layout_before_loop_item', $post, $data_index); ?>
 
     <?php if ($show_thumbnail) : ?>
-    <div class="post-thumbnail">
-        <?php do_action('jankx_post_layout_before_loop_post_thumbnail', $post, $data_index); ?>
-        <a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>">
-            <?php jankx_the_post_thumbnail($thumbnail_size); ?>
-        </a>
-        <?php do_action('jankx_post_layout_after_loop_post_thumbnail', $post, $data_index); ?>
-    </div>
+        <?php jankx_template('post-layout/thumbnail', [
+            'post' => $post,
+            'data_index' => $data_index,
+            'thumbnail_size' => $thumbnail_size
+        ]); ?>
     <?php endif; ?>
 
     <div class="post-infos">
