@@ -1,4 +1,6 @@
-<div class="post-thumbnail">
+<div <?php echo jankx_generate_html_attributes([
+    'class' => apply_filters('jankx/thumbnail/classes', ['post-thumbnail'], $post, $data_index),
+]); ?>>
     <?php do_action('jankx_post_layout_before_loop_post_thumbnail', $post, $data_index); ?>
     <a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>">
         <?php if (empty($content)): ?>

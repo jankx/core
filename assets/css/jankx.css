@@ -423,11 +423,11 @@ table:not(.no-border) th, table:not(.no-border) td {
 }
 .entry-content .aligncenter,
 .entry-content img.aligncenter {
-  margin-right: auto;
-  margin-left: auto;
+  margin-right: auto !important;
+  margin-left: auto !important;
   display: block;
   clear: both;
-  margin-bottom: 10px;
+  margin-bottom: 10px !important;
 }
 .entry-content .alignnone,
 .entry-content img.alignnone {
@@ -1207,6 +1207,24 @@ body.error404 {
     font-size: 18px;
   }
 }
+.post-thumbnail {
+  position: relative;
+  width: 100%; /* Đảm bảo chiều rộng 100% */
+  padding-top: 70%; /* Tỷ lệ 400:280 (280/400 = 0.7) */
+  overflow: hidden; /* Ẩn phần hình ảnh vượt ra ngoài */
+}
+
+.post-thumbnail img {
+  position: absolute;
+  top: 50%; /* Đưa hình ảnh vào giữa theo chiều dọc */
+  left: 50%; /* Đưa hình ảnh vào giữa theo chiều ngang */
+  min-width: 100%; /* Chiều rộng tối thiểu 100% */
+  min-height: 100%; /* Chiều cao tối thiểu 100% */
+  width: auto; /* Chiều rộng tự động để giữ tỷ lệ */
+  height: auto; /* Chiều cao tự động để giữ tỷ lệ */
+  transform: translate(-50%, -50%); /* Đưa hình ảnh vào giữa */
+}
+
 .choices__inner {
   margin: 0;
   min-height: initial;
@@ -1260,4 +1278,20 @@ body.error404 {
 }
 .jankx-site-header .navigation #mega-menu-wrap-primary #mega-menu-primary.mega-menu .menu-item + .menu-item-type-jankx-logo {
   margin-left: 10px;
+}
+
+.post-thumbnail {
+  position: relative;
+  width: 100%; /* Ensure 100% width */
+  padding-top: 75%; /* Aspect ratio 4:3 (3/4 = 0.75) */
+  overflow: hidden; /* Hide overflowed image parts */
+}
+
+.post-thumbnail img {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 100%; /* Ensure 100% width */
+  height: auto; /* Automatic height to maintain aspect ratio */
+  transform: translateX(-50%); /* Center the image */
 }

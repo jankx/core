@@ -51,7 +51,7 @@ use function ElementorDeps\DI\get;
 class Jankx extends Container
 {
     const FRAMEWORK_NAME    = 'Jankx Framework';
-    const FRAMEWORK_VERSION = '1.0.0.15';
+    const FRAMEWORK_VERSION = '1.0.0.22';
     const ENGINE_ID         = 'jankx';
 
     protected static $instance;
