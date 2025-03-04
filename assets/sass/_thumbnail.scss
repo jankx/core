@@ -13,5 +13,6 @@
     min-height: 100%; /* Chiều cao tối thiểu 100% */
     width: auto; /* Chiều rộng tự động để giữ tỷ lệ */
     height: auto; /* Chiều cao tự động để giữ tỷ lệ */
-    transform: translate(-50%, -50%); /* Đưa hình ảnh vào giữa */
+    transform: translateX(-50%); /* Đưa hình ảnh vào giữa theo chiều ngang */
+    object-fit: cover; /* Giữ tỷ lệ gốc mà không bị cắt */
 }
