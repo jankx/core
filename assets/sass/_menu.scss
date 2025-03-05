@@ -5,6 +5,12 @@
         z-index: 99;
     }
 
+    .jankx-ui {
+        &.navigation {
+            width: 100%;
+        }
+    }
+
     .default-navigation {
         &.navigation {
             width: 100%;

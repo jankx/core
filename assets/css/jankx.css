@@ -698,6 +698,9 @@ table:not(.no-border) th, table:not(.no-border) td {
     background-color: #fff;
     z-index: 99;
   }
+  .jankx-ui.navigation {
+    width: 100%;
+  }
   .default-navigation.navigation {
     width: 100%;
   }
@@ -920,11 +923,6 @@ html.jankx-mobile .menu-style-collapse .jankx-site-header.show .header-collapse 
 /**
  * Reset IOS input styles
  */
-input[type=text], input[type=button], input[type=submit], input[type=reset] {
-  -webkit-appearance: none;
-  -webkit-border-radius: 0;
-}
-
 .jankx-base .jankx-container {
   margin-right: auto;
   margin-left: auto;
