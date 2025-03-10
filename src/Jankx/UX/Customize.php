@@ -5,8 +5,11 @@ namespace Jankx\UX;
 use Jankx\Asset\CustomizableAsset;
 use Jankx\Asset\Cache;
 use Jankx\Customizers\DefaultPostThumbnailCustomizer;
+use Jankx\Customizers\PostThumbnailEffectCustomizer;
 use Jankx\GlobalConfigs;
 use Jankx\Interfaces\CustomizerInterface;
+use ReflectionFunction;
+use ReflectionMethod;
 
 class Customize
 {
@@ -33,7 +36,7 @@ class Customize
     public function renderLoading()
     {
         echo '<div class="jankx-loading">';
-            jankx_template('common/loading');
+        jankx_template('common/loading');
         echo '</div>';
     }
 
@@ -57,14 +60,29 @@ class Customize
 
     public function registerCustomizers()
     {
-        $this->customizers =  apply_filters(
+        $this->customizers = apply_filters(
             'jankx/ux/customizers',
             [
                 DefaultPostThumbnailCustomizer::class,
+                PostThumbnailEffectCustomizer::class
             ]
         );
     }
 
+    public function getTotalAgruments($callback)
+    {
+        if (is_array($callback)) {
+            $ref = new ReflectionMethod($callback[0], $callback[1]);
+        } else {
+            $ref = new ReflectionFunction($callback);
+        }
+        $parameters = $ref->getParameters();
+        $numberOfAgruments = count($parameters);
+
+        unset($parameters, $ref);
+
+        return $numberOfAgruments;
+    }
 
     public function loadCustomizers()
     {
@@ -86,7 +104,26 @@ class Customize
         do_action('jankx/customizers/custom/start');
 
         foreach ($this->activatedCustomizers as $customizer) {
-            add_action($customizer->getExecuteHook(), [$customizer, 'custom']);
+            $callback = $customizer->getMethod();
+            if (!is_callable($callback)) {
+                continue;
+            }
+
+            if (!$customizer->isFilterHook()) {
+                add_action(
+                    $customizer->getExecuteHook(),
+                    $callback,
+                    $customizer->getPriority(),
+                    $this->getTotalAgruments($callback)
+                );
+            } else {
+                add_filter(
+                    $customizer->getExecuteHook(),
+                    $callback,
+                    $customizer->getPriority(),
+                    $this->getTotalAgruments($callback)
+                );
+            }
         }
     }
 }

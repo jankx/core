@@ -8,7 +8,11 @@ interface CustomizerInterface
 
     public function getExecuteHook(): ?string;
 
-    public function custom();
+    public function getMethod();
+
+    public function getPriority(): int;
 
     public function unload();
+
+    public function isFilterHook(): bool;
 }
