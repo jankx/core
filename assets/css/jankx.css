@@ -737,6 +737,7 @@ table:not(.no-border) th, table:not(.no-border) td {
     top: 100%;
     z-index: 10;
     background: #fff;
+    min-width: 250px;
   }
   .default-navigation :not(.widget_nav_menu) > div > ul.menu .sub-menu > li, .default-navigation .navigation > div.menu > ul .sub-menu > li {
     position: relative;
