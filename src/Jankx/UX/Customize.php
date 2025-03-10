@@ -92,7 +92,7 @@ class Customize
                     /**
                      * @var \Jankx\Interfaces\CustomizerInterface
                      */
-                    $customizer = \call_user_func([$customizerCls, 'getInstance']);
+                    $customizer = new $customizerCls;
                     if (!$customizer->isEnabled()) {
                         continue;
                     }

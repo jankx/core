@@ -10,18 +10,6 @@ abstract class BaseCustomizer implements CustomizerInterface
 
     protected $isFilterHook = false;
 
-    protected function __construct()
-    {
-    }
-
-    public static function getInstance()
-    {
-        if (is_null(static::$instance)) {
-            static::$instance = new static();
-        }
-        return static::$instance;
-    }
-
     public function getMethod()
     {
         return [$this, 'custom'];
