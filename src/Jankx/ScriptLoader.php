@@ -57,7 +57,7 @@ class ScriptLoader
                         'url' => jankx_core_asset_url('libs/Choices/scripts/choices.js'),
                         'url.min' => jankx_core_asset_url('libs/Choices/scripts/choices.min.js')
                     ],
-                    'version' => '9.0.1',
+                    'version' => '11.0.6',
                 ),
                 'sharing' => array(
                     'url' => [
@@ -101,7 +101,7 @@ class ScriptLoader
                         'url' => jankx_core_asset_url('libs/Choices/styles/choices.css'),
                         'url.min' => jankx_core_asset_url('libs/Choices/styles/choices.min.css')
                     ],
-                    'version' => '9.0.1',
+                    'version' => '11.0.6',
                 ),
                 'ispin' => array(
                     'url' => [
