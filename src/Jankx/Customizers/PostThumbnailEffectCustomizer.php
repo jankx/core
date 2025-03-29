@@ -13,7 +13,8 @@ class PostThumbnailEffectCustomizer extends BaseCustomizer
         return "jankx/thumbnail/classes";
     }
 
-    public function applyHoverEffect($classes) {
+    public function applyHoverEffect($classes)
+    {
         $classes[] = Helper::getOption(
             'jankx/thumbnail/effect',
             'shine-effect'
@@ -22,11 +23,13 @@ class PostThumbnailEffectCustomizer extends BaseCustomizer
         return $classes;
     }
 
-    public function getMethod() {
+    public function getMethod()
+    {
         return [$this, 'applyHoverEffect'];
     }
 
-    public function unload() {
+    public function unload()
+    {
         remove_filter(
             $this->getExecuteHook(),
             [$this, 'applyHoverEffect'],

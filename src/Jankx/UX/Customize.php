@@ -92,7 +92,7 @@ class Customize
                     /**
                      * @var \Jankx\Interfaces\CustomizerInterface
                      */
-                    $customizer = new $customizerCls;
+                    $customizer = new $customizerCls();
                     if (!$customizer->isEnabled()) {
                         continue;
                     }

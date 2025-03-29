@@ -272,7 +272,7 @@ class Jankx extends Container
     public function init()
     {
         // Run hook jankx init via components
-        do_action( 'jankx/init');
+        do_action('jankx/init');
 
         add_theme_support('html5', array('comment-list', 'comment-form', 'search-form', 'gallery', 'caption', 'style', 'script'));
         add_theme_support('post-thumbnails');
@@ -316,7 +316,7 @@ class Jankx extends Container
         }, 5);
 
 
-        do_action( 'jankx/initialized');
+        do_action('jankx/initialized');
     }
 
     public function setupOptionFramework()
