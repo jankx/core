@@ -45,6 +45,19 @@ class ScriptLoader
                     ],
                     'version' => '1.0.1',
                 ),
+                'mmenu-light.polyfills' => array(
+                    'url' => [
+                        'url' => jankx_core_asset_url('libs/mmenu-light-3.2.2/mmenu-light.polyfills.js'),
+                    ],
+                    'version' => '3.2.2',
+                ),
+                'mmenu-light' => array(
+                    'url' => [
+                        'url' => jankx_core_asset_url('libs/mmenu-light-3.2.2/mmenu-light.js'),
+                    ],
+                    'dependences' => ['mmenu-light.polyfills'],
+                    'version' => '3.2.2',
+                ),
                 'micromodal' => array(
                     'url' => [
                         'url' => jankx_core_asset_url('libs/micromodal/micromodal.js'),
@@ -102,6 +115,13 @@ class ScriptLoader
                         'url.min' => jankx_core_asset_url('libs/Choices/styles/choices.min.css')
                     ],
                     'version' => '11.0.6',
+                ),
+
+                'mmenu-light' => array(
+                    'url' => [
+                        'url' => jankx_core_asset_url('libs/mmenu-light-3.2.2/mmenu-light.css'),
+                    ],
+                    'version' => '3.2.2',
                 ),
                 'ispin' => array(
                     'url' => [

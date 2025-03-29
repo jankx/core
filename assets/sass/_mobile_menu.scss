@@ -56,4 +56,16 @@
             }
         }
     }
+
+
+    body.mmenu-offcanvas {
+        #offcanvas-menu {
+            display: none;
+        }
+        &.mm-ocd-opened {
+            #offcanvas-menu {
+                display: block;
+            }
+        }
+    }
 }

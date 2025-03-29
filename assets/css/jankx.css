@@ -920,6 +920,12 @@ html.jankx-mobile .menu-style-collapse .jankx-site-header.show .header-collapse 
     display: block;
     padding: 10px;
   }
+  body.mmenu-offcanvas #offcanvas-menu {
+    display: none;
+  }
+  body.mmenu-offcanvas.mm-ocd-opened #offcanvas-menu {
+    display: block;
+  }
 }
 /**
  * Reset IOS input styles
