@@ -692,6 +692,17 @@ table:not(.no-border) th, table:not(.no-border) td {
     width: 100%;
   }
 }
+@media (min-width: 1200px) {
+  .default-navigation :not(.widget_nav_menu) > div > ul.menu,
+  .default-navigation .navigation > div.menu > ul {
+    margin-left: -10px;
+    margin-right: -10px;
+  }
+  .default-navigation :not(.widget_nav_menu) > div > ul.menu li,
+  .default-navigation .navigation > div.menu > ul li {
+    padding: 5px 10px;
+  }
+}
 @media (min-width: 768px) {
   #mobile-menu {
     position: relative;
@@ -704,32 +715,39 @@ table:not(.no-border) th, table:not(.no-border) td {
   .default-navigation.navigation {
     width: 100%;
   }
-  .default-navigation :not(.widget_nav_menu) > div > ul.menu, .default-navigation .navigation > div.menu > ul {
+  .default-navigation :not(.widget_nav_menu) > div > ul.menu,
+  .default-navigation .navigation > div.menu > ul {
     display: flex;
     align-items: center;
     margin-left: -5px;
     margin-right: -5px;
   }
-  .default-navigation :not(.widget_nav_menu) > div > ul.menu > li, .default-navigation .navigation > div.menu > ul > li {
+  .default-navigation :not(.widget_nav_menu) > div > ul.menu > li,
+  .default-navigation .navigation > div.menu > ul > li {
     position: relative;
     padding: 5px 5px;
   }
-  .default-navigation :not(.widget_nav_menu) > div > ul.menu > li:hover .sub-menu, .default-navigation .navigation > div.menu > ul > li:hover .sub-menu {
+  .default-navigation :not(.widget_nav_menu) > div > ul.menu > li:hover .sub-menu,
+  .default-navigation .navigation > div.menu > ul > li:hover .sub-menu {
     visibility: visible;
     opacity: 1;
   }
-  .default-navigation :not(.widget_nav_menu) > div > ul.menu > li.jkxp-center, .default-navigation .navigation > div.menu > ul > li.jkxp-center {
+  .default-navigation :not(.widget_nav_menu) > div > ul.menu > li.jkxp-center,
+  .default-navigation .navigation > div.menu > ul > li.jkxp-center {
     flex: 1;
     display: flex;
     justify-content: center;
   }
-  .default-navigation :not(.widget_nav_menu) > div > ul.menu > li.jkxw-stretch, .default-navigation .navigation > div.menu > ul > li.jkxw-stretch {
+  .default-navigation :not(.widget_nav_menu) > div > ul.menu > li.jkxw-stretch,
+  .default-navigation .navigation > div.menu > ul > li.jkxw-stretch {
     flex: 1;
   }
-  .default-navigation :not(.widget_nav_menu) > div > ul.menu > li.strong, .default-navigation .navigation > div.menu > ul > li.strong {
+  .default-navigation :not(.widget_nav_menu) > div > ul.menu > li.strong,
+  .default-navigation .navigation > div.menu > ul > li.strong {
     background-color: rgba(0, 0, 0, 0.2);
   }
-  .default-navigation :not(.widget_nav_menu) > div > ul.menu .sub-menu, .default-navigation .navigation > div.menu > ul .sub-menu {
+  .default-navigation :not(.widget_nav_menu) > div > ul.menu .sub-menu,
+  .default-navigation .navigation > div.menu > ul .sub-menu {
     visibility: hidden;
     opacity: 0;
     transition: visibility 0s, opacity 0.5s linear;
@@ -739,16 +757,19 @@ table:not(.no-border) th, table:not(.no-border) td {
     background: #fff;
     min-width: 250px;
   }
-  .default-navigation :not(.widget_nav_menu) > div > ul.menu .sub-menu > li, .default-navigation .navigation > div.menu > ul .sub-menu > li {
+  .default-navigation :not(.widget_nav_menu) > div > ul.menu .sub-menu > li,
+  .default-navigation .navigation > div.menu > ul .sub-menu > li {
     position: relative;
     display: block;
     white-space: nowrap;
   }
-  .default-navigation :not(.widget_nav_menu) > div > ul.menu .sub-menu > li:hover .sub-menu, .default-navigation .navigation > div.menu > ul .sub-menu > li:hover .sub-menu {
+  .default-navigation :not(.widget_nav_menu) > div > ul.menu .sub-menu > li:hover .sub-menu,
+  .default-navigation .navigation > div.menu > ul .sub-menu > li:hover .sub-menu {
     visibility: visible;
     opacity: 1;
   }
-  .default-navigation :not(.widget_nav_menu) > div > ul.menu .sub-menu > li > .sub-menu, .default-navigation .navigation > div.menu > ul .sub-menu > li > .sub-menu {
+  .default-navigation :not(.widget_nav_menu) > div > ul.menu .sub-menu > li > .sub-menu,
+  .default-navigation .navigation > div.menu > ul .sub-menu > li > .sub-menu {
     visibility: hidden;
     opacity: 0;
     transition: visibility 0s, opacity 0.5s linear;
@@ -758,56 +779,66 @@ table:not(.no-border) th, table:not(.no-border) td {
   }
 }
 @media (min-width: 768px) and (max-width: 991px) {
-  .default-navigation :not(.widget_nav_menu) > div > ul.menu li.hide-tablet, .default-navigation .navigation > div.menu > ul li.hide-tablet {
+  .default-navigation :not(.widget_nav_menu) > div > ul.menu li.hide-tablet,
+  .default-navigation .navigation > div.menu > ul li.hide-tablet {
     display: none;
   }
-  .default-navigation :not(.widget_nav_menu) > div > ul.menu li.mobile-only, .default-navigation .navigation > div.menu > ul li.mobile-only {
+  .default-navigation :not(.widget_nav_menu) > div > ul.menu li.mobile-only,
+  .default-navigation .navigation > div.menu > ul li.mobile-only {
     display: none;
   }
-  .default-navigation :not(.widget_nav_menu) > div > ul.menu li.desktop-only, .default-navigation .navigation > div.menu > ul li.desktop-only {
+  .default-navigation :not(.widget_nav_menu) > div > ul.menu li.desktop-only,
+  .default-navigation .navigation > div.menu > ul li.desktop-only {
     display: none;
   }
 }
 @media (min-width: 992px) {
-  .default-navigation :not(.widget_nav_menu) > div > ul.menu li.hide-desktop, .default-navigation .navigation > div.menu > ul li.hide-desktop {
+  .default-navigation :not(.widget_nav_menu) > div > ul.menu li.hide-desktop,
+  .default-navigation .navigation > div.menu > ul li.hide-desktop {
     display: none;
   }
-  .default-navigation :not(.widget_nav_menu) > div > ul.menu li.mobile-only, .default-navigation .navigation > div.menu > ul li.mobile-only {
+  .default-navigation :not(.widget_nav_menu) > div > ul.menu li.mobile-only,
+  .default-navigation .navigation > div.menu > ul li.mobile-only {
     display: none;
   }
-  .default-navigation :not(.widget_nav_menu) > div > ul.menu li.tablet-only, .default-navigation .navigation > div.menu > ul li.tablet-only {
+  .default-navigation :not(.widget_nav_menu) > div > ul.menu li.tablet-only,
+  .default-navigation .navigation > div.menu > ul li.tablet-only {
     display: none;
   }
 }
 @media (max-width: 767px) {
-  .default-navigation :not(.widget_nav_menu) > div > ul.menu li, .default-navigation .navigation > div.menu > ul li {
+  .default-navigation :not(.widget_nav_menu) > div > ul.menu li,
+  .default-navigation .navigation > div.menu > ul li {
     /*******************************
      * Work with menu-icons plugins
      ******************************/
   }
-  .default-navigation :not(.widget_nav_menu) > div > ul.menu li.hide-mobile, .default-navigation .navigation > div.menu > ul li.hide-mobile {
+  .default-navigation :not(.widget_nav_menu) > div > ul.menu li.hide-mobile,
+  .default-navigation .navigation > div.menu > ul li.hide-mobile {
     display: none;
   }
-  .default-navigation :not(.widget_nav_menu) > div > ul.menu li.desktop-only, .default-navigation .navigation > div.menu > ul li.desktop-only {
+  .default-navigation :not(.widget_nav_menu) > div > ul.menu li.desktop-only,
+  .default-navigation .navigation > div.menu > ul li.desktop-only {
     display: none;
   }
-  .default-navigation :not(.widget_nav_menu) > div > ul.menu li.tablet-only, .default-navigation .navigation > div.menu > ul li.tablet-only {
+  .default-navigation :not(.widget_nav_menu) > div > ul.menu li.tablet-only,
+  .default-navigation .navigation > div.menu > ul li.tablet-only {
     display: none;
   }
-  .default-navigation :not(.widget_nav_menu) > div > ul.menu li.mobile-hide-text span, .default-navigation .navigation > div.menu > ul li.mobile-hide-text span {
+  .default-navigation :not(.widget_nav_menu) > div > ul.menu li.mobile-hide-text span,
+  .default-navigation .navigation > div.menu > ul li.mobile-hide-text span {
     display: none;
   }
-  .default-navigation :not(.widget_nav_menu) > div > ul.menu li.mobile-hide-icon ._mi, .default-navigation .navigation > div.menu > ul li.mobile-hide-icon ._mi {
+  .default-navigation :not(.widget_nav_menu) > div > ul.menu li.mobile-hide-icon ._mi,
+  .default-navigation .navigation > div.menu > ul li.mobile-hide-icon ._mi {
     display: none;
   }
-}
-@media (min-width: 1200px) {
-  .default-navigation :not(.widget_nav_menu) > div > ul.menu, .default-navigation .navigation > div.menu > ul {
-    margin-left: -10px;
-    margin-right: -10px;
+  .mm-spn .menu-item a {
+    display: flex;
+    flex-wrap: wrap;
   }
-  .default-navigation :not(.widget_nav_menu) > div > ul.menu li, .default-navigation .navigation > div.menu > ul li {
-    padding: 5px 10px;
+  .mm-spn .menu-item:after {
+    margin-left: 0;
   }
 }
 .mobile-header-elements {

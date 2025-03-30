@@ -56,11 +56,13 @@ class Jankx extends Container
 
     protected static $instance;
 
-    protected $templateName;
-    protected $templateStylesheet;
+    protected $templateData;
+
+   protected $templateStylesheet;
     protected $theme;
     protected $admin;
     protected $filters = [];
+
 
     protected $asset;
     protected $optionFramework;
@@ -82,6 +84,12 @@ class Jankx extends Container
             throw new \Exception(
                 sprintf('Call to undefined method %s::%s()', __CLASS__, $name)
             );
+        }
+    }
+
+    public function __get($name) {
+        if (property_exists($this, $name)) {
+            return $this->$name;
         }
     }
 
@@ -173,27 +181,17 @@ class Jankx extends Container
 
     private function initCoreFramework()
     {
+        $this->templateData = wp_get_theme();
 
-        $theme       = wp_get_theme();
-        $themeParent = $theme->parent();
-        if (!$themeParent) {
-            $themeParent = $theme;
-        }
-
-        $this->theme = function () use ($theme) {
-            return $theme;
-        };
-        $this->templateName = function () use ($themeParent) {
-            return GlobalConfigs::get(
-                'theme.short_name',
-                $themeParent->get('Name')
-            );
-        };
-        $this->templateStylesheet = function () use ($themeParent) {
-            return $themeParent->stylesheet;
+        $this->theme = function () {
+            return $this->templateData;
         };
 
-        $this->textDomain = $themeParent->get('TextDomain');
+        $this->templateStylesheet = function (){
+            return $this->templateData->stylesheet;
+        };
+
+        $this->textDomain = $this->templateData->get('TextDomain');
 
         // Create Jankx admin instance;
         $admin = is_admin() ? new Admin() : null;
@@ -448,5 +446,25 @@ class Jankx extends Container
                 }
             }
         }
+    }
+
+
+    public static function templateName() {
+        $template = Jankx::getInstance()->templateData->parent();
+        if (empty($template)) {
+            $template = Jankx::getInstance()->templateData;
+        }
+
+        return GlobalConfigs::get(
+            'theme.short_name',
+            $template->get('Name')
+        );
+    }
+
+    public static function themeName() {
+        return GlobalConfigs::get(
+            'theme.short_name',
+            static::getInstance()->templateData->get('Name')
+        );
     }
 }

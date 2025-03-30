@@ -1,3 +1,18 @@
+@media(min-width: 1200px) {
+    .default-navigation {
+
+        :not(.widget_nav_menu)>div>ul.menu,
+        .navigation>div.menu>ul {
+            margin-left: -10px;
+            margin-right: -10px;
+
+            li {
+                padding: 5px 10px;
+            }
+        }
+    }
+}
+
 @media(min-width: 768px) {
     #mobile-menu {
         position: relative;
@@ -16,28 +31,34 @@
             width: 100%;
         }
 
-        :not(.widget_nav_menu) > div >ul.menu, .navigation > div.menu >ul {
+        :not(.widget_nav_menu)>div>ul.menu,
+        .navigation>div.menu>ul {
             display: flex;
             align-items: center;
             margin-left: -5px;
             margin-right: -5px;
-            > li {
+
+            >li {
                 position: relative;
                 padding: 5px 5px;
+
                 &:hover {
                     .sub-menu {
                         visibility: visible;
                         opacity: 1;
                     }
                 }
+
                 &.jkxp-center {
                     flex: 1;
                     display: flex;
                     justify-content: center;
                 }
+
                 &.jkxw-stretch {
                     flex: 1;
                 }
+
                 &.strong {
                     background-color: rgba(0, 0, 0, 0.2);
                 }
@@ -58,7 +79,8 @@
                     position: relative;
                     display: block;
                     white-space: nowrap;
-                    &:hover{
+
+                    &:hover {
                         .sub-menu {
                             visibility: visible;
                             opacity: 1;
@@ -83,14 +105,18 @@
 
 @media (min-width: 768px) and (max-width: 991px) {
     .default-navigation {
-        :not(.widget_nav_menu) > div >ul.menu, .navigation > div.menu >ul {
+
+        :not(.widget_nav_menu)>div>ul.menu,
+        .navigation>div.menu>ul {
             li {
                 &.hide-tablet {
                     display: none;
                 }
+
                 &.mobile-only {
                     display: none;
                 }
+
                 &.desktop-only {
                     display: none;
                 }
@@ -101,14 +127,18 @@
 
 @media (min-width: 992px) {
     .default-navigation {
-        :not(.widget_nav_menu) > div >ul.menu, .navigation > div.menu >ul {
+
+        :not(.widget_nav_menu)>div>ul.menu,
+        .navigation>div.menu>ul {
             li {
                 &.hide-desktop {
                     display: none;
                 }
+
                 &.mobile-only {
                     display: none;
                 }
+
                 &.tablet-only {
                     display: none;
                 }
@@ -119,14 +149,18 @@
 
 @media(max-width: 767px) {
     .default-navigation {
-        :not(.widget_nav_menu) > div >ul.menu, .navigation > div.menu >ul {
+
+        :not(.widget_nav_menu)>div>ul.menu,
+        .navigation>div.menu>ul {
             li {
                 &.hide-mobile {
                     display: none;
                 }
+
                 &.desktop-only {
                     display: none;
                 }
+
                 &.tablet-only {
                     display: none;
                 }
@@ -140,6 +174,7 @@
                         display: none;
                     }
                 }
+
                 &.mobile-hide-icon {
                     ._mi {
                         display: none;
@@ -148,15 +183,16 @@
             }
         }
     }
-}
 
-@media(min-width: 1200px) {
-    .default-navigation {
-        :not(.widget_nav_menu) > div >ul.menu, .navigation > div.menu >ul {
-            margin-left: -10px;
-            margin-right: -10px;
-            li {
-                padding: 5px 10px;
+    // mmenu styles
+    .mm-spn {
+        .menu-item {
+            a {
+                display: flex;
+                flex-wrap: wrap;
+            }
+            &:after {
+                margin-left: 0;
             }
         }
     }
