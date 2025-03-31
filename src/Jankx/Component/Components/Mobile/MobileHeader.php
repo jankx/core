@@ -1,12 +1,12 @@
 <?php
 
-namespace Jankx\Component\Components;
+namespace Jankx\Component\Components\Mobile;
 
-use Jankx\Component\Abstracts\Component;
+use Jankx\Component\Abstracts\MobileComponent;
 use Jankx\Component\Constracts\ComponentViaActionHook;
 use Jankx\Component\Constracts\ComponentPlatform;
 
-class MobileHeader extends Component implements ComponentViaActionHook, ComponentPlatform
+class MobileHeader extends MobileComponent implements ComponentViaActionHook, ComponentPlatform
 {
     const COMPONENT_NAME = 'mobile_header';
 
@@ -28,14 +28,6 @@ class MobileHeader extends Component implements ComponentViaActionHook, Componen
         return apply_filters(
             'jankx/component/mobile_header/render_hook/priority',
             10
-        );
-    }
-
-    public function getPlatform()
-    {
-        return apply_filters(
-            'jankx/component/mobile_header/platforms',
-            static::PLATFORM
         );
     }
 

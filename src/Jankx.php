@@ -54,6 +54,8 @@ class Jankx extends Container
     const FRAMEWORK_VERSION = '1.0.0.28';
     const ENGINE_ID         = 'jankx';
 
+    const PRIMARY_ID = 'primary';
+
     protected static $instance;
 
     protected $templateData;

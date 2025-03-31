@@ -6,6 +6,7 @@ use Jankx;
 use Jankx\Component\Components\Header;
 use Jankx\Component\Components\Footer;
 use Jankx\Component\Components\HTML;
+use Jankx\Component\Components\Mobile\PrimaryNavigationAsMobileHeader;
 use Jankx\Component\Components\Template;
 use Jankx\Component\Components\Logo;
 use Jankx\Component\Components\Modal;
@@ -14,7 +15,8 @@ use Jankx\Component\Components\Link;
 use Jankx\Component\Components\Navigation;
 use Jankx\Component\Constracts\ComponentViaActionHook;
 use Jankx\Component\Constracts\ComponentPlatform;
-use Jankx\Component\Components\MobileHeader;
+use Jankx\Component\Components\Mobile\MobileHeader;
+use Jankx\GlobalConfigs;
 
 class Registry
 {
@@ -63,9 +65,12 @@ class Registry
     {
         $components = array();
         if (apply_filters('jankx/template/header/mobile/enabled', true)) {
-            $components[MobileHeader::COMPONENT_NAME] = MobileHeader::class;
+            $components['mobile-header'] = GlobalConfigs::get('customs.layout.menu.secondary.sticky', false)
+                ? PrimaryNavigationAsMobileHeader::class
+                : MobileHeader::class;
         }
         $components = apply_filters('jankx/load/via_hook/components', $components);
+
         $platform = 'desktop';
         if (Jankx::device()->isMobile()) {
             $platform = 'mobile';
@@ -77,6 +82,7 @@ class Registry
             if (!is_a($component_cls, ComponentViaActionHook::class, true)) {
                 continue;
             }
+
             $component = new $component_cls();
             $component->parseProps(apply_filters(
                 "jankx/load/via_hook/component/{$component->getName()}/props",

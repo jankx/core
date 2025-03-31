@@ -247,9 +247,9 @@ function jankx_get_logo_image($props)
     ));
 }
 
-function jankx_get_toggle_hamburger_menu($props)
+function jankx_get_toggle_hamburger_menu($props = [], $echo = true)
 {
-    jankx_template('common/hamburger-menu');
+    return jankx_template('common/hamburger-menu', $props, $echo);
 }
 
 function jankx_get_site_layout($skipDefault = false)

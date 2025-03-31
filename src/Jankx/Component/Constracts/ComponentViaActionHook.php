@@ -2,7 +2,7 @@
 
 namespace Jankx\Component\Constracts;
 
-interface ComponentViaActionHook
+interface ComponentViaActionHook extends Component
 {
     public function getActionHook();
 
