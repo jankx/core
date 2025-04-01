@@ -1,7 +1,9 @@
 <?php
+
 namespace Jankx\Component\Abstracts;
 
-abstract class MobileComponent extends Component {
+abstract class MobileComponent extends Component
+{
     /**
      * Summary of getPlatform
      *

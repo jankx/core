@@ -1,8 +1,51 @@
+body.mmenu-offcanvas {
+    #page {
+        -webkit-transition: all 0.3s ease;
+        -moz-transition: all 0.3s ease;
+        transition: all 0.3s ease;
+
+        overflow-x: hidden;
+        position: relative;
+        left: 0;
+
+    }
+
+    &.mm-ocd-opened {
+        #page {
+            left: calc(80vw);
+        }
+
+        &.mm-wide-panel {
+            #page {
+                left: 440px;
+            }
+        }
+    }
+
+    .mm-ocd__content {
+        width: 80vw;
+        z-index: 50;
+    }
+    .mm-ocd__backdrop {
+        width: 100%;
+    }
+}
+
+.jankx-show-mobile-menu {
+    display: none;
+}
+
 @media(max-width: 767px) {
+    .jankx-show-mobile-menu {
+        display: block;
+    }
+
     .jankx-site-header {
         .navigation {
             width: 100%;
-            ul.menu, ul.sub-menu {
+
+            ul.menu,
+            ul.sub-menu {
                 padding: 0;
                 margin: 0;
             }
@@ -14,6 +57,7 @@
             li.menu-item {
                 &.menu-item-has-children {
                     position: relative;
+
                     .show-child {
                         position: absolute;
                         right: 5px;
@@ -22,11 +66,13 @@
                         padding: 5px;
                     }
                 }
+
                 &.show-sub {
                     >.show-child {
                         transform: rotate(180deg);
                     }
-                    > ul.sub-menu {
+
+                    >ul.sub-menu {
                         display: block;
                     }
                 }
@@ -35,19 +81,25 @@
         }
 
         .navigation-primary {
-            ul.menu, ul.sub-menu {
+
+            ul.menu,
+            ul.sub-menu {
                 width: 100%;
             }
 
             ul.menu {
-                >li.menu-item{
+                >li.menu-item {
                     border-bottom: 1px solid #d5d5d5;
-                    &:last-child, &.menu-item-type-jankx-logo{
+
+                    &:last-child,
+                    &.menu-item-type-jankx-logo {
                         border-bottom: none;
                     }
                 }
+
                 li.menu-item {
                     flex-direction: column;
+
                     a {
                         display: block;
                         padding: 10px;
@@ -62,6 +114,7 @@
         #offcanvas-menu {
             display: none;
         }
+
         &.mm-ocd-opened {
             #offcanvas-menu {
                 display: block;

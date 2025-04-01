@@ -60,7 +60,7 @@ class Jankx extends Container
 
     protected $templateData;
 
-   protected $templateStylesheet;
+    protected $templateStylesheet;
     protected $theme;
     protected $admin;
     protected $filters = [];
@@ -89,7 +89,8 @@ class Jankx extends Container
         }
     }
 
-    public function __get($name) {
+    public function __get($name)
+    {
         if (property_exists($this, $name)) {
             return $this->$name;
         }
@@ -189,7 +190,7 @@ class Jankx extends Container
             return $this->templateData;
         };
 
-        $this->templateStylesheet = function (){
+        $this->templateStylesheet = function () {
             return $this->templateData->stylesheet;
         };
 
@@ -451,7 +452,8 @@ class Jankx extends Container
     }
 
 
-    public static function templateName() {
+    public static function templateName()
+    {
         $template = Jankx::getInstance()->templateData->parent();
         if (empty($template)) {
             $template = Jankx::getInstance()->templateData;
@@ -463,9 +465,10 @@ class Jankx extends Container
         );
     }
 
-    public static function themeName() {
+    public static function themeName()
+    {
         return GlobalConfigs::get(
-            'theme.short_name',
+            'theme.name',
             static::getInstance()->templateData->get('Name')
         );
     }

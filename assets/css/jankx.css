@@ -908,11 +908,41 @@ html.jankx-mobile .menu-style-collapse .jankx-site-header.show .header-collapse 
   display: block;
 }
 
+body.mmenu-offcanvas #page {
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+  overflow-x: hidden;
+  position: relative;
+  left: 0;
+}
+body.mmenu-offcanvas.mm-ocd-opened #page {
+  left: 80vw;
+}
+body.mmenu-offcanvas.mm-ocd-opened.mm-wide-panel #page {
+  left: 440px;
+}
+body.mmenu-offcanvas .mm-ocd__content {
+  width: 80vw;
+  z-index: 50;
+}
+body.mmenu-offcanvas .mm-ocd__backdrop {
+  width: 100%;
+}
+
+.jankx-show-mobile-menu {
+  display: none;
+}
+
 @media (max-width: 767px) {
+  .jankx-show-mobile-menu {
+    display: block;
+  }
   .jankx-site-header .navigation {
     width: 100%;
   }
-  .jankx-site-header .navigation ul.menu, .jankx-site-header .navigation ul.sub-menu {
+  .jankx-site-header .navigation ul.menu,
+  .jankx-site-header .navigation ul.sub-menu {
     padding: 0;
     margin: 0;
   }
@@ -935,7 +965,8 @@ html.jankx-mobile .menu-style-collapse .jankx-site-header.show .header-collapse 
   .jankx-site-header .navigation li.menu-item.show-sub > ul.sub-menu {
     display: block;
   }
-  .jankx-site-header .navigation-primary ul.menu, .jankx-site-header .navigation-primary ul.sub-menu {
+  .jankx-site-header .navigation-primary ul.menu,
+  .jankx-site-header .navigation-primary ul.sub-menu {
     width: 100%;
   }
   .jankx-site-header .navigation-primary ul.menu > li.menu-item {
