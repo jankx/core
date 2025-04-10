@@ -256,3 +256,66 @@ function jankx_get_site_layout($skipDefault = false)
 {
     return SiteLayout::getInstance()->getLayout($skipDefault);
 }
+
+function jankx_the_custom_title($post = null, $echo = true) {
+    if (empty($post)) {
+        $post = $GLOBALS['post'];
+    }
+
+    if (is_numeric($post)) {
+        $post = get_post($post);
+    }
+
+    $callback = function($title, $postId) use ($post) {
+        if ($post->ID !== $postId) {
+            return $title;
+        }
+        $customTitle = get_post_meta($post->ID, 'custom_title', true);
+        if (empty($customTitle)) {
+            return $title;
+        }
+        return $customTitle;
+    };
+
+    add_filter('the_title', $callback, 10, 2);
+    $title = get_the_title($post);
+    remove_filter('the_title', $callback, 10);
+
+
+    if ($echo === false) {
+        return $title;
+    }
+    echo $title;
+}
+
+function jankx_single_term_title($term = null, $type = 'term', $echo = true) {
+    if (is_null($term)) {
+        $term = get_queried_object();
+    }
+    if (empty($type)) {
+        if ( is_category() ) {
+            $type = 'cat';
+        } elseif ( is_tag() ) {
+            $type = 'tag';
+        } elseif ( is_tax() ) {
+            $type = 'term';
+        }
+    }
+
+    $customTitleCallback = function($title) use ($term){
+        $customTitle = get_term_meta($term->term_id, 'custom_display_title', true);
+        if (empty($customTitle)) {
+            return $title;
+        }
+        return $customTitle;
+    };
+
+    add_filter("single_{$type}_title", $customTitleCallback, 10);
+    $title = single_term_title('', false);
+    remove_filter("single_{$type}_title", $customTitleCallback, 10);
+
+    if ($echo === false) {
+        return $title;
+    }
+    echo $title;
+}
