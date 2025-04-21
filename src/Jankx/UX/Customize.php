@@ -5,6 +5,7 @@ namespace Jankx\UX;
 use Jankx\Asset\CustomizableAsset;
 use Jankx\Asset\Cache;
 use Jankx\Customizers\DefaultPostThumbnailCustomizer;
+use Jankx\Customizers\ExtraFeaturesCustomizer;
 use Jankx\Customizers\PostThumbnailEffectCustomizer;
 use Jankx\GlobalConfigs;
 use Jankx\Interfaces\CustomizerInterface;
@@ -64,7 +65,8 @@ class Customize
             'jankx/ux/customizers',
             [
                 DefaultPostThumbnailCustomizer::class,
-                PostThumbnailEffectCustomizer::class
+                PostThumbnailEffectCustomizer::class,
+                ExtraFeaturesCustomizer::class
             ]
         );
     }
