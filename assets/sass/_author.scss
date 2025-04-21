@@ -1,0 +1,125 @@
+.jankx-author-box {
+    .author-box-header {
+        display: flex;
+        align-items: center;
+
+        .author-name {
+            flex: 1;
+            font-size: 24px;
+            font-weight: 600;
+            color: #000;
+        }
+    }
+
+    .author-avatar {
+        height: 100px;
+        width: 100px;
+        margin-right: 10px;
+
+        &.circle {
+            border-radius: 50%;
+            overflow: hidden;
+            img {
+                object-fit: cover;
+                min-width: 100%;
+                min-height: 100%;
+                width: auto;
+                height: auto;
+            }
+        }
+    }
+
+    .socials-list {
+        display: flex;
+        margin-left: 50px;
+    }
+
+
+    .author-box-body {
+        blockquote {
+            quotes: "\201C" "\201D" "\2018" "\2019";
+            padding: 20px 50px 20px;
+            position: relative;
+        }
+
+
+        blockquote:before, blockquote:after {
+            color: #000;
+            font-size: 4em;
+            line-height: 0.1em;
+            vertical-align: -0.4em;
+            position: absolute;
+        }
+        blockquote:before {
+            left: 15px;
+            top: 30px;
+            content: open-quote;
+        }
+        blockquote:after {
+            right: 15px;
+            bottom: 10px;
+            content: close-quote;
+        }
+        p {
+            +p {
+                margin-top: 15px;
+            }
+        }
+    }
+
+    .social-icon {
+        font-size: 28px;
+        line-height: 45px;
+        width: 45px;
+        height: 45px;
+        background-color: #e4e4e4;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .socials {
+        &.circle-style {
+            .social-icon {
+                border-radius: 50%;
+            }
+        }
+
+        a {
+            cursor: pointer;
+        }
+
+        ul {
+            li {
+                +li {
+                    margin-left: 10px;
+                }
+            }
+        }
+
+        .facebook {
+            .social-icon {
+                background-color: #1877f2;
+                color: #fff;
+            }
+        }
+        .youtube {
+            .social-icon {
+                background-color: #ff0000;
+                color: #fff;
+            }
+        }
+        .twitter {
+            .social-icon {
+                background-color: #1da1f2;
+                color: #fff;
+            }
+        }
+        .mastodon {
+            .social-icon {
+                background-color: #615ef8;
+                color: #fff;
+            }
+        }
+    }
+}

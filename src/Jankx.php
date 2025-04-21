@@ -43,40 +43,210 @@ use Symfony\Component\Serializer\Encoder\XmlEncoder;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\Serializer;
 
-use function ElementorDeps\DI\get;
-
 /**
- * This class is middle-class interaction between developer and other classes
+ * Class Jankx
+ *
+ * Lớp chính của framework Jankx, cung cấp các chức năng cốt lõi và quản lý các thành phần của framework.
+ *
+ * @package Jankx
+ * @author Puleeno Nguyen <puleeno@gmail.com>
+ * @version 1.0.0.28
+ * @license MIT
+ *
+ *
+ * @method static mixed __callStatic(string $name, array $args) Xử lý các phương thức static không tồn tại
+ * @method mixed __get(string $name) Lấy giá trị của thuộc tính
+ * @method static Jankx getInstance() Lấy instance duy nhất của class
+ * @method void setup() Thiết lập framework
+ * @method void init() Khởi tạo framework
+ * @method void setupOptionFramework() Thiết lập option framework
+ * @method void improveUserExperience() Cải thiện trải nghiệm người dùng
+ * @method static object device() Lấy thông tin thiết bị
+ * @method static string getActiveTemplateEngine() Lấy template engine đang hoạt động
+ * @method static string getTextDomain() Lấy text domain
+ * @method static string render(string|array $templates, array $data = [], bool $echo = true) Render template
+ * @method void loadExtraFeatures() Load các tính năng bổ sung
+ * @method void registerAdminScripts() Đăng ký scripts cho admin
+ * @method static void addFilter(Filter $filterObject) Thêm filter
+ * @method UserExperience ux() Lấy user experience manager
+ * @method void optimizePageSpeed() Tối ưu tốc độ trang
+ * @method static string templateName() Lấy tên template
+ * @method static string themeName() Lấy tên theme
+ *
+ * @method void parseThemeJson() Phân tích file theme.json
+ * @method void includes() Load các dependencies
+ * @method void initCoreFramework() Khởi tạo core framework
+ *
+ * @method static mixed make(string $abstract, array $parameters = []) Tạo instance từ Container
+ * @method static mixed bound(string $abstract) Kiểm tra binding từ Container
+ * @method static void bind(string $abstract, \Closure|string|null $concrete = null, bool $shared = false) Đăng ký binding từ Container
+ * @method static void singleton(string $abstract, \Closure|string|null $concrete = null) Đăng ký singleton từ Container
+ * @method static mixed instance(string $abstract, mixed $instance) Đăng ký instance từ Container
+ * @method static mixed resolve(string $abstract, array $parameters = []) Resolve từ Container
+ * @method static void forgetInstance(string $abstract) Xóa instance từ Container
+ * @method static void forgetInstances() Xóa tất cả instances từ Container
+ * @method static void flush() Xóa tất cả bindings và instances từ Container
+ * @method static array getBindings() Lấy tất cả bindings từ Container
+ * @method static bool has(string $id) Kiểm tra có binding từ Container
+ * @method static mixed get(string $id) Lấy binding từ Container
+ * @method static bool hasMethodBinding(string $method) Kiểm tra có method binding từ Container
+ * @method static void bindMethod(array|string $method, \Closure $callback) Đăng ký method binding từ Container
+ * @method static mixed callMethodBinding(string $method, mixed $instance, array $parameters = []) Gọi method binding từ Container
+ * @method static void addContextualBinding(string $concrete, string $abstract, \Closure|string $implementation) Thêm contextual binding từ Container
+ * @method static void when(string $concrete) Thiết lập contextual binding từ Container
+ * @method static \Closure factory(\Closure $closure) Tạo factory từ Container
+ * @method static mixed wrap(\Closure $callback, array $parameters = []) Wrap closure từ Container
+ * @method static mixed call(\Closure|callable $callback, array $parameters = [], string|null $defaultMethod = null) Gọi callback từ Container
+ * @method static mixed resolveClass(\ReflectionParameter $parameter) Resolve class từ Container
+ * @method static mixed resolveNonClass(\ReflectionParameter $parameter) Resolve non-class từ Container
+ * @method static mixed resolvePrimitive(\ReflectionParameter $parameter) Resolve primitive từ Container
+ * @method static mixed resolveOptionalClass(\ReflectionParameter $parameter) Resolve optional class từ Container
+ * @method static mixed resolveClassForVariadic(\ReflectionParameter $parameter) Resolve class for variadic từ Container
+ * @method static mixed resolveNonClassForVariadic(\ReflectionParameter $parameter) Resolve non-class for variadic từ Container
+ * @method static mixed resolvePrimitiveForVariadic(\ReflectionParameter $parameter) Resolve primitive for variadic từ Container
+ * @method static mixed resolveOptionalClassForVariadic(\ReflectionParameter $parameter) Resolve optional class for variadic từ Container
+ * @method static mixed resolveDependenciesForClass(\ReflectionClass $reflector, array $primitives = []) Resolve dependencies for class từ Container
+ * @method static mixed resolveDependenciesForCallable(\ReflectionFunctionAbstract $reflector, array $primitives = []) Resolve dependencies for callable từ Container
+ * @method static mixed resolveDependenciesForMethod(\ReflectionMethod $reflector, array $primitives = []) Resolve dependencies for method từ Container
+ * @method static mixed resolveDependenciesForFunction(\ReflectionFunction $reflector, array $primitives = []) Resolve dependencies for function từ Container
+ * @method static mixed resolveDependenciesForClosure(\ReflectionFunction $reflector, array $primitives = []) Resolve dependencies for closure từ Container
+ * @method static mixed resolveDependenciesForInvokable(\ReflectionMethod $reflector, array $primitives = []) Resolve dependencies for invokable từ Container
+ * @method static mixed resolveDependenciesForConstructor(\ReflectionMethod $reflector, array $primitives = []) Resolve dependencies for constructor từ Container
+ * @method static mixed resolveDependenciesForMethodCall(\ReflectionMethod $reflector, array $primitives = []) Resolve dependencies for method call từ Container
+ * @method static mixed resolveDependenciesForStaticMethodCall(\ReflectionMethod $reflector, array $primitives = []) Resolve dependencies for static method call từ Container
+ * @method static mixed resolveDependenciesForClosureCall(\ReflectionFunction $reflector, array $primitives = []) Resolve dependencies for closure call từ Container
+ * @method static mixed resolveDependenciesForFunctionCall(\ReflectionFunction $reflector, array $primitives = []) Resolve dependencies for function call từ Container
+ * @method static mixed resolveDependenciesForInvokableCall(\ReflectionMethod $reflector, array $primitives = []) Resolve dependencies for invokable call từ Container
+ * @method static mixed resolveDependenciesForConstructorCall(\ReflectionMethod $reflector, array $primitives = []) Resolve dependencies for constructor call từ Container
  */
 class Jankx extends Container
 {
+    /**
+     * Tên của framework
+     */
     const FRAMEWORK_NAME    = 'Jankx Framework';
-    const FRAMEWORK_VERSION = '1.0.0.28';
+
+    /**
+     * Phiên bản hiện tại của framework
+     */
+    const FRAMEWORK_VERSION = '1.0.0.40';
+
+    /**
+     * ID của template engine
+     */
     const ENGINE_ID         = 'jankx';
 
+    /**
+     * ID chính của framework
+     */
     const PRIMARY_ID = 'primary';
 
+    /**
+     * Instance duy nhất của class
+     *
+     * @var Jankx
+     */
     protected static $instance;
 
+    /**
+     * Dữ liệu template
+     *
+     * @var array
+     */
     protected $templateData;
 
+    /**
+     * Stylesheet của template
+     *
+     * @var string
+     */
     protected $templateStylesheet;
+
+    /**
+     * Theme hiện tại
+     *
+     * @var WP_Theme
+     */
     protected $theme;
+
+    /**
+     * Admin instance
+     *
+     * @var Admin
+     */
     protected $admin;
+
+    /**
+     * Danh sách các filters
+     *
+     * @var array
+     */
     protected $filters = [];
 
-
+    /**
+     * Asset manager
+     *
+     * @var AssetManager
+     */
     protected $asset;
+
+    /**
+     * Option framework
+     *
+     * @var OptionFramework
+     */
     protected $optionFramework;
+
+    /**
+     * Site layout
+     *
+     * @var SiteLayout
+     */
     protected $siteLayout;
+
+    /**
+     * User experience manager
+     *
+     * @var UserExperience
+     */
     protected $userExperience;
+
+    /**
+     * Widget manager
+     *
+     * @var WidgetManager
+     */
     protected $widgets;
+
+    /**
+     * Social connects
+     *
+     * @var array
+     */
     protected $socialConnects;
 
+    /**
+     * Text domain
+     *
+     * @var string
+     */
     protected $textDomain;
 
+    /**
+     * Device detector
+     *
+     * @var object
+     */
     protected static $device;
 
+    /**
+     * Xử lý các phương thức static không tồn tại
+     *
+     * @param string $name Tên phương thức
+     * @param array $args Các tham số
+     * @return mixed
+     * @throws Exception
+     */
     public static function __callStatic($name, $args)
     {
         $instance = self::getInstance();
@@ -89,6 +259,12 @@ class Jankx extends Container
         }
     }
 
+    /**
+     * Lấy giá trị của thuộc tính
+     *
+     * @param string $name Tên thuộc tính
+     * @return mixed
+     */
     public function __get($name)
     {
         if (property_exists($this, $name)) {
@@ -96,6 +272,11 @@ class Jankx extends Container
         }
     }
 
+    /**
+     * Lấy instance duy nhất của class
+     *
+     * @return Jankx
+     */
     public static function getInstance()
     {
         if (is_null(self::$instance)) {
@@ -105,13 +286,18 @@ class Jankx extends Container
         return self::$instance;
     }
 
+    /**
+     * Constructor
+     */
     private function __construct()
     {
         define('JANKX_CACHE_DIR', sprintf('%s/jankx/caches/', WP_CONTENT_DIR));
         define('JANKX_CACHE_DIR_URL', content_url('jankx/caches'));
     }
 
-
+    /**
+     * Phân tích file theme.json
+     */
     protected function parseThemeJson()
     {
         $templateJson   = join(DIRECTORY_SEPARATOR, [get_template_directory(), "theme.json"]);
@@ -137,6 +323,9 @@ class Jankx extends Container
         GlobalConfigs::parseFromThemeJson($configs);
     }
 
+    /**
+     * Thiết lập framework
+     */
     public function setup()
     {
         if (did_action('init')) {
@@ -161,9 +350,7 @@ class Jankx extends Container
     }
 
     /**
-     * Load the Jankx dependences
-     *
-     * @return void
+     * Load các dependencies
      */
     private function includes()
     {
@@ -182,6 +369,9 @@ class Jankx extends Container
         $this->parseThemeJson();
     }
 
+    /**
+     * Khởi tạo core framework
+     */
     private function initCoreFramework()
     {
         $this->templateData = wp_get_theme();
@@ -270,6 +460,9 @@ class Jankx extends Container
         add_action('widgets_init', array(static::widgets(), 'registerWidgets'));
     }
 
+    /**
+     * Khởi tạo framework
+     */
     public function init()
     {
         // Run hook jankx init via components
@@ -320,6 +513,9 @@ class Jankx extends Container
         do_action('jankx/initialized');
     }
 
+    /**
+     * Thiết lập option framework
+     */
     public function setupOptionFramework()
     {
         $optionFramework = static::optionFramework();
@@ -342,7 +538,9 @@ class Jankx extends Container
         }
     }
 
-    // Improve UX
+    /**
+     * Cải thiện trải nghiệm người dùng
+     */
     public function improveUserExperience()
     {
         $this->ux()->optimize();
@@ -353,6 +551,11 @@ class Jankx extends Container
      * Static methods
      */
 
+    /**
+     * Lấy thông tin thiết bị
+     *
+     * @return object
+     */
     public static function device()
     {
         if (is_null(static::$device) && function_exists('jankx_get_device_detector')) {
@@ -361,6 +564,11 @@ class Jankx extends Container
         return self::$device;
     }
 
+    /**
+     * Lấy template engine đang hoạt động
+     *
+     * @return string
+     */
     public static function getActiveTemplateEngine()
     {
         return apply_filters(
@@ -369,12 +577,26 @@ class Jankx extends Container
         );
     }
 
+    /**
+     * Lấy text domain
+     *
+     * @return string
+     */
     public static function getTextDomain()
     {
         $instance = static::getInstance();
         return $instance->textDomain;
     }
 
+    /**
+     * Render template
+     *
+     * @param string|array $templates Template cần render
+     * @param array $data Dữ liệu truyền vào template
+     * @param bool $echo Có echo kết quả hay không
+     * @return string
+     * @throws Exception
+     */
     public static function render($templates, $data = array(), $echo = true)
     {
         $engine = Template::getEngine(static::ENGINE_ID);
@@ -385,6 +607,9 @@ class Jankx extends Container
         return $engine->render($templates, $data, $echo);
     }
 
+    /**
+     * Load các tính năng bổ sung
+     */
     public function loadExtraFeatures()
     {
         do_action('jankx/load/extra');
@@ -400,13 +625,18 @@ class Jankx extends Container
         ]));
     }
 
+    /**
+     * Đăng ký scripts cho admin
+     */
     public function registerAdminScripts()
     {
         add_editor_style(jankx_core_asset_url('css/editor.css'));
     }
 
     /**
-     * @param \Jankx\Filter $filterObject
+     * Thêm filter
+     *
+     * @param Filter $filterObject Đối tượng filter
      */
     public static function addFilter($filterObject)
     {
@@ -427,11 +657,19 @@ class Jankx extends Container
         }
     }
 
+    /**
+     * Lấy user experience manager
+     *
+     * @return UserExperience
+     */
     public function ux()
     {
         return $this->userExperience;
     }
 
+    /**
+     * Tối ưu tốc độ trang
+     */
     public function optimizePageSpeed()
     {
         $activeModules = $this->get('pagespeed.modules');
@@ -452,6 +690,11 @@ class Jankx extends Container
     }
 
 
+    /**
+     * Lấy tên template
+     *
+     * @return string
+     */
     public static function templateName()
     {
         $template = Jankx::getInstance()->templateData->parent();
@@ -465,6 +708,11 @@ class Jankx extends Container
         );
     }
 
+    /**
+     * Lấy tên theme
+     *
+     * @return string
+     */
     public static function themeName()
     {
         return GlobalConfigs::get(

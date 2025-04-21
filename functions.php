@@ -14,7 +14,7 @@ use Jankx\TemplateEngine\Context;
  * @return void
  */
 
-if (! function_exists('jankx')) {
+if (!function_exists('jankx')) {
     function jankx()
     {
         $page = Page::getInstance();
@@ -22,12 +22,12 @@ if (! function_exists('jankx')) {
     }
 }
 
-if (! function_exists('jankx_template')) {
+if (!function_exists('jankx_template')) {
     function jankx_template($templates, $data = array(), $echo = true)
     {
         $templateEngine = Template::getEngine(Jankx::ENGINE_ID);
 
-        if (! ( $templateEngine instanceof Engine )) {
+        if (!($templateEngine instanceof Engine)) {
             throw new \Exception(
                 sprintf('The template engine must be is instance of %s', Engine::class)
             );
@@ -58,7 +58,7 @@ function jankx_container_css_class($custom_classes = '')
 
     $css_class = apply_filters(
         'jankx/template/container/classes',
-        array_merge($css_class, (array)$custom_classes)
+        array_merge($css_class, (array) $custom_classes)
     );
     return array_unique($css_class, SORT_STRING);
 }
@@ -107,7 +107,7 @@ function jankx_get_related_query($args = array(), $post_id = null)
         global $post;
         $post_id = $post->ID;
     }
-    $args      = wp_parse_args(
+    $args = wp_parse_args(
         $args,
         array(
             'post_type' => 'post',
@@ -119,32 +119,32 @@ function jankx_get_related_query($args = array(), $post_id = null)
     if ('post' === $args['post_type']) {
         $category_ids = wp_get_post_categories(
             $post_id,
-            array( 'fields' => 'ids' )
+            array('fields' => 'ids')
         );
-        if (! empty($category_ids)) {
+        if (!empty($category_ids)) {
             $tax_query[] = array(
                 'taxonomy' => 'category',
-                'field'    => 'id',
-                'terms'    => $category_ids,
+                'field' => 'id',
+                'terms' => $category_ids,
             );
         }
 
         $tag_ids = wp_get_post_tags(
             $post_id,
-            array( 'fields' => 'ids' )
+            array('fields' => 'ids')
         );
-        if (! empty($tag_ids)) {
+        if (!empty($tag_ids)) {
             $tax_query[] = array(
                 'taxonomy' => 'post_tag',
-                'field'    => 'id',
-                'terms'    => $tag_ids,
+                'field' => 'id',
+                'terms' => $tag_ids,
             );
         }
     }
 
-    if (! empty($tax_query)) {
+    if (!empty($tax_query)) {
         $tax_query['relation'] = 'OR';
-        $args['tax_query']     = $tax_query;
+        $args['tax_query'] = $tax_query;
     }
 
     return new WP_Query(
@@ -162,7 +162,7 @@ function jankx_is_comment_by_post_author($comment = null)
         $user = get_userdata($comment->user_id);
         $post = get_post($comment->comment_post_ID);
 
-        if (! empty($user) && ! empty($post)) {
+        if (!empty($user) && !empty($post)) {
             return $comment->user_id === $post->post_author;
         }
     }
@@ -227,7 +227,7 @@ function jankx_component($name, $props = array(), $echo = false)
 
     // Create component object
     $componentClass = array_get($components, $name);
-    $component      = new $componentClass($props);
+    $component = new $componentClass($props);
 
     if (is_a($component, ComponentComposite::class)) {
         // The component output
@@ -257,7 +257,8 @@ function jankx_get_site_layout($skipDefault = false)
     return SiteLayout::getInstance()->getLayout($skipDefault);
 }
 
-function jankx_the_custom_title($post = null, $echo = true) {
+function jankx_the_custom_title($post = null, $echo = true)
+{
     if (empty($post)) {
         $post = $GLOBALS['post'];
     }
@@ -266,7 +267,7 @@ function jankx_the_custom_title($post = null, $echo = true) {
         $post = get_post($post);
     }
 
-    $callback = function($title, $postId) use ($post) {
+    $callback = function ($title, $postId) use ($post) {
         if ($post->ID !== $postId) {
             return $title;
         }
@@ -288,21 +289,22 @@ function jankx_the_custom_title($post = null, $echo = true) {
     echo $title;
 }
 
-function jankx_single_term_title($term = null, $type = 'term', $echo = true) {
+function jankx_single_term_title($term = null, $type = 'term', $echo = true)
+{
     if (is_null($term)) {
         $term = get_queried_object();
     }
     if (empty($type)) {
-        if ( is_category() ) {
+        if (is_category()) {
             $type = 'cat';
-        } elseif ( is_tag() ) {
+        } elseif (is_tag()) {
             $type = 'tag';
-        } elseif ( is_tax() ) {
+        } elseif (is_tax()) {
             $type = 'term';
         }
     }
 
-    $customTitleCallback = function($title) use ($term){
+    $customTitleCallback = function ($title) use ($term) {
         $customTitle = get_term_meta($term->term_id, 'custom_display_title', true);
         if (empty($customTitle)) {
             return $title;
@@ -318,4 +320,58 @@ function jankx_single_term_title($term = null, $type = 'term', $echo = true) {
         return $title;
     }
     echo $title;
+}
+
+/**
+ * Summary of jankx_get_user_avatar
+ *
+ * @param integer|WP_User $userId
+ * @return string
+ */
+function jankx_get_user_avatar_url($userId = null)
+{
+    $user = $userId instanceof WP_User ? $userId : get_user($userId);
+    if (empty($user)) {
+        return '';
+    }
+
+    return apply_filters(
+        'jankx/user/avatar',
+        get_avatar_url($user->user_email),
+        $user
+    );
+}
+
+
+function jankx_get_user_link($userId, $type)
+{
+    $link = get_user_meta($userId, $type, true);
+    if (empty($link)) {
+        return '';
+    }
+
+    if (preg_match('/https?:/', $link)) {
+        return $link;
+    }
+
+    switch ($type) {
+        case 'twitter':
+        case 'x':
+            return sprintf('https://x.com/%s', $link);
+        case 'mastodon':
+            return sprintf('https://mastodon.social/@%s', $link);
+        case 'facebook':
+            return sprintf('https://www.facebook.com/%s', $link);
+        case 'instagram':
+            return sprintf('https://instagram.com/%s', $link);
+        case 'linkedin':
+            return sprintf('https://linkedin.com/%s', $link);
+        case 'myspace':
+            return sprintf('https://myspace.com/%s', $link);
+        case 'soundcloud':
+            return sprintf('https://soundcloud.com/%s', $link);
+        case 'tumblr':
+            return sprintf('https://www.tumblr.com/%s', $link);
+    }
+    return '';
 }

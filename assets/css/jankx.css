@@ -4,7 +4,7 @@
  * Author: Puleeno Nguyen
  * Author URI: https://puleeno.com
  * Description: This module is create the basic structure for Jankx theme. Other stylesheet will be defined in the theme
- * Version: 1.0.0.1
+ * Version: 1.0.0.3
  */
 /* http://meyerweb.com/eric/tools/css/reset/
    v5.0.1 | 20191019
@@ -1371,6 +1371,97 @@ body.error404 {
   100% {
     left: 150%;
   }
+}
+
+.jankx-author-box .author-box-header {
+  display: flex;
+  align-items: center;
+}
+.jankx-author-box .author-box-header .author-name {
+  flex: 1;
+  font-size: 24px;
+  font-weight: 600;
+  color: #000;
+}
+.jankx-author-box .author-avatar {
+  height: 100px;
+  width: 100px;
+  margin-right: 10px;
+}
+.jankx-author-box .author-avatar.circle {
+  border-radius: 50%;
+  overflow: hidden;
+}
+.jankx-author-box .author-avatar.circle img {
+  object-fit: cover;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+}
+.jankx-author-box .socials-list {
+  display: flex;
+  margin-left: 50px;
+}
+.jankx-author-box .author-box-body blockquote {
+  quotes: "“" "”" "‘" "’";
+  padding: 20px 50px 20px;
+  position: relative;
+}
+.jankx-author-box .author-box-body blockquote:before, .jankx-author-box .author-box-body blockquote:after {
+  color: #000;
+  font-size: 4em;
+  line-height: 0.1em;
+  vertical-align: -0.4em;
+  position: absolute;
+}
+.jankx-author-box .author-box-body blockquote:before {
+  left: 15px;
+  top: 30px;
+  content: open-quote;
+}
+.jankx-author-box .author-box-body blockquote:after {
+  right: 15px;
+  bottom: 10px;
+  content: close-quote;
+}
+.jankx-author-box .author-box-body p + p {
+  margin-top: 15px;
+}
+.jankx-author-box .social-icon {
+  font-size: 28px;
+  line-height: 45px;
+  width: 45px;
+  height: 45px;
+  background-color: #e4e4e4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.jankx-author-box .socials.circle-style .social-icon {
+  border-radius: 50%;
+}
+.jankx-author-box .socials a {
+  cursor: pointer;
+}
+.jankx-author-box .socials ul li + li {
+  margin-left: 10px;
+}
+.jankx-author-box .socials .facebook .social-icon {
+  background-color: #1877f2;
+  color: #fff;
+}
+.jankx-author-box .socials .youtube .social-icon {
+  background-color: #ff0000;
+  color: #fff;
+}
+.jankx-author-box .socials .twitter .social-icon {
+  background-color: #1da1f2;
+  color: #fff;
+}
+.jankx-author-box .socials .mastodon .social-icon {
+  background-color: #615ef8;
+  color: #fff;
 }
 
 .post-thumbnail {
