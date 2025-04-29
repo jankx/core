@@ -307,7 +307,6 @@ class Jankx extends Container
         // Create template name from parent theme or template name
         $templateConfig['template_name'] = array_get($templateConfig, 'name', self::FRAMEWORK_NAME);
 
-        // var_dump($templateConfig);die;
         if (is_child_theme() && file_exists($themeJson)) {
             $templateConfig = array_merge_recursive($templateConfig, json_decode(file_get_contents($themeJson), true));
         }
