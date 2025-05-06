@@ -23,7 +23,8 @@
     "jankx/wordpress-specs": "*",
     "symfony/serializer": "^5.4",
     "symfony/property-access": "^5.4",
-    "masterminds/html5": "^2.9"
+    "masterminds/html5": "^2.9",
+    "symfony/polyfill-php80": "^1.0"
   },
   "autoload": {
     "psr-4": {
