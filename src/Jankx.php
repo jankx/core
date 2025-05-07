@@ -129,7 +129,7 @@ class Jankx extends Container
     /**
      * Phiên bản hiện tại của framework
      */
-    const FRAMEWORK_VERSION = '1.0.0.40';
+    const FRAMEWORK_VERSION = '1.0.0.41';
 
     /**
      * ID của template engine

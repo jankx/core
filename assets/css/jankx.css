@@ -1357,7 +1357,7 @@ body.error404 {
   content: "";
   display: block;
   height: 100%;
-  left: -100%;
+  left: -110%;
   position: absolute;
   top: 0;
   transform: skewX(-45deg);
