@@ -1,4 +1,6 @@
 .floating-buttons {
+    position: relative;
+    z-index: 99999;
     .floating-button {
     }
 
