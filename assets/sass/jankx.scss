@@ -29,11 +29,13 @@
 
 // Effects
 @import "effects/shine";
+@import "effects/wiggle";
 
 
 // Extras
 
 @import './author';
+@import './extras/floating_button';
 
 .post-thumbnail {
     position: relative;

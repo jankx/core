@@ -1,0 +1,104 @@
+.floating-buttons {
+    .floating-button {
+    }
+
+    &.default-style {
+        .buttons-wrap {
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: column;
+            position: fixed;
+            left: 5px;
+            bottom: 5px;
+        }
+
+        .floating-button {
+            display: flex;
+            align-items: center;
+
+            >a {
+                display: flex;
+                align-items: center;
+            }
+
+            .button-icon {
+                display: flex;
+                height: 45px;
+                width: 45px;
+
+                border-radius: 50%;
+                border: 3px solid #fff;
+                align-items: center;
+                justify-content: center;
+
+                box-shadow: 0 0 5px #888;
+            }
+        }
+    }
+}
+
+.floating-button {
+    .button-icon {
+        position: relative;
+        img {
+            max-width: 50px;
+            height: auto;
+            width: 100%;
+            object-fit: contain;
+        }
+
+        .icon  {
+            font-size: 24px;
+            color: #fff;
+            line-height: 48px;
+            display: flex;
+            align-content: center;
+            justify-content: center;
+        }
+        &::after {
+            content: '';
+            display: block;
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+        }
+    }
+}
+
+@media(min-width: 768px) {
+    .floating-buttons {
+        &.default-style {
+            .buttons-wrap {
+            }
+            .floating-button {
+                margin-bottom: 10px;
+                .button-icon {
+                }
+            }
+        }
+    }
+}
+
+@media(max-width: 767px) {
+    .floating-buttons {
+        &.default-style {
+            .buttons-wrap {
+                flex-direction: row;
+            }
+
+
+            .floating-button {
+                margin-right: 10px;
+                .button-icon {
+                }
+
+                .button-text {
+                    display: none;
+                }
+            }
+        }
+    }
+}

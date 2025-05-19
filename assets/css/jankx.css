@@ -1348,11 +1348,11 @@ body.error404 {
   margin-left: 10px;
 }
 
-.post-thumbnail.shine-effect {
+.shine-effect {
   position: relative;
   overflow: hidden;
 }
-.post-thumbnail.shine-effect::before {
+.shine-effect::before {
   background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.3) 100%);
   content: "";
   display: block;
@@ -1364,13 +1364,37 @@ body.error404 {
   width: 50%;
   z-index: 2;
 }
-.post-thumbnail.shine-effect:hover::before, .post-thumbnail.shine-effect:focus::before {
+.shine-effect:hover::before, .shine-effect:focus::before {
   animation: shine 0.85s;
 }
 @keyframes shine {
   100% {
     left: 150%;
   }
+}
+
+@keyframes wiggle {
+  0% {
+    transform: scale3d(1, 1, 1);
+  }
+  10%, 20% {
+    transform: scale3d(0.9, 0.9, 0.9) rotate3d(0, 0, 1, -3deg);
+  }
+  30%, 50%, 70%, 90% {
+    transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg);
+  }
+  40%, 60%, 80% {
+    transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg);
+  }
+  100% {
+    transform: scale3d(1, 1, 1);
+  }
+}
+.wiggle-effect {
+  animation-duration: 1s;
+  animation-fill-mode: both;
+  animation-iteration-count: infinite;
+  animation-name: wiggle;
 }
 
 .jankx-author-box .author-box-header {
@@ -1464,6 +1488,77 @@ body.error404 {
   color: #fff;
 }
 
+.floating-buttons.default-style .buttons-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  position: fixed;
+  left: 5px;
+  bottom: 5px;
+}
+.floating-buttons.default-style .floating-button {
+  display: flex;
+  align-items: center;
+}
+.floating-buttons.default-style .floating-button > a {
+  display: flex;
+  align-items: center;
+}
+.floating-buttons.default-style .floating-button .button-icon {
+  display: flex;
+  height: 45px;
+  width: 45px;
+  border-radius: 50%;
+  border: 3px solid #fff;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 5px #888;
+}
+
+.floating-button .button-icon {
+  position: relative;
+}
+.floating-button .button-icon img {
+  max-width: 50px;
+  height: auto;
+  width: 100%;
+  object-fit: contain;
+}
+.floating-button .button-icon .icon {
+  font-size: 24px;
+  color: #fff;
+  line-height: 48px;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+}
+.floating-button .button-icon::after {
+  content: "";
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+}
+
+@media (min-width: 768px) {
+  .floating-buttons.default-style .floating-button {
+    margin-bottom: 10px;
+  }
+}
+@media (max-width: 767px) {
+  .floating-buttons.default-style .buttons-wrap {
+    flex-direction: row;
+  }
+  .floating-buttons.default-style .floating-button {
+    margin-right: 10px;
+  }
+  .floating-buttons.default-style .floating-button .button-text {
+    display: none;
+  }
+}
 .post-thumbnail {
   position: relative;
   width: 100%; /* Ensure 100% width */
