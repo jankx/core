@@ -1,22 +1,24 @@
 .floating-buttons {
     position: relative;
     z-index: 99999;
-    .floating-button {
-    }
+
+    .floating-button {}
 
     &.default-style {
+        position: fixed;
+        left: 10px;
+        bottom: 50%;
+
         .buttons-wrap {
             display: flex;
             flex-wrap: wrap;
             flex-direction: column;
-            position: fixed;
-            left: 5px;
-            bottom: 5px;
         }
 
         .floating-button {
             display: flex;
             align-items: center;
+            position: relative;
 
             >a {
                 display: flex;
@@ -34,6 +36,43 @@
                 justify-content: center;
 
                 box-shadow: 0 0 5px #888;
+                z-index: 1;
+            }
+
+            .button-text {
+                display: inline-block;
+                padding: 0;
+                padding-left: 0px;
+                background-color: #ff6a00;
+                color: #fff;
+                border: 2px solid #fff;
+                border-radius: 20px;
+                height: 40px;
+                line-height: 36px;
+                position: absolute;
+                top: 3px;
+                left: 15px;
+                z-index: 0;
+                width: 0;
+                overflow: hidden;
+                -webkit-transition: all 1s;
+                transition: all 1s;
+                background-color: #ff6a00;
+                -moz-box-shadow: 0 0 5px #888;
+                -webkit-box-shadow: 0 0 5px #888;
+                box-shadow: 0 0 5px #888;
+                font-weight: 400;
+                white-space: nowrap;
+                opacity: 0;
+                padding-left: 0px;
+            }
+
+            &:hover {
+                .button-text {
+                    width: 215px;
+                    padding-left: 40px;
+                    opacity: 1;
+                }
             }
         }
     }
@@ -42,6 +81,7 @@
 .floating-button {
     .button-icon {
         position: relative;
+
         img {
             max-width: 50px;
             height: auto;
@@ -49,7 +89,7 @@
             object-fit: contain;
         }
 
-        .icon  {
+        .icon {
             font-size: 24px;
             color: #fff;
             line-height: 48px;
@@ -57,6 +97,7 @@
             align-content: center;
             justify-content: center;
         }
+
         &::after {
             content: '';
             display: block;
@@ -73,12 +114,14 @@
 @media(min-width: 768px) {
     .floating-buttons {
         &.default-style {
-            .buttons-wrap {
-            }
+            transform: translateY(50%);
+
+            .buttons-wrap {}
+
             .floating-button {
                 margin-bottom: 10px;
-                .button-icon {
-                }
+
+                .button-icon {}
             }
         }
     }
@@ -87,6 +130,8 @@
 @media(max-width: 767px) {
     .floating-buttons {
         &.default-style {
+            bottom: 8px;
+
             .buttons-wrap {
                 flex-direction: row;
             }
@@ -94,8 +139,8 @@
 
             .floating-button {
                 margin-right: 10px;
-                .button-icon {
-                }
+
+                .button-icon {}
 
                 .button-text {
                     display: none;

@@ -1492,17 +1492,20 @@ body.error404 {
   position: relative;
   z-index: 99999;
 }
+.floating-buttons.default-style {
+  position: fixed;
+  left: 10px;
+  bottom: 50%;
+}
 .floating-buttons.default-style .buttons-wrap {
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
-  position: fixed;
-  left: 5px;
-  bottom: 5px;
 }
 .floating-buttons.default-style .floating-button {
   display: flex;
   align-items: center;
+  position: relative;
 }
 .floating-buttons.default-style .floating-button > a {
   display: flex;
@@ -1517,6 +1520,39 @@ body.error404 {
   align-items: center;
   justify-content: center;
   box-shadow: 0 0 5px #888;
+  z-index: 1;
+}
+.floating-buttons.default-style .floating-button .button-text {
+  display: inline-block;
+  padding: 0;
+  padding-left: 0px;
+  background-color: #ff6a00;
+  color: #fff;
+  border: 2px solid #fff;
+  border-radius: 20px;
+  height: 40px;
+  line-height: 36px;
+  position: absolute;
+  top: 3px;
+  left: 15px;
+  z-index: 0;
+  width: 0;
+  overflow: hidden;
+  -webkit-transition: all 1s;
+  transition: all 1s;
+  background-color: #ff6a00;
+  -moz-box-shadow: 0 0 5px #888;
+  -webkit-box-shadow: 0 0 5px #888;
+  box-shadow: 0 0 5px #888;
+  font-weight: 400;
+  white-space: nowrap;
+  opacity: 0;
+  padding-left: 0px;
+}
+.floating-buttons.default-style .floating-button:hover .button-text {
+  width: 215px;
+  padding-left: 40px;
+  opacity: 1;
 }
 
 .floating-button .button-icon {
@@ -1548,11 +1584,17 @@ body.error404 {
 }
 
 @media (min-width: 768px) {
+  .floating-buttons.default-style {
+    transform: translateY(50%);
+  }
   .floating-buttons.default-style .floating-button {
     margin-bottom: 10px;
   }
 }
 @media (max-width: 767px) {
+  .floating-buttons.default-style {
+    bottom: 8px;
+  }
   .floating-buttons.default-style .buttons-wrap {
     flex-direction: row;
   }
