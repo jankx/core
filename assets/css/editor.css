@@ -109,3 +109,8 @@
   width: 33%;
   float: right;
 }
+@media (max-width: 767px) {
+  .wp-editor :not(.wp-caption) > img {
+    height: auto !important;
+  }
+}

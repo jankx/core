@@ -335,6 +335,11 @@ h5, h6 {
   width: 33%;
   float: right;
 }
+@media (max-width: 767px) {
+  .main-content .entry-content :not(.wp-caption) > img {
+    height: auto !important;
+  }
+}
 .main-content .post-content {
   margin-top: 10px;
 }
@@ -488,6 +493,11 @@ table:not(.no-border) th, table:not(.no-border) td {
   margin-right: 0;
   width: 33%;
   float: right;
+}
+@media (max-width: 767px) {
+  .entry-content :not(.wp-caption) > img {
+    height: auto !important;
+  }
 }
 
 @media (min-width: 678px) {

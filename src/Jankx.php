@@ -50,7 +50,7 @@ use Symfony\Component\Serializer\Serializer;
  *
  * @package Jankx
  * @author Puleeno Nguyen <puleeno@gmail.com>
- * @version 1.0.0.44
+ * @version 1.0.0.45
  * @license MIT
  *
  *
@@ -129,7 +129,7 @@ class Jankx extends Container
     /**
      * Phiên bản hiện tại của framework
      */
-    const FRAMEWORK_VERSION = '1.0.0.44';
+    const FRAMEWORK_VERSION = '1.0.0.45';
 
     /**
      * ID của template engine

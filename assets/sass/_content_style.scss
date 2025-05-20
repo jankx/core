@@ -125,3 +125,12 @@ blockquote {
         float: right;
     }
 }
+
+
+@media(max-width: 767px) {
+    :not(.wp-caption) {
+        > img {
+            height: auto!important;
+        }
+    }
+}
