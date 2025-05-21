@@ -1,14 +1,25 @@
+// IOS Improve UX
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+    select,
+    textarea,
+    input {
+        font-size: 16px;
+    }
+}
+
 .quick-search-form {
     display: flex;
 
     .text-wrap {
         flex: 1;
+
         input {
             width: 100%;
             border: none;
             padding: 2px 5px;
         }
     }
+
     .search-button {
         border: none;
     }
