@@ -293,6 +293,9 @@ class Jankx extends Container
     {
         define('JANKX_CACHE_DIR', sprintf('%s/jankx/caches/', WP_CONTENT_DIR));
         define('JANKX_CACHE_DIR_URL', content_url('jankx/caches'));
+
+
+        $this->parseThemeJson();
     }
 
     /**
@@ -364,8 +367,6 @@ class Jankx extends Container
                 require_once $file;
             }
         }
-
-        $this->parseThemeJson();
     }
 
     /**
