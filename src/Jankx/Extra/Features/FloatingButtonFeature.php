@@ -19,7 +19,8 @@ class FloatingButtonFeature {
             'buttons' => $buttons,
             'effect' => 'wiggle',
             'grouped' => false,
-            'style' => 'default'
+            'style' => 'default',
+            'target' => '_blank'
         ]));
     }
 }

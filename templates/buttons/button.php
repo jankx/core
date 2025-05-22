@@ -5,7 +5,7 @@
     }
 ?>
 <div class="floating-button">
-    <a href="<?= $this->e($link); ?>">
+    <a href="<?= $this->e($link); ?>" target="<?php echo $target; ?>">
         <?php if (!empty($icon)): ?>
             <span class="button-icon <?= $this->e($effect); ?>-effect"
                 <?php echo jankx_generate_html_attributes([
