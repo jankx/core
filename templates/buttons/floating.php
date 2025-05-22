@@ -5,6 +5,9 @@
         if (!isset($button['effect'])) {
             $data['effect'] = $effect;
         }
+        if (!isset($button['target'])) {
+            $data['target'] = $target;
+        }
         jankx_template('buttons/button', $data);
     }
     ?>
