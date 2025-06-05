@@ -7,6 +7,7 @@ use Jankx\Asset\Cache;
 use Jankx\Customizers\DefaultPostThumbnailCustomizer;
 use Jankx\Customizers\ExtraFeaturesCustomizer;
 use Jankx\Customizers\PostThumbnailEffectCustomizer;
+use Jankx\Customizers\SEO\LogoWrapTagCustomizer;
 use Jankx\GlobalConfigs;
 use Jankx\Interfaces\CustomizerInterface;
 use ReflectionFunction;
@@ -66,7 +67,8 @@ class Customize
             [
                 DefaultPostThumbnailCustomizer::class,
                 PostThumbnailEffectCustomizer::class,
-                ExtraFeaturesCustomizer::class
+                ExtraFeaturesCustomizer::class,
+                LogoWrapTagCustomizer::class
             ]
         );
     }

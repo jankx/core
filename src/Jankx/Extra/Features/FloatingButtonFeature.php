@@ -1,16 +1,19 @@
 <?php
+
 namespace Jankx\Extra\Features;
 
-class FloatingButtonFeature {
-    public function __construct() {
+class FloatingButtonFeature
+{
+    public function __construct()
+    {
         add_action('jankx/template/footer/after', [$this, 'renderFloatingButtons'], 999);
     }
 
 
-    public function renderFloatingButtons() {
+    public function renderFloatingButtons()
+    {
         $buttons = [];
         $buttons = apply_filters('jankx/buttons/floating', $buttons);
-
         if (empty($buttons)) {
             return;
         }
