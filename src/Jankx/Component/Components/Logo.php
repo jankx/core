@@ -44,6 +44,10 @@ class Logo extends Component
             $props,
             static::$defaultProps
         );
+
+        if (!empty($this->props['text']) && $this->props['wrap_tag'] === 'h1') {
+            $this->props['text'] = wp_title('&raquo;', false);
+        }
     }
 
     public function render()
