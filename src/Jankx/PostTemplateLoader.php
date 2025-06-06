@@ -12,7 +12,7 @@ class PostTemplateLoader
     public function load()
     {
         add_action('jankx_template_page_archive_content', array($this, 'render'));
-        add_action('jankx_template_before_post_content', array($this, 'renderPostMetas'));
+        add_action('jankx/post/content/before', array($this, 'renderPostMetas'));
     }
 
     public function render($page = 'home')
@@ -41,5 +41,7 @@ class PostTemplateLoader
     public function renderPostMetas()
     {
         jankx_template('common/post-metas');
+
+        do_action('jankx/post/metas/after');
     }
 }

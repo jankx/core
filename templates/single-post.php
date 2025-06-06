@@ -3,11 +3,11 @@
     <h1 class="jankx-header page-header"><?php the_title(); ?></h1>
     <?php endif; ?>
 
-    <?php do_action('jankx_template_before_post_content'); ?>
+    <?php do_action('jankx/post/content/before'); ?>
 
     <div class="post-content entry-content">
         <?php the_content(); ?>
     </div>
 
-    <?php do_action('jankx_template_after_post_content'); ?>
+    <?php do_action('jankx/post/content/after'); ?>
 </article>
