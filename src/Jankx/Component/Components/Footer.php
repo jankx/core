@@ -30,7 +30,7 @@ class Footer extends Component
         $enableCredit  = apply_filters('jankx/layout/footer/credit/enable', true);
         $creditMessage = sprintf(
             __('Build with <a href="%s" title="Jankx Framework">Jankx</a> and <a href="%s" title="WordPress">WordPress</a>.', 'jankx'),
-            'https://jankx.puleeno.com',
+            'https://jankx.github.io/jankx/',
             'https://wordpress.org'
         );
 

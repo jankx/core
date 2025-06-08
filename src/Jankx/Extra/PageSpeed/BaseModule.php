@@ -1,6 +1,6 @@
 <?php
 
-namespace Jankx\PageSpeed;
+namespace Jankx\Extra\PageSpeed;
 
 use Jankx\Interfaces\GooglePagespeedModuleInterface;
 
