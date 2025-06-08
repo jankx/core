@@ -45,6 +45,7 @@
 }
 .jankx-socials-sharing {
     display: flex;
+    flex-wrap: wrap;
     margin-top: 15px;
     .social-sharing-button {
         cursor: pointer;
@@ -52,9 +53,8 @@
 
     &:not(.dropdown-styles) {
         .social-sharing-button {
-            &+.social-sharing-button {
-                margin-left: 10px;
-            }
+            margin-right: 10px;
+            margin-bottom: 15px;
         }
     }
 }
