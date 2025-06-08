@@ -1,6 +1,8 @@
 <?php
+
 use Jankx\Widget\Renderers\PostsRenderer;
 use Jankx\PostLayout\Layout\Card;
+
 ?>
 <div class="seach-results-main">
     <?php jankx_open_container(); ?>

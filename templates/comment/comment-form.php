@@ -1,4 +1,5 @@
 <?php
+
 comment_form(
     array(
         'class_form'         => 'section-inner thin max-percentage',

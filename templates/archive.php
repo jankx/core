@@ -1,7 +1,9 @@
 <?php
+
 /**
  * Content page index
  */
+
 use Jankx\PostLayout\Layout\Card;
 use Jankx\Widget\Renderers\PostsRenderer;
 

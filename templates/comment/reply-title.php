@@ -1,4 +1,5 @@
 <?php
+
 if (! have_comments()) {
     _e('Leave a comment', 'jankx');
 } elseif (1 === $comments_number) {

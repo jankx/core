@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @package Jankx
  * @subpackage Template

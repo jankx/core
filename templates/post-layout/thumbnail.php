@@ -3,9 +3,9 @@
 ]); ?>>
     <?php do_action('jankx/post_layout/thumbnail/before', $post, $data_index); ?>
     <a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>">
-        <?php if (empty($content)): ?>
-        <?php jankx_the_post_thumbnail($thumbnail_size); ?>
-        <?php else: ?>
+        <?php if (empty($content)) : ?>
+            <?php jankx_the_post_thumbnail($thumbnail_size); ?>
+        <?php else : ?>
             <?php echo $content; ?>
         <?php endif; ?>
     </a>
