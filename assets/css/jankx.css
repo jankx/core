@@ -4,7 +4,7 @@
  * Author: Puleeno Nguyen
  * Author URI: https://puleeno.com
  * Description: This module is create the basic structure for Jankx theme. Other stylesheet will be defined in the theme
- * Version: 1.0.0.3
+ * Version: 1.0.0.47
  */
 /* http://meyerweb.com/eric/tools/css/reset/
    v5.0.1 | 20191019
@@ -1082,9 +1082,47 @@ body.mmenu-offcanvas .mm-ocd__backdrop {
 .social-sharing-button {
   cursor: pointer;
 }
+.social-sharing-button .button, .social-sharing-button button {
+  border: none;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 3px;
+}
+.social-sharing-button .button.light, .social-sharing-button button.light {
+  color: #333;
+}
+.social-sharing-button .button.dark, .social-sharing-button button.dark {
+  color: #fff;
+}
+.social-sharing-button .button.text-dark, .social-sharing-button button.text-dark {
+  color: #333 !important;
+}
+.social-sharing-button .button.text-light, .social-sharing-button button.text-light {
+  color: #fff !important;
+}
+.social-sharing-button:hover.button, .social-sharing-button:hover button {
+  position: relative;
+}
+.social-sharing-button:hover.button::after, .social-sharing-button:hover button::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.2);
+  left: 0;
+  top: 0;
+  border-radius: 3px;
+}
 
-.jankx-socials-sharing .jankx-sharing-button {
+.jankx-socials-sharing {
+  display: flex;
+  margin-top: 15px;
+}
+.jankx-socials-sharing .social-sharing-button {
   cursor: pointer;
+}
+.jankx-socials-sharing:not(.dropdown-styles) .social-sharing-button + .social-sharing-button {
+  margin-left: 10px;
 }
 
 .drop-element.drop-open {

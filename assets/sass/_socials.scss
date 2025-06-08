@@ -6,10 +6,56 @@
 }
 .social-sharing-button {
     cursor: pointer;
+
+    .button,button {
+        border: none;
+        border-width: 1px;
+        border-style: solid;
+        border-radius: 3px;
+
+        &.light {
+            color: #333;
+        }
+        &.dark {
+            color: #fff;
+        }
+        &.text-dark {
+            color: #333 !important;
+        }
+        &.text-light {
+            color: #fff !important;
+        }
+    }
+
+    &:hover {
+        &.button,button {
+            position: relative;
+            &::after {
+                content: '';
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                background: rgba($color: #000000, $alpha: 0.2);
+                left: 0;
+                top: 0;
+                border-radius: 3px;
+            }
+        }
+    }
 }
 .jankx-socials-sharing {
-    .jankx-sharing-button {
+    display: flex;
+    margin-top: 15px;
+    .social-sharing-button {
         cursor: pointer;
+    }
+
+    &:not(.dropdown-styles) {
+        .social-sharing-button {
+            &+.social-sharing-button {
+                margin-left: 10px;
+            }
+        }
     }
 }
 

@@ -2,6 +2,7 @@
 
 namespace Jankx\Social;
 
+use Jankx\Extra\BrandColors;
 use WP_Post;
 use WP_Term;
 use Jankx\Option;
@@ -315,6 +316,11 @@ final class Sharing
             ?>
             <div class="social-sharing-button" data-type="<?php echo $shareAPIKey; ?>" data-agrument="<?php echo $social; ?>_agrument">
                 <?php
+                $brandColor = BrandColors::getBrandColorByName($social);
+                $brandColorValue = $brandColor->getColorById(
+                    apply_filters("jankx/social/sharing/{$social}/background/id", 'primary')
+                );
+
                 jankx_template(
                     array(
                         'socials/sharing/' . $social . '-button',
@@ -323,6 +329,10 @@ final class Sharing
                     array(
                         'name' => $social_name,
                         'type' => $social,
+                        'background_color' => is_null($brandColor) ? '' : $brandColor->getCssBackgroundStyle(is_null($brandColorValue) ? 'primary' : $brandColorValue->getId()),
+                        'border_color' => is_null($brandColor) ? '' : $brandColor->getCssBorderStyle(is_null($brandColorValue) ? 'primary' : $brandColorValue->getId()),
+                        'appearance' => $brandColorValue->getAppearance(),
+                        'text_appearance' => $brandColorValue->getTextAppearance()
                     )
                 ); ?>
             </div>
@@ -337,8 +347,11 @@ final class Sharing
             error_log(__('Jankx social sharing is not initialized yet', 'jankx'));
             return;
         }
+        $wraperClasses = ['jankx-socials-sharing'];
         ?>
-        <div class="jankx-socials-sharing drop-styles">
+        <div <?php echo jankx_generate_html_attributes([
+            'class' => $wraperClasses
+        ]); ?>>
             <?php $this->render_social_share_buttons($socials); ?>
         </div>
 
