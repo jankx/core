@@ -2,6 +2,7 @@
 
 use Jankx\Component\Abstracts\ComponentComposite;
 use Jankx\Component\Registry;
+use Jankx\Extra\BrandColors;
 use Jankx\GlobalConfigs;
 use Jankx\SiteLayout\SiteLayout;
 use Jankx\Template\Page;
@@ -510,4 +511,26 @@ if (!function_exists('jankx_get_font_icon')) {
     {
         return sprintf('%s%s', is_null($prefix) ? jankx_get_font_icon_prefix() : $prefix, $name);
     }
+}
+
+/**
+ * Get brand color for a specific social network or platform
+ *
+ * This function retrieves the brand color(s) for a given social network or platform name
+ * from the BrandColors class. The colors are defined in brandcolors.json.
+ *
+ * @param string $name The name of the social network/platform (e.g. 'facebook', 'twitter', 'instagram')
+ * @return string|array|null Returns the brand color(s) if found, null otherwise
+ *
+ * @example
+ * // Get Facebook brand color
+ * $fbColor = jankx_get_brand_color('facebook'); // Returns '#1877f2'
+ *
+ * // Get Instagram brand colors
+ * $igColors = jankx_get_brand_color('instagram'); // Returns array of gradient colors
+ */
+if (!function_exists('jankx_get_brand_color')) {
+    function jankx_get_brand_color($name) {
+        return BrandColors::getBrandColorByName($name);
+    };
 }
