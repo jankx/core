@@ -40,7 +40,9 @@ class PostTemplateLoader
 
     public function renderPostMetas()
     {
-        jankx_template('common/post-metas');
+        jankx_template('common/post-metas', [
+            'enabled_post_metas' => apply_filters('jankx/common/post_metas', ['post_date', 'author', 'categories', 'post_tags', 'comments'])
+        ]);
 
         do_action('jankx/post/metas/after');
     }
