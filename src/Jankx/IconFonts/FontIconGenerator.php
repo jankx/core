@@ -3,7 +3,7 @@
 namespace Jankx\IconFonts;
 
 if (!defined('ABSPATH')) {
-    exit('Cheatin huh?');
+    exit('Cheating huh?');
 }
 
 abstract class FontIconGenerator implements FontIconGeneratorConstract

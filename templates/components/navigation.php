@@ -1,6 +1,6 @@
 <?php
 if (!defined('ABSPATH')) {
-    exit('Cheatin huh?');
+    exit('Cheating huh?');
 }
 if (has_nav_menu($args['theme_location'])) :
     ?>

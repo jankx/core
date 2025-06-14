@@ -3,7 +3,7 @@
 namespace Jankx\Extra\Colors;
 
 if (!defined('ABSPATH')) {
-    exit('Cheatin huh?');
+    exit('Cheating huh?');
 }
 
 class BrandColorValue

@@ -3,7 +3,7 @@
 namespace Jankx\Admin;
 
 if (!defined('ABSPATH')) {
-    exit('Cheatin huh?');
+    exit('Cheating huh?');
 }
 
 use Jankx\GlobalConfigs;

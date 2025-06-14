@@ -3,7 +3,7 @@
 namespace Jankx\Blocks;
 
 if (!defined('ABSPATH')) {
-    exit('Cheatin huh?');
+    exit('Cheating huh?');
 }
 
 interface BlockInterface

@@ -1,6 +1,6 @@
-<?php 
+<?php
 if (!defined('ABSPATH')) {
-    exit('Cheatin huh?');
+    exit('Cheating huh?');
 }
  ?>
 <button class="button <?php echo $appearance; ?> text-<?php echo $text_appearance; ?>" style="<?php echo $background_color; ?><?php echo $border_color; ?>">

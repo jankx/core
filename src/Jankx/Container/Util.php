@@ -3,7 +3,7 @@
 namespace Illuminate\Container;
 
 if (!defined('ABSPATH')) {
-    exit('Cheatin huh?');
+    exit('Cheating huh?');
 }
 
 use Closure;

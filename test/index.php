@@ -1,5 +1,5 @@
 <?php
 if (!defined('ABSPATH')) {
-    exit('Cheatin huh?');
+    exit('Cheating huh?');
 }
 // Silent is gold.

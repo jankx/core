@@ -3,7 +3,7 @@
 namespace Jankx\Social;
 
 if (!defined('ABSPATH')) {
-    exit('Cheatin huh?');
+    exit('Cheating huh?');
 }
 
 use Jankx\Extra\BrandColors;

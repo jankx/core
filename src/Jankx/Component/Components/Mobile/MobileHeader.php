@@ -3,7 +3,7 @@
 namespace Jankx\Component\Components\Mobile;
 
 if (!defined('ABSPATH')) {
-    exit('Cheatin huh?');
+    exit('Cheating huh?');
 }
 
 use Jankx\Component\Abstracts\MobileComponent;

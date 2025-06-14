@@ -3,7 +3,7 @@
 namespace Illuminate\Contracts\Container;
 
 if (!defined('ABSPATH')) {
-    exit('Cheatin huh?');
+    exit('Cheating huh?');
 }
 
 interface ContextualBindingBuilder

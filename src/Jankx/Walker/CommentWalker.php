@@ -3,7 +3,7 @@
 namespace Jankx\Walker;
 
 if (!defined('ABSPATH')) {
-    exit('Cheatin huh?');
+    exit('Cheating huh?');
 }
 
 use Walker_Comment;

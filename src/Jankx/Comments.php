@@ -3,7 +3,7 @@
 namespace Jankx;
 
 if (!defined('ABSPATH')) {
-    exit('Cheatin huh?');
+    exit('Cheating huh?');
 }
 
 class Comments

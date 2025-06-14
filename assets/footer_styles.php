@@ -1,6 +1,6 @@
 <?php
 if (!defined('ABSPATH')) {
-    exit('Cheatin huh?');
+    exit('Cheating huh?');
 }
 switch ($numOfFooterWidgets) {
     case 1: ?>
@@ -77,7 +77,7 @@ switch ($numOfFooterWidgets) {
                     width: <?php echo (100/$numOfFooterWidgets); ?>%;
                 }
             }
-        
+
         <?php
         break;
 }

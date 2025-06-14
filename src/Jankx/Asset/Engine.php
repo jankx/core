@@ -3,7 +3,7 @@
 namespace Jankx\Asset;
 
 if (!defined('ABSPATH')) {
-    exit('Cheatin huh?');
+    exit('Cheating huh?');
 }
 
 use Jankx\TemplateEngine\Engines\Plates;

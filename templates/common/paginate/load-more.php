@@ -1,6 +1,6 @@
-<?php 
+<?php
 if (!defined('ABSPATH')) {
-    exit('Cheatin huh?');
+    exit('Cheating huh?');
 }
  ?>
 <button data-load-items="<?php echo $items; ?>" data-load-more="<?php echo $wrap_id; ?>" class="jankx-load-more-button">

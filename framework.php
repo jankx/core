@@ -9,7 +9,7 @@
  */
 
 if (!defined('ABSPATH')) {
-    exit('Cheatin huh?');
+    exit('Cheating huh?');
 }
 define('JANKX_FRAMEWORK_FILE_LOADER', __FILE__);
 

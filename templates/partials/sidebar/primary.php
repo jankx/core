@@ -1,6 +1,6 @@
-<?php 
+<?php
 if (!defined('ABSPATH')) {
-    exit('Cheatin huh?');
+    exit('Cheating huh?');
 }
  ?>
 <aside id="jankx-<?php echo $sidebar_name; ?>-sidebar" class="sidebar <?php echo $sidebar_name; ?>">

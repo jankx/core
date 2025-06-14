@@ -3,7 +3,7 @@
 namespace Jankx\Component\Components;
 
 if (!defined('ABSPATH')) {
-    exit('Cheatin huh?');
+    exit('Cheating huh?');
 }
 
 use Jankx\Component\Abstracts\Component;

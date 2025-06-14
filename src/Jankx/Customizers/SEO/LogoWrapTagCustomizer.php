@@ -3,7 +3,7 @@
 namespace Jankx\Customizers\SEO;
 
 if (!defined('ABSPATH')) {
-    exit('Cheatin huh?');
+    exit('Cheating huh?');
 }
 
 use Jankx\Customizers\BaseCustomizer;

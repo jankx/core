@@ -3,7 +3,7 @@
 namespace Jankx\Extra;
 
 if (!defined('ABSPATH')) {
-    exit('Cheatin huh?');
+    exit('Cheating huh?');
 }
 
 use Jankx\Extra\Colors\BrandColor;

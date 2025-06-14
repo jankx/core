@@ -3,7 +3,7 @@
 namespace Jankx\Extra\Features;
 
 if (!defined('ABSPATH')) {
-    exit('Cheatin huh?');
+    exit('Cheating huh?');
 }
 
 class FloatingButtonFeature
