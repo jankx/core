@@ -2,6 +2,10 @@
 
 namespace Jankx;
 
+if (!defined('ABSPATH')) {
+    exit('Cheatin huh?');
+}
+
 class Comments
 {
     public static function init($wp)

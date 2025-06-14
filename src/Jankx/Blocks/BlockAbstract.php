@@ -2,6 +2,10 @@
 
 namespace Jankx\Blocks;
 
+if (!defined('ABSPATH')) {
+    exit('Cheatin huh?');
+}
+
 use Jankx\Blocks\BlockInterface as BlocksBlockInterface;
 
 abstract class BlockAbstract implements BlocksBlockInterface

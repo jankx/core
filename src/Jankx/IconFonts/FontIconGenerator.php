@@ -2,6 +2,10 @@
 
 namespace Jankx\IconFonts;
 
+if (!defined('ABSPATH')) {
+    exit('Cheatin huh?');
+}
+
 abstract class FontIconGenerator implements FontIconGeneratorConstract
 {
     protected $fontPath;

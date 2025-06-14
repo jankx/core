@@ -2,6 +2,10 @@
 
 namespace Jankx\Extra\PageSpeed;
 
+if (!defined('ABSPATH')) {
+    exit('Cheatin huh?');
+}
+
 use Masterminds\HTML5;
 
 class HTML5FixerModule extends BaseModule

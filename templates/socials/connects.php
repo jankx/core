@@ -1,3 +1,8 @@
+<?php 
+if (!defined('ABSPATH')) {
+    exit('Cheatin huh?');
+}
+ ?>
 <div class="social-sidebar-internal">
     <?php if (!empty($socials)) : ?>
         <ul class="jankx-socials">

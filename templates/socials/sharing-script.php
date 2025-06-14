@@ -1,3 +1,8 @@
+<?php 
+if (!defined('ABSPATH')) {
+    exit('Cheatin huh?');
+}
+ ?>
 <script>
     var share_content = document.getElementById('jankx-sharing-content');
     if (share_content) {

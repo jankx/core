@@ -2,6 +2,10 @@
 
 namespace Jankx\Configs;
 
+if (!defined('ABSPATH')) {
+    exit('Cheatin huh?');
+}
+
 use Jankx;
 
 class ThemeConfigurations

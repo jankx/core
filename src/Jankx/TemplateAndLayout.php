@@ -2,6 +2,10 @@
 
 namespace Jankx;
 
+if (!defined('ABSPATH')) {
+    exit('Cheatin huh?');
+}
+
 use WP_Post_Type;
 use WP_User;
 use Jankx;

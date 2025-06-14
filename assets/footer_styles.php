@@ -1,4 +1,7 @@
 <?php
+if (!defined('ABSPATH')) {
+    exit('Cheatin huh?');
+}
 switch ($numOfFooterWidgets) {
     case 1: ?>
         .footer-widgets-area .jankx-footer-widget {

@@ -2,6 +2,10 @@
 
 namespace Jankx\IconFonts\Generator;
 
+if (!defined('ABSPATH')) {
+    exit('Cheatin huh?');
+}
+
 use Jankx\IconFonts\FontIconGenerator;
 
 class Fontastic extends FontIconGenerator

@@ -1,3 +1,8 @@
+<?php 
+if (!defined('ABSPATH')) {
+    exit('Cheatin huh?');
+}
+ ?>
 <article id="div-comment-<?php comment_ID(); ?>" class="comment-body">
         <?php do_action('jankx_template_comment_before_bobdy', $comment, $args); ?>
 

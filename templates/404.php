@@ -1,3 +1,8 @@
+<?php 
+if (!defined('ABSPATH')) {
+    exit('Cheatin huh?');
+}
+ ?>
 <div id="notfound">
     <div class="notfound">
         <div class="notfound-bg">

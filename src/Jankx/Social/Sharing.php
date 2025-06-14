@@ -2,6 +2,10 @@
 
 namespace Jankx\Social;
 
+if (!defined('ABSPATH')) {
+    exit('Cheatin huh?');
+}
+
 use Jankx\Extra\BrandColors;
 use WP_Post;
 use WP_Term;

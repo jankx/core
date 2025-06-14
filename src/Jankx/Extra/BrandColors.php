@@ -2,6 +2,10 @@
 
 namespace Jankx\Extra;
 
+if (!defined('ABSPATH')) {
+    exit('Cheatin huh?');
+}
+
 use Jankx\Extra\Colors\BrandColor;
 use Jankx\Extra\Colors\BrandColorValue;
 use Symfony\Component\Serializer\Encoder\JsonDecode;

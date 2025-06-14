@@ -1,4 +1,7 @@
 <?php
+if (!defined('ABSPATH')) {
+    exit('Cheatin huh?');
+}
     $styles = [];
 if (!empty($background)) {
     $styles[] = sprintf('background: %s;', $background);

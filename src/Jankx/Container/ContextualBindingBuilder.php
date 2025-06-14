@@ -2,6 +2,10 @@
 
 namespace Illuminate\Container;
 
+if (!defined('ABSPATH')) {
+    exit('Cheatin huh?');
+}
+
 use Illuminate\Contracts\Container\Container;
 use Illuminate\Contracts\Container\ContextualBindingBuilder as ContextualBindingBuilderContract;
 

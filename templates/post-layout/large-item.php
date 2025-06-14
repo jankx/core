@@ -1,3 +1,8 @@
+<?php 
+if (!defined('ABSPATH')) {
+    exit('Cheatin huh?');
+}
+ ?>
 <div <?php post_class(array('loop-item', 'post-large-image')); ?>>
     <?php do_action('jankx_post_layout_before_loop_item', $post, $data_index); ?>
 

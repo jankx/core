@@ -1,3 +1,8 @@
+<?php 
+if (!defined('ABSPATH')) {
+    exit('Cheatin huh?');
+}
+ ?>
 <header <?php echo $attributes; ?>>
     <?php do_action('jankx/component/header/content/before'); ?>
     <?php jankx_open_container('c-header-container', 'jankx_component_header_container'); ?>

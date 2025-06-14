@@ -1,3 +1,8 @@
+<?php 
+if (!defined('ABSPATH')) {
+    exit('Cheatin huh?');
+}
+ ?>
 <aside id="jankx-<?php echo $sidebar_name; ?>-sidebar" class="sidebar <?php echo $sidebar_name; ?>">
     <?php do_action('jankx/template/sidebar/primary/before'); ?>
     <?php

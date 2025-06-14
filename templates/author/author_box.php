@@ -1,3 +1,8 @@
+<?php 
+if (!defined('ABSPATH')) {
+    exit('Cheatin huh?');
+}
+ ?>
 <div class="jankx-author-box">
     <div class="author-box-container">
         <div class="author-box-header">

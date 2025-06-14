@@ -1,3 +1,8 @@
+<?php 
+if (!defined('ABSPATH')) {
+    exit('Cheatin huh?');
+}
+ ?>
 <div class="jankx-logo image <?php echo $class; ?>">
     <?php printf('<%s class="logo-text-wrap">', $wrap_tag); ?>
         <?php if ($url) : ?>

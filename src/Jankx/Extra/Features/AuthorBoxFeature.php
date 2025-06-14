@@ -2,6 +2,10 @@
 
 namespace Jankx\Extra\Features;
 
+if (!defined('ABSPATH')) {
+    exit('Cheatin huh?');
+}
+
 use Jankx\Adapter\Options\Helper;
 
 class AuthorBoxFeature

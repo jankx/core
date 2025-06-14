@@ -1,3 +1,8 @@
+<?php 
+if (!defined('ABSPATH')) {
+    exit('Cheatin huh?');
+}
+ ?>
 <article <?php post_class(); ?>>
     <?php if (apply_filters('jankx_template_page_single_post_header', true, $GLOBALS['post'])) : ?>
     <h1 class="jankx-header page-header"><?php the_title(); ?></h1>

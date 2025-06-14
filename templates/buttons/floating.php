@@ -1,3 +1,8 @@
+<?php 
+if (!defined('ABSPATH')) {
+    exit('Cheatin huh?');
+}
+ ?>
 <div class="floating-buttons <?= $this->e($style); ?>-style">
     <div class="buttons-wrap">
     <?php foreach ($buttons as $button) {

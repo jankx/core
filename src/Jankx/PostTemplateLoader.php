@@ -2,6 +2,10 @@
 
 namespace Jankx;
 
+if (!defined('ABSPATH')) {
+    exit('Cheatin huh?');
+}
+
 use Jankx\TemplateAndLayout;
 use Jankx\PostLayout\Constracts\PostLayout;
 use Jankx\PostLayout\PostLayoutManager;

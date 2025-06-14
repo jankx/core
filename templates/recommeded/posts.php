@@ -1,3 +1,8 @@
+<?php 
+if (!defined('ABSPATH')) {
+    exit('Cheatin huh?');
+}
+ ?>
 <div class="jankx-recommended-posts-display">
     <h2><?php esc_html_e(' Có thể bạn quan tâm: ', 'jankx'); ?></h2>
     <div class="recommended-posts-grid">

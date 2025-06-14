@@ -2,6 +2,10 @@
 
 namespace Jankx\IconFonts;
 
+if (!defined('ABSPATH')) {
+    exit('Cheatin huh?');
+}
+
 use Icon_Picker_Type_Font;
 use Icon_Picker_Loader;
 

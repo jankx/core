@@ -2,6 +2,10 @@
 
 namespace Jankx\UX;
 
+if (!defined('ABSPATH')) {
+    exit('Cheatin huh?');
+}
+
 use Jankx\Asset\CustomizableAsset;
 use Jankx\Asset\Cache;
 use Jankx\Customizers\DefaultPostThumbnailCustomizer;

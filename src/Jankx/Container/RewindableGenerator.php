@@ -2,6 +2,10 @@
 
 namespace Illuminate\Container;
 
+if (!defined('ABSPATH')) {
+    exit('Cheatin huh?');
+}
+
 use Countable;
 use IteratorAggregate;
 

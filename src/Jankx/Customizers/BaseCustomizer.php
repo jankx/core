@@ -2,6 +2,10 @@
 
 namespace Jankx\Customizers;
 
+if (!defined('ABSPATH')) {
+    exit('Cheatin huh?');
+}
+
 use Jankx\Interfaces\CustomizerInterface;
 
 abstract class BaseCustomizer implements CustomizerInterface

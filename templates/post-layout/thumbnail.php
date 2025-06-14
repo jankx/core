@@ -1,3 +1,8 @@
+<?php 
+if (!defined('ABSPATH')) {
+    exit('Cheatin huh?');
+}
+ ?>
 <div <?php echo jankx_generate_html_attributes([
     'class' => apply_filters('jankx/thumbnail/classes', ['post-thumbnail'], $post, $data_index),
 ]); ?>>

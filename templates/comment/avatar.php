@@ -1,3 +1,8 @@
+<?php 
+if (!defined('ABSPATH')) {
+    exit('Cheatin huh?');
+}
+ ?>
 <div class="author-avatar">
     <?php if ($comment_author_url) : ?>
         <a href="<?php echo $comment_author_url; ?>" rel="external nofollow" class="url">

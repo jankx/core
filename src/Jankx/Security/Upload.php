@@ -2,6 +2,10 @@
 
 namespace Jankx\Security;
 
+if (!defined('ABSPATH')) {
+    exit('Cheatin huh?');
+}
+
 class Upload
 {
     public function allow_new_file_types()

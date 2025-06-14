@@ -2,6 +2,10 @@
 
 namespace Jankx\Admin;
 
+if (!defined('ABSPATH')) {
+    exit('Cheatin huh?');
+}
+
 use Jankx\GlobalConfigs;
 use Jankx\Adapter\Options\Framework;
 use Jankx\Adapter\Options\OptionsReader;

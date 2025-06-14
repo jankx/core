@@ -2,6 +2,10 @@
 
 namespace Jankx\Customizers\SEO;
 
+if (!defined('ABSPATH')) {
+    exit('Cheatin huh?');
+}
+
 use Jankx\Customizers\BaseCustomizer;
 use Jankx\GlobalConfigs;
 

@@ -1,3 +1,8 @@
+<?php 
+if (!defined('ABSPATH')) {
+    exit('Cheatin huh?');
+}
+ ?>
 .jankx-base .jankx-container.has-wrap {
     max-width: <?php printf('%s%s', $desktop['width'], $desktop['unit'] !='custom' ? $desktop['unit'] : ''); ?>;
 }

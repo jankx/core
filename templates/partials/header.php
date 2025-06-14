@@ -1,3 +1,8 @@
+<?php 
+if (!defined('ABSPATH')) {
+    exit('Cheatin huh?');
+}
+ ?>
 <!DOCTYPE html>
 <html
     class="<?php echo isset($html_class) ? implode(' ', (array) $html_class) : 'no-js'; ?>"

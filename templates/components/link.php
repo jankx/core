@@ -1,3 +1,8 @@
+<?php 
+if (!defined('ABSPATH')) {
+    exit('Cheatin huh?');
+}
+ ?>
 <a
     href="<?php echo $url; ?>"
     title="<?php echo $text; ?>"

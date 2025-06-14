@@ -2,6 +2,10 @@
 
 namespace Jankx\Interfaces;
 
+if (!defined('ABSPATH')) {
+    exit('Cheatin huh?');
+}
+
 interface Filter
 {
     public function getHooks();

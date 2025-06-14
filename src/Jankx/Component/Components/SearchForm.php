@@ -2,6 +2,10 @@
 
 namespace Jankx\Component\Components;
 
+if (!defined('ABSPATH')) {
+    exit('Cheatin huh?');
+}
+
 use Jankx\Component\Abstracts\Component;
 
 class SearchForm extends Component

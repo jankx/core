@@ -1,4 +1,7 @@
 <?php
+if (!defined('ABSPATH')) {
+    exit('Cheatin huh?');
+}
 
 if (! have_comments()) {
     _e('Leave a comment', 'jankx');

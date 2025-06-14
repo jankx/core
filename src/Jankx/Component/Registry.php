@@ -2,6 +2,10 @@
 
 namespace Jankx\Component;
 
+if (!defined('ABSPATH')) {
+    exit('Cheatin huh?');
+}
+
 use Jankx;
 use Jankx\Component\Components\Header;
 use Jankx\Component\Components\Footer;

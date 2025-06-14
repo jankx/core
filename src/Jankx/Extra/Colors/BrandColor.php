@@ -2,6 +2,10 @@
 
 namespace Jankx\Extra\Colors;
 
+if (!defined('ABSPATH')) {
+    exit('Cheatin huh?');
+}
+
 class BrandColor
 {
     protected $brandName;

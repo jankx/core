@@ -2,6 +2,10 @@
 
 namespace Jankx\CSS;
 
+if (!defined('ABSPATH')) {
+    exit('Cheatin huh?');
+}
+
 use Jankx\GlobalConfigs;
 
 class GlobalVariables

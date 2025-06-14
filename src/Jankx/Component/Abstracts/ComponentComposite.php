@@ -2,6 +2,10 @@
 
 namespace Jankx\Component\Abstracts;
 
+if (!defined('ABSPATH')) {
+    exit('Cheatin huh?');
+}
+
 use Jankx;
 use Jankx\Template\Template;
 use Jankx\TemplateEngine\Data;

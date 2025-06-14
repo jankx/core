@@ -1,4 +1,7 @@
 <?php
+if (!defined('ABSPATH')) {
+    exit('Cheatin huh?');
+}
 
 use Jankx\Widget\Renderers\PostsRenderer;
 use Jankx\PostLayout\Layout\Card;

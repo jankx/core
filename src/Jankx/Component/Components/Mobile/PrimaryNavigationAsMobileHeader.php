@@ -2,6 +2,10 @@
 
 namespace Jankx\Component\Components\Mobile;
 
+if (!defined('ABSPATH')) {
+    exit('Cheatin huh?');
+}
+
 use Jankx;
 use Jankx\Component\Abstracts\MobileComponent;
 use Jankx\Component\Constracts\ComponentPlatform;

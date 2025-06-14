@@ -1,3 +1,8 @@
+<?php 
+if (!defined('ABSPATH')) {
+    exit('Cheatin huh?');
+}
+ ?>
 <div class="jankx-footer-widget widget-area-<?php echo $index; ?>">
     <?php
     if (is_active_sidebar("footer_{$index}")) {

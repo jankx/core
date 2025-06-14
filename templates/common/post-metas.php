@@ -1,3 +1,8 @@
+<?php 
+if (!defined('ABSPATH')) {
+    exit('Cheatin huh?');
+}
+ ?>
 <ul class="post-metas">
     <?php if (in_array('post_date', $enabled_post_metas)) : ?>
     <li class="post-date">

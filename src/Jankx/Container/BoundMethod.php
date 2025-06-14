@@ -2,6 +2,10 @@
 
 namespace Illuminate\Container;
 
+if (!defined('ABSPATH')) {
+    exit('Cheatin huh?');
+}
+
 use Closure;
 use Illuminate\Contracts\Container\BindingResolutionException;
 use InvalidArgumentException;

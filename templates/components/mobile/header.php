@@ -1,3 +1,8 @@
+<?php 
+if (!defined('ABSPATH')) {
+    exit('Cheatin huh?');
+}
+ ?>
 <div class="mobile-header-elements">
     <?php foreach ($elements as $element => $props) : ?>
         <?php if (!is_callable($props['callback'])) {

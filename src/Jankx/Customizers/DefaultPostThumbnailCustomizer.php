@@ -2,6 +2,10 @@
 
 namespace Jankx\Customizers;
 
+if (!defined('ABSPATH')) {
+    exit('Cheatin huh?');
+}
+
 use Jankx\GlobalConfigs;
 use WP_Error;
 

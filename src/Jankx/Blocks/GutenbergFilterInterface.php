@@ -2,6 +2,10 @@
 
 namespace Jankx\Blocks;
 
+if (!defined('ABSPATH')) {
+    exit('Cheatin huh?');
+}
+
 interface GutenbergFilterInterface
 {
     public function getFilterTag();

@@ -1,3 +1,8 @@
+<?php 
+if (!defined('ABSPATH')) {
+    exit('Cheatin huh?');
+}
+ ?>
 <h1 class="page-header">
 <?php
 if (is_a($queried_object, WP_Term::class)) {

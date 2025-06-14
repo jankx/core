@@ -2,6 +2,10 @@
 
 namespace Jankx\IconFonts;
 
+if (!defined('ABSPATH')) {
+    exit('Cheatin huh?');
+}
+
 use Jankx\IconFonts\Generator\Fontastic;
 
 class GeneratorManager

@@ -1,3 +1,8 @@
+<?php 
+if (!defined('ABSPATH')) {
+    exit('Cheatin huh?');
+}
+ ?>
 <ul class="jankx-tabs post-layout-tabs">
     <?php foreach ($tabs as $tab) : ?>
         <?php if ($tab->isValid()) : ?>

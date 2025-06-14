@@ -1,3 +1,8 @@
+<?php 
+if (!defined('ABSPATH')) {
+    exit('Cheatin huh?');
+}
+ ?>
 <?php if ($total_items > 0) : ?>
 <ul class="slider-indicators">
     <?php for ($i = 0; $i < $total_items; $i++) : ?>

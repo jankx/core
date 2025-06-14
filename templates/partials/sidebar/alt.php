@@ -1,3 +1,8 @@
+<?php 
+if (!defined('ABSPATH')) {
+    exit('Cheatin huh?');
+}
+ ?>
 <aside id="jankx-secondary-sidebar" class="sidebar secondary">
     <?php
     if (is_active_sidebar('secondary')) {

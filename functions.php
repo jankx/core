@@ -1,4 +1,7 @@
 <?php
+if (!defined('ABSPATH')) {
+    exit('Cheatin huh?');
+}
 
 use Jankx\Component\Abstracts\ComponentComposite;
 use Jankx\Component\Registry;

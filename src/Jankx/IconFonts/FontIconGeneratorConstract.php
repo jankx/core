@@ -2,6 +2,10 @@
 
 namespace Jankx\IconFonts;
 
+if (!defined('ABSPATH')) {
+    exit('Cheatin huh?');
+}
+
 interface FontIconGeneratorConstract
 {
     public function setFontName($fontName);

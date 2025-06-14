@@ -2,6 +2,10 @@
 
 namespace Jankx\Interfaces;
 
+if (!defined('ABSPATH')) {
+    exit('Cheatin huh?');
+}
+
 interface CustomizerInterface
 {
     public function isEnabled(): bool;

@@ -2,6 +2,10 @@
 
 namespace Jankx\Extra\PageSpeed;
 
+if (!defined('ABSPATH')) {
+    exit('Cheatin huh?');
+}
+
 use Jankx\Interfaces\GooglePagespeedModuleInterface;
 
 abstract class BaseModule implements GooglePagespeedModuleInterface

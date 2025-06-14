@@ -1,3 +1,8 @@
+<?php 
+if (!defined('ABSPATH')) {
+    exit('Cheatin huh?');
+}
+ ?>
 <button type="button" class="slider-nav" aria-label="Go to previous">
 </button>
 

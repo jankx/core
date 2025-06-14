@@ -1,3 +1,8 @@
+<?php 
+if (!defined('ABSPATH')) {
+    exit('Cheatin huh?');
+}
+ ?>
 <footer id="jankx-site-footer" class="jankx-site-footer">
     <?php do_action('jankx/template/footer/widgets'); ?>
 

@@ -2,6 +2,10 @@
 
 namespace Jankx\Walker;
 
+if (!defined('ABSPATH')) {
+    exit('Cheatin huh?');
+}
+
 use Walker_Comment;
 
 /**

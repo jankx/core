@@ -2,6 +2,10 @@
 
 namespace Illuminate\Container;
 
+if (!defined('ABSPATH')) {
+    exit('Cheatin huh?');
+}
+
 use ArrayAccess;
 use Closure;
 use Exception;
