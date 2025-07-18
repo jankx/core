@@ -12,14 +12,10 @@
   ],
   "require": {
     "psr/container": "^2.0",
-    "jankx/asset": "*",
-    "jankx/command": "*",
     "jankx/helpers": "^1.0.0",
     "jankx/option-adapter": "*",
-    "jankx/site-layout": "*",
     "jankx/post-layout": "*",
     "jankx/template": "^1.0.0",
-    "jankx/pagination": "*",
     "jankx/polyfills": "*",
     "jankx/wordpress-specs": "*",
     "symfony/serializer": "^5.4",
@@ -35,7 +31,8 @@
       "Illuminate\\Container\\": "./src/Jankx/Container/"
     },
     "files": [
-      "framework.php"
+      "framework.php",
+      "./helpers/assets.php"
     ]
   },
   "require-dev": {
