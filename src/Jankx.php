@@ -359,15 +359,17 @@ class Jankx extends Container
      */
     private function includes()
     {
-        $jankxVendor = realpath(dirname(JANKX_FRAMEWORK_FILE_LOADER) . '/..');
-        $fileNames = array(
-            'component/component.php',
-            'core/functions.php'
-        );
-        foreach ($fileNames as $fileName) {
-            $file = sprintf('%s/%s', $jankxVendor, $fileName);
-            if (file_exists($file)) {
-                require_once $file;
+        if (defined('JANKX_CORE_DIRECTORY')) {
+            $jankxVendor = realpath(JANKX_CORE_DIRECTORY );
+            $fileNames = array(
+                'functions.php'
+            );
+
+            foreach ($fileNames as $fileName) {
+                $file = sprintf('%s/%s', $jankxVendor, $fileName);
+                if (file_exists($file)) {
+                    require_once $file;
+                }
             }
         }
     }

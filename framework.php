@@ -11,14 +11,27 @@
 if (!defined('ABSPATH')) {
     exit('Cheating huh?');
 }
-define('JANKX_FRAMEWORK_FILE_LOADER', __FILE__);
 
-if (empty($GLOBALS['jankx'])) {
-    $jankxInstance = Jankx::getInstance();
+if (!defined('JANKX_FRAMEWORK_FILE_LOADER')) {
+    define('JANKX_FRAMEWORK_FILE_LOADER', __FILE__);
 
-    add_action(
-        'after_setup_theme',
-        array($jankxInstance, 'setup'),
-        2
-    );
+    if (empty($GLOBALS['jankx'])) {
+        $jankxInstance = Jankx::getInstance();
+
+        add_action(
+            'after_setup_theme',
+            array($jankxInstance, 'setup'),
+            2
+        );
+    }
 }
+
+if (!defined('JANKX_FRAMEWORK_DIRECTORY')) {
+define('JANKX_FRAMEWORK_DIRECTORY', dirname(JANKX_FRAMEWORK_FILE_LOADER));
+}
+
+if (!defined('JANKX_FRAMEWORK_INCLUDE_DIRECTORY')) {
+    define('JANKX_FRAMEWORK_INCLUDE_DIRECTORY', implode(DIRECTORY_SEPARATOR, [JANKX_FRAMEWORK_DIRECTORY, 'includes']));
+}
+
+define('JANKX_CORE_DIRECTORY', dirname(__FILE__));

@@ -8,7 +8,7 @@ if (!defined('ABSPATH')) {
 
 use Jankx\GlobalConfigs;
 use Jankx\SiteLayout\Admin\Metabox\PostLayout;
-use Jankx\SiteLayout\Constracts\MobileMenuLayout;
+use Jankx\SiteLayout\Contracts\MobileMenuLayout;
 use Jankx\SiteLayout\Admin\Menu\JankxItems;
 use Jankx\SiteLayout\Customizer\Header as HeaderCustomizer;
 use Jankx\SiteLayout\Menu\Mobile\SecondaryMenuOffcanvas;

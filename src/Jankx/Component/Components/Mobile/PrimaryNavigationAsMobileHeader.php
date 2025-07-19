@@ -8,8 +8,8 @@ if (!defined('ABSPATH')) {
 
 use Jankx;
 use Jankx\Component\Abstracts\MobileComponent;
-use Jankx\Component\Constracts\ComponentPlatform;
-use Jankx\Component\Constracts\ComponentViaActionHook;
+use Jankx\Component\Contracts\ComponentPlatform;
+use Jankx\Component\Contracts\ComponentViaActionHook;
 
 class PrimaryNavigationAsMobileHeader extends MobileComponent implements ComponentViaActionHook, ComponentPlatform
 {

@@ -17,8 +17,8 @@ use Jankx\Component\Components\Modal;
 use Jankx\Component\Components\SearchForm;
 use Jankx\Component\Components\Link;
 use Jankx\Component\Components\Navigation;
-use Jankx\Component\Constracts\ComponentViaActionHook;
-use Jankx\Component\Constracts\ComponentPlatform;
+use Jankx\Component\Contracts\ComponentViaActionHook;
+use Jankx\Component\Contracts\ComponentPlatform;
 use Jankx\Component\Components\Mobile\MobileHeader;
 use Jankx\GlobalConfigs;
 

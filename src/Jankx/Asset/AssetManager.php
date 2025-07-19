@@ -38,8 +38,6 @@ if (!class_exists(AssetManager::class)) {
             if (!defined('JANKX_ASSET_ROOT_DIR')) {
                 define('JANKX_ASSET_ROOT_DIR', dirname(__DIR__));
             }
-
-            require_once JANKX_ASSET_ROOT_DIR . '/helpers.php';
         }
 
         protected function createBucket()

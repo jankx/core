@@ -7,8 +7,8 @@ if (!defined('ABSPATH')) {
 }
 
 use Jankx\Component\Abstracts\MobileComponent;
-use Jankx\Component\Constracts\ComponentViaActionHook;
-use Jankx\Component\Constracts\ComponentPlatform;
+use Jankx\Component\Contracts\ComponentViaActionHook;
+use Jankx\Component\Contracts\ComponentPlatform;
 
 class MobileHeader extends MobileComponent implements ComponentViaActionHook, ComponentPlatform
 {

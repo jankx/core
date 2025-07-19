@@ -382,6 +382,7 @@ class TemplateAndLayout
             if (is_null($defaultLayout)) {
                 $defaultLayout = GlobalConfigs::get(
                     'customs.layouts.default.name',
+                    'default'
                 );
             }
             $siteLayout->setDefaultLayout($defaultLayout);
@@ -422,7 +423,7 @@ class TemplateAndLayout
             apply_filters('jankx/theme/template/directory', 'templates'),
             sprintf(
                 '%s/templates',
-                dirname(JANKX_FRAMEWORK_FILE_LOADER)
+                JANKX_FRAMEWORK_DIRECTORY
             ),
             apply_filters_ref_array(
                 'jankx/template/engine/apply',

@@ -7,7 +7,7 @@ if (!defined('ABSPATH')) {
 }
 
 use Jankx\TemplateEngine\Engine;
-use Jankx\Widget\Constracts\Renderer;
+use Jankx\Widget\Contracts\Renderer;
 use Jankx\TemplateAndLayout;
 
 abstract class Base implements Renderer

@@ -9,7 +9,7 @@ if (!defined('ABSPATH')) {
 use Jankx;
 use Jankx\Template\Template;
 use Jankx\TemplateEngine\Data;
-use Jankx\Component\Constracts\Component;
+use Jankx\Component\Contracts\Component;
 
 abstract class ComponentComposite implements Component
 {
