@@ -6,7 +6,7 @@ if (!defined('ABSPATH')) {
     exit('Cheating huh?');
 }
 
-use Jankx\SiteLayout\Constracts\MobileMenuLayout;
+use Jankx\SiteLayout\Contracts\MobileMenuLayout;
 
 class Slideout implements MobileMenuLayout
 {

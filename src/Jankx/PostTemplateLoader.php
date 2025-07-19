@@ -7,7 +7,7 @@ if (!defined('ABSPATH')) {
 }
 
 use Jankx\TemplateAndLayout;
-use Jankx\PostLayout\Constracts\PostLayout;
+use Jankx\PostLayout\Contracts\PostLayout;
 use Jankx\PostLayout\PostLayoutManager;
 use Jankx\PostLayout\Layout\ListLayout;
 

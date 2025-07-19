@@ -1,6 +1,6 @@
 <?php
 
-namespace Jankx\Widget\Constracts;
+namespace Jankx\Widget\Contracts;
 
 if (!defined('ABSPATH')) {
     exit('Cheating huh?');

@@ -7,7 +7,7 @@ if (!defined('ABSPATH')) {
 }
 
 use Jankx;
-use Jankx\SiteLayout\Constracts\MobileMenuLayout;
+use Jankx\SiteLayout\Contracts\MobileMenuLayout;
 
 class SecondaryMenuOffcanvas implements MobileMenuLayout
 {
