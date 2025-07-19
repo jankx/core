@@ -31,7 +31,8 @@
       "Illuminate\\Container\\": "./src/Jankx/Container/"
     },
     "files": [
-      "framework.php"
+      "framework.php",
+      "helpers/assets.php"
     ]
   },
   "require-dev": {
