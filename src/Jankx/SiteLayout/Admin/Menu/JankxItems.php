@@ -284,9 +284,22 @@ class JankxItems
 
     public function save_jankx_menu_item_metas()
     {
+        // Include security helper if not already included
+        if (!class_exists('Jankx_Security_Helper')) {
+            require_once get_template_directory() . '/includes/security.php';
+        }
+
+        // Verify nonce for security
+        if (!wp_verify_nonce(Jankx_Security_Helper::get_post_data('menu-item-subtitle-nonce', ''), 'save_menu_item_metas')) {
+            return;
+        }
+
         if (!empty($_POST['menu-item-subtitle'])) {
             $subtitles = $_POST['menu-item-subtitle'];
             foreach ($subtitles as $post_ID => $subtitle) {
+                $post_ID = absint($post_ID);
+                $subtitle = sanitize_text_field($subtitle);
+
                 $menuItem = get_post($post_ID);
                 if (!$menuItem || $menuItem->post_type !== 'nav_menu_item') {
                     continue;
@@ -303,6 +316,9 @@ class JankxItems
             $subtitles = $_POST['menu-item-subtitle-position'];
 
             foreach ($subtitles as $post_ID => $subtitle) {
+                $post_ID = absint($post_ID);
+                $subtitle = sanitize_text_field($subtitle);
+
                 $menuItem = get_post($post_ID);
                 if (!$menuItem || $menuItem->post_type !== 'nav_menu_item') {
                     continue;
@@ -318,6 +334,9 @@ class JankxItems
         if (!empty($_POST['menu-item-display-width'])) {
             $widths = $_POST['menu-item-display-width'];
             foreach ($widths as $post_ID => $width) {
+                $post_ID = absint($post_ID);
+                $width = sanitize_text_field($width);
+
                 $menuItem = get_post($post_ID);
                 if (!$menuItem || $menuItem->post_type !== 'nav_menu_item') {
                     continue;
@@ -333,6 +352,9 @@ class JankxItems
         if (!empty($_POST['menu-item-display-position'])) {
             $positions = $_POST['menu-item-display-position'];
             foreach ($positions as $post_ID => $position) {
+                $post_ID = absint($post_ID);
+                $position = sanitize_text_field($position);
+
                 $menuItem = get_post($post_ID);
                 if (!$menuItem || $menuItem->post_type !== 'nav_menu_item') {
                     continue;

@@ -55,11 +55,23 @@ class PostLayout
             return;
         }
 
+        // Include security helper if not already included
+        if (!class_exists('Jankx_Security_Helper')) {
+            require_once get_template_directory() . '/includes/security.php';
+        }
+
+        // Verify nonce for security
+        if (!wp_verify_nonce(Jankx_Security_Helper::get_post_data('post_layout_nonce', ''), 'save_post_layout')) {
+            return;
+        }
+
         if (isset($_POST[self::POST_LAYOUT_META_KEY])) {
-            if (empty($_POST[self::POST_LAYOUT_META_KEY])) {
+            $layout_value = sanitize_text_field($_POST[self::POST_LAYOUT_META_KEY]);
+
+            if (empty($layout_value)) {
                 delete_post_meta($postID, self::POST_LAYOUT_META_KEY);
             } else {
-                update_post_meta($postID, self::POST_LAYOUT_META_KEY, $_POST[self::POST_LAYOUT_META_KEY]);
+                update_post_meta($postID, self::POST_LAYOUT_META_KEY, $layout_value);
             }
         }
     }
