@@ -14,6 +14,10 @@ class CLIKernel extends AbstractKernel implements KernelInterface
     protected $name = 'cli';
     protected $context = 'cli';
 
+    protected $serviceProviders = [
+        \Jankx\Providers\CLIServiceProvider::class,
+    ];
+
     public function __construct()
     {
         parent::__construct();

@@ -22,6 +22,10 @@ use Jankx\Comments;
  */
 class FrontendKernel extends AbstractKernel
 {
+    protected $serviceProviders = [
+        \Jankx\Providers\FrontendServiceProvider::class,
+    ];
+
     /**
      * Get kernel type
      */

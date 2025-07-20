@@ -52,6 +52,8 @@ abstract class AbstractKernel implements KernelInterface
      */
     protected $kernelType;
 
+    protected $serviceProviders = [];
+
     /**
      * Constructor
      */
@@ -284,17 +286,17 @@ abstract class AbstractKernel implements KernelInterface
      */
     protected function loadServices()
     {
-        foreach ($this->services as $index => $serviceData) {
-            if (is_array($serviceData) && isset($serviceData['class']) && is_string($serviceData['class']) && !empty($serviceData['class'])) {
-                $service = $serviceData['class'];
-                $params = isset($serviceData['params']) ? $serviceData['params'] : [];
+        foreach ($this->getServiceProviders() as $providerClass) {
+            if (class_exists($providerClass)) {
                 try {
-                    $this->container->make($service, $params);
+                    $provider = new $providerClass($this->container);
+                    $provider->register();
+                    $provider->boot();
                 } catch (\Exception $e) {
-                    error_log(sprintf("%s: Không thể khởi tạo service {$service}: " . $e->getMessage(), get_class($this)));
+                    error_log(sprintf("%s: Không thể khởi tạo Service Provider {$providerClass}: " . $e->getMessage(), get_class($this)));
                 }
             } else {
-                error_log(sprintf("%s: Bỏ qua service có cấu trúc không hợp lệ tại index {$index}", get_class($this)));
+                error_log(sprintf("%s: Service Provider {$providerClass} không tồn tại", get_class($this)));
             }
         }
     }
@@ -359,5 +361,10 @@ abstract class AbstractKernel implements KernelInterface
             'priority' => $priority,
             'args' => $args
         ];
+    }
+
+    protected function getServiceProviders(): array
+    {
+        return $this->serviceProviders;
     }
 }

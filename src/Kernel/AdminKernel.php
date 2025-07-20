@@ -18,6 +18,10 @@ use Jankx\CSS\GlobalVariables as GlobalCSSVariables;
  */
 class AdminKernel extends AbstractKernel
 {
+    protected $serviceProviders = [
+        \Jankx\Providers\AdminServiceProvider::class,
+    ];
+
     /**
      * Get kernel type
      */
@@ -168,6 +172,14 @@ class AdminKernel extends AbstractKernel
             'jankx-performance',
             [$this, 'renderPerformancePage']
         );
+
+        // Hàm tạm thời để tránh lỗi undefined function
+        if (!function_exists('Jankx\Kernel\jankx_core_template_path')) {
+            function jankx_core_template_path($template_path) {
+                $base_path = defined('JANKX_ABSPATH') ? JANKX_ABSPATH : '';
+                return $base_path . '/templates/' . $template_path;
+            }
+        }
     }
 
     /**
