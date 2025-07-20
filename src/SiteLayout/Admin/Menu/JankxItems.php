@@ -209,7 +209,7 @@ class JankxItems
                     type="text"
                     id="edit-menu-item-subtitle-<?php echo $item_id; ?>"
                     class="widefat code edit-menu-item-subtitle"
-                    name="menu-item-subtitle[<?php echo $item->ID; ?>]"
+                    name="menu-item-subtitle[<?php echo isset($item->ID) ? $item->ID : ''; ?>]"
                     value="<?php echo trim($subtitle); ?>"
                 />
                 <span class="description">
@@ -284,13 +284,14 @@ class JankxItems
 
     public function save_jankx_menu_item_metas()
     {
-        // Include security helper if not already included
+        // Nếu không có class helper thì log lỗi và return
         if (!class_exists('Jankx_Security_Helper')) {
-            require_once get_template_directory() . '/includes/security.php';
+            error_log('Jankx_Security_Helper not found. Please check your installation.');
+            return;
         }
 
         // Verify nonce for security
-        if (!wp_verify_nonce(Jankx_Security_Helper::get_post_data('menu-item-subtitle-nonce', ''), 'save_menu_item_metas')) {
+        if (!wp_verify_nonce(\Jankx_Security_Helper::get_post_data('menu-item-subtitle-nonce', ''), 'save_menu_item_metas')) {
             return;
         }
 
