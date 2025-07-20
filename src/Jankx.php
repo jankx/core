@@ -410,7 +410,7 @@ class Jankx extends Container
         $templateLoader = new PostTemplateLoader();
         add_action('template_redirect', array($templateLoader, 'load'));
 
-               // Create option framework clousure
+        // Create option framework clousure
         $optionFramework = OptionFramework::getInstance();
         $this->optionFramework = function () use ($optionFramework) {
             return $optionFramework;
