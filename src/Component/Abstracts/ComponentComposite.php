@@ -6,7 +6,7 @@ if (!defined('ABSPATH')) {
     exit('Cheating huh?');
 }
 
-use Jankx;
+use Jankx\Jankx;
 use Jankx\Template\Template;
 use Jankx\TemplateEngine\Data;
 use Jankx\Component\Contracts\Component;

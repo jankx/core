@@ -7,7 +7,7 @@ if (!defined('ABSPATH')) {
 }
 
 use WP_Widget;
-use Jankx;
+use Jankx\Jankx;
 use Jankx\Widget\Renderers\SocialsRenderer;
 
 class Socials extends WP_Widget

@@ -3,6 +3,7 @@ if (!defined('ABSPATH')) {
     exit('Cheating huh?');
 }
 
+use Jankx\Jankx;
 use Jankx\Component\Abstracts\ComponentComposite;
 use Jankx\Component\Registry;
 use Jankx\Extra\BrandColors;

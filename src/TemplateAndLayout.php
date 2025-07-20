@@ -8,7 +8,7 @@ if (!defined('ABSPATH')) {
 
 use WP_Post_Type;
 use WP_User;
-use Jankx;
+use Jankx\Jankx;
 use Jankx\PostLayout\PostLayoutManager;
 use Jankx\SiteLayout\SiteLayout;
 use Jankx\Template\Page;

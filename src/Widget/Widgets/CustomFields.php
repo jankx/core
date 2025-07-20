@@ -6,7 +6,7 @@ if (!defined('ABSPATH')) {
     exit('Cheating huh?');
 }
 
-use Jankx;
+use Jankx\Jankx;
 use WP_Widget;
 
 class CustomFields extends WP_Widget

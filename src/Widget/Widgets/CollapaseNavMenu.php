@@ -7,7 +7,7 @@ if (!defined('ABSPATH')) {
 }
 
 use WP_Widget;
-use Jankx;
+use Jankx\Jankx;
 
 class CollapaseNavMenu extends WP_Widget
 {

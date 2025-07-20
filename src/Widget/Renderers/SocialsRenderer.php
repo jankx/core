@@ -6,7 +6,7 @@ if (!defined('ABSPATH')) {
     exit('Cheating huh?');
 }
 
-use Jankx;
+use Jankx\Jankx;
 use Jankx\Adapter\Options\Helper;
 use Jankx\Template\Template;
 

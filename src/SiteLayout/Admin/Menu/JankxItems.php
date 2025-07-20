@@ -6,7 +6,7 @@ if (!defined('ABSPATH')) {
     exit('Cheating huh?');
 }
 
-use Jankx;
+use Jankx\Jankx;
 use Jankx\SiteLayout\Menu\Renderer\NavItemRenderer;
 use Mega_Menu_Walker;
 

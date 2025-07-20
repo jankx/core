@@ -6,7 +6,7 @@ if (!defined('ABSPATH')) {
     exit('Cheating huh?');
 }
 
-use Jankx;
+use Jankx\Jankx;
 use Jankx\Component\Components\Header;
 use Jankx\Component\Components\Footer;
 use Jankx\Component\Components\HTML;

@@ -6,7 +6,7 @@ if (!defined('ABSPATH')) {
     exit('Cheating huh?');
 }
 
-use Jankx;
+use Jankx\Jankx;
 use Jankx\Component\Abstracts\MobileComponent;
 use Jankx\Component\Contracts\ComponentPlatform;
 use Jankx\Component\Contracts\ComponentViaActionHook;

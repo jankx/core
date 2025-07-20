@@ -17,7 +17,7 @@
     "jankx/helpers": "^1.0.0",
     "jankx/option-adapter": "*",
     "jankx/post-layout": "^1.0",
-    "jankx/template": "^1.0.0",
+    "jankx/template": "^2.0",
     "jankx/polyfills": "*",
     "jankx/wordpress-specs": "^1.0",
     "symfony/serializer": "^5.4",

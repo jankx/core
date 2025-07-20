@@ -6,7 +6,7 @@ if (!defined('ABSPATH')) {
     exit('Cheating huh?');
 }
 
-use Jankx;
+use Jankx\Jankx;
 use WP_Widget;
 use Jankx\Widget\Renderers\Facebook\PagePlugin as PagePluginRenderer;
 
