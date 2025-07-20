@@ -16,7 +16,7 @@ if (!defined('JANKX_FRAMEWORK_FILE_LOADER')) {
     define('JANKX_FRAMEWORK_FILE_LOADER', __FILE__);
 
     if (empty($GLOBALS['jankx'])) {
-        $jankxInstance = Jankx::getInstance();
+        $jankxInstance = \Jankx\Jankx::getInstance();
 
         add_action(
             'after_setup_theme',
