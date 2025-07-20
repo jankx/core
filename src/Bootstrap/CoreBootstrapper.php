@@ -2,35 +2,41 @@
 
 namespace Jankx\Bootstrap;
 
-class CoreBootstrapper extends Bootstrapper
+if (!defined('ABSPATH')) {
+    exit('Cheating huh?');
+}
+
+use Jankx\Context\ContextualServiceRegistry;
+use Jankx\Providers\GoogleFontsServiceProvider;
+use Jankx\Providers\SocialSharingServiceProvider;
+use Jankx\Providers\AdminMenuServiceProvider;
+use Jankx\Providers\ThemeOptionsServiceProvider;
+use Jankx\Providers\PostLayoutServiceProvider;
+
+/**
+ * Class CoreBootstrapper
+ *
+ * Khởi tạo các dịch vụ ban đầu và đăng ký chúng theo ngữ cảnh.
+ *
+ * @package Jankx\Bootstrap
+ * @author Puleeno Nguyen <puleeno@gmail.com>
+ */
+class CoreBootstrapper
 {
+    /**
+     * Khởi tạo các dịch vụ và đăng ký chúng theo ngữ cảnh
+     */
     public function bootstrap()
     {
-        // Khởi tạo các thành phần cốt lõi của hệ thống
-        $this->defineConstants();
-        $this->loadCoreHelpers();
-        $this->registerCoreBindings();
-    }
+        // Đăng ký dịch vụ dùng chung (shared)
+        ContextualServiceRegistry::register(ContextualServiceRegistry::SHARED, GoogleFontsServiceProvider::class);
+        ContextualServiceRegistry::register(ContextualServiceRegistry::SHARED, ThemeOptionsServiceProvider::class);
 
-    protected function defineConstants()
-    {
-        // Định nghĩa các hằng số cơ bản
-        parent::defineConstants();
-        // Thêm các hằng số khác nếu cần
-    }
+        // Đăng ký dịch vụ frontend
+        ContextualServiceRegistry::register(ContextualServiceRegistry::FRONTEND, SocialSharingServiceProvider::class);
+        ContextualServiceRegistry::register(ContextualServiceRegistry::FRONTEND, PostLayoutServiceProvider::class);
 
-    protected function loadCoreHelpers()
-    {
-        // Load các helper cơ bản
-        parent::loadCoreHelpers();
-        // Có thể thêm logic để load các helper không phụ thuộc context
-    }
-
-    protected function registerCoreBindings()
-    {
-        // Đăng ký các binding cơ bản vào container
-        parent::registerCoreBindings();
-        // Ví dụ: Đăng ký container chính nó
-        $this->container->instance('Illuminate\Container\Container', $this->container);
+        // Đăng ký dịch vụ dashboard
+        ContextualServiceRegistry::register(ContextualServiceRegistry::DASHBOARD, AdminMenuServiceProvider::class);
     }
 }

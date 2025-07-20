@@ -43,6 +43,7 @@ use Jankx\GlobalConfigs;
 use Jankx\Interfaces\Filter;
 use Jankx\Interfaces\GooglePagespeedModuleInterface;
 use Jankx\Extra\PageSpeed\HTML5FixerModule;
+use Jankx\Context\ContextualServiceRegistry;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Encoder\XmlEncoder;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
@@ -705,6 +706,22 @@ class Jankx extends Container
                 if ($module->endHook()) {
                     add_action($module->endHook(), [$module, 'execute']);
                 }
+            }
+        }
+    }
+
+    /**
+     * Khởi tạo các dịch vụ theo ngữ cảnh khi được gọi
+     *
+     * @param string $context Ngữ cảnh cần khởi tạo dịch vụ (frontend, dashboard, v.v.)
+     */
+    public function initializeServices($context)
+    {
+        $services = ContextualServiceRegistry::getServices($context);
+        foreach ($services as $serviceProviderClass) {
+            if (class_exists($serviceProviderClass)) {
+                $serviceProvider = new $serviceProviderClass($this);
+                $serviceProvider->register();
             }
         }
     }
