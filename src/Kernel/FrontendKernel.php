@@ -2,15 +2,16 @@
 
 namespace Jankx\Kernel;
 
+use Jankx\Jankx;
 use Jankx\Kernel\Bootstrappers\AssetBootstrapper;
 use Jankx\Kernel\Bootstrappers\ThemeBootstrapper;
 use Jankx\Kernel\Bootstrappers\WooCommerceBootstrapper;
 use Jankx\UX\UserExperience;
-use Jankx\Social\Sharing;
-use Jankx\IconFonts;
+//use Jankx\Social\Sharing;
+//use Jankx\IconFonts;
 use Jankx\CSS\GlobalVariables as GlobalCSSVariables;
 use Jankx\Comments;
-use Jankx\Widget\WidgetManager;
+//use Jankx\Widget\WidgetManager;
 
 /**
  * Frontend Kernel
@@ -58,8 +59,8 @@ class FrontendKernel extends AbstractKernel
         // User experience
         $this->addService(UserExperience::class);
 
-        // Icon fonts
-        $this->addService(IconFonts::class);
+        // Icon fonts - Bỏ qua vì class không tồn tại
+        // $this->addService(IconFonts::class);
 
         // Global CSS variables
         $this->addService(GlobalCSSVariables::class);
@@ -67,13 +68,13 @@ class FrontendKernel extends AbstractKernel
         // Comments system
         $this->addService(Comments::class);
 
-        // Widget manager
-        $this->addService(WidgetManager::class);
+        // Widget manager - Bỏ qua vì class không tồn tại
+        // $this->addService(WidgetManager::class);
 
-        // Social sharing (if enabled)
-        if (apply_filters('jankx_socials_sharing_enable', true)) {
-            $this->addService(Sharing::class);
-        }
+        // Social sharing (if enabled) - Bỏ qua vì class không tồn tại
+        //if (apply_filters('jankx_socials_sharing_enable', true)) {
+        //    $this->addService(Sharing::class);
+        //}
     }
 
     /**
@@ -81,33 +82,36 @@ class FrontendKernel extends AbstractKernel
      */
     protected function registerHooks(): void
     {
-        // Enqueue scripts
-        $this->addHook('wp_enqueue_scripts', [$this, 'enqueueScripts'], 20);
+        // Chỉ đăng ký hooks nếu đang ở context frontend
+        if ($this->isFrontendContext()) {
+            // Enqueue scripts
+            $this->addHook('wp_enqueue_scripts', [$this, 'enqueueScripts'], 20);
 
-        // Body classes
-        $this->addHook('body_class', [$this, 'addBodyClasses']);
+            // Body classes
+            $this->addHook('body_class', [$this, 'addBodyClasses']);
 
-        // Excerpt length
-        $this->addHook('excerpt_length', [$this, 'excerptLength']);
+            // Excerpt length
+            $this->addHook('excerpt_length', [$this, 'excerptLength']);
 
-        // Customizer
-        $this->addHook('customize_register', [$this, 'customizeRegister']);
+            // Customizer
+            $this->addHook('customize_register', [$this, 'customizeRegister']);
 
-        // Widgets
-        $this->addHook('widgets_init', [$this, 'registerWidgets']);
+            // Widgets
+            $this->addHook('widgets_init', [$this, 'registerWidgets']);
 
-        // Comments
-        $this->addHook('wp', [$this, 'initComments']);
+            // Comments
+            $this->addHook('wp', [$this, 'initComments']);
 
-        // CSS Variables
-        $this->addHook('wp', [$this, 'initCSSVariables']);
+            // CSS Variables
+            $this->addHook('wp', [$this, 'initCSSVariables']);
 
-        // Icon fonts
-        $this->addHook('wp_enqueue_scripts', [$this, 'registerIconFonts']);
+            // Icon fonts
+            $this->addHook('wp_enqueue_scripts', [$this, 'registerIconFonts']);
 
-        // Social sharing
-        if (apply_filters('jankx_socials_sharing_enable', true)) {
-            $this->addHook('after_setup_theme', [$this, 'initSocialSharing']);
+            // Social sharing
+            if (apply_filters('jankx_socials_sharing_enable', true)) {
+                $this->addHook('after_setup_theme', [$this, 'initSocialSharing']);
+            }
         }
     }
 
@@ -116,16 +120,27 @@ class FrontendKernel extends AbstractKernel
      */
     protected function registerFilters(): void
     {
-        // Performance optimizations
-        $this->addFilter('wp_resource_hints', [$this, 'resourceHints'], 10, 2);
-        $this->addFilter('wp_head', [$this, 'removeUnnecessaryTags']);
+        // Chỉ đăng ký filters nếu đang ở context frontend
+        if ($this->isFrontendContext()) {
+            // Performance optimizations
+            $this->addFilter('wp_resource_hints', [$this, 'resourceHints'], 10, 2);
+            $this->addFilter('wp_head', [$this, 'removeUnnecessaryTags']);
 
-        // SEO optimizations
-        $this->addFilter('wp_title', [$this, 'optimizeTitle']);
+            // SEO optimizations
+            $this->addFilter('wp_title', [$this, 'optimizeTitle']);
 
-        // Content optimizations
-        $this->addFilter('the_content', [$this, 'optimizeContent']);
-        $this->addFilter('excerpt_more', [$this, 'excerptMore']);
+            // Content optimizations
+            $this->addFilter('the_content', [$this, 'optimizeContent']);
+            $this->addFilter('excerpt_more', [$this, 'excerptMore']);
+        }
+    }
+
+    /**
+     * Kiểm tra xem có phải context frontend không
+     */
+    protected function isFrontendContext(): bool
+    {
+        return !is_admin() && !defined('WP_CLI') && !defined('REST_REQUEST') && !wp_doing_cron();
     }
 
     /**
@@ -234,8 +249,9 @@ class FrontendKernel extends AbstractKernel
      */
     public function registerWidgets(): void
     {
-        $widgetManager = $this->container->make(WidgetManager::class);
-        $widgetManager->registerWidgets();
+        // Bỏ qua vì class không tồn tại
+        // $widgetManager = $this->container->make(WidgetManager::class);
+        // $widgetManager->registerWidgets();
     }
 
     /**
@@ -244,7 +260,7 @@ class FrontendKernel extends AbstractKernel
     public function initComments(): void
     {
         $comments = $this->container->make(Comments::class);
-        $comments->init();
+        $comments->init($this->container);
     }
 
     /**
@@ -257,12 +273,13 @@ class FrontendKernel extends AbstractKernel
     }
 
     /**
-     * Register icon fonts
+     * Icon fonts
      */
     public function registerIconFonts(): void
     {
-        $iconFonts = $this->container->make(IconFonts::class);
-        $iconFonts->register_scripts();
+        // Bỏ qua vì class không tồn tại
+        // $iconFonts = $this->container->make(IconFonts::class);
+        // $iconFonts->register();
     }
 
     /**
@@ -270,8 +287,9 @@ class FrontendKernel extends AbstractKernel
      */
     public function initSocialSharing(): void
     {
-        $sharing = $this->container->make(Sharing::class);
-        $sharing->get_instance();
+        // Bỏ qua vì class không tồn tại
+        // $sharing = $this->container->make(Sharing::class);
+        // $sharing->init();
     }
 
     /**

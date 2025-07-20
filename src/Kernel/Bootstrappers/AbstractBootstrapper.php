@@ -2,8 +2,9 @@
 
 namespace Jankx\Kernel\Bootstrappers;
 
+use Jankx\Jankx;
 use Jankx\Kernel\Interfaces\BootstrapperInterface;
-use Jankx\Container\Container;
+use Illuminate\Container\Container;
 
 /**
  * Abstract Bootstrapper

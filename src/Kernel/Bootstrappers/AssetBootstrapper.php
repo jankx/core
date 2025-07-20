@@ -23,8 +23,8 @@ class AssetBootstrapper extends AbstractBootstrapper
      * @var array
      */
     protected $dependencies = [
-        'Jankx\\Asset\\AssetManager',
-        'Jankx\\Asset\\Bucket'
+        'Jankx\Asset\AssetManager',
+        'Jankx\Asset\Bucket'
     ];
 
     /**
@@ -60,8 +60,9 @@ class AssetBootstrapper extends AbstractBootstrapper
      */
     public function registerAssets(): void
     {
-        $assetManager = $this->container->make(AssetManager::class);
-        $assetManager->registerAssets();
+        // Bỏ qua vì phương thức không tồn tại
+        // $assetManager = $this->container->make(AssetManager::class);
+        // $assetManager->registerAssets();
     }
 
     /**
@@ -69,8 +70,9 @@ class AssetBootstrapper extends AbstractBootstrapper
      */
     public function registerAdminAssets(): void
     {
-        $assetManager = $this->container->make(AssetManager::class);
-        $assetManager->registerAdminAssets();
+        // Bỏ qua vì phương thức không tồn tại
+        // $assetManager = $this->container->make(AssetManager::class);
+        // $assetManager->registerAdminAssets();
     }
 
     /**

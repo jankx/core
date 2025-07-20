@@ -393,6 +393,9 @@ class Jankx extends Container
 
         $this->textDomain = $this->templateData->get('TextDomain');
 
+        // Initialize kernel system
+        $this->initKernelSystem();
+
         // Create Jankx admin instance;
         $admin = is_admin() ? new Admin() : null;
         $this->admin = function () use ($admin) {
@@ -465,6 +468,29 @@ class Jankx extends Container
 
         // Register widgets
         add_action('widgets_init', array(static::widgets(), 'registerWidgets'));
+    }
+
+    /**
+     * Initialize kernel system
+     */
+    private function initKernelSystem()
+    {
+        // Create kernel manager
+        $kernelManager = new \Jankx\Kernel\KernelManager($this);
+
+        // Register kernels
+        $kernelManager->registerKernel('frontend', \Jankx\Kernel\FrontendKernel::class);
+        $kernelManager->registerKernel('admin', \Jankx\Kernel\AdminKernel::class);
+        $kernelManager->registerKernel('api', \Jankx\Kernel\APIKernel::class);
+        $kernelManager->registerKernel('cli', \Jankx\Kernel\CLIKernel::class);
+
+        // Store kernel manager in container
+        $this->singleton(\Jankx\Kernel\KernelManager::class, function () use ($kernelManager) {
+            return $kernelManager;
+        });
+
+        // Boot kernels by context
+        $kernelManager->bootKernelsByContext();
     }
 
     /**

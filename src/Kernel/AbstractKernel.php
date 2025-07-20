@@ -2,9 +2,11 @@
 
 namespace Jankx\Kernel;
 
+use Jankx\Jankx;
 use Jankx\Kernel\Interfaces\KernelInterface;
 use Jankx\Kernel\Interfaces\BootstrapperInterface;
-use Jankx\Container\Container;
+
+use Illuminate\Container\Container;
 
 /**
  * Abstract Kernel Class
@@ -130,7 +132,7 @@ abstract class AbstractKernel implements KernelInterface
     /**
      * Get container
      */
-    public function getContainer(): Container
+    public function getContainer(): \Illuminate\Container\Container
     {
         return $this->container;
     }
@@ -280,15 +282,19 @@ abstract class AbstractKernel implements KernelInterface
     /**
      * Load services
      */
-    protected function loadServices(): void
+    protected function loadServices()
     {
-        foreach ($this->services as $service) {
-            if (is_string($service) && class_exists($service)) {
-                $this->container->make($service);
-            } elseif (is_callable($service)) {
-                call_user_func($service, $this->container);
-            } elseif (is_array($service) && isset($service['class'])) {
-                $this->container->make($service['class'], $service['params'] ?? []);
+        foreach ($this->services as $index => $serviceData) {
+            if (is_array($serviceData) && isset($serviceData['class']) && is_string($serviceData['class']) && !empty($serviceData['class'])) {
+                $service = $serviceData['class'];
+                $params = isset($serviceData['params']) ? $serviceData['params'] : [];
+                try {
+                    $this->container->make($service, $params);
+                } catch (\Exception $e) {
+                    error_log(sprintf("%s: Không thể khởi tạo service {$service}: " . $e->getMessage(), get_class($this)));
+                }
+            } else {
+                error_log(sprintf("%s: Bỏ qua service có cấu trúc không hợp lệ tại index {$index}", get_class($this)));
             }
         }
     }

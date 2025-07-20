@@ -2,7 +2,7 @@
 
 namespace Jankx\Kernel\Interfaces;
 
-use Jankx\Container\Container;
+use Illuminate\Container\Container;
 
 /**
  * Bootstrapper Interface
