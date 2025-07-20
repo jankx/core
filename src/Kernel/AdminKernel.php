@@ -19,6 +19,7 @@ use Jankx\Context\ContextualServiceRegistry;
 class AdminKernel
 {
     protected $container;
+    protected $booted = false;
 
     /**
      * Constructor
@@ -42,5 +43,16 @@ class AdminKernel
                 $serviceProvider->register();
             }
         }
+        $this->booted = true;
+    }
+
+    /**
+     * Kiểm tra xem kernel đã được khởi tạo hay chưa
+     *
+     * @return bool
+     */
+    public function isBooted()
+    {
+        return $this->booted;
     }
 }
