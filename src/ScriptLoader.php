@@ -36,65 +36,40 @@ class ScriptLoader
                     'version' => '2.2.1',
                 ),
                 'popperjs' => array(
-                    'url' => [
-                        'url' => jankx_core_asset_url('libs/popperjs/popper.js'),
-                        'url.min' => jankx_core_asset_url('libs/popperjs/popper.min.js')
-                    ],
+                    'url' => jankx_core_asset_url('libs/popperjs/popper.min.js'),
                     'version' => '2.9.1',
                 ),
                 'slideout' => array(
-                    'url' => [
-                        'url' => jankx_core_asset_url('libs/slideout/slideout.js'),
-                        'url.min' => jankx_core_asset_url('libs/slideout/slideout.min.js'),
-                    ],
+                    'url' => jankx_core_asset_url('libs/slideout/slideout.min.js'),
                     'version' => '1.0.1',
                 ),
                 'mmenu-light.polyfills' => array(
-                    'url' => [
-                        'url' => jankx_core_asset_url('libs/mmenu-light-3.2.2/mmenu-light.polyfills.js'),
-                    ],
+                    'url' => jankx_core_asset_url('libs/mmenu-light-3.2.2/mmenu-light.polyfills.js'),
                     'version' => '3.2.2',
                 ),
                 'mmenu-light' => array(
-                    'url' => [
-                        'url' => jankx_core_asset_url('libs/mmenu-light-3.2.2/mmenu-light.js'),
-                    ],
+                    'url' => jankx_core_asset_url('libs/mmenu-light-3.2.2/mmenu-light.js'),
                     'dependences' => ['mmenu-light.polyfills'],
                     'version' => '3.2.2',
                 ),
                 'micromodal' => array(
-                    'url' => [
-                        'url' => jankx_core_asset_url('libs/micromodal/micromodal.js'),
-                        'url.min' => jankx_core_asset_url('libs/micromodal/micromodal.min.js'),
-                    ],
+                    'url' => jankx_core_asset_url('libs/micromodal/micromodal.min.js'),
                     'version' => '0.4.6',
                 ),
                 'choices' => array(
-                    'url' => [
-                        'url' => jankx_core_asset_url('libs/Choices/scripts/choices.js'),
-                        'url.min' => jankx_core_asset_url('libs/Choices/scripts/choices.min.js')
-                    ],
+                    'url' => jankx_core_asset_url('libs/Choices/scripts/choices.min.js'),
                     'version' => '11.0.6',
                 ),
                 'sharing' => array(
-                    'url' => [
-                        'url' => jankx_core_asset_url('libs/vanilla-sharing/vanilla-sharing.umd.js'),
-                        'url.min' => jankx_core_asset_url('libs/vanilla-sharing/vanilla-sharing.min.js'),
-                    ],
+                    'url' => jankx_core_asset_url('libs/vanilla-sharing/vanilla-sharing.min.js'),
                     'version' => '6.0.5',
                 ),
                 'tim' => array(
-                    'url' => [
-                        'url' => jankx_core_asset_url('libs/tim/tinytim.js'),
-                        'url.min' => jankx_core_asset_url('libs/tim/tinytim.min.js'),
-                    ],
+                    'url' => jankx_core_asset_url('libs/tim/tinytim.min.js'),
                     'version' => '1.0.0'
                 ),
                 'ispin' => array(
-                    'url' => [
-                        'url' => jankx_core_asset_url('libs/ispinjs-2.0.1/js/ispin.js'),
-                        'url.min' => jankx_core_asset_url('libs/ispinjs-2.0.1/js/ispin.min.js'),
-                    ],
+                    'url' => jankx_core_asset_url('libs/ispinjs-2.0.1/js/ispin.min.js'),
                     'version' => '2.0.1'
                 )
             )
@@ -107,31 +82,20 @@ class ScriptLoader
             $styles,
             array(
                 'jankx-base' => array(
-                    'url' => [
-                        'url' => jankx_core_asset_url('css/jankx.css'),
-                        'url.min' => jankx_core_asset_url('css/jankx.min.css')
-                    ],
+                    'url' => jankx_core_asset_url('css/jankx.min.css'),
                     'version' => $this->revisionVersion,
                 ),
                 'choices' => array(
-                    'url' => [
-                        'url' => jankx_core_asset_url('libs/Choices/styles/choices.css'),
-                        'url.min' => jankx_core_asset_url('libs/Choices/styles/choices.min.css')
-                    ],
+                    'url' => jankx_core_asset_url('libs/Choices/styles/choices.min.css'),
                     'version' => '11.0.6',
                 ),
 
                 'mmenu-light' => array(
-                    'url' => [
-                        'url' => jankx_core_asset_url('libs/mmenu-light-3.2.2/mmenu-light.css'),
-                    ],
+                    'url' => jankx_core_asset_url('libs/mmenu-light-3.2.2/mmenu-light.css'),
                     'version' => '3.2.2',
                 ),
                 'ispin' => array(
-                    'url' => [
-                        'url' => jankx_core_asset_url('libs/ispinjs-2.0.1/css/ispin.css'),
-                        'url.min' => jankx_core_asset_url('libs/ispinjs-2.0.1/css/ispin.min.css'),
-                    ],
+                    'url' => jankx_core_asset_url('libs/ispinjs-2.0.1/css/ispin.min.css'),
                     'version' => '2.0.1'
                 )
             )
@@ -149,10 +113,8 @@ class ScriptLoader
                 jankx_core_asset_directory()
             ));
 
-            init_script(sprintf(
-                '<script>%s</script>',
-                $templateJsFunc
-            ), true);
+            // Sử dụng wp_add_inline_script thay vì init_script
+            wp_add_inline_script('jankx-common', sprintf('<script>%s</script>', $templateJsFunc));
         }
     }
 }

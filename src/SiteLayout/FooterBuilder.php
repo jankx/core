@@ -6,9 +6,8 @@ if (!defined('ABSPATH')) {
     exit('Cheating huh?');
 }
 
-use Jankx\Asset\Cache;
-use Jankx\Asset\CustomizableAsset;
 use Jankx\GlobalConfigs;
+
 
 class FooterBuilder
 {
@@ -139,9 +138,6 @@ class FooterBuilder
 
     public function generateFooterWidgetStyles()
     {
-        if (Cache::globalCssIsExists()) {
-            return;
-        }
 
         $numOfFooterWidgets = static::getNumOfFooterWidgets();
         // Disable footer widgets when the num of it less than and equal 0
@@ -149,11 +145,6 @@ class FooterBuilder
             return;
         }
 
-        // Load footer styles and don't echo by set 4 argument value is `false`
-        $footer_styles = CustomizableAsset::loadCustomize(
-            'footer_styles.php',
-            compact('numOfFooterWidgets')
-        );
-        Cache::addGlobalCss($footer_styles);
+        // TODO: implement footer widgets
     }
 }

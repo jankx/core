@@ -32,8 +32,7 @@
       "AdvancedElementor\\Controls\\": "./src/Jankx/Integration/Elementor/Controls/"
     },
     "files": [
-      "framework.php",
-      "helpers/assets.php"
+      "framework.php"
     ]
   },
   "suggest": {

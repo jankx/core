@@ -20,7 +20,6 @@ if (!defined('ABSPATH')) {
  */
 
 use Illuminate\Container\Container;
-use Jankx\Asset\AssetManager;
 use Jankx\Comments;
 use Jankx\Component\Registry;
 use Jankx\Configs\ThemeConfigurations;
@@ -188,13 +187,6 @@ class Jankx extends Container
      * @var array
      */
     protected $filters = [];
-
-    /**
-     * Asset manager
-     *
-     * @var AssetManager
-     */
-    protected $asset;
 
     /**
      * Option framework
@@ -418,13 +410,7 @@ class Jankx extends Container
         $templateLoader = new PostTemplateLoader();
         add_action('template_redirect', array($templateLoader, 'load'));
 
-        // Create Asset clousure for Jankx
-        $assetManager = AssetManager::instance();
-        $this->asset  = function () use ($assetManager) {
-            return $assetManager;
-        };
-
-        // Create option framework clousure
+               // Create option framework clousure
         $optionFramework = OptionFramework::getInstance();
         $this->optionFramework = function () use ($optionFramework) {
             return $optionFramework;

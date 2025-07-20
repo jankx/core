@@ -10,9 +10,14 @@ class PlatesTemplateServiceProvider extends ServiceProvider
         $this->singleton('Jankx\Templates\PlatesEngine', function ($container) {
             // Logic khởi tạo dịch vụ, có thể trả về null nếu không khả dụng
             try {
-                $engine = new \Jankx\Templates\PlatesEngine();
-                // Thêm logic caching nếu có
-                return $engine;
+                if (class_exists('\Jankx\Templates\PlatesEngine')) {
+                    $engine = new \Jankx\Templates\PlatesEngine();
+                    // Thêm logic caching nếu có
+                    return $engine;
+                } else {
+                    error_log('Class Jankx\Templates\PlatesEngine không tồn tại.');
+                    return null;
+                }
             } catch (\Exception $e) {
                 error_log('Không thể khởi tạo Jankx\Templates\PlatesEngine: ' . $e->getMessage());
                 return null;

@@ -37,7 +37,6 @@ class Customize
     public function showLoading()
     {
         add_action('wp_body_open', array($this, 'renderLoading'));
-        add_action('init', array($this, 'renderLoadingCSS'));
     }
 
     public function renderLoading()
@@ -45,15 +44,6 @@ class Customize
         echo '<div class="jankx-loading">';
         jankx_template('common/loading');
         echo '</div>';
-    }
-
-    public function renderLoadingCSS()
-    {
-        if (Cache::globalCssIsExists()) {
-            return;
-        }
-        $css = CustomizableAsset::loadCustomize('loading.php');
-        Cache::addGlobalCss($css);
     }
 
     public function footerWidgets($numberOfAreas)
