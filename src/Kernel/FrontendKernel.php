@@ -27,6 +27,7 @@ class FrontendKernel extends AbstractKernel
         \Jankx\Providers\FrontendServiceProvider::class,
         \Jankx\Providers\GutenbergServiceProvider::class,
         \Jankx\Providers\PlatesTemplateServiceProvider::class,
+        \Jankx\Providers\PostLayoutServiceProvider::class,
     ];
 
     /**
