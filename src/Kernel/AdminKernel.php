@@ -177,7 +177,13 @@ class AdminKernel extends AbstractKernel
         if (!function_exists('Jankx\Kernel\jankx_core_template_path')) {
             function jankx_core_template_path($template_path) {
                 $base_path = defined('JANKX_ABSPATH') ? JANKX_ABSPATH : '';
-                return $base_path . '/templates/' . $template_path;
+                $full_path = $base_path . '/templates/' . $template_path;
+                if (file_exists($full_path)) {
+                    return $full_path;
+                } else {
+                    error_log("Template file not found: {$full_path}");
+                    return false;
+                }
             }
         }
     }
@@ -299,7 +305,8 @@ class AdminKernel extends AbstractKernel
      */
     public function renderSettingsPage(): void
     {
-        include jankx_core_template_path('admin/settings.php');
+        // Tự render trang settings mà không phụ thuộc vào template bên ngoài
+        echo '<div class="wrap"><h1>Cài đặt Jankx</h1><p>Chào mừng đến với trang cài đặt Jankx. Nội dung đang được phát triển.</p></div>';
     }
 
     /**
@@ -307,7 +314,8 @@ class AdminKernel extends AbstractKernel
      */
     public function renderPerformancePage(): void
     {
-        include jankx_core_template_path('admin/performance.php');
+        // Tự render trang performance mà không phụ thuộc vào template bên ngoài
+        echo '<div class="wrap"><h1>Hiệu suất Jankx</h1><p>Chào mừng đến với trang hiệu suất Jankx. Nội dung đang được phát triển.</p></div>';
     }
 
     /**
@@ -316,7 +324,10 @@ class AdminKernel extends AbstractKernel
     public function renderPostMetaBox($post): void
     {
         wp_nonce_field('jankx_save_post', 'jankx_nonce');
-        include jankx_core_template_path('admin/meta-boxes/post-options.php');
+        $template_path = jankx_core_template_path('admin/meta-boxes/post-options.php');
+        if ($template_path) {
+            include $template_path;
+        }
     }
 
     /**
