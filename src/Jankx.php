@@ -1,4 +1,5 @@
 <?php
+
 namespace Jankx;
 
 if (!defined('ABSPATH')) {
@@ -362,7 +363,7 @@ class Jankx extends Container
     private function includes()
     {
         if (defined('JANKX_CORE_DIRECTORY')) {
-            $jankxVendor = realpath(JANKX_CORE_DIRECTORY );
+            $jankxVendor = realpath(JANKX_CORE_DIRECTORY);
             $fileNames = array(
                 'functions.php'
             );

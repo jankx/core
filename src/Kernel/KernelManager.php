@@ -27,8 +27,7 @@ class KernelManager
     public function boot()
     {
         if ($this->booted) {
-            error_log('Kernel already booted. Skipping boot process.');
-            return;
+                        return;
         }
 
         $this->booted = true;
@@ -40,29 +39,22 @@ class KernelManager
         // Ưu tiên CLI context và không load các kernel khác nếu đang ở CLI
         if (defined('WP_CLI') && WP_CLI) {
             $this->currentKernel = $this->container->make(CLIKernel::class);
-            error_log('CLI context detected. Booting CLIKernel exclusively.');
-            $this->currentKernel->boot();
+                        $this->currentKernel->boot();
             return; // Dừng lại, không kiểm tra các context khác
         }
 
         if (defined('DOING_CRON') && DOING_CRON) {
             $this->currentKernel = $this->container->make(CronKernel::class);
-            error_log('Cron context detected. Booting CronKernel.');
         } elseif (defined('REST_REQUEST') && REST_REQUEST || isset($_GET['rest_route'])) {
             $this->currentKernel = $this->container->make(APIKernel::class);
-            error_log('API context detected. Booting APIKernel.');
         } elseif (function_exists('wp_doing_ajax') && wp_doing_ajax()) {
             $this->currentKernel = $this->container->make(AjaxKernel::class);
-            error_log('AJAX context detected. Booting AjaxKernel.');
         } elseif (is_admin()) {
             $this->currentKernel = $this->container->make(DashboardKernel::class);
-            error_log('Admin context detected. Booting DashboardKernel.');
         } elseif (is_404()) {
             $this->currentKernel = $this->container->make(NotFoundKernel::class);
-            error_log('404 context detected. Booting NotFoundKernel.');
         } else {
             $this->currentKernel = $this->container->make(FrontendKernel::class);
-            error_log('Frontend context detected. Booting FrontendKernel.');
         }
 
         if ($this->currentKernel) {
@@ -118,7 +110,6 @@ class KernelManager
     public function bootKernelsByContext(): void
     {
         $context = $this->getCurrentContext();
-        error_log("Current context: {$context}");
 
         switch ($context) {
             case 'frontend':
@@ -150,11 +141,9 @@ class KernelManager
                 break;
 
             default:
-                error_log("Unknown context: {$context}, defaulting to frontend");
-                $this->bootKernel('frontend');
+                                $this->bootKernel('frontend');
                 break;
         }
-        error_log("Booted kernel for context: {$context}");
     }
 
     protected function getCurrentContext(): string

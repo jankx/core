@@ -27,9 +27,10 @@ class SecureCommand extends Command
     {
     }
 
-    protected function getFileNameExcludeWorkingDirs($phpFile) {
+    protected function getFileNameExcludeWorkingDirs($phpFile)
+    {
         $orgFile = $phpFile;
-        foreach($this->dirs as $dir) {
+        foreach ($this->dirs as $dir) {
             $phpFile = str_replace($dir, '', $phpFile);
         }
         $ret = ltrim($phpFile, DIRECTORY_SEPARATOR);
@@ -145,18 +146,19 @@ class SecureCommand extends Command
         WP_CLI::success(sprintf('Content of file "%s" is replaced', $this->getFileNameExcludeWorkingDirs($phpFile)));
     }
 
-    protected function resolvePath($dir) {
+    protected function resolvePath($dir)
+    {
         $explodeChars = ['/', '\\'];
         $paths = [$dir];
 
-        foreach($explodeChars as $char) {
+        foreach ($explodeChars as $char) {
             $tmp = [];
-            foreach($paths as $dir) {
+            foreach ($paths as $dir) {
                 $tmp = array_merge($tmp, explode($char, $dir));
             }
             $paths = $tmp;
         }
-        foreach($paths as $index => $path) {
+        foreach ($paths as $index => $path) {
             if ($path === '.') {
                 $paths[$index] = getcwd();
             } elseif ($path === '..') {

@@ -93,14 +93,16 @@ class SecondaryMenuOffcanvas implements MobileMenuLayout
     }
 
 
-    public function openMmenuPageSection() {
+    public function openMmenuPageSection()
+    {
         ?>
         <!-- Open #page -->
          <div id="page">
         <?php
     }
 
-    public function closeMmenuPageSection() {
+    public function closeMmenuPageSection()
+    {
         ?>
         </div>
         <!-- close #page -->

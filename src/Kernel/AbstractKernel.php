@@ -5,7 +5,6 @@ namespace Jankx\Kernel;
 use Jankx\Jankx;
 use Jankx\Kernel\Interfaces\KernelInterface;
 use Jankx\Kernel\Interfaces\BootstrapperInterface;
-
 use Illuminate\Container\Container;
 
 /**
@@ -258,7 +257,7 @@ abstract class AbstractKernel implements KernelInterface
         }
 
         // Sort by priority (lower number = higher priority)
-        usort($bootstrappersWithPriority, function($a, $b) {
+        usort($bootstrappersWithPriority, function ($a, $b) {
             return $a['priority'] <=> $b['priority'];
         });
 
