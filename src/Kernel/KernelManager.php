@@ -10,6 +10,7 @@ use Jankx\Kernel\CLIKernel;
 use Jankx\Kernel\APIKernel;
 use Jankx\Kernel\NotFoundKernel;
 use Jankx\Kernel\AjaxKernel;
+use Jankx\Bootstrap\CoreBootstrapper;
 
 class KernelManager
 {
@@ -22,12 +23,20 @@ class KernelManager
     public function __construct(Container $container)
     {
         $this->container = $container;
+        $this->bootstrapSystem();
+    }
+
+    protected function bootstrapSystem()
+    {
+        // Khởi tạo hệ thống bằng CoreBootstrapper trước khi làm bất cứ điều gì khác
+        $bootstrapper = new CoreBootstrapper($this->container);
+        $bootstrapper->bootstrap();
     }
 
     public function boot()
     {
         if ($this->booted) {
-                        return;
+            return;
         }
 
         $this->booted = true;

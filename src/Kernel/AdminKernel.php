@@ -20,6 +20,7 @@ class AdminKernel extends AbstractKernel
 {
     protected $serviceProviders = [
         \Jankx\Providers\AdminServiceProvider::class,
+        \Jankx\Providers\GutenbergServiceProvider::class,
     ];
 
     /**
