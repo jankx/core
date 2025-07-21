@@ -2,5 +2,6 @@
 
 namespace Jankx\Interfaces;
 
-interface EnumInterface {
+interface EnumInterface
+{
 }

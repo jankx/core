@@ -223,7 +223,7 @@ class CLIKernel extends AbstractKernel implements KernelInterface
             'execution_time' => $this->checkExecutionTime(),
         ];
 
-        $failed_requirements = array_filter($requirements, function($met) {
+        $failed_requirements = array_filter($requirements, function ($met) {
             return !$met;
         });
 
