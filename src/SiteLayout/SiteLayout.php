@@ -2,6 +2,8 @@
 
 namespace Jankx\SiteLayout;
 
+use Jankx\Security\Jankx_Security_Helper;
+
 if (!defined('ABSPATH')) {
     exit('Cheating huh?');
 }
@@ -249,11 +251,6 @@ class SiteLayout
         if (is_admin()) {
             $currentScreen = get_current_screen();
             if ($currentScreen->base === 'post') {
-                // Include security helper if not already included
-                if (!class_exists('Jankx_Security_Helper')) {
-                    require_once get_template_directory() . '/includes/security.php';
-                }
-
                 $post_id = Jankx_Security_Helper::get_get_int('post', 0);
                 return get_post_meta($post_id, PostLayout::POST_LAYOUT_META_KEY, true);
             }

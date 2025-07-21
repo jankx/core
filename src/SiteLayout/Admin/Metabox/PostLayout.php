@@ -6,6 +6,8 @@ if (!defined('ABSPATH')) {
     exit('Cheating huh?');
 }
 
+use Jankx\Security\Jankx_Security_Helper;
+
 use Jankx\SiteLayout\SiteLayout;
 
 class PostLayout
@@ -41,8 +43,10 @@ class PostLayout
         $currentLayout = $siteLayout->getLayout(true);
         $layouts       = $siteLayout->getSupportLayouts();
         $metaKey       = self::POST_LAYOUT_META_KEY;
-        $templateFile  = sprintf('%s/templates/admin/site-layout/metabox.php', dirname(JANKX_FRAMEWORK_FILE_LOADER));
-
+        $templateFile  = sprintf(
+            '%s/templates/admin/site-layout/metabox.php',
+            JANKX_CORE_DIRECTORY
+        );
         require_once $templateFile;
     }
 
@@ -53,11 +57,6 @@ class PostLayout
          */
         if (!in_array($post->post_type, $this->supportPostTypes)) {
             return;
-        }
-
-        // Include security helper if not already included
-        if (!class_exists('Jankx_Security_Helper')) {
-            require_once get_template_directory() . '/includes/security.php';
         }
 
         // Verify nonce for security

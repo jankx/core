@@ -7,62 +7,42 @@ use Illuminate\Container\Container;
 /**
  * Kernel Interface
  *
+ * Defines the contract for kernel classes in the Jankx framework.
+ *
  * @package Jankx\Kernel\Interfaces
  */
 interface KernelInterface
 {
     /**
-     * Boot kernel
+     * Constructor
+     *
+     * @param Container $container The dependency injection container
+     */
+    public function __construct(Container $container);
+
+    /**
+     * Boot the kernel
      */
     public function boot(): void;
 
     /**
-     * Check if kernel is booted
+     * Check if the kernel is booted
+     *
+     * @return bool
      */
     public function isBooted(): bool;
 
     /**
-     * Get kernel type
+     * Get the kernel type
+     *
+     * @return string
      */
-    public function getType(): string;
+    public function getKernelType(): string;
 
     /**
      * Get container
+     *
+     * @return \Illuminate\Container\Container
      */
-    public function getContainer(): Container;
-
-    /**
-     * Get services
-     */
-    public function getServices(): array;
-
-    /**
-     * Get hooks
-     */
-    public function getHooks(): array;
-
-    /**
-     * Get filters
-     */
-    public function getFilters(): array;
-
-    /**
-     * Get bootstrappers
-     */
-    public function getBootstrappers(): array;
-
-    /**
-     * Add bootstrapper
-     */
-    public function addBootstrapper(string $bootstrapper): void;
-
-    /**
-     * Remove bootstrapper
-     */
-    public function removeBootstrapper(string $bootstrapper): void;
-
-    /**
-     * Check if bootstrapper exists
-     */
-    public function hasBootstrapper(string $bootstrapper): bool;
+    public function getContainer(): \Illuminate\Container\Container;
 }

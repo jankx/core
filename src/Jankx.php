@@ -371,10 +371,17 @@ class Jankx extends Container
     }
 
     /**
-     * Khởi tạo core framework
+     * Initialize core framework components
      */
     private function initCoreFramework()
     {
+        // Initialize kernel system
+        $this->initKernelSystem();
+
+        // Initialize Gutenberg Blocks system
+        $this->initBlocksSystem();
+
+        // Other core components initialization
         $this->templateData = wp_get_theme();
 
         $this->theme = function () {
@@ -386,9 +393,6 @@ class Jankx extends Container
         };
 
         $this->textDomain = $this->templateData->get('TextDomain');
-
-        // Initialize kernel system
-        $this->initKernelSystem();
 
         // Create Jankx admin instance;
         $admin = is_admin() ? new Admin() : null;
@@ -471,6 +475,7 @@ class Jankx extends Container
         $kernelManager->registerKernel('admin', \Jankx\Kernel\AdminKernel::class);
         $kernelManager->registerKernel('api', \Jankx\Kernel\APIKernel::class);
         $kernelManager->registerKernel('cli', \Jankx\Kernel\CLIKernel::class);
+        $kernelManager->registerKernel('cron', \Jankx\Kernel\CronKernel::class);
 
         // Store kernel manager in container
         $this->singleton(\Jankx\Kernel\KernelManager::class, function () use ($kernelManager) {
@@ -479,6 +484,15 @@ class Jankx extends Container
 
         // Boot kernels by context
         $kernelManager->bootKernelsByContext();
+    }
+
+    /**
+     * Initialize blocks system
+     */
+    private function initBlocksSystem()
+    {
+        // Register BlockManager
+        \Jankx\Blocks\BlockManager::register();
     }
 
     /**

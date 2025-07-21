@@ -2,6 +2,8 @@
 
 namespace Jankx\SiteLayout\Admin\Menu;
 
+use Jankx\Security\Jankx_Security_Helper;
+
 if (!defined('ABSPATH')) {
     exit('Cheating huh?');
 }
@@ -284,14 +286,8 @@ class JankxItems
 
     public function save_jankx_menu_item_metas()
     {
-        // Nếu không có class helper thì log lỗi và return
-        if (!class_exists('Jankx_Security_Helper')) {
-            error_log('Jankx_Security_Helper not found. Please check your installation.');
-            return;
-        }
-
         // Verify nonce for security
-        if (!wp_verify_nonce(\Jankx_Security_Helper::get_post_data('menu-item-subtitle-nonce', ''), 'save_menu_item_metas')) {
+        if (!wp_verify_nonce(Jankx_Security_Helper::get_post_data('menu-item-subtitle-nonce', ''), 'save_menu_item_metas')) {
             return;
         }
 

@@ -69,8 +69,13 @@ abstract class AbstractKernel implements KernelInterface
 
     /**
      * Get kernel type
+     *
+     * @return string
      */
-    abstract protected function getKernelType(): string;
+    public function getKernelType(): string
+    {
+        return 'abstract';
+    }
 
     /**
      * Register bootstrappers
@@ -132,6 +137,8 @@ abstract class AbstractKernel implements KernelInterface
 
     /**
      * Get container
+     *
+     * @return \Illuminate\Container\Container
      */
     public function getContainer(): \Illuminate\Container\Container
     {

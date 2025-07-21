@@ -3,15 +3,15 @@
 namespace Jankx\Kernel;
 
 use Illuminate\Container\Container;
-use Jankx\Kernel\FrontendKernel;
-use Jankx\Kernel\DashboardKernel;
-use Jankx\Kernel\CronKernel;
-use Jankx\Kernel\CLIKernel;
-use Jankx\Kernel\APIKernel;
-use Jankx\Kernel\NotFoundKernel;
-use Jankx\Kernel\AjaxKernel;
-use Jankx\Bootstrap\CoreBootstrapper;
+use Jankx\Kernel\Interfaces\KernelInterface;
 
+/**
+ * Kernel Manager
+ *
+ * Manages the registration, initialization, and booting of kernels based on context.
+ *
+ * @package Jankx\Kernel
+ */
 class KernelManager
 {
     protected $container;
@@ -29,7 +29,7 @@ class KernelManager
     protected function bootstrapSystem()
     {
         // Khởi tạo hệ thống bằng CoreBootstrapper trước khi làm bất cứ điều gì khác
-        $bootstrapper = new CoreBootstrapper($this->container);
+        $bootstrapper = new \Jankx\Bootstrap\CoreBootstrapper($this->container);
         $bootstrapper->bootstrap();
     }
 
@@ -48,20 +48,16 @@ class KernelManager
         // Ưu tiên CLI context và không load các kernel khác nếu đang ở CLI
         if (defined('WP_CLI') && WP_CLI) {
             $this->currentKernel = $this->container->make(CLIKernel::class);
-                        $this->currentKernel->boot();
+            $this->currentKernel->boot();
             return; // Dừng lại, không kiểm tra các context khác
         }
 
-        if (defined('DOING_CRON') && DOING_CRON) {
+        if (wp_doing_cron()) {
             $this->currentKernel = $this->container->make(CronKernel::class);
-        } elseif (defined('REST_REQUEST') && REST_REQUEST || isset($_GET['rest_route'])) {
+        } elseif (defined('REST_REQUEST') && REST_REQUEST) {
             $this->currentKernel = $this->container->make(APIKernel::class);
-        } elseif (function_exists('wp_doing_ajax') && wp_doing_ajax()) {
-            $this->currentKernel = $this->container->make(AjaxKernel::class);
         } elseif (is_admin()) {
-            $this->currentKernel = $this->container->make(DashboardKernel::class);
-        } elseif (is_404()) {
-            $this->currentKernel = $this->container->make(NotFoundKernel::class);
+            $this->currentKernel = $this->container->make(AdminKernel::class);
         } else {
             $this->currentKernel = $this->container->make(FrontendKernel::class);
         }
@@ -76,10 +72,17 @@ class KernelManager
         return $this->currentKernel;
     }
 
+    /**
+     * Register kernel
+     */
     public function registerKernel(string $type, string $kernelClass): void
     {
         if (!class_exists($kernelClass)) {
             throw new \InvalidArgumentException("Kernel class {$kernelClass} does not exist");
+        }
+
+        if (!is_subclass_of($kernelClass, KernelInterface::class)) {
+            throw new \InvalidArgumentException("Kernel class {$kernelClass} must implement KernelInterface");
         }
 
         $this->kernels[$type] = $kernelClass;
@@ -116,6 +119,9 @@ class KernelManager
         }
     }
 
+    /**
+     * Boot kernels by context
+     */
     public function bootKernelsByContext(): void
     {
         $context = $this->getCurrentContext();
@@ -141,44 +147,32 @@ class KernelManager
                 $this->bootKernel('cron');
                 break;
 
-            case '404':
-                $this->bootKernel('404');
-                break;
-
-            case 'ajax':
-                $this->bootKernel('api');
-                break;
-
             default:
-                                $this->bootKernel('frontend');
+                $this->bootKernel('frontend');
                 break;
         }
     }
 
+    /**
+     * Get current context
+     */
     protected function getCurrentContext(): string
     {
         if (defined('WP_CLI') && WP_CLI) {
             return 'cli';
         }
 
-        if (defined('DOING_CRON') && DOING_CRON) {
+        if (wp_doing_cron()) {
             return 'cron';
-        }
-
-        if (defined('REST_REQUEST') && REST_REQUEST || isset($_GET['rest_route'])) {
-            return 'api';
-        }
-
-        if (function_exists('wp_doing_ajax') && wp_doing_ajax()) {
-            return 'ajax';
         }
 
         if (is_admin()) {
             return 'admin';
         }
 
-        if (is_404()) {
-            return '404';
+        // Check if it's a REST API request
+        if (defined('REST_REQUEST') && REST_REQUEST) {
+            return 'api';
         }
 
         return 'frontend';

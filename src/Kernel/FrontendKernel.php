@@ -2,57 +2,83 @@
 
 namespace Jankx\Kernel;
 
-if (!defined('ABSPATH')) {
-    exit('Cheating huh?');
-}
-
-use Jankx\Context\ContextualServiceRegistry;
+use Jankx\Kernel\Interfaces\KernelInterface;
+use Jankx\Kernel\Bootstrappers\FrontendBootstrapper;
+use Jankx\Kernel\Bootstrappers\ThemeBootstrapper;
 
 /**
- * Class FrontendKernel
+ * Frontend Kernel
  *
- * Khởi tạo các dịch vụ dành riêng cho frontend và các dịch vụ dùng chung.
+ * Handles frontend-specific features
  *
  * @package Jankx\Kernel
- * @author Puleeno Nguyen <puleeno@gmail.com>
  */
-class FrontendKernel
+class FrontendKernel extends AbstractKernel implements KernelInterface
 {
-    protected $container;
-    protected $booted = false;
-
     /**
-     * Constructor
-     *
-     * @param mixed $container Container để resolve các dịch vụ
+     * Get kernel type
      */
-    public function __construct($container)
+    public function getKernelType(): string
     {
-        $this->container = $container;
+        return 'frontend';
     }
 
     /**
-     * Khởi tạo các dịch vụ theo ngữ cảnh frontend
+     * Register bootstrappers
      */
-    public function boot()
+    protected function registerBootstrappers(): void
     {
-        $services = ContextualServiceRegistry::getServices(ContextualServiceRegistry::FRONTEND);
-        foreach ($services as $serviceProviderClass) {
-            if (class_exists($serviceProviderClass)) {
-                $serviceProvider = new $serviceProviderClass($this->container);
-                $serviceProvider->register();
-            }
+        // Theme bootstrapper (highest priority)
+        $this->addBootstrapper(ThemeBootstrapper::class);
+
+        // Frontend bootstrapper
+        $this->addBootstrapper(FrontendBootstrapper::class);
+
+        // Allow child themes to add custom bootstrappers
+        $customBootstrappers = apply_filters('jankx/frontend/bootstrappers', []);
+        foreach ($customBootstrappers as $bootstrapper) {
+            $this->addBootstrapper($bootstrapper);
         }
-        $this->booted = true;
     }
 
     /**
-     * Kiểm tra xem kernel đã được khởi tạo hay chưa
-     *
-     * @return bool
+     * Register services
      */
-    public function isBooted()
+    protected function registerServices(): void
     {
-        return $this->booted;
+        // Frontend-specific services will be registered here
+    }
+
+    /**
+     * Register hooks
+     */
+    protected function registerHooks(): void
+    {
+        // Frontend-specific hooks will be registered here
+    }
+
+    /**
+     * Register filters
+     */
+    protected function registerFilters(): void
+    {
+        // Frontend-specific filters will be registered here
+    }
+
+    /**
+     * Boot the kernel
+     */
+    public function boot(): void
+    {
+        parent::boot();
+        // Additional boot logic for frontend if needed
+    }
+
+    /**
+     * Check if kernel is booted
+     */
+    public function isBooted(): bool
+    {
+        return parent::isBooted();
     }
 }
